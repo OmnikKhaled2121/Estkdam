@@ -1,0 +1,39 @@
+:root {
+  font-family: "Almarai";
+  /* line-height: 1.5;
+  font-weight: 400; */
+
+  color-scheme: light dark;
+  color: black;
+  background-color: #fff;
+
+  direction: rtl;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+}
+#Landing {
+  /* background-image: url("./assets/cyanBackground.svg"); */
+  background-repeat: no-repeat;
+  /* background-position: center; */
+  background-size: cover;
+}
+@keyframes mymove {
+  from {
+    top: translate(0%, -1000%);
+  }
+  to {
+    transform: translate(0%, 10%);
+  }
+}
