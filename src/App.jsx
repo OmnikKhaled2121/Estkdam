@@ -7,6 +7,7 @@ import stylisRTLPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
 import { CssBaseline } from "@mui/material";
 import Landing from "./sections/Landing";
+import Statistics from "./sections/Statistics";
 
 function App() {
   const cacheRtl = createCache({
@@ -19,6 +20,7 @@ function App() {
         <CssBaseline />
         <Navber />
         <Landing />
+        <Statistics/>
         {/* <Footer /> */}
       </CacheProvider>
     </>
