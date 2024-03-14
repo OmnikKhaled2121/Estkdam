@@ -10,6 +10,7 @@ export default function Sponsers() {
     return (
         <>
             <Grid sx={{padding:"3rem 0"}}>
+r
                 <Container>
                     <Grid container>
                         {data.map((item) => {

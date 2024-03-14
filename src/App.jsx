@@ -44,6 +44,7 @@ function App() {
         <Sponsers />
         <JoinUs />
       </Grid>
+
     </>
   );
 }
