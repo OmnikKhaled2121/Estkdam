@@ -5,9 +5,10 @@ import Navber from "./layout/Navber";
 import createCache from "@emotion/cache";
 import stylisRTLPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
-import { CssBaseline } from "@mui/material";
+
 import Landing from "./sections/Landing";
 import Statistics from "./sections/Statistics";
+import EstkdamCountry from "./sections/EstkdamCountry";
 
 function App() {
   const cacheRtl = createCache({
@@ -16,13 +17,11 @@ function App() {
   });
   return (
     <>
-      <CacheProvider value={cacheRtl}>
-        <CssBaseline />
-        <Navber />
-        <Landing />
-        <Statistics/>
-        {/* <Footer /> */}
-      </CacheProvider>
+      <Navber />
+      <Landing />
+      <Statistics />
+      <EstkdamCountry />
+      {/* <Footer /> */}
     </>
   );
 }
