@@ -1,12 +1,8 @@
 :root {
   font-family: "Almarai";
-  /* line-height: 1.5;
-  font-weight: 400; */
-
   color-scheme: light dark;
   color: black;
   background-color: #fff;
-
   direction: rtl;
 }
 
@@ -21,14 +17,10 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
 }
-#Landing {
-  /* background-image: url("./assets/cyanBackground.svg"); */
-  background-repeat: no-repeat;
-  /* background-position: center; */
-  background-size: cover;
-}
+
 @keyframes mymove {
   from {
     top: translate(0%, -1000%);
