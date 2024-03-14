@@ -6,7 +6,7 @@ import flag2 from '../assets/FlagKenea.png'
 import flag3 from '../assets/FlagPlihipin.png'
 import flag4 from  '../assets/FlagIndia.png'
 import flag5 from '../assets/FlagSerelanka.png'
-import flag6 from '../assets/FlagAthyouba.png'
+import flag6 from '../assets/FlagOganda.png'
 import flag7 from '../assets/FlagAthyouba.png'
  
 const cardData = [{
@@ -64,7 +64,7 @@ export default function EstkdamCountry() {
                         fontFamily: "Almarai",
                         fontSize: "48px",
                         fontWeight: "700",
-                        padding: "4rem 1rem"
+                        padding: "2rem 1rem"
                     }}>دول الإستقدام</Box>
                     <Grid container sx={{
 

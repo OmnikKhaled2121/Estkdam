@@ -5,11 +5,12 @@ import Navber from "./layout/Navber";
 import createCache from "@emotion/cache";
 import stylisRTLPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
-
 import Landing from "./sections/Landing";
 import Statistics from "./sections/Statistics";
 import EstkdamCountry from "./sections/EstkdamCountry";
 import WhatOffer from "./sections/WhatOffer";
+import Sponsers from "./sections/Sponsers";
+import JoinUs from "./sections/JoinUs";
 
 function App() {
   const cacheRtl = createCache({
@@ -23,6 +24,8 @@ function App() {
       <Statistics />
       <WhatOffer/>
       <EstkdamCountry />
+      <Sponsers/>
+      <JoinUs/>
       
       {/* <Footer /> */}
     </>
