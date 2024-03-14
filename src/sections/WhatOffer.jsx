@@ -45,7 +45,8 @@ export default function WhatOffer() {
         <Grid sx={{
             fontFamily: "Almarai",
             color: "#005288",
-            padding:"6rem 0"
+            padding:"3rem 0"
+
 
         }}>
             <Container>

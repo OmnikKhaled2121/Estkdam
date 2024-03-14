@@ -1,26 +1,21 @@
-import { Box, Grid } from "@mui/material";
+import { AppBar, Box, Container, Grid } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import React from "react";
 
 export default function Navber() {
   return (
-    <Grid
-      sx={{
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        // background: "red",
-      }}
-    >
+    <Container>
       <Grid
         container
         sx={{
-          width: "85%",
+          width: "100%",
           padding: "1rem 0",
+          boxSizing: "border-box",
           background: "white",
           display: "flex",
           justifyContent: "space-between",
         }}
+        disableGutters={true}
       >
         <Grid item xs={3}>
           <Box>
@@ -91,7 +86,7 @@ export default function Navber() {
           </Btn>
         </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 }
 function NavTitle({ children, value, subTitles }) {
@@ -192,7 +187,7 @@ function Btn({ children, bg, FontColor }) {
         color: FontColor,
         height: "41px",
         padding: "0 1rem",
-        marginLeft: "1rem",
+        marginRight: "1rem",
         "& > div": {
           fontFamily: "Almarai",
           fontSize: "13px",

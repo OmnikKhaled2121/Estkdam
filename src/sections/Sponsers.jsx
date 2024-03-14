@@ -9,7 +9,8 @@ const data = [sponser1, sponser2, sponser3, sponser4]
 export default function Sponsers() {
     return (
         <>
-            <Grid sx={{padding:"4rem 0"}}>
+            <Grid sx={{padding:"3rem 0"}}>
+r
                 <Container>
                     <Grid container>
                         {data.map((item) => {
