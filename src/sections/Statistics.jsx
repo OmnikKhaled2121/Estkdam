@@ -35,6 +35,7 @@ export default function Statistics() {
             display: "flex",
             width: "100%",
             justifyContent: "center",
+            padding:"3rem 0"
         }}>
 
             {Data.map((item) => {

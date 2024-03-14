@@ -1,8 +1,50 @@
 import { Box, Container, Grid } from '@mui/material'
 import React from 'react'
 import mapPic from '../assets/map1.png'
-import flag from '../assets/FlagIndia.png'
-
+import flag1 from '../assets/FlagIndia.png'
+import flag2 from '../assets/FlagKenea.png'
+import flag3 from '../assets/FlagPlihipin.png'
+import flag4 from  '../assets/FlagIndia.png'
+import flag5 from '../assets/FlagSerelanka.png'
+import flag6 from '../assets/FlagAthyouba.png'
+import flag7 from '../assets/FlagAthyouba.png'
+ 
+const cardData = [{
+    img: flag1,
+    city: "بنجلاديش",
+    price: "11500"
+},
+{
+    img: flag2,
+    city: "كينيا",
+    price: "12500"
+},
+{
+    img: flag3,
+    city: "الفلبين",
+    price: "10000"
+},
+{
+    img: flag4,
+    city: "الهند",
+    price: "11000"
+},
+{
+    img: flag5,
+    city: "سيرلانكا",
+    price: "11500"
+},
+{
+    img: flag6,
+    city: "اوغندا",
+    price: "10500"
+},
+{
+    img: flag7,
+    city: "اثيوبيا",
+    price: "13500"
+},
+]
 
 export default function EstkdamCountry() {
     return (
@@ -30,16 +72,16 @@ export default function EstkdamCountry() {
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "auto 60%",
                         backgroundPosition: "center",
-                        justifyContent:"center",
-                        alignItems:"center"
+                        justifyContent: "center",
+                        alignItems: "center"
                     }}>
-                        <CityCard></CityCard>
-                        <CityCard></CityCard>
-                        <CityCard></CityCard>
-                        <CityCard></CityCard>
-                        <CityCard></CityCard>
-                        <CityCard></CityCard>
-                        <CityCard></CityCard>
+
+                        {cardData.map((item)=>{
+                            return(<> <CityCard  img={item.img} city={item.city} price={item.price} ></CityCard></>)
+                           
+
+                        })}
+
                     </Grid>
                 </Container>
             </Grid>
@@ -49,12 +91,13 @@ export default function EstkdamCountry() {
 }
 
 
-function CityCard() {
+function CityCard({img,city,price}) {
+ 
     return (<>
         <Grid xs={3} sx={{
             padding: "1rem",
             color: "#005288",
-          
+
 
         }}>
             <Grid sx={{
@@ -68,13 +111,13 @@ function CityCard() {
                 textAlign: "center"
             }} >
                 <Box>
-                    <img src={flag}></img>
+                    <img src={img}></img>
                 </Box>
                 <Box sx={{
                     fontSize: "36px",
                     fontWeight: "700",
                     padding: "0.5rem"
-                }}>بنجلاديش</Box>
+                }}>{city}</Box>
                 <Box sx={{ padding: "0.5rem 0" }}>سرعة وصول لعمالة مدربة وكفاءات عالية</Box>
                 <Box sx={{
                     fontSize: "22px",
@@ -82,7 +125,7 @@ function CityCard() {
                         fontWeight: "700",
                         fontSize: "32px",
                     }
-                }}> <span>11500</span> ر.س</Box>
+                }}> <span>{price}</span> ر.س</Box>
             </Grid></Grid>
     </>)
 }

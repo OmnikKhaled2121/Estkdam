@@ -9,6 +9,7 @@ import { prefixer } from "stylis";
 import Landing from "./sections/Landing";
 import Statistics from "./sections/Statistics";
 import EstkdamCountry from "./sections/EstkdamCountry";
+import WhatOffer from "./sections/WhatOffer";
 
 function App() {
   const cacheRtl = createCache({
@@ -20,7 +21,9 @@ function App() {
       <Navber />
       <Landing />
       <Statistics />
+      <WhatOffer/>
       <EstkdamCountry />
+      
       {/* <Footer /> */}
     </>
   );
