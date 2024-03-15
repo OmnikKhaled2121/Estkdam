@@ -5,12 +5,13 @@ import ImgC3 from "../assets/imgCir3.jfif";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import SearchInput from "../components/SearchInput/SearchInput";
 export default function Landing() {
   return (
     <Grid
       id="Landing"
       sx={{
-        width:"100%",
+        width: "100%",
         background: "#DAEAF4",
         padding: "3rem 0",
         boxSizing: "border-box",
@@ -81,7 +82,7 @@ export default function Landing() {
               <Texts>سرعة الإنجاز، ودقة الإختيار</Texts>
               <Texts>أكثر من 10 جنسيات يمكنك الإختيار من بينها</Texts>
             </Grid>
-            <SearchInput />
+            <SearchInput isFooter={false} />
             <Grid
               sx={{
                 display: "flex",
@@ -222,53 +223,7 @@ function Texts({ children }) {
     </Box>
   );
 }
-function SearchInput() {
-  return (
-    <Box
-      sx={{
-        width: "500px",
-        height: "50px",
-        borderRadius: "35px",
-        background: "white",
-        overflow: "hidden",
-        color: "black",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: ".4rem",
-        marginBottom: "1rem",
-      }}
-    >
-      <Grid
-        sx={{
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <SearchIcon sx={{ fontSize: "2rem" }} />
-      </Grid>
-      <input id="searchInput" placeholder="ابحث عن الإستقدام الذى تريده" />
-      <Grid
-        sx={{
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          background: "#213039",
-          color: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ArrowBackIcon />
-      </Grid>
-    </Box>
-  );
-}
+
 function TextKey({ children }) {
   return (
     <Box

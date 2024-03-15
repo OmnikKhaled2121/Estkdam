@@ -15,6 +15,10 @@ import WhatOffer from "./sections/WhatOffer";
 import EstkdamCountry from "./sections/EstkdamCountry";
 import Sponsers from "./sections/Sponsers";
 import JoinUs from "./sections/JoinUs";
+import FooterSection from "./sections/FooterSection";
+import Help from "./sections/Help";
+import SearchEstkdam from "./sections/SearchEstkdam";
+import EstkdamLevel from "./sections/EstkdamLevel";
 
 function App() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -41,10 +45,13 @@ function App() {
         <Statistics />
         <WhatOffer />
         <EstkdamCountry />
+        <EstkdamLevel/>
         <Sponsers />
+        <SearchEstkdam/>
         <JoinUs />
+        <Help />
+        <FooterSection />
       </Grid>
-
     </>
   );
 }
