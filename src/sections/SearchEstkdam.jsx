@@ -83,7 +83,7 @@ export default function SearchEstkdam() {
                 boxShadow: "0px 0px 20px 6px #26282A26",
                 borderRadius: "15px",
                 padding: "1.5rem",
-                width: "120%",
+               
               }}
             >
               <Box
