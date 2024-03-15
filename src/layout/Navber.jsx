@@ -99,6 +99,7 @@ function NavTitle({ children, value, subTitles }) {
         borderBottom: value ? "3px solid #213039" : "none",
         "&:hover": {
           color: "#005288",
+          zIndex:"1000",
           borderBottom: value ? "3px solid #005288" : "none",
           "& > div:last-child": {
             animation: "mymove",
@@ -147,6 +148,7 @@ function NavTitle({ children, value, subTitles }) {
           borderRadius: "10px",
           "&:hover": {
             transform: "translate(0%, 10%)",
+            
           },
         }}
       >
@@ -194,6 +196,8 @@ function Btn({ children, bg, FontColor }) {
           fontWeight: "700",
           lineHeight: "15px",
           letterSpacing: "0em",
+          
+
         },
       }}
     >

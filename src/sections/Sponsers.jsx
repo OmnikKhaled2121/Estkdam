@@ -10,7 +10,7 @@ export default function Sponsers() {
   return (
     <>
       <Grid sx={{ padding: "3rem 0", bgcolor: "#DAEAF4" }}>
-        r
+        
         <Container>
           <Grid container>
             {data.map((item) => {
