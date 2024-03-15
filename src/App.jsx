@@ -36,7 +36,7 @@ function App() {
       <Grid
         sx={{
           overflow: "hidden",
-          minWidth: "98vw",
+          minWidth: "100vw",
         }}
       >
         <Navber />
