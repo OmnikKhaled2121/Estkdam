@@ -6,10 +6,11 @@ import arrowLogos from "../assets/arrow-lefts.png";
 export default function SearchEstkdam() {
   return (
     <Grid
+      id={"about"}
       sx={{
         padding: "3rem 0",
         // marginTop: "1rem",
-        margin:"6rem 0"
+        margin: "6rem 0",
       }}
     >
       <Container
@@ -29,7 +30,6 @@ export default function SearchEstkdam() {
                 letterSpacing: "0em",
                 textAlign: "right",
                 color: "#005288",
-                
               }}
             >
               ابحث عن الإستقدام الذى تريد الأن
@@ -43,7 +43,6 @@ export default function SearchEstkdam() {
                 letterSpacing: "0em",
                 textAlign: "justified",
                 color: "#000000",
-                
               }}
             >
               يحرص فريق منصة المصدر الدولي للإستقدام على توفير السرعة والجودة،
@@ -84,7 +83,6 @@ export default function SearchEstkdam() {
                 boxShadow: "0px 0px 20px 6px #26282A26",
                 borderRadius: "15px",
                 padding: "1.5rem",
-               
               }}
             >
               <Box

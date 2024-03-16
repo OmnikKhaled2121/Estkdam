@@ -43,11 +43,15 @@ function App() {
         <Landing />
         <About />
         <Statistics />
-        <WhatOffer />
+        <div id="whatOffer">
+          <WhatOffer />
+        </div>
         <EstkdamCountry />
-        <EstkdamLevel/>
+        <EstkdamLevel />
         <Sponsers />
-        <SearchEstkdam/>
+        <div id="searchEstkam">
+          <SearchEstkdam />
+        </div>
         <JoinUs />
         <Help />
         <FooterSection />

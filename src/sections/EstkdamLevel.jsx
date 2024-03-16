@@ -6,14 +6,14 @@ import locationLogo from "../assets/Group6892.png";
 import papperLogo from "../assets/Group6895.png";
 import calLogo from "../assets/Group6890.png";
 import arrowLogos from "../assets/arrow-lefts.png";
-
+import { Link } from "react-scroll";
 export default function EstkdamLevel() {
   return (
     <Grid
       sx={{
         padding: "3rem 0",
         // marginTop: "1rem",
-        margin:"6rem 0"
+        margin: "6rem 0",
       }}
     >
       <Container
@@ -116,7 +116,7 @@ export default function EstkdamLevel() {
                 marginTop: "1.5rem",
                 border: "solid 2px #005288 ",
                 borderRadius: "58px",
-                padding:"13px 18px"
+                padding: "13px 18px",
               }}
             >
               <Box
@@ -129,7 +129,6 @@ export default function EstkdamLevel() {
                   textAlign: "right",
                   color: "#005288",
                   marginLeft: "0.2rem",
-                 
                 }}
               >
                 تعرف على المزيد
@@ -307,19 +306,24 @@ function LevelColum({ icon, title, text, number }) {
               استلم العامل وأحصل على ضمان لمدة 3 شهور فى حالة وجود أى مشكلة أو
               تقصير من العامل
             </Box>
-            <Box
-              sx={{
-                bgcolor: "#005288",
-                color: "white",
-                width: "129px",
-                height: "18px",
-                margin: "auto",
-                padding: "15px 22px 15px 22px",
-                borderRadius: "10px",
-              }}
-            >
-              ابدأ الإستقدام الأن
-            </Box>
+            <Link to="searchEstkam" smooth={true} duration={500}>
+              <Box
+                sx={{
+                  bgcolor: "#005288",
+                  color: "white",
+                  width: "129px",
+                  height: "18px",
+                  margin: "auto",
+                  padding: "15px 22px 15px 22px",
+                  borderRadius: "10px",
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                ابدأ الإستقدام الأن
+              </Box>
+            </Link>
           </Grid>
         </Grid>
         <img src={shakeImg} style={{ width: "100%" }} />

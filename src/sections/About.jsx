@@ -1,12 +1,12 @@
 import { Box, Container, Grid } from "@mui/material";
 import ImgAhmed from "../assets/jj.png";
 import React from "react";
+import { Link } from "react-scroll";
 export default function About() {
   return (
-    <Container sx={{ padding: "3rem 0",
-    marginBottom:"3rem ",
-    marginTop:"3rem"
-     }}>
+    <Container
+      sx={{ padding: "3rem 0", marginBottom: "3rem ", marginTop: "3rem" }}
+    >
       <Grid container>
         <Grid item xs={6} sx={{ position: "relative" }}>
           <Box sx={{ position: "absolute", width: "225px", zIndex: "0" }}>
@@ -84,22 +84,27 @@ export default function About() {
             المنزلية وزيادة مستوى حفظ حقوق جميع الاطراف عن طريق تعريف أصحاب
             العمل والعمالة المنزلية بحقوقهم وواجباتهم.
           </Box>
-          <Box
-            sx={{
-              fontFamily: "Almarai",
-              fontSize: "20px",
-              fontWeight: "700",
-              lineHeight: "22px",
-              letterSpacing: "0em",
-              padding: "15px 22px",
-              border: "2px solid black",
-              borderRadius: "10px",
-              width: "fit-content",
-              marginTop: "1rem",
-            }}
-          >
-            تعرف على المزيد
-          </Box>
+          <Link to="whatOffer" smooth={true} duration={500}>
+            <Box
+              sx={{
+                fontFamily: "Almarai",
+                fontSize: "20px",
+                fontWeight: "700",
+                lineHeight: "22px",
+                letterSpacing: "0em",
+                padding: "15px 22px",
+                border: "2px solid black",
+                borderRadius: "10px",
+                width: "fit-content",
+                marginTop: "1rem",
+                "&:hover": {
+                  cursor: "pointer",
+                },
+              }}
+            >
+              تعرف على المزيد
+            </Box>
+          </Link>
         </Grid>
         <Grid item xs={6} sx={{ maxHeight: "450px", overflow: "hidden" }}>
           <Cards />

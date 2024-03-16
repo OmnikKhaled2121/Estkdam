@@ -72,9 +72,18 @@ export default function FooterSection() {
           </Grid>
         </Grid>
 
-        <hr style={{ backgroundColor: "red", marginTop: "1.5rem" }}></hr>
+        <Box
+          sx={{
+            borderBottom: "solid 1px #213039",
+            marginTop: "1.5rem",
+          }}
+        ></Box>
 
-        <Grid container sx={{ marginTop: "1rem" }} justifyContent="space-between">
+        <Grid
+          container
+          sx={{ marginTop: "1rem" }}
+          justifyContent="space-between"
+        >
           <Grid item xs={9}>
             <Box
               sx={{ color: "#213039", fontSize: "12px", lineHeight: "19.92px" }}

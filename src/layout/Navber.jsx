@@ -18,7 +18,11 @@ export default function Navber() {
         disableGutters={true}
       >
         <Grid item xs={3}>
-          <Box>
+          <Box
+            sx={{
+              marginTop: "1rem",
+            }}
+          >
             <svg
               width="145"
               height="47"
@@ -77,7 +81,7 @@ export default function Navber() {
             الدعم
           </NavTitle>
         </Grid>
-        <Grid item xs={3} sx={{ display: "flex", justifyContent: "end" }}>
+        <Grid item xs={3} sx={{ display: "flex", justifyContent: "end",   marginTop: "1rem", }}>
           <Btn bg={"white"} FontColor={"#005288"}>
             تسجيل الدخول
           </Btn>
@@ -97,10 +101,11 @@ function NavTitle({ children, value, subTitles }) {
       sx={{
         position: "relative",
         borderBottom: value ? "3px solid #213039" : "none",
+        padding: "1rem 0",
         "&:hover": {
           color: "#005288",
-          zIndex:"1000",
-          paddingBottom:"1rem",
+          zIndex: "1000",
+          // paddingBottom: "1rem",
           borderBottom: value ? "3px solid #005288" : "none",
           "& > div:last-child": {
             animation: "mymove",
@@ -149,7 +154,6 @@ function NavTitle({ children, value, subTitles }) {
           borderRadius: "10px",
           "&:hover": {
             transform: "translate(0%, 10%)",
-
           },
         }}
       >
@@ -166,7 +170,14 @@ function NavTitle({ children, value, subTitles }) {
                 padding: ".4rem 0",
               }}
             >
-              <Box sx={{ color: "black", "&:hover": { color: "#005288" } }}>
+              <Box
+                sx={{
+                  color: "black",
+                  "&:hover": {
+                    color: "#005288",
+                  },
+                }}
+              >
                 {subTitle}
               </Box>
             </Grid>
@@ -174,7 +185,6 @@ function NavTitle({ children, value, subTitles }) {
         })}
       </Box>
     </Grid>
-   
   );
 }
 function Btn({ children, bg, FontColor }) {
