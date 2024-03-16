@@ -17,22 +17,12 @@ import Sponsers from "./sections/Sponsers";
 import JoinUs from "./sections/JoinUs";
 
 function App() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  console.log("seee", screenWidth);
-  const cacheRtl = createCache({
-    key: "muirtl",
-    stylisPlugins: [prefixer, stylisRTLPlugin],
-  });
-  useEffect(() => {
-    console.log("screenWidth", screenWidth);
-  }, [screenWidth]);
-
   return (
     <>
       <Grid
         sx={{
           overflow: "hidden",
-          minWidth: "98vw",
+          minWidth: "100vw",
         }}
       >
         <Navber />
@@ -44,7 +34,6 @@ function App() {
         <Sponsers />
         <JoinUs />
       </Grid>
-
     </>
   );
 }
