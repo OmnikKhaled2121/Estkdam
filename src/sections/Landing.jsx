@@ -21,12 +21,11 @@ export default function Landing() {
       id="Landing"
       sx={{
         width: "100%",
-        padding: "3rem 0",
+        padding: "3rem 0",      
         boxSizing: "border-box",
         backgroundImage: `url(${warp})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundPositionY:"20%",
+        backgroundRepeat: "no-repeat",        
+        backgroundSize:"100% 95%",       
       }}
     >
       <Container>

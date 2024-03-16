@@ -35,7 +35,7 @@ function App() {
     <>
       <Grid
         sx={{
-          overflow: "hidden",
+          // overflow: "hidden",
           minWidth: "100vw",
         }}
       >
