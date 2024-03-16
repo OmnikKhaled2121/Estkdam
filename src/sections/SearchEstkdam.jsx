@@ -123,7 +123,7 @@ export default function SearchEstkdam() {
                   <Box
                     sx={{
                       paddingRight: "1rem",
-                      paddingLeft: "5rem",
+                      paddingLeft: "1rem",
                       textAlign: "center",
                     }}
                   >
@@ -139,7 +139,8 @@ export default function SearchEstkdam() {
                         marginBottom: "1rem",
                       }}
                     >
-                      برنامج تحديد الإستقدام المناسب
+                      برنامج تحديد <br />
+                      الإستقدام المناسب
                     </Box>
                     <Box
                       sx={{

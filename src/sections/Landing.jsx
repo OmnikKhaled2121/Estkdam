@@ -251,7 +251,7 @@ function LandingImages({ xs }) {
           sx={{
             position: "absolute",
             top: "24%",
-            left: "-8%",
+            left: "-7%",
           }}
         >
           {" "}
