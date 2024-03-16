@@ -12,7 +12,6 @@ export default function EstkdamLevel() {
     <Grid
       sx={{
         padding: "3rem 0",
-        // marginTop: "1rem",
         margin: "6rem 0",
       }}
     >
@@ -158,10 +157,12 @@ function LevelTable({ icon, title, text, number }) {
         sx={{
           background: "#F0F4F6",
           borderRadius: "16px",
-          padding: "4rem",
+          padding: "3rem 1rem",
           textAlign: "center",
           justifyContent: "center",
           position: "relative",
+          minHeight: "294px",
+          maxHeight: "295px",
         }}
       >
         <Grid
@@ -192,7 +193,14 @@ function LevelTable({ icon, title, text, number }) {
             {number}
           </Box>
         </Grid>
-        <Grid item>
+        <Grid
+          item
+          sx={{
+            "& > div": {
+              paddingBottom: ".8rem",
+            },
+          }}
+        >
           <Box sx={{ alignItems: "center" }}>
             <img src={icon} alt="Icon"></img>
           </Box>
@@ -231,6 +239,8 @@ function LevelColum({ icon, title, text, number }) {
           background: "#DAEAF4",
           borderRadius: "16px",
           border: "solid 2px #005288",
+          minHeight: "605px",
+          maxHeight: "605px",
         }}
       >
         <Grid
@@ -238,7 +248,7 @@ function LevelColum({ icon, title, text, number }) {
           sx={{
             background: "#DAEAF4",
             borderRadius: "16px",
-            padding: "3.7rem",
+            padding: "2.5rem",
             textAlign: "center",
             justifyContent: "center",
             position: "relative",
@@ -272,7 +282,7 @@ function LevelColum({ icon, title, text, number }) {
               05
             </Box>
           </Grid>
-          <Grid item sx={{ paddingBottom: "2rem" }}>
+          <Grid item>
             <Box
               sx={{
                 fontSize: "24px",
