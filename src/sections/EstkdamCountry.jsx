@@ -52,7 +52,8 @@ export default function EstkdamCountry() {
 
             <Grid sx={{
                 background: "#DAEAF4",
-                padding: "3rem 0"
+                padding: "3rem 0",
+                margin:"6rem 0"
             }}>
                 <Container sx={{
 

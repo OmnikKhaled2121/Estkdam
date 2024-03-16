@@ -13,7 +13,7 @@ export default function FooterSection() {
     <Grid
       sx={{
         background: "#DAEAF4",
-        padding: "3rem 0",
+        padding: "5rem 0",
         marginTop: "1rem",
       }}
     >

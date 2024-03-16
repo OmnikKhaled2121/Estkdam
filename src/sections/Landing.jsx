@@ -10,6 +10,7 @@ import tooltip2 from '../assets/Group2.png';
 import tooltip3 from '../assets/Group3.png';
 import tooltip4 from '../assets/Group4.png';
 import background from '../assets/netBackgroung.png'
+import warp from '../assets/cyanBackground.png'
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -20,9 +21,12 @@ export default function Landing() {
       id="Landing"
       sx={{
         width: "100%",
-        background: "#DAEAF4",
         padding: "3rem 0",
         boxSizing: "border-box",
+        backgroundImage: `url(${warp})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundPositionY:"20%",
       }}
     >
       <Container>
@@ -32,7 +36,8 @@ export default function Landing() {
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
-            position: "relative"
+            position: "relative",
+             padding:"1rem 0"
           }}
         >
           <Grid

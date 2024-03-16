@@ -12,7 +12,8 @@ export default function EstkdamLevel() {
     <Grid
       sx={{
         padding: "3rem 0",
-        marginTop: "1rem",
+        // marginTop: "1rem",
+        margin:"6rem 0"
       }}
     >
       <Container

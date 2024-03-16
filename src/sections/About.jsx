@@ -3,7 +3,10 @@ import ImgAhmed from "../assets/jj.png";
 import React from "react";
 export default function About() {
   return (
-    <Container sx={{ padding: "3rem 0" }}>
+    <Container sx={{ padding: "3rem 0",
+    marginBottom:"3rem ",
+    marginTop:"3rem"
+     }}>
       <Grid container>
         <Grid item xs={6} sx={{ position: "relative" }}>
           <Box sx={{ position: "absolute", width: "225px", zIndex: "0" }}>

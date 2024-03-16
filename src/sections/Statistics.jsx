@@ -35,7 +35,7 @@ export default function Statistics() {
             display: "flex",
             width: "100%",
             justifyContent: "center",
-          
+            margin:"2rem 0",
             padding:"3rem 0"
         }}>
 

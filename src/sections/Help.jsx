@@ -9,7 +9,8 @@ export default function Help() {
     <Grid
       sx={{
         padding: "3rem 0",
-        marginTop: "1rem",
+        // marginTop: "1rem",
+        margin:"6rem 0"
       }}
     >
       <Container
@@ -28,7 +29,7 @@ export default function Help() {
                 lineHeight: "54px",
                 letterSpacing: "0em",
                 textAlign: "right",
-                marginBottom: "2rem",
+                // marginBottom: "2rem",
               }}
             >
               تحتاج إلى مساعدة؟
