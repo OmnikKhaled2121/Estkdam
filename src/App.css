@@ -21,3 +21,8 @@
 #searchInput:focus {
   outline: none;
 }
+
+Body{
+
+ overflow-x : hidden
+}

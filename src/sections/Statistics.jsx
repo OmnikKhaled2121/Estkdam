@@ -35,6 +35,7 @@ export default function Statistics() {
             display: "flex",
             width: "100%",
             justifyContent: "center",
+            margin:"2rem 0",
             padding:"3rem 0"
         }}>
 
@@ -48,6 +49,7 @@ export default function Statistics() {
                         alignItems: "center",
                         color:"#005288",
                         fontFamily:"Almarai",
+                        textAlign:"center",
                         fontWeight:700
                     }}>
                         <Box component="span" sx={{fontWeight:"400",fontSize:"20px"}} > {item.title}</Box>

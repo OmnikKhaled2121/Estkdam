@@ -2,18 +2,31 @@ import { Box, Container, Grid } from "@mui/material";
 import joly1 from "../assets/joley.jfif";
 import ImgC2 from "../assets/imgCircle.jfif";
 import ImgC3 from "../assets/imgCir3.jfif";
+import human2 from "../assets/human2.png";
+import human3 from "../assets/human3.png";
+import human4 from "../assets/human4.png";
+import tooltip1 from "../assets/Group1.png";
+import tooltip2 from "../assets/Group2.png";
+import tooltip3 from "../assets/Group3.png";
+import tooltip4 from "../assets/Group4.png";
+import background from "../assets/netBackgroung.png";
+import warp from "../assets/cyanBackground.png";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import SearchInput from "../components/SearchInput/SearchInput";
+import { Link } from "react-scroll";
 export default function Landing() {
   return (
     <Grid
       id="Landing"
       sx={{
-        width:"100%",
-        background: "#DAEAF4",
+        width: "100%",
         padding: "3rem 0",
         boxSizing: "border-box",
+        backgroundImage: `url(${warp})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100% 95%",
       }}
     >
       <Container>
@@ -23,6 +36,8 @@ export default function Landing() {
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
+            position: "relative",
+            padding: "1rem 0",
           }}
         >
           <Grid
@@ -38,7 +53,7 @@ export default function Landing() {
             <Box
               sx={{
                 fontFamily: "Almarai",
-                fontSize: "80px",
+                fontSize: "70px",
                 fontWeight: "800",
                 lineHeight: "89px",
                 letterSpacing: "0em",
@@ -81,7 +96,20 @@ export default function Landing() {
               <Texts>سرعة الإنجاز، ودقة الإختيار</Texts>
               <Texts>أكثر من 10 جنسيات يمكنك الإختيار من بينها</Texts>
             </Grid>
-            <SearchInput />
+            <Grid
+              sx={{
+                backgroundImage: `url(${background})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "auto 100%",
+                backgroundPositionX: "100%",
+                backgroundPositionY: "100%",
+                paddingTop: "1rem",
+                marginBottom: "1rem",
+              }}
+            >
+              <SearchInput isFooter={false} />
+            </Grid>
+
             <Grid
               sx={{
                 display: "flex",
@@ -104,26 +132,31 @@ export default function Landing() {
               <TextKey>مساعد شخصي</TextKey>
               <TextKey>مديرة منزل</TextKey>
             </Grid>
-            <Box
-              sx={{
-                margin: "3rem 0 1.5rem 0",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "180px",
-                height: "40px",
-                borderRadius: "10px",
-                background: "#005288",
-                color: "white",
-                padding: "15px 22px",
-                fontFamily: "Almarai",
-                fontSize: "20px",
-                fontWeight: "700",
-                lineHeight: "22px",
-              }}
-            >
-              ابدأ الإستقدام الأن
-            </Box>
+            <Link to="searchEstkam" smooth={true} duration={500}>
+              <Box
+                sx={{
+                  margin: "3rem 0 1.5rem 0",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "180px",
+                  height: "40px",
+                  borderRadius: "10px",
+                  background: "#005288",
+                  color: "white",
+                  padding: "15px 22px",
+                  fontFamily: "Almarai",
+                  fontSize: "20px",
+                  fontWeight: "700",
+                  lineHeight: "22px",
+                  "&:hover":{
+                    cursor:"pointer"
+                  }
+                }}
+              >
+                ابدأ الإستقدام الأن
+              </Box>
+            </Link>
             <Grid
               sx={{
                 display: "flex",
@@ -148,7 +181,7 @@ export default function Landing() {
               </Box>
             </Grid>
           </Grid>
-          <LandingImages xs={4} />
+          <LandingImages xs={6} />
         </Grid>
       </Container>
     </Grid>
@@ -159,14 +192,14 @@ function LandingImages({ xs }) {
   const imgBorder = (H, imgSrc) => {
     return {
       overflow: "hidden",
-      width: "120px",
+      width: "181px",
       height: H,
       borderRadius: "98.5px",
       border: "5px solid #213039",
       borderTop: "0",
       borderLeft: "0",
       backgroundImage: `url(${imgSrc})`,
-      backgroundPosition: "70% 10%",
+      backgroundPosition: "75% 25%",
     };
   };
   return (
@@ -183,14 +216,48 @@ function LandingImages({ xs }) {
       }}
     >
       <Grid>
-        <Grid sx={imgBorder("600px", joly1)} />
+        <Box
+          sx={{
+            position: "absolute",
+            right: "45%",
+            top: "23%",
+          }}
+        >
+          {" "}
+          <img src={tooltip2}></img>
+        </Box>
+        <Grid sx={imgBorder("690px", joly1)} />
       </Grid>
       <Grid>
-        <Grid sx={imgBorder("350px", joly1)} mb={2} />
-        <Grid sx={imgBorder("350px", joly1)} mt={2} />
+        <Box
+          sx={{
+            position: "absolute",
+            top: " 7%",
+            left: "28%",
+          }}
+        >
+          {" "}
+          <img src={tooltip3}></img>
+        </Box>
+        <Grid sx={imgBorder("449px", human2)} mb={2} />
+        <Grid sx={imgBorder("449px", human3)} mt={2} />
+        <Box sx={{ position: "absolute", bottom: "7%", left: "31%" }}>
+          {" "}
+          <img src={tooltip4}></img>
+        </Box>
       </Grid>
       <Grid>
-        <Grid sx={imgBorder("600px", joly1)} />
+        <Box
+          sx={{
+            position: "absolute",
+            top: "24%",
+            left: "-8%",
+          }}
+        >
+          {" "}
+          <img src={tooltip1}></img>
+        </Box>
+        <Grid sx={imgBorder("690px", human4)} />
       </Grid>
     </Grid>
   );
@@ -222,53 +289,7 @@ function Texts({ children }) {
     </Box>
   );
 }
-function SearchInput() {
-  return (
-    <Box
-      sx={{
-        width: "500px",
-        height: "50px",
-        borderRadius: "35px",
-        background: "white",
-        overflow: "hidden",
-        color: "black",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: ".4rem",
-        marginBottom: "1rem",
-      }}
-    >
-      <Grid
-        sx={{
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <SearchIcon sx={{ fontSize: "2rem" }} />
-      </Grid>
-      <input id="searchInput" placeholder="ابحث عن الإستقدام الذى تريده" />
-      <Grid
-        sx={{
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          background: "#213039",
-          color: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ArrowBackIcon />
-      </Grid>
-    </Box>
-  );
-}
+
 function TextKey({ children }) {
   return (
     <Box
