@@ -2,17 +2,25 @@ import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import Home from '../Pages/Home'
 import Root from './Root'
+import EstkdamRequest from '../Pages/EstkdamRequest'
+import EstkdamOffices from '../Pages/EstkdamOffices'
+import KafalaTransfer from '../Pages/KafalaTransfer'
+
 
 
 
 export default function Routers() {
-    let routers = createBrowserRouter([
-        {
-          path: '', element: <Root/>, children: [
-            {index:true , element:<Home/>}
-          ]
-        }
-      ])
-    
+  let routers = createBrowserRouter([
+    {
+      path: '', element: <Root />, children: [
+        { index: true, element: <Home /> },
+        { path: 'EstkdamRequest', element: <EstkdamRequest /> },
+        { path: 'EstkdamOffices', element: <EstkdamOffices /> },
+        { path: 'KafalaTransfer', element: <KafalaTransfer /> }
+
+      ]
+    }
+  ])
+
   return routers
 }
