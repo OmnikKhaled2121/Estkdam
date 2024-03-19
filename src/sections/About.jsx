@@ -97,6 +97,7 @@ export default function About() {
                 borderRadius: "10px",
                 width: "fit-content",
                 marginTop: "1rem",
+                // top:"50",
                 "&:hover": {
                   cursor: "pointer",
                 },
