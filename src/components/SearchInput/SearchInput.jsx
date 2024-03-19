@@ -3,7 +3,7 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-export default function SearchInput({ isFooter }) {
+export default function SearchInput({ isFooter , text }) {
   return (
     <Box
       sx={{

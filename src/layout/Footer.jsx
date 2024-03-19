@@ -8,7 +8,7 @@ import youtube from "../assets/youtube.png";
 import linkedin from "../assets/linkedin.png";
 import SearchInput from "../components/SearchInput/SearchInput";
 
-export default function FooterSection() {
+export default function Footer() {
   return (
     <Grid
       sx={{

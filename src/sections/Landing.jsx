@@ -12,10 +12,11 @@ import tooltip4 from "../assets/Group4.png";
 import background from "../assets/netBackgroung.png";
 import warp from "../assets/cyanBackground.png";
 import React from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SearchInput from "../components/SearchInput/SearchInput";
 import { Link } from "react-scroll";
+
+
+
 export default function Landing() {
   return (
     <Grid
@@ -108,6 +109,7 @@ export default function Landing() {
               }}
             >
               <SearchInput isFooter={false} />
+              
             </Grid>
 
             <Grid
