@@ -2,6 +2,7 @@ import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import Home from '../Pages/Home'
 import Root from './Root'
+import EmpProfile from '../Pages/EmpProfile'
 
 
 
@@ -9,7 +10,8 @@ export default function Routers() {
     let routers = createBrowserRouter([
         {
           path: '', element: <Root/>, children: [
-            {index:true , element:<Home/>}
+            {index:true , element:<Home/>},
+            {path:"/empProfile" , element:<EmpProfile/>}
           ]
         }
       ])
