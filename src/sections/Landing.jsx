@@ -14,6 +14,7 @@ import warp from "../assets/cyanBackground.png";
 import React from "react";
 import SearchInput from "../components/SearchInput/SearchInput";
 import { Link } from "react-scroll";
+import TextKey from "../components/SearchInput/TextKey";
 
 
 
@@ -108,32 +109,14 @@ export default function Landing() {
                 marginBottom: "1rem",
               }}
             >
-              <SearchInput isFooter={false} />
-              
+              <SearchInput isFooter={false} text={"ابحث عن الإستقدام الذى تريده"} />
+
             </Grid>
 
-            <Grid
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                "& > div": { marginLeft: "1rem" },
-              }}
-            >
-              <Box
-                sx={{
-                  fontFamily: "Almarai",
-                  fontSize: "12px",
-                  fontWeight: "700",
-                  lineHeight: "18px",
-                }}
-              >
-                كلمات مفتاحية:
-              </Box>
-              <TextKey>سائق خاص</TextKey>
-              <TextKey>ربة منزل</TextKey>
-              <TextKey>مساعد شخصي</TextKey>
-              <TextKey>مديرة منزل</TextKey>
-            </Grid>
+
+            
+              <TextKey texts={['مديره منزل', 'مساعد شخصي', 'ربه منزل', 'سائق خاص']}> </TextKey>
+
             <Link to="searchEstkam" smooth={true} duration={500}>
               <Box
                 sx={{
@@ -151,8 +134,8 @@ export default function Landing() {
                   fontSize: "20px",
                   fontWeight: "700",
                   lineHeight: "22px",
-                  "&:hover":{
-                    cursor:"pointer"
+                  "&:hover": {
+                    cursor: "pointer"
                   }
                 }}
               >
@@ -292,27 +275,6 @@ function Texts({ children }) {
   );
 }
 
-function TextKey({ children }) {
-  return (
-    <Box
-      sx={{
-        padding: "10px 13px 10px 13px",
-        background: "#FFFFFFB2",
-        borderRadius: "37px",
-        border: "0.7px solid #21303999",
-        fontFamily: "Almarai",
-        fontSize: "12px",
-        fontWeight: "400",
-        lineHeight: "18px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      {children}
-    </Box>
-  );
-}
 function ImgCricle({ imgArr }) {
   return (
     <Grid sx={{ display: "flex" }}>
