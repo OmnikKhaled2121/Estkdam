@@ -6,6 +6,7 @@ import EmpProfile from "../Pages/EmpProfile";
 import EstkdamRequest from "../Pages/EstkdamRequest";
 import EstkdamOffices from "../Pages/EstkdamOffices";
 import KafalaTransfer from "../Pages/KafalaTransfer";
+import CommonQuestions from './../Pages/CommonQuestions';
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -17,6 +18,7 @@ export default function Routers() {
         { path: "EstkdamRequest", element: <EstkdamRequest /> },
         { path: "EstkdamOffices", element: <EstkdamOffices /> },
         { path: "KafalaTransfer", element: <KafalaTransfer /> },
+        { path: "CommonQuestions", element: <CommonQuestions /> },
         { path: "/empProfile", element: <EmpProfile /> },
       ],
     },

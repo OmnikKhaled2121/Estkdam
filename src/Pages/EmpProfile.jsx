@@ -29,7 +29,7 @@ export default function EmpProfile() {
           gap: ".5rem",
         }}
       >
-
++
         <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
           <EmpCard />
         </Grid>
