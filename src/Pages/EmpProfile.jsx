@@ -2,6 +2,7 @@ import { Box, Container, Grid } from "@mui/material";
 import proPic from "../assets/empProfile.jfif";
 import FlagIndia from "../assets/FlagIndia.png";
 import React from "react";
+import EmpCard from "../components/EmpCard";
 
 export default function EmpProfile() {
   return (
@@ -9,6 +10,36 @@ export default function EmpProfile() {
       <Landing />
       <PersonalInfo />
       <AdditionalInfo />
+      <Grid sx={{
+        fontFamily: "Almarai",
+        fontSize: "20px",
+        fontWeight: "700",
+        lineHeight: "22.32px",
+        textAlign: "right",
+        color: "#005288"
+
+      }}>استقدامات أخرى قد تناسبك</Grid>
+
+
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          justifyContent: "start",
+          gap: ".5rem",
+        }}
+      >
+
+        <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+          <EmpCard />
+        </Grid>
+        <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+          <EmpCard />
+        </Grid>
+        <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+          <EmpCard />
+        </Grid>
+      </Grid>
     </Container>
   );
 }

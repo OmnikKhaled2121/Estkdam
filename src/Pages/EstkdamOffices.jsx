@@ -1,13 +1,18 @@
 import React from "react";
 import bg from "../assets/background2.jfif";
-import StartingSction from "../components/SearchInput/StartingSction";
+import StartingSction from "../components/StartingSction";
 import { Box, Container, Grid } from "@mui/material";
-import ColorfulTitles from "../components/SearchInput/ColorfulTitles";
+import ColorfulTitles from "../components/ColorfulTitles";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import EmpCard from "../components/EmpCard";
 import OfficeCard from "../components/OfficeCard";
+import DropDownFilter from "../components/DropDownFilter";
+import FilterBtn from "../components/FilterBtn";
+
+
+
 
 export default function EstkdamOffices() {
   return (
@@ -65,54 +70,16 @@ export default function EstkdamOffices() {
                 justifyContent: "start",
               }}
             >
-              <FilterBtn type={"الموقع"} icon={<PlaceOutlinedIcon />} />
-              <FilterBtn type={"الجنسية"} icon={<LanguageOutlinedIcon />} />
+              <DropDownFilter type={"الموقع"} icon={<PlaceOutlinedIcon />} />
+              <DropDownFilter type={"الجنسية"} icon={<LanguageOutlinedIcon />} />
+                
             </Grid>
             <Grid
               item
               xs={3}
               sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <Grid
-                sx={{
-                  background: "#005288",
-                  color: "white",
-                  borderRadius: "12px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  border: "2px solid #005288",
-                  height: "58px",
-                  width: "124px",
-                  transition: ".3s",
-                  "&:hover": {
-                    background: "#fff",
-                    color: "#005288",
-                  },
-                }}
-              >
-                تطبيق
-              </Grid>
-              <Grid
-                sx={{
-                  border: "2px solid #BD295E",
-                  color: "#BD295E",
-                  borderRadius: "12px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "58px",
-                  width: "148px",
-                  transition: ".3s",
-                  "&:hover": {
-                    color: "#fff",
-                    background: "#BD295E",
-                  },
-                }}
-              >
-                إلغاء التصنيف
-              </Grid>
-            </Grid>
+            >    <FilterBtn /> </Grid>
+
           </Grid>
           <Box
             sx={{
@@ -135,28 +102,28 @@ export default function EstkdamOffices() {
             }}
           >
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-              <EmpCard />
+              <OfficeCard />
             </Grid>
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-              <EmpCard />
+              <OfficeCard />
             </Grid>
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-              <EmpCard />
+              <OfficeCard />
             </Grid>
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-              <EmpCard />
+              <OfficeCard />
             </Grid>
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-              <EmpCard />
+              <OfficeCard />
             </Grid>
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-              <EmpCard />
+              <OfficeCard />
             </Grid>
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-              <EmpCard />
+              <OfficeCard />
             </Grid>
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-              <EmpCard />
+              <OfficeCard />
             </Grid>
             <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
               <OfficeCard />
@@ -168,31 +135,51 @@ export default function EstkdamOffices() {
   );
 }
 
-function FilterBtn({ type, icon }) {
-  return (
-    <Grid
-      sx={{
-        width: "149px",
-        height: "59px",
-        border: "1px solid #BAC8D1",
-        borderRadius: "12px",
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-        marginLeft: ".5rem",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        {icon}
-        <span style={{ marginRight: ".5rem" }}>{type}</span>
-      </Box>
-      <KeyboardArrowDownIcon />
-    </Grid>
-  );
-}
+
+
+// function FilterBtn() {
+//   return (<>
+
+//     <Grid
+//       sx={{
+//         background: "#005288",
+//         color: "white",
+//         borderRadius: "12px",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         border: "2px solid #005288",
+//         height: "58px",
+//         width: "124px",
+//         transition: ".3s",
+//         "&:hover": {
+//           background: "#fff",
+//           color: "#005288",
+//         },
+//       }}
+//     >
+//       تطبيق
+//     </Grid>
+//     <Grid
+//       sx={{
+//         border: "2px solid #BD295E",
+//         color: "#BD295E",
+//         borderRadius: "12px",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         height: "58px",
+//         width: "148px",
+//         transition: ".3s",
+//         "&:hover": {
+//           color: "#fff",
+//           background: "#BD295E",
+//         },
+//       }}
+//     >
+//       إلغاء التصنيف
+//     </Grid>
+
+
+//   </>)
+// }

@@ -1,7 +1,8 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
-import SearchInput from "./SearchInput";
+
 import TextKey from "./TextKey";
+import SearchInput from "./SearchInput";
 
 export default function StartingSction({
   bg,
