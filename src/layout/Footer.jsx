@@ -6,7 +6,8 @@ import insta from "../assets/insta.png";
 import pins from "../assets/pin.png";
 import youtube from "../assets/youtube.png";
 import linkedin from "../assets/linkedin.png";
-import SearchInput from "../components/SearchInput/SearchInput";
+import SearchInput from "../components/SearchInput";
+
 
 export default function Footer() {
   return (

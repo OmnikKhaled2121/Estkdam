@@ -12,9 +12,11 @@ import tooltip4 from "../assets/Group4.png";
 import background from "../assets/netBackgroung.png";
 import warp from "../assets/cyanBackground.png";
 import React from "react";
-import SearchInput from "../components/SearchInput/SearchInput";
+
 import { Link } from "react-scroll";
-import TextKey from "../components/SearchInput/TextKey";
+
+import SearchInput from "../components/SearchInput";
+import TextKey from "../components/TextKey";
 
 
 

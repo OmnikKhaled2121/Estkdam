@@ -3,13 +3,13 @@ import React from "react";
 import callLogo from "../assets/call.png";
 import smsLogo from "../assets/sms.png";
 import locationLogo from "../assets/location.png";
-import boyLogo from "../assets/Rectangle1137.png";
-export default function Help() {
+
+export default function Help({title,img}) {
   return (
     <Grid
       sx={{
         padding: "3rem 0",
-        // marginTop: "1rem",
+        
         margin:"6rem 0"
       }}
     >
@@ -28,11 +28,11 @@ export default function Help() {
                 fontWeight: 700,
                 lineHeight: "54px",
                 letterSpacing: "0em",
-                textAlign: "right",
-                // marginBottom: "2rem",
+                textAlign: "justify",
+                marginBottom:"1rem"
               }}
             >
-              تحتاج إلى مساعدة؟
+             {title}
             </Box>
             <Box
               sx={{
@@ -108,8 +108,8 @@ export default function Help() {
             </Button>
           </Grid>
           <Grid xs={6}>
-            <Box sx={{ paddingRight: "10rem" }}>
-              <img src={boyLogo} />
+            <Box sx={{width:"100%"}}>
+              <img src={img} />
             </Box>
           </Grid>
         </Grid>
