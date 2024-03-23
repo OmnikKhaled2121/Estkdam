@@ -6,10 +6,11 @@ import EmpProfile from "../Pages/EmpProfile";
 import EstkdamRequest from "../Pages/EstkdamRequest";
 import EstkdamOffices from "../Pages/EstkdamOffices";
 import KafalaTransfer from "../Pages/KafalaTransfer";
-import CommonQuestions from './../Pages/CommonQuestions';
-import EstkdamPolices from './../Pages/EstkdamPolices';
-import EstkdamJourney from './../Pages/EstkdamJourney';
+import CommonQuestions from "./../Pages/CommonQuestions";
+import EstkdamPolices from "./../Pages/EstkdamPolices";
+import EstkdamJourney from "./../Pages/EstkdamJourney";
 import ContactUs from "../Pages/ContactUs";
+import LoginOrderCompletetion from "../Pages/LoginOrderCompletetion";
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -27,6 +28,10 @@ export default function Routers() {
         { path: "ContactUs", element: <ContactUs /> },
         { path: "empProfile", element: <EmpProfile /> },
       ],
+    },
+    {
+      path: "LoginOrderCompletetion",
+      element: <LoginOrderCompletetion />,
     },
   ]);
 
