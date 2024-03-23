@@ -25,7 +25,7 @@ export default function Routers() {
         { path: "EstkdamPolices", element: <EstkdamPolices /> },
         { path: "EstkdamJourney", element: <EstkdamJourney /> },
         { path: "ContactUs", element: <ContactUs /> },
-        { path: "/empProfile", element: <EmpProfile /> },
+        { path: "empProfile", element: <EmpProfile /> },
       ],
     },
   ]);

@@ -8,7 +8,6 @@ import youtube from "../assets/youtube.png";
 import linkedin from "../assets/linkedin.png";
 import SearchInput from "../components/SearchInput";
 
-
 export default function Footer() {
   return (
     <Grid
@@ -34,33 +33,22 @@ export default function Footer() {
           <img src={footerLogo} />
         </Box>
 
-        <Grid container justifyContent="space-between" alignItems="flex-start">
-          <Grid item xs={8}>
+        <Grid
+          container
+          sx={{
+            justifyContent: "flex-start",
+            alignItems: "center",
+            paddingBottom: "1.5rem",
+            borderBottom: "solid 1px #213039",
+          }}
+        >
+          <Grid item xs={12} md={9}>
             <Box sx={{ fontSize: "20px", color: "#005288", fontWeight: "700" }}>
               اشترك معنا لتكون مطلع على احدث الإضافات
             </Box>
             <Box sx={{ marginTop: "1rem" }}>
               <SearchInput isFooter={true} />
             </Box>
-          </Grid>
-
-          <Grid
-            item
-            xs={3}
-            sx={{
-              marginTop: "1rem",
-              color: "#213039",
-              lineHeight: "40px",
-              fontSize: "30.01px",
-              fontWeight: "800",
-            }}
-          >
-            <Box sx={{ color: "#005288", fontSize: "20px" }}>التواصل</Box>
-            <Box>email@gmail.com</Box>
-            <Box sx={{ fontSize: "30.01px" }}>+96 15 754411184</Box>
-          </Grid>
-
-          <Grid item xs={6}>
             <Box sx={{ fontSize: "20px", color: "#005288" }}>
               منصة المصدر الدولي للإستقدام
             </Box>
@@ -71,21 +59,35 @@ export default function Footer() {
               <Box sx={{ marginLeft: "1.5rem" }}>تواصل معنا</Box>
             </Box>
           </Grid>
-        </Grid>
 
-        <Box
-          sx={{
-            borderBottom: "solid 1px #213039",
-            marginTop: "1.5rem",
-          }}
-        ></Box>
+          <Grid
+            item
+            xs={10}
+            md={3}
+            sx={{
+              marginTop: "1rem",
+              color: "#213039",
+              lineHeight: "40px",
+              fontSize: "30.01px",
+              fontWeight: "800",
+              textAlign: "right",
+            }}
+          >
+            <Box sx={{ color: "#005288", fontSize: "20px" }}>التواصل</Box>
+            <Box sx={{ direction: "ltr" }}>email@gmail.com</Box>
+            <Box sx={{ fontSize: "30px", direction: "ltr" }}>
+              {" "}
+              +96 15 754411184{" "}
+            </Box>
+          </Grid>
+        </Grid>
 
         <Grid
           container
           sx={{ marginTop: "1rem" }}
           justifyContent="space-between"
         >
-          <Grid item xs={9}>
+          <Grid item xs={12} md={9}>
             <Box
               sx={{ color: "#213039", fontSize: "12px", lineHeight: "19.92px" }}
             >
@@ -94,7 +96,8 @@ export default function Footer() {
           </Grid>
           <Grid
             item
-            xs={3}
+            xs={12}
+            md={3}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -121,9 +124,7 @@ function IconTab({ iconTab }) {
           bgcolor: "#0C293533",
           width: "40px",
           height: "40px",
-          textAlign: "center",
-          borderRadius: "20px",
-          padding: "0px 0.01px 0px 0.01px",
+          borderRadius: "50%",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

@@ -5,8 +5,7 @@ import map2 from "../assets/Map2.svg";
 export default function JoinUs() {
   return (
     <>
-      <Grid sx={{ padding: "3rem 0",
-    margin:"6rem 0" }}>
+      <Grid sx={{ padding: "3rem 0", margin: "6rem 0" }}>
         <Container>
           <Grid
             container
@@ -57,5 +56,4 @@ export default function JoinUs() {
       </Grid>
     </>
   );
-
 }
