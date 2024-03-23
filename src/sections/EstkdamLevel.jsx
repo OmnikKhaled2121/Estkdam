@@ -7,7 +7,7 @@ import papperLogo from "../assets/Group6895.png";
 import calLogo from "../assets/Group6890.png";
 import arrowLogos from "../assets/arrow-lefts.png";
 import { Link } from "react-scroll";
-export default function EstkdamLevel() {
+export default function EstkdamLevel({ title, test }) {
   return (
     <Grid
       sx={{
@@ -30,9 +30,90 @@ export default function EstkdamLevel() {
             textAlign: "right",
           }}
         >
-          مراحل الإستقدام
+          {title}
         </Box>
-        <Container>
+
+        {test ? <Container>
+          <Grid container sx={{ marginTop: "2rem" }} justifyContent={"center"}>
+            <Grid xs={3} sx={{ paddingLeft: "0.9rem" }}>
+              <Grid
+                container
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="flex-start"
+              >
+                <Grid xs={12} sx={{ paddingBottom: "1rem" }}>
+                  <LevelTable
+                    number={"01"}
+                    icon={icon}
+                    title="اختيار العمالة"
+                    text="اختر العامل الذى تريد بناء على سيرته الذاتية واشتراطاتك"
+                  />
+                </Grid>
+                <Grid xs={12} sx={{ paddingBottom: "1rem" }}>
+                  <Box>
+                    <LevelTable
+                      number={"02"}
+                      icon={calLogo}
+                      title="ادفع الرسوم"
+                      text="قم بدفع رسوم العمالة من خلال احدى بوابات الدفع المتعاقد معها"
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+
+            <Grid xs={3}>
+              <Grid
+                container
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="flex-start"
+              >
+                <Grid xs={12} sx={{ paddingBottom: "1rem" }}>
+                  <Box>
+                    {" "}
+                    <LevelTable
+                      number={"03"}
+                      icon={papperLogo}
+                      title="تخليص الإجراءات"
+                      text="تساعدك منصة المصدر الدولي للإستقدام فى تخليص جميع أجراءات  العامل"
+                    />
+                  </Box>
+                </Grid>
+                <Grid xs={12}>
+                  <Box>
+                    {" "}
+                    <LevelTable
+                      number={"04"}
+                      icon={locationLogo}
+                      title="وصول العامل"
+                      text="تصل العمارة المختارة من قبلك إلى أراضى المملكة"
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            <Grid xs={5} sx={{ paddingRight: "0.9rem" }}>
+              <Grid
+                container
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="flex-start"
+              >
+                <Grid xs={12} sx={{ paddingBottom: "1rem" }}>
+                  <Box>
+                    {" "}
+                    <LevelColum number={"05"} />
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Container> : <Container>
           <Grid container sx={{ marginTop: "2rem" }} justifyContent={"center"}>
             <Grid xs={3} sx={{ paddingLeft: "0.9rem" }}>
               <Grid
@@ -77,7 +158,6 @@ export default function EstkdamLevel() {
                 </Grid>
               </Grid>
             </Grid>
-
             <Grid xs={3}>
               <Grid
                 container
@@ -109,40 +189,10 @@ export default function EstkdamLevel() {
                 </Grid>
               </Grid>
             </Grid>
-            <Box
-              sx={{
-                display: "flex",
-                marginTop: "1.5rem",
-                border: "solid 2px #005288 ",
-                borderRadius: "58px",
-                padding: "13px 18px",
-              }}
-            >
-              <Box
-                sx={{
-                  fontFamily: "Almarai",
-                  fontSize: "15px",
-                  fontWeight: 700,
-                  lineHeight: "21px",
-                  // letterSpacing: "0em",
-                  textAlign: "right",
-                  color: "#005288",
-                  marginLeft: "0.2rem",
-                }}
-              >
-                تعرف على المزيد
-              </Box>
-              <Box
-                sx={{
-                  width: "16px",
-                  height: "16px",
-                }}
-              >
-                <img src={arrowLogos} />
-              </Box>
-            </Box>
+
           </Grid>
-        </Container>
+        </Container>}
+
       </Container>
     </Grid>
   );
@@ -151,7 +201,6 @@ export default function EstkdamLevel() {
 function LevelTable({ icon, title, text, number }) {
   return (
     <>
-      {/* <Grid xs={4}> */}
       <Grid
         container
         sx={{
@@ -226,7 +275,6 @@ function LevelTable({ icon, title, text, number }) {
         </Grid>
       </Grid>
 
-      {/* </Grid> */}
     </>
   );
 }

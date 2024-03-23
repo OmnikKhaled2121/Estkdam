@@ -21,7 +21,7 @@ export default function Root() {
       <Outlet/>
       </Grid>
 
-   {/* <Footer/> */}
+   <Footer/>
    
    </>
   )
