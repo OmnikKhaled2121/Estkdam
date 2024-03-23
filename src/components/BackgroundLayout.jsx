@@ -5,8 +5,6 @@ import SocialLogos from './SocialLogos';
 export default function BackgroundLayout({img, title,desc ,common}) {
     return (
         <Container>
-
-        
             <Box
                 sx={{
                     width: "100%",
