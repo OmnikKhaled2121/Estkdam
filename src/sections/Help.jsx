@@ -4,13 +4,13 @@ import callLogo from "../assets/call.png";
 import smsLogo from "../assets/sms.png";
 import locationLogo from "../assets/location.png";
 
-export default function Help({title,img}) {
+export default function Help({ title, img }) {
   return (
     <Grid
       sx={{
         padding: "3rem 0",
-        
-        margin:"6rem 0"
+
+        margin: "6rem 0",
       }}
     >
       <Container
@@ -19,7 +19,10 @@ export default function Help({title,img}) {
           fontFamily: "Almarai",
         }}
       >
-        <Grid container justifyContent="flex-start" alignItems="center">
+        <Grid
+          container
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+        >
           <Grid xs={6}>
             <Box
               sx={{
@@ -29,10 +32,10 @@ export default function Help({title,img}) {
                 lineHeight: "54px",
                 letterSpacing: "0em",
                 textAlign: "justify",
-                marginBottom:"1rem"
+                marginBottom: "1rem",
               }}
             >
-             {title}
+              {title}
             </Box>
             <Box
               sx={{
@@ -107,9 +110,9 @@ export default function Help({title,img}) {
               اتصل بنا الأن
             </Button>
           </Grid>
-          <Grid xs={6}>
-            <Box sx={{width:"100%"}}>
-              <img src={img} />
+          <Grid xs={5.5}>
+            <Box sx={{ width: "100%" }}>
+              <img width={"100%"} src={img} />
             </Box>
           </Grid>
         </Grid>
