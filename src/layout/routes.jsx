@@ -11,8 +11,12 @@ import EstkdamPolices from "./../Pages/EstkdamPolices";
 import EstkdamJourney from "./../Pages/EstkdamJourney";
 import ContactUs from "../Pages/ContactUs";
 import LoginOrderCompletetion from "../Pages/LoginOrderCompletetion";
+
 import LoginLayout from "./LoginLayout";
 import Login from "../Pages/Login";
+
+import MultiCards from "../components/MultiCards";
+
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -29,6 +33,7 @@ export default function Routers() {
         { path: "EstkdamJourney", element: <EstkdamJourney /> },
         { path: "ContactUs", element: <ContactUs /> },
         { path: "empProfile", element: <EmpProfile /> },
+        { path: "MultiCards", element: <MultiCards /> },
       ],
     },
     {
