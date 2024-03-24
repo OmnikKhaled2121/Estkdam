@@ -122,7 +122,7 @@ export default function Login() {
           type="Email"
           label="البريد الالكتروني"
         />
-        <Grid item xs={10} pt={3}>
+        <Grid item xs={10} >
           <CacheProvider value={cacheRtl}>
             <FormControl variant="outlined" fullWidth size="small">
               <InputLabel htmlFor="outlined-adornment-password">

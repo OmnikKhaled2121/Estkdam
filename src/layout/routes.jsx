@@ -11,11 +11,12 @@ import EstkdamPolices from "./../Pages/EstkdamPolices";
 import EstkdamJourney from "./../Pages/EstkdamJourney";
 import ContactUs from "../Pages/ContactUs";
 import LoginOrderCompletetion from "../Pages/LoginOrderCompletetion";
-
 import LoginLayout from "./LoginLayout";
 import Login from "../Pages/Login";
 
 import MultiCards from "../components/MultiCards";
+import Registeration from "../Pages/Registeration";
+import RegisterPhoneNumber from "../Pages/RegisterPhoneNumber";
 
 
 export default function Routers() {
@@ -43,6 +44,14 @@ export default function Routers() {
     {
       path: "Login",
       element: <Login />,
+    },
+    {
+      path: "Registeration",
+      element: <Registeration/>,
+    },
+    {
+      path: "RegisterPhoneNumber",
+      element: <RegisterPhoneNumber/>,
     },
   ]);
 

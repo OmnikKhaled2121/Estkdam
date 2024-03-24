@@ -26,6 +26,8 @@ export default function FormInput({
         boxSizing: "border-box",
         padding: "5px",
         marginX: "0",
+
+      
       },
     };
   }
@@ -35,7 +37,9 @@ export default function FormInput({
   });
   return (
     <CacheProvider value={cacheRtl}>
-      <Grid item xs={xs} md={md}>
+      <Grid item xs={xs} md={md} sx={{
+        marginBottom:"1rem"
+      }}>
         <TextField
           id="outlined-size-small"
           size="small"
