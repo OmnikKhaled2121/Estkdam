@@ -18,6 +18,7 @@ export default function FormInput({
   function FormHelperTextProps(indicator) {
     return {
       sx: {
+        display: "none",
         fontFamily: "Almarai",
         color: "#fff !important",
         bgcolor: `${indicator ? "#e65257" : ""}`,
@@ -46,6 +47,38 @@ export default function FormInput({
           type={type}
           {...register(ele)}
           defaultValue={defaultVal}
+        />
+      </Grid>
+    </CacheProvider>
+  );
+}
+export function FromInput1({ xs, id, label, multiline, rows }) {
+  const cacheRtl = createCache({
+    key: "muirtl",
+    stylisPlugins: [prefixer, stylisRTLPlugin],
+  });
+  return (
+    <CacheProvider value={cacheRtl}>
+      <Grid
+        item
+        xs={xs}
+        sx={{
+          fontFamily: "Almarai",
+          fontSize: "16px",
+          fontWeight: 400,
+          lineHeight: "17.66px",
+          color: "rgba(135, 135, 135, 1)",
+          padding: ".5rem",
+          boxSizing: "border-box",
+        }}
+      >
+        <TextField
+          id={id ? id : "standard-basic"}
+          multiline
+          rows={rows ? rows : 0}
+          label={label}
+          variant="standard"
+          fullWidth
         />
       </Grid>
     </CacheProvider>
