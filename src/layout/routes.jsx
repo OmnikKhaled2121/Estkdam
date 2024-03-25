@@ -13,7 +13,7 @@ import ContactUs from "../Pages/ContactUs";
 import LoginOrderCompletetion from "../Pages/LoginOrderCompletetion";
 import LoginLayout from "./LoginLayout";
 import Login from "../Pages/Login";
-
+import Trackorders from "../Pages/Trackorders";
 import MultiCards from "../components/MultiCards";
 import Registeration from "../Pages/Registeration";
 import RegisterPhoneNumber from "../Pages/RegisterPhoneNumber";
@@ -35,13 +35,14 @@ export default function Routers() {
         { path: "ContactUs", element: <ContactUs /> },
         { path: "empProfile", element: <EmpProfile /> },
         { path: "MultiCards", element: <MultiCards /> },
+        { path: "TrackOrders", element: <Trackorders /> },
       ],
     },
     {
       path: "LoginOrderCompletetion",
       element: <LoginOrderCompletetion />,
     },
-    {
+{
       path: "Login",
       element: <Login />,
     },

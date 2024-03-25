@@ -4,13 +4,13 @@ import callLogo from "../assets/call.png";
 import smsLogo from "../assets/sms.png";
 import locationLogo from "../assets/location.png";
 
-export default function Help({ title, img }) {
+export default function Help({title,img}) {
   return (
     <Grid
       sx={{
         padding: "3rem 0",
-
-        margin: "6rem 0",
+        
+        margin:"6rem 0"
       }}
     >
       <Container
@@ -32,10 +32,10 @@ export default function Help({ title, img }) {
                 lineHeight: "54px",
                 letterSpacing: "0em",
                 textAlign: "justify",
-                marginBottom: "1rem",
+                marginBottom:"1rem"
               }}
             >
-              {title}
+             {title}
             </Box>
             <Box
               sx={{

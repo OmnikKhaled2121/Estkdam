@@ -18,7 +18,7 @@ export default function FormInput({
   function FormHelperTextProps(indicator) {
     return {
       sx: {
-        display: "none",
+display: "none",
         fontFamily: "Almarai",
         color: "#fff !important",
         bgcolor: `${indicator ? "#e65257" : ""}`,
@@ -26,8 +26,6 @@ export default function FormInput({
         boxSizing: "border-box",
         padding: "5px",
         marginX: "0",
-
-      
       },
     };
   }
