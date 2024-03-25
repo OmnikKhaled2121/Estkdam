@@ -67,8 +67,8 @@ export default function Navber() {
             alignItems: "center",
           }}
         >
-          <Link to={''}>
-            <NavTitle value={"1"}>الرئيسيه</NavTitle></Link>
+         
+            <NavTitle value={"1"}>الرئيسيه</NavTitle>
           <NavTitle
             subTitles={[
               {
@@ -98,7 +98,6 @@ export default function Navber() {
           </NavTitle>
 
           <NavTitle
-
             subTitles={[
               {
                 title: "تواصل معنا ",
@@ -130,7 +129,6 @@ export default function Navber() {
   );
 }
 function NavTitle({ children, value, subTitles }) {
-  console.log(subTitles)
   return (
     <Grid
       item

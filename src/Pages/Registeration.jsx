@@ -233,7 +233,6 @@ export default function Registeration() {
                             alignItems: "center",
                             padding: "1rem",
                             boxSizing: "border-box",
-                            width: "100%",
                             border: "1px solid #005288",
                             "&:hover": {
                                 background: "#fff",
