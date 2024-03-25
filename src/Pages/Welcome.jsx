@@ -8,7 +8,6 @@ export default function Welcome() {
     return (
         <>
             <Grid >
-
                 <Grid container sx={{
                     display: "flex",
                     height: "70vh",
@@ -110,7 +109,6 @@ export default function Welcome() {
 
 
                         </Grid >
-                        
                         
                         <Grid
                             item

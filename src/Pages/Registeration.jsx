@@ -218,31 +218,32 @@ export default function Registeration() {
                     </CacheProvider>
                 </Grid>
             </Grid>
-            <Link to={'/RegisterPhoneNumber'}>
-                <Grid
-                    item
-                    xs={10}
-                    sx={{
-                        background: "#005288",
-                        width:"100%",
-                        color: "#fff",
-                        borderRadius: "10px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: "1rem",
-                        boxSizing: "border-box",
-                        border: "1px solid #005288",
-                        "&:hover": {
-                            background: "#fff",
-                            color: "#005288",
-                            cursor: "pointer",
-                        },
-                    }}
-                >
-                    التالي
-                </Grid>
-                </Link>
+
+
+                    <Grid
+                        item
+                        xs={10}
+                        sx={{
+                            background: "#005288",
+                            width: "100%",
+                            color: "#fff",
+                            borderRadius: "10px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: "1rem",
+                            boxSizing: "border-box",
+                            width: "100%",
+                            border: "1px solid #005288",
+                            "&:hover": {
+                                background: "#fff",
+                                color: "#005288",
+                                cursor: "pointer",
+                            },
+                        }}
+                    >
+                        التالي
+                    </Grid>
 
         </LoginLayout>
     );

@@ -90,7 +90,7 @@ export default function PhoneNumberConfirm() {
 
                     </Box>
                 </Grid>
-
+                
                 <Grid
                     item
                     xs={10}
@@ -114,8 +114,7 @@ export default function PhoneNumberConfirm() {
 
                     التالي
                 </Grid>
-                {/* <Button variant="contained" fullWidth>التالي</Button> */}
-
+              
 
             </LoginLayout>
         </>
