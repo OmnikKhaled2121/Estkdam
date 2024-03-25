@@ -1,6 +1,7 @@
 import { AppBar, Box, Container, Grid } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navber() {
   return (
@@ -66,31 +67,65 @@ export default function Navber() {
             alignItems: "center",
           }}
         >
-          <NavTitle value={"1"}>الرئيسيه</NavTitle>
+         
+            <NavTitle value={"1"}>الرئيسيه</NavTitle>
           <NavTitle
-            subTitles={["مكاتب الاستقدام", "طلب الاستقدام", "نقل الكفالة"]}
+            subTitles={[
+              {
+                title: "طلب الإستقدام ",
+                reditect: "/EstkdamRequest"
+              },
+              {
+                title: "نقل الكفاله",
+                reditect: "/KafalaTransfer"
+              }
+            ]}
           >
             خدماتنا
           </NavTitle>
-          <NavTitle subTitles={["رحلة الاستقدام", "سياسات الاستقدام"]}>
+          <NavTitle subTitles={[
+            {
+              title: "رحله الإستقدام ",
+              reditect: "/EstkdamJourney"
+            },
+            {
+              title: "سياسات الإستقدام",
+              reditect: "/EstkdamPolices"
+            }
+          ]}
+          >
             عن الاستقدام
           </NavTitle>
+
           <NavTitle
-            subTitles={["تواصل معنا", "اسئلة شائعة", "السياسات و الشروط"]}
+            subTitles={[
+              {
+                title: "تواصل معنا ",
+                reditect: "/ContactUs"
+              },
+              {
+                title: "أسئلة شائعة",
+                reditect: "/CommonQuestions"
+              }
+            ]}
           >
             الدعم
           </NavTitle>
         </Grid>
-        <Grid item xs={3} sx={{ display: "flex", justifyContent: "end",   marginTop: "1rem", }}>
+        <Grid item xs={3} sx={{ display: "flex", justifyContent: "end", marginTop: "1rem", }}>
+          <Link to={'/Login'}>
           <Btn bg={"white"} FontColor={"#005288"}>
             تسجيل الدخول
           </Btn>
+          </Link>
+          <Link to={'/Registeration'}>
           <Btn bg={"#005288"} FontColor={"white"}>
             انضم الان
           </Btn>
+          </Link>
         </Grid>
       </Grid>
-    </Container>
+    </Container >
   );
 }
 function NavTitle({ children, value, subTitles }) {
@@ -157,8 +192,10 @@ function NavTitle({ children, value, subTitles }) {
           },
         }}
       >
-        {subTitles?.map((subTitle, index) => {
+        {subTitles?.map((subTitles, index) => {
           return (
+
+
             <Grid
               key={index}
               sx={{
@@ -170,21 +207,23 @@ function NavTitle({ children, value, subTitles }) {
                 padding: ".4rem 0",
               }}
             >
-              <Box
-                sx={{
-                  color: "black",
-                  "&:hover": {
-                    color: "#005288",
-                  },
-                }}
-              >
-                {subTitle}
-              </Box>
+              <Link to={subTitles.reditect}>
+                <Box
+                  sx={{
+                    color: "black",
+                    "&:hover": {
+                      color: "#005288",
+                    },
+                  }}
+                >
+                  {subTitles.title}
+                </Box>  </Link>
             </Grid>
+
           );
         })}
       </Box>
-    </Grid>
+    </Grid >
   );
 }
 function Btn({ children, bg, FontColor }) {

@@ -37,7 +37,7 @@ export default function EstkdamOffices() {
               </>
             }
           />
-          <ColorfulTitles office />
+          {/* <ColorfulTitles office /> */}
 
           <Box
             sx={{
@@ -48,6 +48,7 @@ export default function EstkdamOffices() {
               textAlign: "right",
               color: "#005288",
               paddingBottom: "2rem",
+              marginTop:"2rem"
             }}
           >
             بحث متقدم

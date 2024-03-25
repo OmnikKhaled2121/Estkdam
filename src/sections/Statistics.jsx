@@ -40,7 +40,6 @@ export default function Statistics() {
               justifyContent: "center",
               margin: "2rem 0",
               padding: "3rem 0",
-              width: "100%"
             }}
           >
             {Data.map((item) => {

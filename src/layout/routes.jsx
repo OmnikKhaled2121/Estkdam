@@ -17,6 +17,9 @@ import Trackorders from "../Pages/Trackorders";
 import MultiCards from "../components/MultiCards";
 import Registeration from "../Pages/Registeration";
 import RegisterPhoneNumber from "../Pages/RegisterPhoneNumber";
+import SMSCode from "../components/SMSCode";
+import PhoneNumberConfirm from "../Pages/PhoneNumberConfirm";
+import Welcome from "../Pages/Welcome";
 
 
 export default function Routers() {
@@ -53,6 +56,14 @@ export default function Routers() {
     {
       path: "RegisterPhoneNumber",
       element: <RegisterPhoneNumber/>,
+    },
+    {
+      path: "PhoneNumberConfirm",
+      element: <PhoneNumberConfirm/>,
+    },
+    {
+      path: "Welcome",
+      element: <Welcome/>,
     },
   ]);
 

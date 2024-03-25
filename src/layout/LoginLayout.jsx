@@ -17,7 +17,7 @@ import FormInput from "../components/FormInput";
 import { CacheProvider } from "@emotion/react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-export default function LoginLayout({ children }) {
+export default function LoginLayout({ children , wel }) {
   return (
     <Grid
       container
@@ -30,7 +30,8 @@ export default function LoginLayout({ children }) {
       }}
     >
       <MainContent xs={8.4}>{children}</MainContent>
-      <SideSlider xs={3.5} />
+   <SideSlider xs={3.5} />
+   
     </Grid>
   );
 }

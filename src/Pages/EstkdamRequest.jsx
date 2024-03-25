@@ -28,7 +28,7 @@ export default function EstkdamRequest() {
             SearchKeys={['مديره منزل', 'مساعد شخصي', 'ربه منزل', 'سائق خاص']}
             desc={'تعاقد مع أكثر من 20 ألف عامل من مختلف الوظائف والبلدان من خلال منصة المصدر الدولي للإستقدام، وتمتع بعروض رائعة وسرعة ودقة اختيار العمالة لك'}
           />
-          <ColorfulTitles />
+          {/* <ColorfulTitles /> */}
 
           <Box
             sx={{
@@ -39,6 +39,7 @@ export default function EstkdamRequest() {
               textAlign: "right",
               color: "#005288",
               paddingBottom: "2rem",
+              marginTop:"2rem"
             }}
           >
             بحث متقدم

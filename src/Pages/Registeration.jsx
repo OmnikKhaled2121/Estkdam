@@ -19,6 +19,7 @@ import {
 import { CacheProvider } from "@emotion/react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FormInput from "../components/FormInput";
+import { Link } from "react-router-dom";
 
 export default function Registeration() {
 
@@ -116,18 +117,18 @@ export default function Registeration() {
                 }}
             >
 
-               
-                    <FormInput
-                        xs={10}
 
-                        register={register}
-                        errors={errors}
-                        ele="name"
-                        type="text"
-                        label="الإسم كامل"
-                    />
+                <FormInput
+                    xs={10}
 
-              
+                    register={register}
+                    errors={errors}
+                    ele="name"
+                    type="text"
+                    label="الإسم كامل"
+                />
+
+
 
                 <FormInput
                     xs={10}
@@ -217,28 +218,31 @@ export default function Registeration() {
                     </CacheProvider>
                 </Grid>
             </Grid>
-            <Grid
-                item
-                xs={10}
-                sx={{
-                    background: "#005288",
-                    color: "#fff",
-                    borderRadius: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: "1rem",
-                    boxSizing: "border-box",
-                    border: "1px solid #005288",
-                    "&:hover": {
-                        background: "#fff",
-                        color: "#005288",
-                        cursor: "pointer",
-                    },
-                }}
-            >
-                التالي
-            </Grid>
+
+
+                    <Grid
+                        item
+                        xs={10}
+                        sx={{
+                            background: "#005288",
+                            width: "100%",
+                            color: "#fff",
+                            borderRadius: "10px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: "1rem",
+                            boxSizing: "border-box",
+                            border: "1px solid #005288",
+                            "&:hover": {
+                                background: "#fff",
+                                color: "#005288",
+                                cursor: "pointer",
+                            },
+                        }}
+                    >
+                        التالي
+                    </Grid>
 
         </LoginLayout>
     );
