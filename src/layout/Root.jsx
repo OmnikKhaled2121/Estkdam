@@ -11,6 +11,7 @@ export default function Root() {
       <Grid
         sx={{
           minWidth: "100vw",
+          minHeight: "300px",
         }}
       >
         <Outlet />

@@ -1,23 +1,11 @@
-import {
-  Box,
-  FormControl,
-  FormHelperText,
-  Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import logo from "../assets/logo1Footer.png";
+import sliderBg from "../assets/sliderBackground.jfif";
 
-import React, { useState } from "react";
+import React from "react";
 import SocialLogos from "../components/SocialLogos";
-import FormInput from "../components/FormInput";
 
-import { CacheProvider } from "@emotion/react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-
-export default function LoginLayout({ children , wel }) {
+export default function LoginLayout({ children, wel }) {
   return (
     <Grid
       container
@@ -29,9 +17,8 @@ export default function LoginLayout({ children , wel }) {
         justifyContent: "space-between",
       }}
     >
-      <MainContent xs={8.4}>{children}</MainContent>
-   <SideSlider xs={3.5} />
-   
+      <MainContent xs={8.5}>{children}</MainContent>
+      <SideSlider xs={3.5} />
     </Grid>
   );
 }
@@ -45,38 +32,20 @@ function MainContent({ xs, children }) {
         height: "100%",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
+        alignContent: "space-between",
+        padding: "1rem",
+        boxSizing: "border-box",
       }}
     >
-      <Grid
-        item
-        container
-        md={6}
-        sx={{
-          zIndex: "3",
-          borderRadius: "30px",
-          minHeight: "200px",
-          padding: "2rem 0",
-          justifyContent: "center",
-          "& > div:not(:last-child)": {
-            marginBottom: "1rem",
-          },
-        }}
-      >
-        {children}
-      </Grid>
+      {children}
 
       <Grid
         item
         xs={12}
         sx={{
-          width: "100%",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "end",
-          position: "absolute",
-          bottom: "0",
         }}
       >
         <Box sx={{ width: "150px" }}>
@@ -103,16 +72,72 @@ function SideSlider({ xs }) {
   return (
     <Grid
       item
+      container
       xs={xs}
       sx={{
         height: "100%",
-        display: "block",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         background: "#0C3E5F",
         borderRadius: "17px",
         overflow: "hidden",
         position: "relative",
       }}
     >
+      <Grid
+        item
+        xs={10}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          fontSize: "16px",
+          fontWeight: "700",
+          lineHeight: "24px",
+          color: "#DAEAF4",
+          zIndex: "3",
+          "& > div:not(:last-child)": {
+            marginBottom: "1rem",
+          },
+        }}
+      >
+        <Box sx={{ width: "100%", borderRadius: "17px", overflow: "hidden" }}>
+          <img src={sliderBg} width={"100%"} />
+        </Box>
+        <Box
+          sx={{
+            fontSize: "40px",
+            lineHeight: "44.64px",
+          }}
+        >
+          تواجه مشكلة؟
+        </Box>
+        <Box>
+          هل تحتاج إلى مساعدة أو استفسار؟ يمكنك التواصل مع أحد أعضاء حدمة
+          العملاء لدينا.
+        </Box>
+        <Box
+          sx={{
+            padding: "15px",
+            borderRadius: "10px",
+            color: "white",
+            fontFamily: "Almarai",
+            fontSize: "20px",
+            fontWeight: "500",
+            lineHeight: " 22.32px",
+            border: "2px solid #DAEAF4",
+            width: "124px",
+            // "&:hover": {
+            //   color: "#005288",
+            //   background: "white",
+            // },
+          }}
+        >
+          تواصل معنا
+        </Box>
+      </Grid>
       <Box
         sx={{
           position: "absolute",
