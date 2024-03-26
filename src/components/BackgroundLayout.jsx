@@ -1,8 +1,9 @@
 import React from 'react'
 import { Box, Container, Grid } from '@mui/material';
 import SocialLogos from './SocialLogos';
+import { Link } from 'react-router-dom';
 
-export default function BackgroundLayout({img, title,desc ,common}) {
+export default function BackgroundLayout({ img, title, desc, common }) {
     return (
         <Container>
             <Box
@@ -58,25 +59,33 @@ export default function BackgroundLayout({img, title,desc ,common}) {
                         textAlign: "center",
                         color: "#FFFFFF",
                         margin: "2rem 0",
-                        whiteSpace:"pre"
+                        whiteSpace: "pre"
                     }}> {desc}</Box>
 
-                    <Grid
-                        sx={{
-                            width: "200px",
-                            height: "59px",
-                            border: "2px solid #FFFFFF",
-                            borderRadius: "10px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            color: "#FFFFFF",
-                            margin: "2rem 0"
 
-                        }}
-                    >هل تحتاج إلى مساعدة؟</Grid>
-                   {common ? <SocialLogos/> : null}
-                   
+                    <Link to={'/ContactUs'} >
+
+                        <Grid
+                            sx={{
+                                width: "200px",
+                                height: "59px",
+                                border: "2px solid #FFFFFF",
+                                borderRadius: "10px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                color: "#FFFFFF",
+                                margin: "2rem 0"
+
+                            }}
+                        >هل تحتاج إلى مساعدة؟
+                        </Grid>
+                        
+                         </Link>
+
+
+                        {common ? <SocialLogos /> : null}
+
                 </Grid>
             </Box>
         </Container>

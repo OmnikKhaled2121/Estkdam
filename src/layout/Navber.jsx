@@ -67,8 +67,10 @@ export default function Navber() {
             alignItems: "center",
           }}
         >
-         
-            <NavTitle value={"1"}>الرئيسيه</NavTitle>
+
+
+          <NavTitle to value={"1"}>الرئيسيه</NavTitle>
+
           <NavTitle
             subTitles={[
               {
@@ -114,21 +116,21 @@ export default function Navber() {
         </Grid>
         <Grid item xs={3} sx={{ display: "flex", justifyContent: "end", marginTop: "1rem", }}>
           <Link to={'/Login'}>
-          <Btn bg={"white"} FontColor={"#005288"}>
-            تسجيل الدخول
-          </Btn>
+            <Btn bg={"white"} FontColor={"#005288"}>
+              تسجيل الدخول
+            </Btn>
           </Link>
           <Link to={'/Registeration'}>
-          <Btn bg={"#005288"} FontColor={"white"}>
-            انضم الان
-          </Btn>
+            <Btn bg={"#005288"} FontColor={"white"}>
+              انضم الان
+            </Btn>
           </Link>
         </Grid>
       </Grid>
     </Container >
   );
 }
-function NavTitle({ children, value, subTitles }) {
+function NavTitle({ children, value, subTitles, to }) {
   return (
     <Grid
       item
@@ -150,30 +152,56 @@ function NavTitle({ children, value, subTitles }) {
         },
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "nowrap",
-          justifyContent: "center",
-          alignItems: "center",
-          fontFamily: "Almarai",
-          fontSize: "16px",
-          fontWeight: 400,
-          lineHeight: "18px",
-          letterSpacing: "0em",
-          padding: "5px 0",
-        }}
-      >
-        {children}
-
-        <KeyboardArrowDownIcon
+      {to ? <Link to={'/'}>
+        <Box
           sx={{
-            display: value ? "none" : "block",
-            color: "#213039",
-            margin: "0 .5rem",
+            display: "flex",
+            flexWrap: "nowrap",
+            justifyContent: "center",
+            alignItems: "center",
+            fontFamily: "Almarai",
+            fontSize: "16px",
+            fontWeight: 400,
+            lineHeight: "18px",
+            letterSpacing: "0em",
+            padding: "5px 0",
           }}
-        />
-      </Box>
+        >
+          {children}
+
+          <KeyboardArrowDownIcon
+            sx={{
+              display: value ? "none" : "block",
+              color: "#213039",
+              margin: "0 .5rem",
+            }}
+          />
+        </Box></Link> :
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "nowrap",
+            justifyContent: "center",
+            alignItems: "center",
+            fontFamily: "Almarai",
+            fontSize: "16px",
+            fontWeight: 400,
+            lineHeight: "18px",
+            letterSpacing: "0em",
+            padding: "5px 0",
+          }}
+        >
+          {children}
+
+          <KeyboardArrowDownIcon
+            sx={{
+              display: value ? "none" : "block",
+              color: "#213039",
+              margin: "0 .5rem",
+            }}
+          />
+        </Box>}
+
       <Box
         sx={{
           display: value ? "none" : "flex",

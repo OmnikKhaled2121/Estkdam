@@ -7,6 +7,8 @@ import pins from "../assets/pin.png";
 import youtube from "../assets/youtube.png";
 import linkedin from "../assets/linkedin.png";
 import SearchInput from "../components/SearchInput";
+import { LibraryAdd } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -53,10 +55,28 @@ export default function Footer() {
               منصة المصدر الدولي للإستقدام
             </Box>
             <Box sx={{ display: "flex", marginTop: "1rem" }}>
-              <Box sx={{ marginLeft: "1.5rem" }}>الرئيسية</Box>
-              <Box sx={{ marginLeft: "1.5rem" }}>مكاتب الإستقدام</Box>
+              <Box sx={{ marginLeft: "1.5rem" }}>
+                <Link to={'/'} style={{
+                  color: "#005288"
+                }}>
+                  الرئيسية
+                </Link>
+              </Box>
+              <Box sx={{ marginLeft: "1.5rem" }}>
+                <Link to={'/EstkdamRequest'} style={{
+                  color: "#005288"
+                }}>
+                  مكاتب الإستقدام
+                </Link>
+              </Box>
               <Box sx={{ marginLeft: "1.5rem" }}>الخدمات</Box>
-              <Box sx={{ marginLeft: "1.5rem" }}>تواصل معنا</Box>
+              <Box sx={{ marginLeft: "1.5rem" }}>
+                <Link to={'/ContactUs'} style={{
+                  color: "#005288"
+                }}>
+                  تواصل معنا
+                </Link>
+              </Box>
             </Box>
           </Grid>
 

@@ -19,6 +19,7 @@ import {
 import { CacheProvider } from "@emotion/react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FormInput from "../components/FormInput";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const cacheRtl = createCache({
@@ -48,7 +49,7 @@ export default function Login() {
     form;
   const { errors } = formState;
 
-  const onSubmit = async (inputs) => {};
+  const onSubmit = async (inputs) => { };
 
   return (
     <LoginLayout container>
@@ -229,16 +230,15 @@ export default function Login() {
               color: "#878787",
             }}
           >
+
             لا تملك حساب على منصةالمصدر الدولى للإستقدام؟
-          </Box>
-          <Box
-            sx={{
-              color: "#005288",
+            <Link to={'/Registeration'} style={{
+              color:"#005288",
               fontWeight: "700",
-            }}
-          >
-            إنشاء حساب
-          </Box>
+              marginRight:"1 rem"
+            }}>             إنشاء حساب
+            </Link>
+          </Box >
         </Grid>
       </Grid>
     </LoginLayout>

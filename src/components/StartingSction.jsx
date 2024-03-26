@@ -3,6 +3,7 @@ import React from "react";
 
 import TextKey from "./TextKey";
 import SearchInput from "./SearchInput";
+import { Link } from "react-router-dom";
 
 export default function StartingSction({
   bg,
@@ -82,29 +83,32 @@ export default function StartingSction({
           <SearchInput whiteTheme isFooter={false} text={Searchplaceholder} />
           <TextKey white texts={SearchKeys}></TextKey>
 
-          <Box
-            sx={{
-              margin: "3rem 0 1.5rem 0",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "180px",
-              height: "40px",
-              borderRadius: "10px",
-              border: "2px solid white",
-              color: "white",
-              padding: "15px 22px",
-              fontFamily: "Almarai",
-              fontSize: "16px",
-              fontWeight: "700",
-              lineHeight: "17px",
-              "&:hover": {
-                cursor: "pointer",
-              },
-            }}
-          >
-            هل تحتاج إلى مساعدة؟{" "}
-          </Box>
+
+          <Link to={'/ContactUs'}>
+            <Box
+              sx={{
+                margin: "3rem 0 1.5rem 0",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "180px",
+                height: "40px",
+                borderRadius: "10px",
+                border: "2px solid white",
+                color: "white",
+                padding: "15px 22px",
+                fontFamily: "Almarai",
+                fontSize: "16px",
+                fontWeight: "700",
+                lineHeight: "17px",
+                "&:hover": {
+                  cursor: "pointer",
+                },
+              }}
+            >
+              هل تحتاج إلى مساعدة؟{" "}
+            </Box>
+          </Link>
         </Grid>
       </Box>
     </>

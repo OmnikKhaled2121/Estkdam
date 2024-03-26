@@ -19,6 +19,7 @@ import {
 import { CacheProvider } from "@emotion/react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FormInput from "../components/FormInput";
+import { Link } from "react-router-dom";
 
 export default function RegisterPhoneNumber() {
   const cacheRtl = createCache({
@@ -48,7 +49,7 @@ export default function RegisterPhoneNumber() {
     form;
   const { errors } = formState;
 
-  const onSubmit = async (inputs) => {};
+  const onSubmit = async (inputs) => { };
   return (
     <>
       <LoginLayout>
@@ -160,7 +161,40 @@ export default function RegisterPhoneNumber() {
             سيتم إرسال رسالة إلى رقم جوالك من أجل تأكيد الرقم ومواصلة إنشاء
             حسابك
           </Box>
-          <Grid
+
+          <Link to={'/PhoneNumberConfirm'} style={{ width: '100%' }}>
+            <Box sx={{
+              display: "flex",
+              justifyContent: "center"
+            }}>
+              <Grid
+                item
+                xs={10}
+                sx={{
+                  background: "#005288",
+                  width: "100%", // Ensure the Grid takes full width
+                  color: "#fff",
+                  borderRadius: "10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "1rem",
+                  boxSizing: "border-box",
+                  border: "1px solid #005288",
+                  "&:hover": {
+                    background: "#fff",
+                    color: "#005288",
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                التالي
+              </Grid>
+            </Box>
+          </Link>
+
+
+          {/* <Grid
             item
             xs={10}
             sx={{
@@ -181,7 +215,7 @@ export default function RegisterPhoneNumber() {
             }}
           >
             التالي
-          </Grid>
+          </Grid> */}
         </Grid>
       </LoginLayout>
     </>

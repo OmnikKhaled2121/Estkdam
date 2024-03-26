@@ -112,7 +112,41 @@ export default function PhoneNumberConfirm() {
             </Box>
           </Grid>
 
-          <Grid
+
+
+
+          <Link to={'/Welcome'} style={{ width: '100%' }}>
+            <Box sx={{
+              display: "flex",
+              justifyContent: "center"
+            }}>
+              <Grid
+                item
+                xs={10}
+                sx={{
+                  background: "#005288",
+                  width: "100%", // Ensure the Grid takes full width
+                  color: "#fff",
+                  borderRadius: "10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "1rem",
+                  boxSizing: "border-box",
+                  border: "1px solid #005288",
+                  "&:hover": {
+                    background: "#fff",
+                    color: "#005288",
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                التالي
+              </Grid>
+            </Box>
+          </Link>
+
+          {/* <Grid
             item
             xs={10}
             sx={{
@@ -133,7 +167,7 @@ export default function PhoneNumberConfirm() {
             }}
           >
             التالي
-          </Grid>
+          </Grid> */}
         </Grid>
       </LoginLayout>
     </>
