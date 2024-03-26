@@ -6,6 +6,7 @@ import proPic from "../assets/empProfile.jfif";
 import FlagPlihipin from "../assets/FlagPlihipin.png";
 import Info from "../components/Info";
 import { func } from "joi";
+import { Link } from "react-router-dom";
 
 export default function OrderReview() {
   return (
@@ -36,7 +37,11 @@ export default function OrderReview() {
             color: "#005288",
           }}
         >
-          <Box>
+          <Link to={'/'}><Box mr={1} sx={{
+            display: "flex",
+            justifyContent: "center",
+            color: "#005288"
+          }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -53,8 +58,8 @@ export default function OrderReview() {
                 fill="#005288"
               />
             </svg>
-          </Box>
-          <Box mr={1}> الرجوع إلى الرئيسية</Box>
+
+            الرجوع إلى الرئيسية</Box></Link>
         </Grid>
         <Grid item xs={12}>
           <Box
@@ -118,29 +123,37 @@ export default function OrderReview() {
             </Box>
             <span style={{ marginRight: ".5rem" }}> الإتصال الأن</span>
           </Grid>
-          <Grid
-            sx={{
-              padding: "10px 15px",
-              borderRadius: "10px",
-              color: "#005288",
-              border: "2px solid#005288",
-              background: "white",
-              fontFamily: "Almarai",
-              fontSize: "16px",
-              fontWeight: "500",
-              lineHeight: " 22.32px",
-              marginRight: "1rem",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              "&:hover": {
-                background: "#005288",
-                color: "white",
-              },
-            }}
-          >
-            الإتصال لاحقاً
-          </Grid>
+          <Link to={'/'} style={{
+            width: "156px",
+            height: "63px",
+            fontWeight:"700",
+            fontSize:"20px",
+            color:"#005288"
+          }}> 
+              <Box
+                sx={{
+                  padding: "10px 15px",
+                  borderRadius: "10px",
+                  color: "#005288",
+                  border: "2px solid#005288",
+                  background: "white",
+                  fontFamily: "Almarai",
+                  fontSize: "16px",
+                  fontWeight: "500",
+                  lineHeight: " 22.32px",
+                  marginRight: "1rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  "&:hover": {
+                    background: "#005288",
+                    color: "white",
+                  },
+                }}
+              >
+                الإتصال لاحقاً
+              </Box>
+          </Link>
         </Grid>
       </Grid>
     </LoginLayout>

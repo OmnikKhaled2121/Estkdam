@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import ImgAhmed from "../assets/jj.png";
+import { Link } from "react-router-dom";
 
 export default function EmpCard() {
   return (
@@ -17,7 +18,7 @@ export default function EmpCard() {
       }}
     >
       <Grid sx={{ display: "flex" }}>
-       
+
         <Box
           item
           sx={{
@@ -274,31 +275,35 @@ export default function EmpCard() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        xs={12}
-        sx={{
-          height: "43px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          border: "1.5px solid #BAC8D1",
-          color: "#005288",
-          borderRadius: "8px",
-          fontFamily: "Almarai",
-          fontSize: "13px",
-          fontWeight: "700",
-          cursor: "pointer",
-          lineHeight: " 14.51px",
-          transition: ".5sec",
-          "&:hover": {
-            border: "1.5px solid #005288",
-            background: "#005288",
-            color: "#fff",
-          },
-        }}
-      >
-        تفاصيل أكثر
-      </Grid>
+
+      <Link to={'/empProfile'}>
+        <Grid
+          xs={12}
+          sx={{
+            height: "43px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            border: "1.5px solid #BAC8D1",
+            color: "#005288",
+            borderRadius: "8px",
+            fontFamily: "Almarai",
+            fontSize: "13px",
+            fontWeight: "700",
+            cursor: "pointer",
+            lineHeight: " 14.51px",
+            transition: ".5sec",
+            "&:hover": {
+              border: "1.5px solid #005288",
+              background: "#005288",
+              color: "#fff",
+            },
+          }}
+        >
+          تفاصيل أكثر
+        </Grid>
+      </Link>
+
     </Grid>
   );
 }

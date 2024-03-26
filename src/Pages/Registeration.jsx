@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import LoginLayout from "../layout/LoginLayout";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -20,6 +20,9 @@ import { CacheProvider } from "@emotion/react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FormInput from "../components/FormInput";
 import { Link } from "react-router-dom";
+
+
+
 
 export default function Registeration() {
   const cacheRtl = createCache({
@@ -49,7 +52,7 @@ export default function Registeration() {
     form;
   const { errors } = formState;
 
-  const onSubmit = async (inputs) => {};
+  const onSubmit = async (inputs) => { };
   return (
     <LoginLayout container>
       <Grid
@@ -230,29 +233,39 @@ export default function Registeration() {
             </CacheProvider>
           </Grid>
         </Grid>
-        <Grid
-          item
-          xs={10}
-          sx={{
-            background: "#005288",
-            width: "100%",
-            color: "#fff",
-            borderRadius: "10px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "1rem",
-            boxSizing: "border-box",
-            border: "1px solid #005288",
-            "&:hover": {
-              background: "#fff",
-              color: "#005288",
-              cursor: "pointer",
-            },
-          }}
-        >
-          التالي
-        </Grid>
+
+
+        <Link to={'/RegisterPhoneNumber'} style={{ width: '100%' }}>
+          <Box sx={{
+            display:"flex",
+            justifyContent:"center"
+          }}>
+            <Grid
+              item
+              xs={10}
+              sx={{
+                background: "#005288",
+                width: "100%", // Ensure the Grid takes full width
+                color: "#fff",
+                borderRadius: "10px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "1rem",
+                boxSizing: "border-box",
+                border: "1px solid #005288",
+                "&:hover": {
+                  background: "#fff",
+                  color: "#005288",
+                  cursor: "pointer",
+                },
+              }}
+            >
+              التالي
+            </Grid>
+          </Box>
+        </Link>
+
       </Grid>
     </LoginLayout>
   );

@@ -3,6 +3,7 @@ import proPic from "../assets/proPic.jfif";
 import FlagPlihipin from "../assets/FlagPlihipin.png";
 import React from "react";
 import EmpCard from "../components/EmpCard";
+import { Link } from "react-router-dom";
 
 export default function EmpProfile() {
   return (
@@ -362,25 +363,27 @@ function Landing({ name, proPic, Information }) {
           </Info>
         </Grid>
         <Box sx={{ display: "flex", paddingBottom: "0 " }}>
-          <Box
-            sx={{
-              padding: "15px 22px",
-              borderRadius: "10px",
-              background: "#005288",
-              color: "white",
-              fontFamily: "Almarai",
-              fontSize: "20px",
-              fontWeight: "500",
-              lineHeight: " 22.32px",
-              border: "2px solid #005288",
-              "&:hover": {
-                color: "#005288",
-                background: "white",
-              },
-            }}
-          >
-            حجز السيرة الذاتية
-          </Box>
+          <Link to={'/OrderReview'}>
+            <Box
+              sx={{
+                padding: "15px 22px",
+                borderRadius: "10px",
+                background: "#005288",
+                color: "white",
+                fontFamily: "Almarai",
+                fontSize: "20px",
+                fontWeight: "500",
+                lineHeight: " 22.32px",
+                border: "2px solid #005288",
+                "&:hover": {
+                  color: "#005288",
+                  background: "white",
+                },
+              }}
+            >
+              حجز السيرة الذاتية
+            </Box>
+          </Link>
           <Box
             sx={{
               padding: "15px 22px",

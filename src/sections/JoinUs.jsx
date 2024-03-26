@@ -1,6 +1,7 @@
 import { Box, Container, Grid } from "@mui/material";
 import React from "react";
 import map2 from "../assets/Map2.svg";
+import { Link } from "react-router-dom";
 
 export default function JoinUs() {
   return (
@@ -37,6 +38,11 @@ export default function JoinUs() {
             <Box sx={{ padding: "2rem 0" }}>
               <img src={map2}></img>
             </Box>
+
+            <Link to={'/Login'} style={{ width: '100%',
+            display:"flex",
+            justifyContent:"center"
+          }}>
             <Box
               sx={{
                 background: "#005288",
@@ -50,7 +56,7 @@ export default function JoinUs() {
               }}
             >
               انضم الأن
-            </Box>
+            </Box> </Link>
           </Grid>
         </Container>
       </Grid>

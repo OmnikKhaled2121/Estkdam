@@ -1,11 +1,11 @@
 import { Box, Grid } from "@mui/material";
 import logo from "../assets/logo1Footer.png";
 import sliderBg from "../assets/sliderBackground.jfif";
-
 import React from "react";
 import SocialLogos from "../components/SocialLogos";
+import { Link } from "react-router-dom";
 
-export default function LoginLayout({ children, wel }) {
+export default function LoginLayout({ children, img }) {
   return (
     <Grid
       container
@@ -18,7 +18,7 @@ export default function LoginLayout({ children, wel }) {
       }}
     >
       <MainContent xs={8.5}>{children}</MainContent>
-      <SideSlider xs={3.5} />
+      <SideSlider xs={3.5} img={sliderBg} />
     </Grid>
   );
 }
@@ -68,7 +68,7 @@ function MainContent({ xs, children }) {
     </Grid>
   );
 }
-function SideSlider({ xs }) {
+function SideSlider({ xs , img }) {
   return (
     <Grid
       item
@@ -104,7 +104,7 @@ function SideSlider({ xs }) {
         }}
       >
         <Box sx={{ width: "100%", borderRadius: "17px", overflow: "hidden" }}>
-          <img src={sliderBg} width={"100%"} />
+          <img src={img} width={"100%"} />
         </Box>
         <Box
           sx={{
@@ -118,25 +118,26 @@ function SideSlider({ xs }) {
           هل تحتاج إلى مساعدة أو استفسار؟ يمكنك التواصل مع أحد أعضاء حدمة
           العملاء لدينا.
         </Box>
-        <Box
-          sx={{
-            padding: "15px",
-            borderRadius: "10px",
-            color: "white",
-            fontFamily: "Almarai",
-            fontSize: "20px",
-            fontWeight: "500",
-            lineHeight: " 22.32px",
-            border: "2px solid #DAEAF4",
-            width: "124px",
-            // "&:hover": {
-            //   color: "#005288",
-            //   background: "white",
-            // },
-          }}
-        >
-          تواصل معنا
-        </Box>
+        <Link to={'/ContactUs'}>
+          <Box
+            sx={{
+              padding: "15px",
+              borderRadius: "10px",
+              color: "white",
+              fontFamily: "Almarai",
+              fontSize: "20px",
+              fontWeight: "500",
+              lineHeight: " 22.32px",
+              border: "2px solid #DAEAF4",
+              width: "124px",
+              "&:hover": {
+                color: "#005288",
+                background: "white",
+              },
+            }}
+          >
+            تواصل معنا
+          </Box></Link>
       </Grid>
       <Box
         sx={{

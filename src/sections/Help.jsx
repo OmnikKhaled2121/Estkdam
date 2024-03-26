@@ -97,6 +97,7 @@ export default function Help({title,img}) {
               <Box>(أضف العنوان)</Box>
             </Box>
             <Button
+              href="tel:+9660503394283"
               sx={{
                 border: "solid 2px #005288",
                 padding: "15px 22px 15px 22px",
