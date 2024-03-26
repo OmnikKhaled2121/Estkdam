@@ -4,36 +4,47 @@ import SocialLogos from "../components/SocialLogos";
 import OrderInfo from "../components/TrackCard";
 
 export default function Trackorders() {
+  const orders = [1];
   return (
     <Container>
       <Grid container>
-        <Grid item xs={12} sx={{
-          display: "flex", 
-          alignItems: "center"
-        }} >
-
-          <Box sx={{
-            width: "34px",
-            height: "34px",
-            border: "0.3px solid #C4C4C4",
-            borderRadius: "50%",
+        <Grid
+          item
+          xs={12}
+          sx={{
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
-
-
-          }} >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.675 3.63716C7.305 3.63716 7.995 3.83966 8.6925 4.24466L12.165 6.24716C13.3875 6.95966 14.0625 7.93466 14.0625 8.99966C14.0625 10.0647 13.3875 11.0397 12.165 11.7447L8.6925 13.7472C7.47 14.4522 6.2925 14.5497 5.3625 14.0172C4.44 13.4847 3.93 12.4122 3.93 11.0022L3.93 6.99716C3.93 5.58716 4.44 4.51466 5.3625 3.98216C5.76 3.74966 6.2025 3.63716 6.675 3.63716ZM6.675 13.2297C7.11 13.2297 7.605 13.0797 8.13 12.7722L11.6025 10.7697C12.465 10.2747 12.9375 9.64466 12.9375 8.99966C12.9375 8.35466 12.465 7.72466 11.6025 7.22966L8.13 5.22716C7.2675 4.73216 6.4875 4.63466 5.925 4.95716C5.3625 5.27966 5.055 6.00716 5.055 6.99716L5.055 11.0022C5.055 11.9922 5.3625 12.7197 5.925 13.0422C6.15 13.1697 6.405 13.2297 6.675 13.2297Z" fill="#292D32" />
+          }}
+        >
+          <Box
+            sx={{
+              width: "34px",
+              height: "34px",
+              border: "0.3px solid #C4C4C4",
+              borderRadius: "50%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.675 3.63716C7.305 3.63716 7.995 3.83966 8.6925 4.24466L12.165 6.24716C13.3875 6.95966 14.0625 7.93466 14.0625 8.99966C14.0625 10.0647 13.3875 11.0397 12.165 11.7447L8.6925 13.7472C7.47 14.4522 6.2925 14.5497 5.3625 14.0172C4.44 13.4847 3.93 12.4122 3.93 11.0022L3.93 6.99716C3.93 5.58716 4.44 4.51466 5.3625 3.98216C5.76 3.74966 6.2025 3.63716 6.675 3.63716ZM6.675 13.2297C7.11 13.2297 7.605 13.0797 8.13 12.7722L11.6025 10.7697C12.465 10.2747 12.9375 9.64466 12.9375 8.99966C12.9375 8.35466 12.465 7.72466 11.6025 7.22966L8.13 5.22716C7.2675 4.73216 6.4875 4.63466 5.925 4.95716C5.3625 5.27966 5.055 6.00716 5.055 6.99716L5.055 11.0022C5.055 11.9922 5.3625 12.7197 5.925 13.0422C6.15 13.1697 6.405 13.2297 6.675 13.2297Z"
+                fill="#292D32"
+              />
             </svg>
           </Box>
-          <Box sx={{marginRight:"0.5rem"}}>
-            الصفحة الرئسية
-          </Box>
-
+          <Box sx={{ marginRight: "0.5rem" }}>الصفحة الرئسية</Box>
         </Grid>
         <Grid
-          item xs={12}
+          item
+          xs={12}
           sx={{
             fontFamily: "Almarai",
             fontSize: "32px",
@@ -42,44 +53,60 @@ export default function Trackorders() {
             textAlign: "right",
             color: "#005288",
             paddingBottom: "2rem",
-            display: "block"
+            display: "block",
           }}
         >
           تتبع الطلبات
         </Grid>
-        <Grid container sx={{ display: "flex" }}>
-          <CardTrack item xs={12} bgcolor={"#005288"} />
-          <CardTrack item xs={12} bgcolor={"#BFC1C3"} />
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {orders.length ? (
+            orders.map((order, index) => {
+              return <CardTrack item xs={12} bgcolor={"#005288"} key={index} />;
+            })
+          ) : (
+            <Box
+              sx={{
+                fontSize: "36px",
+                fontWeight: "700",
+                lineHeight: "54px",
+                textAlign: "center",
+              }}
+            >
+              لا يوحد طلبات لديك فى الوقت الحالى
+            </Box>
+          )}
         </Grid>
-
       </Grid>
-    </Container >
+    </Container>
   );
 }
-
 
 function ButtonTrack({ title, backColor }) {
   return (
     <>
-      <Box sx={{
-
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "43.5px",
-        border: "1.5px  solid",
-        borderRadius: "8px",
-        color: backColor ? "white" : "#005288",
-        bgcolor: backColor ? backColor : "white",
-        cursor: "pointer"
-
-
-
-      }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "43.5px",
+          border: "1.5px  solid",
+          borderRadius: "8px",
+          color: backColor ? "white" : "#005288",
+          bgcolor: backColor ? backColor : "white",
+          cursor: "pointer",
+        }}
+      >
         {title}
-      </Box >
+      </Box>
     </>
-  )
+  );
 }
 function CardTrack({ bgcolor }) {
   return (
@@ -87,11 +114,22 @@ function CardTrack({ bgcolor }) {
       <Grid item xs={7.9} sx={{ boxSizing: "border-box", padding: "0.5rem" }}>
         <OrderInfo />
       </Grid>
-      <Grid item xs={3.9} sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", boxSizing: "border-box", padding: "0.5rem", "& > div:not(:last-child)": { marginBottom: ".5rem" } }}>
+      <Grid
+        item
+        xs={3.9}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          boxSizing: "border-box",
+          padding: "0.5rem",
+          "& > div:not(:last-child)": { marginBottom: ".5rem" },
+        }}
+      >
         <ButtonTrack title="التواصل مع خدمة العملاء" />
         <ButtonTrack title="هل تواجه مشكلة مع الطلب؟" />
         <ButtonTrack title="إلغاء الطلب" backColor={bgcolor} />
       </Grid>
     </>
-  )
+  );
 }

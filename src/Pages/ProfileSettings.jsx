@@ -1,0 +1,134 @@
+import { Container, Grid } from "@mui/material";
+import { Box } from "@mui/system";
+import React from "react";
+import settingProfile from "../assets/settingProfile.jfif";
+
+const profileData = [
+  ["صورة المستخدم", settingProfile],
+  ["اسم المستخدم", "أحمد محمد عبد المجيد"],
+  ["البريد الإلكتروني", "mohamed.ahmed.abdg453@gmail.com"],
+  ["رقم الجوال", "mohamed.ahmed.abdg453@gmail.com"],
+  [" الموقع", "جدة، المملكة العربية السعودية"],
+];
+
+export default function ProfileSettings() {
+  return (
+    <Container>
+      <Box
+        sx={{
+          fontSize: "32px",
+          fontWeight: "700",
+          lineHeight: "58.99px",
+          textAlign: "right",
+          paddingBottom: "1.5rem",
+        }}
+      >
+        إعدادات الملف الشخصى
+      </Box>
+      <Grid
+        sx={{
+          width: "100%",
+          borderRadius: "15px",
+          padding: "1rem",
+          boxSizing: "border-box",
+          boxShadow: " 0px 0px 20px 6px #26282A26",
+          "& > div:not(:last-child)": {
+            borderBottom: "1px solid #B1ADAD",
+          },
+        }}
+      >
+        {profileData.map((item, index) => {
+          return <Field property={item[0]} value={item[1]} key={index} />;
+        })}
+      </Grid>
+      <Grid
+        sx={{ margin: "3rem 0", display: "flex", justifyContent: "center" }}
+      >
+        <Box
+          sx={{
+            fontWeight: "700",
+            lineHeight: "24px",
+            padding: "10px 27px",
+            boxSizing: "border-box",
+            borderRadius: "54px",
+            border: "2px solid #005288",
+            background: "#005288",
+            color: "#FFF",
+            width: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            "&:hover": {
+              color: "#005288",
+              background: "white",
+            },
+          }}
+        >
+          حفظ الإعدادات
+        </Box>
+      </Grid>
+    </Container>
+  );
+}
+
+function Field({ property, value }) {
+  return (
+    <Grid
+      container
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "1rem .5rem",
+        fontSize: "16px",
+        fontWeight: "700",
+        lineHeight: "24px",
+        color: "#878787",
+      }}
+    >
+      <Grid item xs={3}>
+        {property}
+      </Grid>
+      <Grid item xs={6} color={"#000"}>
+        {property == "صورة المستخدم" ? (
+          <Box
+            sx={{
+              height: "65px",
+              width: "65px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              "& > img ": {
+                transform: "translateY(-15%)",
+              },
+            }}
+          >
+            <img width={"100%"} src={value} />
+          </Box>
+        ) : (
+          value
+        )}
+      </Grid>
+      <Grid item xs={2} sx={{ display: "flex", justifyContent: "end" }}>
+        <Box
+          sx={{
+            padding: "10px 27px",
+            boxSizing: "border-box",
+            borderRadius: "54px",
+            border: "2px solid #005288",
+            color: "#005288",
+            width: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            "&:hover": {
+              background: "#005288",
+              color: "#FFF",
+            },
+          }}
+        >
+          تغير
+        </Box>
+      </Grid>
+    </Grid>
+  );
+}

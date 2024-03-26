@@ -11,16 +11,17 @@ import EstkdamPolices from "./../Pages/EstkdamPolices";
 import EstkdamJourney from "./../Pages/EstkdamJourney";
 import ContactUs from "../Pages/ContactUs";
 import LoginOrderCompletetion from "../Pages/LoginOrderCompletetion";
-import LoginLayout from "./LoginLayout";
 import Login from "../Pages/Login";
 import Trackorders from "../Pages/Trackorders";
 import MultiCards from "../components/MultiCards";
 import Registeration from "../Pages/Registeration";
 import RegisterPhoneNumber from "../Pages/RegisterPhoneNumber";
-import SMSCode from "../components/SMSCode";
 import PhoneNumberConfirm from "../Pages/PhoneNumberConfirm";
 import Welcome from "../Pages/Welcome";
-
+import CompleteOrder from "../Pages/CompleteOrder";
+import OrderReview from "../Pages/OrderReview";
+import ProfileSettings from "../Pages/ProfileSettings";
+import Profile from "../Pages/Profile";
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -39,31 +40,42 @@ export default function Routers() {
         { path: "empProfile", element: <EmpProfile /> },
         { path: "MultiCards", element: <MultiCards /> },
         { path: "TrackOrders", element: <Trackorders /> },
+        { path: "Profile", element: <Profile /> },
+        { path: "ProfileSettings", element: <ProfileSettings /> },
       ],
     },
+
     {
       path: "LoginOrderCompletetion",
       element: <LoginOrderCompletetion />,
     },
-{
+    {
       path: "Login",
       element: <Login />,
     },
     {
       path: "Registeration",
-      element: <Registeration/>,
+      element: <Registeration />,
     },
     {
       path: "RegisterPhoneNumber",
-      element: <RegisterPhoneNumber/>,
+      element: <RegisterPhoneNumber />,
     },
     {
       path: "PhoneNumberConfirm",
-      element: <PhoneNumberConfirm/>,
+      element: <PhoneNumberConfirm />,
     },
     {
       path: "Welcome",
-      element: <Welcome/>,
+      element: <Welcome />,
+    },
+    {
+      path: "CompleteOrder",
+      element: <CompleteOrder />,
+    },
+    {
+      path: "OrderReview",
+      element: <OrderReview />,
     },
   ]);
 
