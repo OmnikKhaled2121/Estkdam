@@ -23,7 +23,7 @@ export default function KafalaTransfer() {
             SearchKeys={['مديره منزل', 'مساعد شخصي', 'ربه منزل', 'سائق خاص']}
             desc={'نساعدك من خلال منصة المصدر الدولب للإستقدام فى نقل الكفالة من شخص إلى أخر خلال مدة قصيرة وسرعة ودقة عالية لإتمام المهمة'}
           />
-          <ColorfulTitles />
+          {/* <ColorfulTitles /> */}
 
           <Box
             sx={{
@@ -34,6 +34,7 @@ export default function KafalaTransfer() {
               textAlign: "right",
               color: "#005288",
               paddingBottom: "2rem",
+              marginTop:"2rem"
             }}
           >
             بحث متقدم

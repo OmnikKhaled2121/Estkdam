@@ -112,7 +112,6 @@ function QuestionAndAnswer() {
                     sx={{
                         fontSize: "20px",
                         fontWeight: "700",
-                        textAlign: "justified",
                         lineHeight: "34.43px",
                         textAlign:"justify"
                     }}

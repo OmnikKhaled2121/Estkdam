@@ -18,7 +18,7 @@ export default function FormInput({
   function FormHelperTextProps(indicator) {
     return {
       sx: {
-        display: "none",
+display: "none",
         fontFamily: "Almarai",
         color: "#fff !important",
         bgcolor: `${indicator ? "#e65257" : ""}`,
@@ -35,7 +35,9 @@ export default function FormInput({
   });
   return (
     <CacheProvider value={cacheRtl}>
-      <Grid item xs={xs} md={md}>
+      <Grid item xs={xs} md={md} sx={{
+        marginBottom:"1rem"
+      }}>
         <TextField
           id="outlined-size-small"
           size="small"
