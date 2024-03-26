@@ -87,8 +87,9 @@ export default function ContactUs() {
                             multiline
                             rows={10}
                             variant="standard"
+                            sx={{marginBottom:"3rem"}}
                         />
-                        <UploadFile />
+                        <UploadFile  xs={4}/>
                         <Grid sx={{
                             display:"flex",
                             justifyContent:"center"
@@ -126,13 +127,13 @@ export default function ContactUs() {
     )
 }
 
-function UploadFile() {
+ export function UploadFile({xs}) {
 
 
     return (<>
-        <Grid xs={4} sx={{
-            margin: "3rem 0",
-            display: "flex"
+        <Grid xs={xs} sx={{
+            display: "flex",
+         
         }}>
             <Box sx={{
                 display: "flex",
@@ -151,7 +152,8 @@ function UploadFile() {
                 fontSize: "14px",
                 fontWeight: 700,
                 lineHeight: "18.9px",
-                marginLeft: "0.5rem"
+                marginLeft: "0.5rem",
+                cursor:"pointer"
 
             }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">

@@ -3,6 +3,7 @@ import React from "react";
 import pplLogo from "../assets/profile-2user.png";
 import arrowLogo from "../assets/arrow-left.png";
 import arrowLogos from "../assets/arrow-lefts.png";
+import { Link } from "react-router-dom";
 export default function SearchEstkdam() {
   return (
     <Grid
@@ -52,28 +53,31 @@ export default function SearchEstkdam() {
               لك.
             </Box>
             <Box sx={{ display: "flex", marginTop: "1.5rem" }}>
-              <Box
-                sx={{
-                  fontFamily: "Almarai",
-                  fontSize: "14px",
-                  fontWeight: 700,
-                  lineHeight: "21px",
-                  letterSpacing: "0em",
-                  textAlign: "right",
-                  color: "#005288",
-                  marginLeft: "0.2rem",
-                }}
-              >
-                شاهد جميع الوظائف
-              </Box>
-              <Box
-                sx={{
-                  width: "16px",
-                  height: "16px",
-                }}
-              >
-                <img src={arrowLogos} />
-              </Box>
+              <Link to={'/EstkdamRequest'} style={{display:"flex"}}>
+                <Box
+                  sx={{
+                    fontFamily: "Almarai",
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    lineHeight: "21px",
+                    letterSpacing: "0em",
+                    textAlign: "right",
+                    color: "#005288",
+                    marginLeft: "0.2rem",
+                  }}
+                >
+                  شاهد جميع الوظائف
+                </Box>
+                <Box
+                  sx={{
+                    width: "16px",
+                    height: "16px",
+                  }}
+                >
+                  <img src={arrowLogos} />
+                </Box>
+              </Link>
+
             </Box>
           </Grid>
 

@@ -22,6 +22,7 @@ import CompleteOrder from "../Pages/CompleteOrder";
 import OrderReview from "../Pages/OrderReview";
 import ProfileSettings from "../Pages/ProfileSettings";
 import Profile from "../Pages/Profile";
+import EditProfilePopUp from "../components/EditProfilePopUp";
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -42,6 +43,7 @@ export default function Routers() {
         { path: "TrackOrders", element: <Trackorders /> },
         { path: "Profile", element: <Profile /> },
         { path: "ProfileSettings", element: <ProfileSettings /> },
+        { path: "EditProfilePopUp", element: <EditProfilePopUp /> },
       ],
     },
 

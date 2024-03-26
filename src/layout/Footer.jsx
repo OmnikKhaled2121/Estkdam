@@ -62,15 +62,34 @@ export default function Footer() {
                   الرئيسية
                 </Link>
               </Box>
-              <Box sx={{ marginLeft: "1.5rem" }}>
+              <Box sx={{
+                marginLeft: "1.5rem",
+                cursor: "pointer"
+              }}>
                 <Link to={'/EstkdamRequest'} style={{
                   color: "#005288"
                 }}>
-                  مكاتب الإستقدام
+                  طلب الإستقدام
                 </Link>
               </Box>
-              <Box sx={{ marginLeft: "1.5rem" }}>الخدمات</Box>
-              <Box sx={{ marginLeft: "1.5rem" }}>
+
+
+              <Box sx={{
+                marginLeft: "1.5rem",
+                cursor: "pointer"
+              }}>
+                <Link to={'/KafalaTransfer'} style={{
+                  color: "#005288"
+                }}>
+                  نقل كفالة
+                </Link>
+              </Box>
+
+
+              <Box sx={{
+                marginLeft: "1.5rem",
+                cursor: "pointer"
+              }}>
                 <Link to={'/ContactUs'} style={{
                   color: "#005288"
                 }}>

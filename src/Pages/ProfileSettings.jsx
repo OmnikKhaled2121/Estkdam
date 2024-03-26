@@ -2,6 +2,9 @@ import { Container, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import settingProfile from "../assets/settingProfile.jfif";
+import EditProfilePopUp from "../components/EditProfilePopUp";
+import { Link } from 'react-router-dom';
+
 
 const profileData = [
   ["صورة المستخدم", settingProfile],
@@ -44,28 +47,29 @@ export default function ProfileSettings() {
       <Grid
         sx={{ margin: "3rem 0", display: "flex", justifyContent: "center" }}
       >
-        <Box
-          sx={{
-            fontWeight: "700",
-            lineHeight: "24px",
-            padding: "10px 27px",
-            boxSizing: "border-box",
-            borderRadius: "54px",
-            border: "2px solid #005288",
-            background: "#005288",
-            color: "#FFF",
-            width: "auto",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            "&:hover": {
-              color: "#005288",
-              background: "white",
-            },
-          }}
-        >
-          حفظ الإعدادات
-        </Box>
+        <Link to={'/Profile'}>
+          <Box
+            sx={{
+              fontWeight: "700",
+              lineHeight: "24px",
+              padding: "10px 27px",
+              boxSizing: "border-box",
+              borderRadius: "54px",
+              border: "2px solid #005288",
+              background: "#005288",
+              color: "#FFF",
+              width: "auto",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              "&:hover": {
+                color: "#005288",
+                background: "white",
+              },
+            }}
+          >
+            حفظ الإعدادات
+          </Box></Link>
       </Grid>
     </Container>
   );
@@ -109,25 +113,8 @@ function Field({ property, value }) {
         )}
       </Grid>
       <Grid item xs={2} sx={{ display: "flex", justifyContent: "end" }}>
-        <Box
-          sx={{
-            padding: "10px 27px",
-            boxSizing: "border-box",
-            borderRadius: "54px",
-            border: "2px solid #005288",
-            color: "#005288",
-            width: "auto",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            "&:hover": {
-              background: "#005288",
-              color: "#FFF",
-            },
-          }}
-        >
-          تغير
-        </Box>
+
+        <EditProfilePopUp property={property} value={value} />
       </Grid>
     </Grid>
   );

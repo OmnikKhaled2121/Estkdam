@@ -3,6 +3,8 @@ import { Box } from "@mui/system";
 import React from "react";
 import ProfileBg from "../assets/settingProfile.jfif";
 import OrderInfo from "../components/TrackCard";
+import { Link } from "react-router-dom";
+import LastUpdatesPopUp from "../components/LastUpdatesPopUp";
 
 const profileData = [
   ["البريد الإلكتروني", "mohamed.ahmed.abdg453@gmail.com"],
@@ -27,7 +29,7 @@ export default function Profile() {
         container
         sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}
       >
-        <ProfileInfo item xs={3.6} />
+        <ProfileInfo item xs={3.6} img={ProfileBg} />
         <Grid
           item
           container
@@ -51,7 +53,7 @@ export default function Profile() {
     </Container>
   );
 }
-function ProfileInfo({ item, xs }) {
+export function ProfileInfo({ item, xs, img }) {
   return (
     <Grid
       item
@@ -77,7 +79,7 @@ function ProfileInfo({ item, xs }) {
           sx={{
             width: "222px",
             height: "222px",
-            backgroundImage: `url(${ProfileBg})`,
+            backgroundImage: `url(${img})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             borderRadius: "50%",
@@ -143,6 +145,10 @@ function ProfileInfo({ item, xs }) {
           عضو منذ : أكتوبر 2023
         </Box>
       </Grid>
+
+
+
+
       <Grid
         sx={{
           "& > div:not(:last-child)": {
@@ -154,29 +160,31 @@ function ProfileInfo({ item, xs }) {
           return <InfoItem property={item[0]} value={item[1]} key={index} />;
         })}
       </Grid>
-      <Box
-        sx={{
-          marginTop: "3rem",
-          fontWeight: "700",
-          lineHeight: "24px",
-          padding: "10px 27px",
-          boxSizing: "border-box",
-          borderRadius: "10px",
-          border: "2px solid #005288",
-          color: "#005288",
-          background: "white",
-          width: "auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          "&:hover": {
-            background: "#005288",
-            color: "#FFF",
-          },
-        }}
-      >
-        تعديل المعلومات الشخصية{" "}
-      </Box>
+      <Link to={'/ProfileSettings'}>
+        <Box
+          sx={{
+            cursor:"pointer",
+            marginTop: "3rem",
+            fontWeight: "700",
+            lineHeight: "24px",
+            padding: "10px 27px",
+            boxSizing: "border-box",
+            borderRadius: "10px",
+            border: "2px solid #005288",
+            color: "#005288",
+            background: "white",
+            width: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            "&:hover": {
+              background: "#005288",
+              color: "#FFF",
+            },
+          }}
+        >
+          تعديل المعلومات الشخصية{" "}
+        </Box></Link>
     </Grid>
   );
 }
@@ -218,22 +226,25 @@ function Orders(item, xs) {
         >
           الطلبات{" "}
         </Box>
-        <Box
-          sx={{
-            fontWeight: "700",
-            fontSize: "12px",
-            lineHeight: "16.2px",
-            textAlign: "left",
-            color: "#005288",
-          }}
-        >
-          شاهد الكل
-        </Box>
+        <Link to={'/TrackOrders'}>
+          <Box
+            sx={{
+              fontWeight: "700",
+              fontSize: "12px",
+              lineHeight: "16.2px",
+              textAlign: "left",
+              color: "#005288",
+              cursor:"pointer"
+            }}
+          >
+            شاهد الكل
+          </Box>
+        </Link>
       </Grid>
-      <Grid sx={{width:"100%"}}>
+      <Grid sx={{ width: "100%" }}>
         <OrderInfo />
       </Grid>
-      <Grid sx={{width:"100%"}}>
+      <Grid sx={{ width: "100%" }}>
         <OrderInfo />
       </Grid>
     </Grid>
@@ -257,6 +268,7 @@ function Latest({ item, xs }) {
         xs={12}
         sx={{ display: "flex", justifyContent: "space-between" }}
       >
+
         <Box
           sx={{
             fontSize: "18px",
@@ -267,17 +279,10 @@ function Latest({ item, xs }) {
         >
           أخر الأحداث
         </Box>
-        <Box
-          sx={{
-            fontWeight: "700",
-            fontSize: "12px",
-            lineHeight: "16.2px",
-            textAlign: "left",
-            color: "#005288",
-          }}
-        >
-          شاهد الكل
-        </Box>
+
+        <LastUpdatesPopUp />
+
+
       </Grid>
       <LatestItem />
       <LatestItem />
@@ -286,7 +291,7 @@ function Latest({ item, xs }) {
   );
 }
 
-function LatestItem() {
+ export function LatestItem() {
   return (
     <Grid
       container
