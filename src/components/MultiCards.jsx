@@ -23,7 +23,7 @@ export default function MultiCards() {
                                 border: "1.5px solid #BAC8D1",
                                 background: "white",
                                 padding: "1rem",
-                                transform: `translate(${index}px,-${index * 70}px)`,
+                                transform: `translate(${index}px,-${index * 110}px)`,
                                 zIndex: "555",
                             }}
                         >
@@ -285,6 +285,31 @@ export default function MultiCards() {
                                         </span>
                                     </Grid>
                                 </Grid>
+                            </Grid>
+                            <Grid
+                                xs={12}
+                                sx={{
+                                    height: "43px",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    border: "1.5px solid #BAC8D1",
+                                    color: "#005288",
+                                    borderRadius: "8px",
+                                    fontFamily: "Almarai",
+                                    fontSize: "13px",
+                                    fontWeight: "700",
+                                    cursor: "pointer",
+                                    lineHeight: " 14.51px",
+                                    transition: ".5sec",
+                                    "&:hover": {
+                                        border: "1.5px solid #005288",
+                                        background: "#005288",
+                                        color: "#fff",
+                                    },
+                                }}
+                            >
+                                تفاصيل أكثر
                             </Grid>
                         </Grid>
                     </>

@@ -1,6 +1,5 @@
 import { Box, Grid } from "@mui/material";
 import logo from "../assets/logo1Footer.png";
-import sliderBg from "../assets/sliderBackground.jfif";
 import React from "react";
 import SocialLogos from "../components/SocialLogos";
 import { Link } from "react-router-dom";
@@ -18,11 +17,11 @@ export default function LoginLayout({ children, img }) {
       }}
     >
       <MainContent xs={8.5}>{children}</MainContent>
-      <SideSlider xs={3.5} img={sliderBg} />
+      <SideSlider xs={3.5} img={img} />
     </Grid>
   );
 }
-function MainContent({ xs, children }) {
+ export function MainContent({ xs, children }) {
   return (
     <Grid
       item
@@ -68,6 +67,8 @@ function MainContent({ xs, children }) {
     </Grid>
   );
 }
+
+
 function SideSlider({ xs , img }) {
   return (
     <Grid

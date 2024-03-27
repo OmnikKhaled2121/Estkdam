@@ -7,10 +7,12 @@ import FlagPlihipin from "../assets/FlagPlihipin.png";
 import Info from "../components/Info";
 import { func } from "joi";
 import { Link } from "react-router-dom";
+import pic from '../assets/sliderBackground.jfif'
+
 
 export default function OrderReview() {
   return (
-    <LoginLayout>
+    <LoginLayout img={pic}>
       <Grid
         item
         container

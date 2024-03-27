@@ -6,11 +6,12 @@ import proPic from "../assets/empProfile.jfif";
 import FlagPlihipin from "../assets/FlagPlihipin.png";
 import Info from "../components/Info";
 import { Link } from "react-router-dom";
-import sliderBg from "../assets/sliderBackground.jfif";
+import sliderBg from "../assets/orderComplete.jfif";
+
 
 export default function CompleteOrder() {
   return (
-    <LoginLayout >
+    <LoginLayout img={sliderBg} >
       <Grid
         item
         container
@@ -39,7 +40,7 @@ export default function CompleteOrder() {
           }}
         >
 
-          <Link to={'/EmpProfile'} style={{
+          <Link to={'/'} style={{
             color: "#005288"
           }}>
             <Box mr={1} sx={{

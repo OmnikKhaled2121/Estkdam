@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LoginLayout from "../layout/LoginLayout";
+import SliderLayout from "../layout/SliderLayout";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
@@ -52,7 +52,7 @@ export default function Login() {
   const onSubmit = async (inputs) => { };
 
   return (
-    <LoginLayout container>
+    <SliderLayout container>
       <Grid
         item
         container
@@ -241,6 +241,6 @@ export default function Login() {
           </Box >
         </Grid>
       </Grid>
-    </LoginLayout>
+    </SliderLayout>
   );
 }

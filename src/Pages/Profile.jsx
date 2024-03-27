@@ -226,7 +226,7 @@ function Orders(item, xs) {
         >
           الطلبات{" "}
         </Box>
-        <Link to={'/TrackOrders'}>
+        <Link to={'/CompleteOrder'}>
           <Box
             sx={{
               fontWeight: "700",
