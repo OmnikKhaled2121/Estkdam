@@ -68,34 +68,35 @@ export default function Navber() {
             alignItems: "center",
           }}
         >
-
-
-          <NavTitle to value={"1"}>الرئيسيه</NavTitle>
+          <NavTitle to value={"1"}>
+            الرئيسيه
+          </NavTitle>
 
           <NavTitle
             subTitles={[
               {
                 title: "طلب الإستقدام ",
-                reditect: "/EstkdamRequest"
+                reditect: "/EstkdamRequest",
               },
               {
                 title: "نقل الكفاله",
-                reditect: "/KafalaTransfer"
-              }
+                reditect: "/KafalaTransfer",
+              },
             ]}
           >
             خدماتنا
           </NavTitle>
-          <NavTitle subTitles={[
-            {
-              title: "رحله الإستقدام ",
-              reditect: "/EstkdamJourney"
-            },
-            {
-              title: "سياسات الإستقدام",
-              reditect: "/EstkdamPolices"
-            }
-          ]}
+          <NavTitle
+            subTitles={[
+              {
+                title: "رحله الإستقدام ",
+                reditect: "/EstkdamJourney",
+              },
+              {
+                title: "سياسات الإستقدام",
+                reditect: "/EstkdamPolices",
+              },
+            ]}
           >
             عن الاستقدام
           </NavTitle>
@@ -104,31 +105,35 @@ export default function Navber() {
             subTitles={[
               {
                 title: "تواصل معنا ",
-                reditect: "/ContactUs"
+                reditect: "/ContactUs",
               },
               {
                 title: "أسئلة شائعة",
-                reditect: "/CommonQuestions"
-              }
+                reditect: "/CommonQuestions",
+              },
             ]}
           >
             الدعم
           </NavTitle>
         </Grid>
-        <Grid item xs={3} sx={{ display: "flex", justifyContent: "end", marginTop: "1rem", }}>
-          <Link to={'/Login'}>
+        <Grid
+          item
+          xs={3}
+          sx={{ display: "flex", justifyContent: "end", marginTop: "1rem" }}
+        >
+          <Link to={"/Login"}>
             <Btn bg={"white"} FontColor={"#005288"}>
               تسجيل الدخول
             </Btn>
           </Link>
-          <Link to={'/Registeration'}>
+          <Link to={"/Registeration"}>
             <Btn bg={"#005288"} FontColor={"white"}>
               انضم الان
             </Btn>
           </Link>
         </Grid>
       </Grid>
-    </Container >
+    </Container>
   );
 }
 function NavTitle({ children, value, subTitles, to }) {
@@ -153,31 +158,37 @@ function NavTitle({ children, value, subTitles, to }) {
         },
       }}
     >
-      {to ? <Link to={'/'}>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "nowrap",
-            justifyContent: "center",
-            alignItems: "center",
-            fontFamily: "Almarai",
-            fontSize: "16px",
-            fontWeight: 400,
-            lineHeight: "18px",
-            letterSpacing: "0em",
-            padding: "5px 0",
-          }}
-        >
-          {children}
-
-          <KeyboardArrowDownIcon
+      {to ? (
+        <Link to={"/"}>
+          <Box
             sx={{
-              display: value ? "none" : "block",
+              display: "flex",
+              flexWrap: "nowrap",
+              justifyContent: "center",
+              alignItems: "center",
+              fontFamily: "Almarai",
+              fontSize: "16px",
+              fontWeight: 400,
+              lineHeight: "18px",
+              letterSpacing: "0em",
+              padding: "5px 0",
               color: "#213039",
-              margin: "0 .5rem",
+              "&:hover": {
+                color: "#005288",
+              },
             }}
-          />
-        </Box></Link> :
+          >
+            {children}
+            <KeyboardArrowDownIcon
+              sx={{
+                display: value ? "none" : "block",
+                color: "#213039",
+                margin: "0 .5rem",
+              }}
+            />
+          </Box>
+        </Link>
+      ) : (
         <Box
           sx={{
             display: "flex",
@@ -190,10 +201,14 @@ function NavTitle({ children, value, subTitles, to }) {
             lineHeight: "18px",
             letterSpacing: "0em",
             padding: "5px 0",
+            "&:hover": {
+              "& > svg": {
+                color: "#005288",
+              },
+            },
           }}
         >
           {children}
-
           <KeyboardArrowDownIcon
             sx={{
               display: value ? "none" : "block",
@@ -202,7 +217,7 @@ function NavTitle({ children, value, subTitles, to }) {
             }}
           />
         </Box>
-      }
+      )}
 
       <Box
         sx={{
@@ -224,8 +239,6 @@ function NavTitle({ children, value, subTitles, to }) {
       >
         {subTitles?.map((subTitles, index) => {
           return (
-
-
             <Grid
               key={index}
               sx={{
@@ -243,17 +256,20 @@ function NavTitle({ children, value, subTitles, to }) {
                     color: "black",
                     "&:hover": {
                       color: "#005288",
+                      "& svg": {
+                        color: "red",
+                      },
                     },
                   }}
                 >
                   {subTitles.title}
-                </Box>  </Link>
+                </Box>{" "}
+              </Link>
             </Grid>
-
           );
         })}
       </Box>
-    </Grid >
+    </Grid>
   );
 }
 function Btn({ children, bg, FontColor }) {

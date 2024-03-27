@@ -37,29 +37,34 @@ export default function OrderReview() {
             color: "#005288",
           }}
         >
-          <Link to={'/'}><Box mr={1} sx={{
-            display: "flex",
-            justifyContent: "center",
-            color: "#005288"
-          }}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 16 17"
-              fill="none"
+          <Link to={"/"}>
+            <Box
+              mr={1}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                color: "#005288",
+              }}
             >
-              <path
-                d="M9.62004 3.95326C9.74671 3.95326 9.87337 3.99992 9.97337 4.09992L14.02 8.14659C14.2134 8.33992 14.2134 8.65992 14.02 8.85326L9.97337 12.8999C9.78004 13.0933 9.46004 13.0933 9.26671 12.8999C9.07337 12.7066 9.07337 12.3866 9.26671 12.1933L12.96 8.49992L9.26671 4.80659C9.07337 4.61326 9.07337 4.29326 9.26671 4.09992C9.36004 3.99992 9.49337 3.95326 9.62004 3.95326Z"
-                fill="#005288"
-              />
-              <path
-                d="M2.33371 8L13.5537 8C13.827 8 14.0537 8.22667 14.0537 8.5C14.0537 8.77333 13.827 9 13.5537 9L2.33371 9C2.06038 9 1.83371 8.77333 1.83371 8.5C1.83371 8.22667 2.06038 8 2.33371 8Z"
-                fill="#005288"
-              />
-            </svg>
-
-            الرجوع إلى الرئيسية</Box></Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 17"
+                fill="none"
+              >
+                <path
+                  d="M9.62004 3.95326C9.74671 3.95326 9.87337 3.99992 9.97337 4.09992L14.02 8.14659C14.2134 8.33992 14.2134 8.65992 14.02 8.85326L9.97337 12.8999C9.78004 13.0933 9.46004 13.0933 9.26671 12.8999C9.07337 12.7066 9.07337 12.3866 9.26671 12.1933L12.96 8.49992L9.26671 4.80659C9.07337 4.61326 9.07337 4.29326 9.26671 4.09992C9.36004 3.99992 9.49337 3.95326 9.62004 3.95326Z"
+                  fill="#005288"
+                />
+                <path
+                  d="M2.33371 8L13.5537 8C13.827 8 14.0537 8.22667 14.0537 8.5C14.0537 8.77333 13.827 9 13.5537 9L2.33371 9C2.06038 9 1.83371 8.77333 1.83371 8.5C1.83371 8.22667 2.06038 8 2.33371 8Z"
+                  fill="#005288"
+                />
+              </svg>
+              الرجوع إلى الرئيسية
+            </Box>
+          </Link>
         </Grid>
         <Grid item xs={12}>
           <Box
@@ -123,36 +128,35 @@ export default function OrderReview() {
             </Box>
             <span style={{ marginRight: ".5rem" }}> الإتصال الأن</span>
           </Grid>
-          <Link to={'/'} style={{
-            width: "156px",
-            height: "63px",
-            fontWeight:"700",
-            fontSize:"20px",
-            color:"#005288"
-          }}> 
-              <Box
-                sx={{
-                  padding: "10px 15px",
-                  borderRadius: "10px",
-                  color: "#005288",
-                  border: "2px solid#005288",
-                  background: "white",
-                  fontFamily: "Almarai",
-                  fontSize: "16px",
-                  fontWeight: "500",
-                  lineHeight: " 22.32px",
-                  marginRight: "1rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  "&:hover": {
-                    background: "#005288",
-                    color: "white",
-                  },
-                }}
-              >
-                الإتصال لاحقاً
-              </Box>
+          <Link
+            to={"/"}
+            style={{
+              display: "flex",
+            }}
+          >
+            <Box
+              sx={{
+                padding: "10px 15px",
+                borderRadius: "10px",
+                color: "#005288",
+                border: "2px solid#005288",
+                background: "white",
+                fontFamily: "Almarai",
+                fontSize: "16px",
+                fontWeight: "500",
+                lineHeight: " 22.32px",
+                marginRight: "1rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                "&:hover": {
+                  background: "#005288",
+                  color: "white",
+                },
+              }}
+            >
+              الإتصال لاحقاً
+            </Box>
           </Link>
         </Grid>
       </Grid>
@@ -334,7 +338,7 @@ function ConfirmOrder({ name, proPic, Information }) {
           تأكيد طلبك من خلالهم
         </Box>
       </Grid>
-      <Grid item container xs={4} >
+      <Grid item container xs={4}>
         <Box
           item
           xs={12}
