@@ -363,7 +363,7 @@ function Landing({ name, proPic, Information }) {
           </Info>
         </Grid>
         <Box sx={{ display: "flex", paddingBottom: "0 " }}>
-          <Link to={'/OrderReview'}>
+          <Link to={'/CompleteOrder'}>
             <Box
               sx={{
                 padding: "15px 22px",

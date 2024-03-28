@@ -23,6 +23,7 @@ import OrderReview from "../Pages/OrderReview";
 import ProfileSettings from "../Pages/ProfileSettings";
 import Profile from "../Pages/Profile";
 import EditProfilePopUp from "../components/EditProfilePopUp";
+import CardsSlider from "../components/CardsSlider";
 
 export default function Routers() {
   let routers = createBrowserRouter([
@@ -44,6 +45,7 @@ export default function Routers() {
         { path: "Profile", element: <Profile /> },
         { path: "ProfileSettings", element: <ProfileSettings /> },
         { path: "EditProfilePopUp", element: <EditProfilePopUp /> },
+        { path: "CardsSlider", element: <CardsSlider /> },
       ],
     },
 

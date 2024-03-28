@@ -173,6 +173,7 @@ function NavTitle({ children, value, subTitles, to }) {
               letterSpacing: "0em",
               padding: "5px 0",
               color: "#213039",
+              cursor:"pointer",
               "&:hover": {
                 color: "#005288",
               },
@@ -201,6 +202,7 @@ function NavTitle({ children, value, subTitles, to }) {
             lineHeight: "18px",
             letterSpacing: "0em",
             padding: "5px 0",
+            cursor:"pointer",
             "&:hover": {
               "& > svg": {
                 color: "#005288",
