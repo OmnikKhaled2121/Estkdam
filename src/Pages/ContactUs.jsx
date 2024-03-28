@@ -128,8 +128,6 @@ export default function ContactUs() {
 }
 
  export function UploadFile({xs}) {
-
-
     return (<>
         <Grid xs={xs} sx={{
             display: "flex",
@@ -144,7 +142,7 @@ export default function ContactUs() {
                 background: "rgba(218, 234, 244, 1)",
                 color: "rgba(0, 82, 136, 1)",
                 width: "116px",
-                height: "41px",
+                height: "35px",
                 borderRadius: "49px",
                 border: "1px solid rgba(0, 82, 136, 1)",
                 padding: "0.5rem",

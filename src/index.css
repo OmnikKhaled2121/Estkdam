@@ -18,7 +18,6 @@ a:hover {
 body {
   margin: 0;
   padding: 0;
-  display: flex;
   transition: 0.3s;
   font-family: "Almarai";
 }

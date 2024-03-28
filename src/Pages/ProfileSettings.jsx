@@ -1,10 +1,9 @@
 import { Container, Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import settingProfile from "../assets/settingProfile.jfif";
 import EditProfilePopUp from "../components/EditProfilePopUp";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const profileData = [
   ["صورة المستخدم", settingProfile],
@@ -15,67 +14,96 @@ const profileData = [
 ];
 
 export default function ProfileSettings() {
+  const [open, setOpen] = useState(false);
+  const [property, setproperty] = useState("");
+  const [value, setvalue] = useState("");
+  const handleClickOpen = (property, value) => {
+    console.log("first")
+    setproperty(property);
+    setvalue(value);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Container>
-      <Box
-        sx={{
-          fontSize: "32px",
-          fontWeight: "700",
-          lineHeight: "58.99px",
-          textAlign: "right",
-          paddingBottom: "1.5rem",
-        }}
-      >
-        إعدادات الملف الشخصى
-      </Box>
-      <Grid
-        sx={{
-          width: "100%",
-          borderRadius: "15px",
-          padding: "1rem",
-          boxSizing: "border-box",
-          boxShadow: " 0px 0px 20px 6px #26282A26",
-          "& > div:not(:last-child)": {
-            borderBottom: "1px solid #B1ADAD",
-          },
-        }}
-      >
-        {profileData.map((item, index) => {
-          return <Field property={item[0]} value={item[1]} key={index} />;
-        })}
-      </Grid>
-      <Grid
-        sx={{ margin: "3rem 0", display: "flex", justifyContent: "center" }}
-      >
-        <Link to={'/Profile'}>
-          <Box
-            sx={{
-              fontWeight: "700",
-              lineHeight: "24px",
-              padding: "10px 27px",
-              boxSizing: "border-box",
-              borderRadius: "54px",
-              border: "2px solid #005288",
-              background: "#005288",
-              color: "#FFF",
-              width: "auto",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              "&:hover": {
-                color: "#005288",
-                background: "white",
-              },
-            }}
-          >
-            حفظ الإعدادات
-          </Box></Link>
-      </Grid>
-    </Container>
+    <>
+      <Container>
+        <Box
+          sx={{
+            fontSize: "32px",
+            fontWeight: "700",
+            lineHeight: "58.99px",
+            textAlign: "right",
+            paddingBottom: "1.5rem",
+          }}
+        >
+          إعدادات الملف الشخصى
+        </Box>
+        <Grid
+          sx={{
+            width: "100%",
+            borderRadius: "15px",
+            padding: "1rem",
+            boxSizing: "border-box",
+            boxShadow: " 0px 0px 20px 6px #26282A26",
+            "& > div:not(:last-child)": {
+              borderBottom: "1px solid #B1ADAD",
+            },
+          }}
+        >
+          {profileData.map((item, index) => {
+            return (
+              <Field
+                property={item[0]}
+                value={item[1]}
+                key={index}
+                handlePopupOpen={handleClickOpen}
+              />
+            );
+          })}
+        </Grid>
+        <Grid
+          sx={{ margin: "3rem 0", display: "flex", justifyContent: "center" }}
+        >
+          <Link to={"/Profile"}>
+            <Box
+              sx={{
+                fontWeight: "700",
+                lineHeight: "24px",
+                padding: "10px 27px",
+                boxSizing: "border-box",
+                borderRadius: "54px",
+                border: "2px solid #005288",
+                background: "#005288",
+                color: "#FFF",
+                width: "auto",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                "&:hover": {
+                  color: "#005288",
+                  background: "white",
+                },
+              }}
+            >
+              حفظ الإعدادات
+            </Box>
+          </Link>
+        </Grid>
+      </Container>
+      <EditProfilePopUp
+        open={open}
+        handleClose={handleClose}
+        property={property}
+        value={value}
+      />
+    </>
   );
 }
 
-function Field({ property, value }) {
+function Field({ property, value, handlePopupOpen }) {
   return (
     <Grid
       container
@@ -113,8 +141,29 @@ function Field({ property, value }) {
         )}
       </Grid>
       <Grid item xs={2} sx={{ display: "flex", justifyContent: "end" }}>
-
-        <EditProfilePopUp property={property} value={value} />
+        <Box
+          onClick={() => {
+            handlePopupOpen(property, value);
+          }}
+          sx={{
+            padding: "10px 27px",
+            boxSizing: "border-box",
+            borderRadius: "54px",
+            border: "2px solid #005288",
+            color: "#005288",
+            width: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+            "&:hover": {
+              background: "#005288",
+              color: "#FFF",
+            },
+          }}
+        >
+          تغير
+        </Box>
       </Grid>
     </Grid>
   );
