@@ -21,6 +21,9 @@ body {
   transition: 0.3s;
   font-family: "Almarai";
 }
+input[type="button"] {
+  font-family: "Almarai";
+}
 
 @keyframes mymove {
   from {
