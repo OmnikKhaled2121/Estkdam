@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 import LoginLayout from "../layout/LoginLayout";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -19,19 +19,43 @@ import {
 import { CacheProvider } from "@emotion/react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FormInput from "../components/FormInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 export default function Registeration() {
+  let navigate = useNavigate()
+  let[errormessage,seterrormessage]=useState('')
+
+  async function handleData(register) {
+   
+    let { data } = await axios.post(`https://estikdam.jacadix.net/api/register`, register)
+    if (data.message == 'user added') {
+      navigate('/Login')
+    } else {
+      seterrormessage(`Error Message ${data.err[0][0].context.key}:${data.err[0][0].message}`)
+    }
+
+    console.log( data)
+    console.log(data.err[0][0].context.key)
+    console.log(data.err[0][0].message)
+    console.log(values)
+  }
+
+
+
   const cacheRtl = createCache({
     key: "muirtl",
     stylisPlugins: [prefixer, stylisRTLPlugin],
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
   const schema = Joi.object({
     Email: Joi.string()
       .regex(/^01[0125][0-9]{8}$/)
@@ -42,14 +66,18 @@ export default function Registeration() {
       }),
     Password: Joi.string().messages({ "string.empty": "password empty" }),
   });
+
   const form = useForm({
     resolver: joiResolver(schema),
   });
   const { register, handleSubmit, control, getValues, formState, setError } =
     form;
+
   const { errors } = formState;
 
-  const onSubmit = async (inputs) => {};
+  const onSubmit = async (inputs) => {
+    console.log("object",inputs)
+   };
   return (
     <LoginLayout container>
       <Grid
@@ -235,11 +263,11 @@ export default function Registeration() {
           to={"/RegisterPhoneNumber"}
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
-          <Grid
+          <Grid onClick={handleData}
             xs={10}
             sx={{
               background: "#005288",
-              width: "100%", // Ensure the Grid takes full width
+              width: "100%",
               color: "#fff",
               borderRadius: "10px",
               display: "flex",

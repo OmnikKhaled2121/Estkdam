@@ -8,18 +8,11 @@ import stylisRTLPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import {
   Box,
-  FormControl,
-  FormHelperText,
   Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
+
 } from "@mui/material";
-import { CacheProvider } from "@emotion/react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FormInput from "../components/FormInput";
-import { Link } from "react-router-dom";
+import { DevTool } from "@hookform/devtools";
 
 export default function RegisterPhoneNumber() {
   const cacheRtl = createCache({
@@ -33,14 +26,8 @@ export default function RegisterPhoneNumber() {
     event.preventDefault();
   };
   const schema = Joi.object({
-    Email: Joi.string()
-      .regex(/^01[0125][0-9]{8}$/)
-      .required()
-      .messages({
-        "string.empty": "Email can't be empty",
-        "string.pattern.base": "Email not right",
-      }),
-    Password: Joi.string().messages({ "string.empty": "password empty" }),
+    city: Joi.string(),
+    tel: Joi.string(),
   });
   const form = useForm({
     resolver: joiResolver(schema),
@@ -49,11 +36,14 @@ export default function RegisterPhoneNumber() {
     form;
   const { errors } = formState;
 
-  const onSubmit = async (inputs) => { };
+  const onSubmit = async (inputs) => { console.log(inputs) };
   return (
     <>
       <LoginLayout>
         <Grid
+          component={"form"}
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
           item
           container
           md={6}
@@ -121,6 +111,7 @@ export default function RegisterPhoneNumber() {
             </Box>
           </Grid>
           <Grid
+
             item
             container
             xs={12}
@@ -162,7 +153,7 @@ export default function RegisterPhoneNumber() {
             حسابك
           </Box>
 
-          <Link to={'/PhoneNumberConfirm'} style={{ width: '100%' }}>
+          <Grid component={"Button"} type="submit" style={{ width: '100%' }}>
             <Box sx={{
               display: "flex",
               justifyContent: "center"
@@ -191,31 +182,10 @@ export default function RegisterPhoneNumber() {
                 التالي
               </Grid>
             </Box>
-          </Link>
+          </Grid>
 
 
-          {/* <Grid
-            item
-            xs={10}
-            sx={{
-              background: "#005288",
-              color: "#fff",
-              borderRadius: "10px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "1rem",
-              boxSizing: "border-box",
-              border: "1px solid #005288",
-              "&:hover": {
-                background: "#fff",
-                color: "#005288",
-                cursor: "pointer",
-              },
-            }}
-          >
-            التالي
-          </Grid> */}
+          <DevTool control={control} />
         </Grid>
       </LoginLayout>
     </>
