@@ -1,5 +1,5 @@
-import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import React, { useContext } from "react";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Home from "../Pages/Home";
 import Root from "./Root";
 import EmpProfile from "../Pages/EmpProfile";
@@ -24,8 +24,12 @@ import ProfileSettings from "../Pages/ProfileSettings";
 import Profile from "../Pages/Profile";
 import EditProfilePopUp from "../components/EditProfilePopUp";
 import CardsSlider from "../components/CardsSlider";
+import { UserContext } from "../Context/UserContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 export default function Routers() {
+  const { currentUser } = useContext(UserContext);
+  console.log("Routers", currentUser);
   let routers = createBrowserRouter([
     {
       path: "",
@@ -43,7 +47,14 @@ export default function Routers() {
         { path: "MultiCards", element: <MultiCards /> },
         { path: "TrackOrders", element: <Trackorders /> },
         { path: "Profile", element: <Profile /> },
-        { path: "ProfileSettings", element: <ProfileSettings /> },
+        {
+          path: "ProfileSettings",
+          element: (
+            <ProtectedRoute>
+              <ProfileSettings />
+            </ProtectedRoute>
+          ),
+        },
         { path: "EditProfilePopUp", element: <EditProfilePopUp /> },
         { path: "CardsSlider", element: <CardsSlider /> },
       ],
@@ -55,11 +66,11 @@ export default function Routers() {
     },
     {
       path: "Login",
-      element: <Login />,
+      element: currentUser ? <Navigate to="/" replace /> : <Login />,
     },
     {
       path: "Registeration",
-      element: <Registeration />,
+      element: currentUser ? <Navigate to="/" replace /> : <Registeration />,
     },
     {
       path: "RegisterPhoneNumber",

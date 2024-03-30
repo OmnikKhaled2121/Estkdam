@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SliderLayout from "../layout/SliderLayout";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -8,8 +8,8 @@ import stylisRTLPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import {
   Box,
+  Button,
   FormControl,
-  FormHelperText,
   Grid,
   IconButton,
   InputAdornment,
@@ -18,10 +18,15 @@ import {
 } from "@mui/material";
 import { CacheProvider } from "@emotion/react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import FormInput from "../components/FormInput";
+import FormInput, { InputError, PassInput } from "../components/FormInput";
 import { Link } from "react-router-dom";
+import { DevTool } from "@hookform/devtools";
+import { LoginApi } from "../lib/api";
+import { UserContext } from "../Context/UserContext";
 
 export default function Login() {
+  const [isLoading, setisLoading] = useState(false);
+  const { checkLoggedIn } = useContext(UserContext);
   const cacheRtl = createCache({
     key: "muirtl",
     stylisPlugins: [prefixer, stylisRTLPlugin],
@@ -33,27 +38,42 @@ export default function Login() {
     event.preventDefault();
   };
   const schema = Joi.object({
-    Email: Joi.string()
-      .regex(/^01[0125][0-9]{8}$/)
-      .required()
-      .messages({
-        "string.empty": "Email can't be empty",
-        "string.pattern.base": "Email not right",
-      }),
+    Email: Joi.string().required().messages({
+      "string.empty": "Email can't be empty",
+      "string.pattern.base": "Email not right",
+    }),
     Password: Joi.string().messages({ "string.empty": "password empty" }),
   });
   const form = useForm({
     resolver: joiResolver(schema),
   });
-  const { register, handleSubmit, control, getValues, formState, setError } =
-    form;
+  const { register, handleSubmit, control, formState, setError } = form;
   const { errors } = formState;
 
-  const onSubmit = async (inputs) => { };
-
+  const onSubmit = async (inputs) => {
+    setisLoading(true);
+    const { data, status } = await LoginApi(inputs);
+    if (status) {
+      localStorage.setItem(
+        "USER",
+        JSON.stringify({ accessToken: data.access_token, userData: data.user })
+      );
+      checkLoggedIn();
+    } else {
+      setError(
+        "Email",
+        { type: "focus", message: "email used before" },
+        { shouldFocus: true }
+      );
+    }
+    setisLoading(false);
+  };
   return (
     <SliderLayout container>
       <Grid
+        component={"form"}
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
         item
         container
         md={6}
@@ -139,6 +159,7 @@ export default function Login() {
             label="البريد الالكتروني"
           />
           <Grid item xs={10}>
+            {/* <PassInput register={register} /> */}
             <CacheProvider value={cacheRtl}>
               <FormControl variant="outlined" fullWidth size="small">
                 <InputLabel htmlFor="outlined-adornment-password">
@@ -173,45 +194,48 @@ export default function Login() {
                 >
                   هل نسيت كلمة المرور؟
                 </Box>
-                <FormHelperText
-                  sx={{
-                    display: errors.Password ? "block" : "none",
-                    color: "#fff !important",
-                    bgcolor: `${errors.Password ? "#e65257" : "transparent"}`,
-                    fontFamily: "inherit",
-                    borderRadius: "5px",
-                    boxSizing: "border-box",
-                    padding: "5px",
-                    marginX: "0",
-                  }}
-                >
-                  {errors.Password ? errors.Password.message : " "}
-                </FormHelperText>
               </FormControl>
             </CacheProvider>
           </Grid>
         </Grid>
         <Grid
           item
+          container
           xs={10}
           sx={{
-            background: "#005288",
-            color: "#fff",
-            borderRadius: "10px",
             display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "1rem",
-            boxSizing: "border-box",
-            border: "1px solid #005288",
-            "&:hover": {
-              background: "#fff",
-              color: "#005288",
-              cursor: "pointer",
-            },
+            justifyContent: "space-between",
           }}
         >
-          تسجيل الدخول
+          {Object.entries(errors).map((error, index) => {
+            console.log(error);
+            return <InputError key={index} message={error[1].message} />;
+          })}
+        </Grid>
+        <Grid item xs={10} sx={{ display: "flex" }}>
+          <Button
+            type="submit"
+            sx={{
+              fontFamily: "Almarai",
+              width: "100%",
+              background: "#005288",
+              color: "#fff",
+              borderRadius: "10px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "1rem",
+              boxSizing: "border-box",
+              border: "1px solid #005288",
+              "&:hover": {
+                background: "#fff",
+                color: "#005288",
+                cursor: "pointer",
+              },
+            }}
+          >
+            {isLoading ? "..." : " تسجيل الدخول"}
+          </Button>
         </Grid>
         <Grid
           item
@@ -230,16 +254,21 @@ export default function Login() {
               color: "#878787",
             }}
           >
-
             لا تملك حساب على منصةالمصدر الدولى للإستقدام؟
-            <Link to={'/Registeration'} style={{
-              color:"#005288",
-              fontWeight: "700",
-              marginRight:"1 rem"
-            }}>             إنشاء حساب
+            <Link
+              to={"/Registeration"}
+              style={{
+                color: "#005288",
+                fontWeight: "700",
+                marginRight: "1 rem",
+              }}
+            >
+              {" "}
+              إنشاء حساب
             </Link>
-          </Box >
+          </Box>
         </Grid>
+        <DevTool control={control} />
       </Grid>
     </SliderLayout>
   );
