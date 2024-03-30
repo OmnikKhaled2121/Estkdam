@@ -1,12 +1,7 @@
 import { Box, Grid } from "@mui/material";
-import logo from "../assets/logo1Footer.png";
 import React from "react";
-import SocialLogos from "../components/SocialLogos";
-import { Link } from "react-router-dom";
 import { MainContent } from "./LoginLayout";
 import CardsSlider from "../components/CardsSlider";
-
-
 
 export default function SliderLayout({ children }) {
     return (
@@ -19,6 +14,7 @@ export default function SliderLayout({ children }) {
                     width: "100vw",
                     padding: ".5rem",
                     justifyContent: "space-between",
+                   
                 }}
             >
                 <MainContent xs={8.5}>{children}</MainContent>
@@ -27,8 +23,6 @@ export default function SliderLayout({ children }) {
         </>
     )
 }
-
-
 
 function SliderBody({ xs, img }) {
 
@@ -47,6 +41,10 @@ function SliderBody({ xs, img }) {
                     borderRadius: "17px",
                     overflow: "hidden",
                     position: "relative",
+                     display: {
+                        xs: "none",
+                        md: "flex"
+                    }
                 }}
             >
 
@@ -72,13 +70,9 @@ function SliderBody({ xs, img }) {
                         <img src={img} width={"100%"} />
                     </Box>
 
-                    <Box sx={{width:"100%"}}>
+                    <Box sx={{ width: "100%" }}>
                         <CardsSlider />
                     </Box>
-
-
-
-
 
 
                 </Grid>

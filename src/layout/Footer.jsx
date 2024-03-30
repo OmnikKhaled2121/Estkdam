@@ -171,10 +171,10 @@ export default function Footer() {
                 }}
               >
                 <Box sx={{ color: "#005288", fontSize: "20px" }}>التواصل</Box>
-                <Box sx={{ direction: "ltr" }}>email@gmail.com</Box>
+                <Box sx={{ direction: "ltr" }}>Info@selsela.tech</Box>
                 <Box sx={{ fontSize: "30px", direction: "ltr" }}>
                   {" "}
-                  +96 15 754411184{" "}
+                  +966 53 454 4333{" "}
                 </Box>
               </Grid>
             </Grid>

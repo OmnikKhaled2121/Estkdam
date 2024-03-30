@@ -71,7 +71,7 @@ export default function Login() {
   };
 
   return (
-    <SliderLayout container>
+    <SliderLayout container  >
       <Grid
         component={"form"}
         onSubmit={handleSubmit(onSubmit)}
@@ -165,8 +165,7 @@ export default function Login() {
             <CacheProvider value={cacheRtl}>
               <FormControl variant="outlined" fullWidth size="small">
                 <InputLabel htmlFor="outlined-adornment-password">
-                  اسم الجهة
-                </InputLabel>
+                  كلمه المرور                 </InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password"
                   type={showPassword ? "text" : "password"}

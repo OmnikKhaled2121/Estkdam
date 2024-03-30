@@ -11,7 +11,7 @@ import tooltip3 from "../assets/Group3.png";
 import tooltip4 from "../assets/Group4.png";
 import background from "../assets/netBackgroung.png";
 import warp from "../assets/cyanBackground.png";
-import React from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-scroll";
 
@@ -19,6 +19,7 @@ import SearchInput from "../components/SearchInput";
 import TextKey from "../components/TextKey";
 
 export default function Landing() {
+  const [profession, setProfession] = useState("");
   return (
     <Grid
       id="Landing"
@@ -113,6 +114,7 @@ export default function Landing() {
             >
               <SearchInput
                 isFooter={false}
+                to
                 text={"ابحث عن الإستقدام الذى تريده"}
               />
             </Grid>

@@ -624,29 +624,33 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
         item
         xs={12}
         sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}
-      >
-        الرئيسية
+      > <Link to={'/'} style={{ color: "#005288" }}> الرئيسية</Link>
+
       </Grid>
       <Grid item xs={12} sx={{ "& > div": { paddingBottom: ".5rem" } }}>
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           خدماتنا
         </Box>
-        <Box>طلب استقدام</Box>
-        <Box>نقل كفالة</Box>
+        <Link to={'/EstkdamRequest'}><Box sx={{ color: "#005288" }}>طلب استقدام</Box></Link>
+
+        <Link to={'/KafalaTransfer'}><Box sx={{ color: "#005288" }}>نقل كفالة</Box></Link>
+
       </Grid>
       <Grid item xs={12} sx={{ "& > div": { paddingBottom: ".5rem" } }}>
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           عن الاستقدام
         </Box>
-        <Box>رحلة الاستقدام</Box>
-        <Box>سياسات الاستقدام</Box>
+        <Link to={'/EstkdamJourney'}> <Box sx={{ color: "#005288" }}>رحلة الاستقدام</Box></Link>
+        <Link to={'/EstkdamPolices'}>  <Box sx={{ color: "#005288" }}>سياسات الاستقدام</Box></Link>
+
       </Grid>
       <Grid item xs={12} sx={{ "& > div": { paddingBottom: ".5rem" } }}>
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           الدعم
         </Box>
-        <Box>تواصل معنا</Box>
-        <Box>أسئلة شائعة</Box>
+        <Link to={'/ContactUs'}> <Box sx={{ color: "#005288" }}>تواصل معنا</Box></Link>
+        <Link to={'/CommonQuestions'}> <Box sx={{ color: "#005288" }}>أسئلة شائعة</Box></Link>
+
       </Grid>
 
       {currentUser ? (

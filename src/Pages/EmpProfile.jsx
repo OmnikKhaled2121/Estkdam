@@ -58,13 +58,16 @@ function Landing({ name, proPic, Information, employee }) {
       <Grid item md={3} xs={12}>
         <Box
           sx={{
-            width: "100%",
-            height: "100%",
+            width: {
+              md: "100%",
+              xs: "380px"
+            },
+            height: {
+              md: "100%",
+              xs: "380px"
+            },
             borderRadius: "26px",
             overflow: "hidden",
-            // backgroundImage: `url(${
-            //   employee?.image ? employee?.image : proPic
-            // })`,
             backgroundImage: `url(${proPic})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -411,7 +414,12 @@ function Landing({ name, proPic, Information, employee }) {
             </svg>
           </Info>
         </Grid>
-        <Box sx={{ display: "flex", paddingBottom: "0 " }}>
+        <Box sx={{ display: "flex", paddingBottom: "0 " ,
+      flexDirection:{
+        xs:"column",
+        md:"row"
+      }
+      }}>
           <Link to={"/CompleteOrder"}>
             <Box
               sx={{
@@ -424,6 +432,10 @@ function Landing({ name, proPic, Information, employee }) {
                 fontWeight: "500",
                 lineHeight: " 22.32px",
                 border: "2px solid #005288",
+                marginBottom: {
+                  md:"0rem",
+                  xs:"1rem"
+                },
                 "&:hover": {
                   color: "#005288",
                   background: "white",
@@ -444,7 +456,10 @@ function Landing({ name, proPic, Information, employee }) {
               fontSize: "20px",
               fontWeight: "500",
               lineHeight: " 22.32px",
-              marginRight: "1rem",
+              marginRight: {
+                md:"1rem",
+                xs:"0rem"
+              },
               "&:hover": {
                 background: "#005288",
                 color: "white",
@@ -734,6 +749,7 @@ function Information({ xs, experience, title, InfoArr, icon }) {
             fontWeight: "700",
             lineHeight: "40.18px",
             marginBottom: "1.5rem",
+           
           }}
         >
           {icon}
@@ -743,7 +759,10 @@ function Information({ xs, experience, title, InfoArr, icon }) {
         {InfoArr.length > 0 ? (
           <Grid
             container
-            sx={{ justifyContent: "start", marginBottom: "2rem" }}
+            sx={{ justifyContent: "start", marginBottom: "2rem" ,
+            flexWrap:{
+              md:"nowrap"
+            }}}
           >
             {InfoArr.map((info, index) => {
               return (
@@ -814,7 +833,7 @@ function OrderInfo({ xs, experience, orderNum, text, gpa, dotNum }) {
   return (
     <Grid
       xs={xs ? xs : 2.4}
-      sx={{ display: "flex", fontFamily: "Almarai", alignItems: "center",marginBottom:"1rem" }}
+      sx={{ display: "flex", fontFamily: "Almarai", alignItems: "center", marginBottom: "1rem" }}
     >
       <Box
         sx={{

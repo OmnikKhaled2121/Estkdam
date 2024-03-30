@@ -8,6 +8,7 @@ export default function Info({xs, children, type, infoImg, info }) {
         xs={xs}
         sx={{
           display: "flex",
+          
           alignItems: "center",
           fontFamily: "Almarai",
           fontSize: "20px",

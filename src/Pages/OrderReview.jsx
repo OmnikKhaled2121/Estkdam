@@ -93,7 +93,10 @@ export default function OrderReview() {
         </Grid>
         <Order name={"سلمان محمد حبيب"} proPic={proPic} />
         <ConfirmOrder />
-        <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid item xs={12} sx={{
+          display: "flex", justifyContent: "center",
+          margin: "2rem 0"
+        }}>
           <Grid
             sx={{
               padding: "10px 15px",
@@ -177,13 +180,20 @@ function Order({ name, proPic, Information }) {
           boxShadow: "0px 0px 20px 6px #26282A26",
           padding: ".5rem",
           borderRadius: "20px",
+          
         }}
       >
-        <Grid item xs={2}>
+        <Grid item md={2} xs={12}>
           <Box
             sx={{
-              width: "100%",
-              height: "100%",
+              width: {
+                md: "100%",
+                xs: "100px"
+              },
+              height: {
+                md: "100%",
+                xs: "100px"
+              },
               borderRadius: "15px",
               overflow: "hidden",
               backgroundImage: `url(${proPic})`,
@@ -194,11 +204,15 @@ function Order({ name, proPic, Information }) {
         </Grid>
         <Grid
           item
-          xs={9.8}
+          md={9.8}
+          xs={12}
           sx={{
             padding: ".5rem 0",
             textAlign: "right",
             color: "#213039",
+            flexDirection: {
+              xs: "column"
+            },
             "& > div:not(:last-child)": { paddingBottom: ".5rem" },
           }}
         >
@@ -206,16 +220,30 @@ function Order({ name, proPic, Information }) {
             container
             sx={{
               display: "flex",
+              flexDirection: {
+                xs: "column"
+              },
               justifyContent: "start",
-              alignItems: "center",
+              alignItems: {
+                xs: "flex-start",
+                md: "center"
+              },
+              alignContent:{
+                md:"space-between"
+              },
               "& > div:not(:last-child)": { marginBottom: ".5rem" },
             }}
           >
             <OrderInfo xs={12} type={"رقم الطلب"} info={"#26454G4"} />
             <OrderInfo xs={12} type={"تاريخ الطلب"} info={"2024-02-15"} />
             <OrderInfo xs={12} type={"الإسم"} info={"سلمان محمد حبيب"} />
-            <Grid item xs={12} sx={{ display: "flex" }}>
-              <Info xs={4} type={"المهنة"} info={"عاملة منزل"}>
+            <Grid item xs={12} sx={{
+              display: "flex",
+              flexDirection: {
+                xs: "column"
+              },
+            }}>
+              <Info md={4} xs={12} type={"المهنة"} info={"عاملة منزل"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -238,7 +266,7 @@ function Order({ name, proPic, Information }) {
                 </svg>
               </Info>
               <Info
-                xs={4}
+                md={4} xs={12}
                 type={"الجنسية"}
                 info={"الفلبين"}
                 infoImg={FlagPlihipin}
@@ -259,7 +287,7 @@ function Order({ name, proPic, Information }) {
                 </svg>
               </Info>
               <Info
-                xs={4}
+                md={4} xs={12}
                 type={"الراتب"}
                 info={
                   <>
@@ -316,7 +344,8 @@ function ConfirmOrder({ name, proPic, Information }) {
     >
       <Grid
         item
-        xs={7}
+        md={7}
+        xs={12}
         sx={{
           fontSize: "20px",
           fontWeight: "700",
@@ -340,7 +369,7 @@ function ConfirmOrder({ name, proPic, Information }) {
           تأكيد طلبك من خلالهم
         </Box>
       </Grid>
-      <Grid item container xs={4}>
+      <Grid item container md={4} xs={12}>
         <Box
           item
           xs={12}

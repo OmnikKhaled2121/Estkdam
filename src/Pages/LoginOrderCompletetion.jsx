@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import bg from "../assets/background2.jfif";
 import logo from "../assets/logo1Footer.png";
 import {
   Box,
+  CircularProgress,
   FormControl,
   FormHelperText,
   Grid,
@@ -15,12 +16,14 @@ import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useForm } from "react-hook-form";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import FormInput from "../components/FormInput";
+import FormInput, { InputError } from "../components/FormInput";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import stylisRTLPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import SocialLogos from "../components/SocialLogos";
+import { LoginApi } from "../lib/api";
+import { UserContext } from "../Context/UserContext";
 
 export default function LoginOrderCompletetion() {
   const cacheRtl = createCache({
@@ -28,32 +31,55 @@ export default function LoginOrderCompletetion() {
     stylisPlugins: [prefixer, stylisRTLPlugin],
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
+  const { checkLoggedIn } = useContext(UserContext);
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
   const schema = Joi.object({
-    Email: Joi.string()
-      .regex(/^01[0125][0-9]{8}$/)
-      .required()
-      .messages({
-        "string.empty": "Email can't be empty",
-        "string.pattern.base": "Email not right",
-      }),
+    Email: Joi.string().required().messages({
+      "string.empty": "Email can't be empty",
+      "string.pattern.base": "Email not right",
+    }),
     Password: Joi.string().messages({ "string.empty": "password empty" }),
   });
   const form = useForm({
     resolver: joiResolver(schema),
   });
+
   const { register, handleSubmit, control, getValues, formState, setError } =
     form;
   const { errors } = formState;
 
-  const onSubmit = async (inputs) => {};
+  const onSubmit = async (inputs) => {
+    setisLoading(true);
+    const { data, status } = await LoginApi(inputs);
+    console.log("data", data);
+    if (status) {
+      localStorage.setItem(
+        "USER",
+        JSON.stringify({ accessToken: data.access_token, userData: data.user })
+      );
+      checkLoggedIn();
+    } else {
+      
+      setError(
+        "Email",
+        { type: "focus", message: data },
+        { shouldFocus: true }
+      );
+    }
+    setisLoading(false);
+  };
   return (
     <Grid
       container
+      component={"form"}
+      onSubmit={handleSubmit(onSubmit)}
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -171,7 +197,7 @@ export default function LoginOrderCompletetion() {
             <CacheProvider value={cacheRtl}>
               <FormControl variant="outlined" fullWidth size="small">
                 <InputLabel htmlFor="outlined-adornment-password">
-                  اسم الجهة
+                  كلمه المرور{" "}
                 </InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password"
@@ -202,7 +228,7 @@ export default function LoginOrderCompletetion() {
                 >
                   هل نسيت كلمة المرور؟
                 </Box>
-                <FormHelperText
+                {/* <FormHelperText
                   sx={{
                     display: errors.Password ? "block" : "none",
                     color: "#fff !important",
@@ -215,13 +241,29 @@ export default function LoginOrderCompletetion() {
                   }}
                 >
                   {errors.Password ? errors.Password.message : " "}
-                </FormHelperText>
+                </FormHelperText> */}
               </FormControl>
             </CacheProvider>
           </Grid>
         </Grid>
         <Grid
           item
+          container
+          xs={10}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          {Object.entries(errors).map((error, index) => {
+            console.log(error);
+            return <InputError key={index} message={error[1].message} />;
+          })}
+        </Grid>
+        <Grid
+          item
+          type="submit"
+          component={"button"}
           xs={10}
           sx={{
             background: "#005288",
@@ -240,7 +282,7 @@ export default function LoginOrderCompletetion() {
             },
           }}
         >
-          تسجيل الدخول
+          {isLoading ? <CircularProgress size={"1.5rem"} /> : " تسجيل الدخول"}
         </Grid>
         <Grid
           item
@@ -283,7 +325,7 @@ export default function LoginOrderCompletetion() {
           width: "100%",
           position: "absolute",
           bottom: "0",
-          paddingBottom:".5rem"
+          paddingBottom: ".5rem",
         }}
       >
         <Box sx={{ width: "150px" }}>
