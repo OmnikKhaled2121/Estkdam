@@ -50,7 +50,7 @@ export default function LoginOrderCompletetion() {
     form;
   const { errors } = formState;
 
-  const onSubmit = async (inputs) => {};
+  const onSubmit = async (inputs) => { };
   return (
     <Grid
       container
@@ -171,8 +171,7 @@ export default function LoginOrderCompletetion() {
             <CacheProvider value={cacheRtl}>
               <FormControl variant="outlined" fullWidth size="small">
                 <InputLabel htmlFor="outlined-adornment-password">
-                  اسم الجهة
-                </InputLabel>
+                  كلمه المرور                   </InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password"
                   type={showPassword ? "text" : "password"}
@@ -283,7 +282,7 @@ export default function LoginOrderCompletetion() {
           width: "100%",
           position: "absolute",
           bottom: "0",
-          paddingBottom:".5rem"
+          paddingBottom: ".5rem"
         }}
       >
         <Box sx={{ width: "150px" }}>
