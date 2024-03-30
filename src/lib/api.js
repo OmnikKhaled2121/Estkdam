@@ -57,6 +57,7 @@ export const CreateContact = async (user) => {
         formData.append("phone", user.Phone);
         formData.append("message", user.Message);
         formData.append("file", user.File);
+        formData.append("tyoe", user.RadioType);
 
         let { data } = await axios.post(`${baseUrl}/contacts`, formData, {
             headers: {
@@ -90,6 +91,46 @@ export const ListOfEmployee = async () => {
 
 }
 
+export const TitleSearch = async (profession) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/employees`, {
+            params: {
+                profession
+            }
+        });
+
+        Obj.data = data.data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
+
+export const SearchEmployee = async (inputs) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/employees`, {
+            params: inputs
+        });
+
+        Obj.data = data.data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+
+}
 
 export const GetEmployeeByID = async ({ id }) => {
     let Obj = {

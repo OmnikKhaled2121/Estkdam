@@ -11,6 +11,7 @@ export default function StartingSction({
   desc,
   Searchplaceholder,
   SearchKeys,
+  setAllEmployee,
 }) {
   return (
     <>
@@ -64,7 +65,6 @@ export default function StartingSction({
               color: "white",
             }}
           >
-
             {title}
           </Box>
           <Box
@@ -81,11 +81,15 @@ export default function StartingSction({
           >
             {desc}
           </Box>
-          <SearchInput whiteTheme isFooter={false} text={Searchplaceholder} />
+          <SearchInput
+            whiteTheme
+            isFooter={false}
+            text={Searchplaceholder}
+            setAllEmployee={setAllEmployee}
+          />
           <TextKey white texts={SearchKeys}></TextKey>
 
-
-          <Link to={'/ContactUs'}>
+          <Link to={"/ContactUs"}>
             <Box
               sx={{
                 margin: "3rem 0 1.5rem 0",

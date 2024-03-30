@@ -57,6 +57,10 @@ export default function ContactUs() {
       "string.empty": "يرجى إدخال الرسالة.",
       "string.min": "يجب أن تحتوي الرسالة على الأقل على 8 أحرف.",
     }),
+    RadioType: Joi.string().required().messages({
+      "any.empty": " يرجى اختيار نوع السؤال  .",
+      "any.required": "يرجى اختيار نوع السؤال .",
+    }),
     File: Joi.any().required().messages({
       "any.empty": "يرجى إدخال صورة.",
       "any.required": "يرجى إدخال صورة.",
@@ -95,7 +99,7 @@ export default function ContactUs() {
     if (status) {
       setisLoading(false);
       console.log("Message", data);
-      navigate("/")
+      navigate("/");
     } else {
       setisLoading(false);
       setError(
@@ -173,9 +177,9 @@ export default function ContactUs() {
                   defaultValue="female"
                   name="radio-buttons-group"
                 >
-                  <DisplayOptions option={"استفسار"} />
-                  <DisplayOptions option={"شكوى"} />
-                  <DisplayOptions option={"اقتراح"} />
+                  <DisplayOptions option={"استفسار"} register={register} />
+                  <DisplayOptions option={"شكوى"} register={register} />
+                  <DisplayOptions option={"اقتراح"} register={register} />
                 </RadioGroup>
               </FormControl>
             </Grid>
@@ -284,6 +288,9 @@ export default function ContactUs() {
                   "&:hover": {
                     cursor: "pointer",
                   },
+                }}
+                onClick={() => {
+                  console.log("ffffff", getValues());
                 }}
               >
                 {isLoading ? <CircularProgress size={"1.5rem"} /> : "إرسال"}
@@ -479,7 +486,7 @@ function ContactWith() {
   );
 }
 
-function DisplayOptions({ option }) {
+function DisplayOptions({ option, register }) {
   return (
     <>
       <Box
@@ -499,7 +506,12 @@ function DisplayOptions({ option }) {
           marginBottom: "2rem",
         }}
       >
-        <FormControlLabel value={option} control={<Radio />} label={option} />
+        <FormControlLabel
+          value={option}
+          control={<Radio />}
+          label={option}
+          {...register("RadioType")}
+        />
       </Box>
     </>
   );

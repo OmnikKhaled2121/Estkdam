@@ -12,12 +12,13 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import FilterBtn from "../components/FilterBtn";
 import EmpCard from "../components/EmpCard";
-import { ListOfEmployee } from "../lib/api";
+import { ListOfEmployee, TitleSearch } from "../lib/api";
+import { useParams } from "react-router-dom";
 
 export default function EstkdamRequest() {
   const [isLoading, setisLoading] = useState(false);
   const [allEmployee, setAllEmployee] = useState([]);
-
+  let { profession } = useParams();
   async function getAllEmployee() {
     const { data, status } = await ListOfEmployee();
     if (status) {
@@ -25,8 +26,18 @@ export default function EstkdamRequest() {
     }
   }
   
+  async function getAll() {
+    const { data, status } = await TitleSearch(profession);
+    console.log("Essss", data);
+    setAllEmployee(data);
+  }
+
   useEffect(() => {
-    getAllEmployee();
+    if (profession) {
+      getAll();
+    } else {
+      getAllEmployee();
+    }
   }, []);
   return (
     <Grid>
@@ -40,6 +51,7 @@ export default function EstkdamRequest() {
             desc={
               "تعاقد مع أكثر من 20 ألف عامل من مختلف الوظائف والبلدان من خلال منصة المصدر الدولي للإستقدام، وتمتع بعروض رائعة وسرعة ودقة اختيار العمالة لك"
             }
+            setAllEmployee={setAllEmployee}
           />
           {/* <ColorfulTitles /> */}
 
@@ -75,7 +87,6 @@ export default function EstkdamRequest() {
                 flexDirection: "row",
                 justifyContent: "start",
                 marginBottom: "2rem",
-
               }}
             >
               <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
@@ -91,9 +102,15 @@ export default function EstkdamRequest() {
               item
               xs={10}
               md={3}
-              sx={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}
-            >    <FilterBtn /> </Grid>
-
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "0.5rem",
+              }}
+            >
+              {" "}
+              <FilterBtn />{" "}
+            </Grid>
 
             <Box
               sx={{
@@ -103,7 +120,7 @@ export default function EstkdamRequest() {
                 lineHeight: "35.71px",
                 color: "#005288",
                 paddingBottom: "2rem",
-                paddingTop:"1rem"
+                paddingTop: "1rem",
               }}
             >
               جميع النتائج
@@ -136,11 +153,18 @@ export default function EstkdamRequest() {
                       alignItems: "center",
                     }}
                   >
-                    <CircularProgress size={"2.5rem"} />
+                    {allEmployee.length == 0 ? (
+                      "لا يوجد نتائج لهذا البحث  "
+                    ) : (
+                      <>
+                        <CircularProgress size={"2.5rem"} />
+                      </>
+                    )}
                   </Grid>
                 </>
               )}
-        
+            </Grid>
+          </Grid>
         </Grid>
       </Container>
     </Grid>

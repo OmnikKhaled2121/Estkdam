@@ -12,7 +12,6 @@ import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import { ListOfEmployee } from "../lib/api";
 
-
 export default function KafalaTransfer() {
   const [allEmployee, setAllEmployee] = useState([]);
 
@@ -38,6 +37,7 @@ export default function KafalaTransfer() {
             desc={
               "نساعدك من خلال منصة المصدر الدولب للإستقدام فى نقل الكفالة من شخص إلى أخر خلال مدة قصيرة وسرعة ودقة عالية لإتمام المهمة"
             }
+            setAllEmployee={setAllEmployee}
           />
           {/* <ColorfulTitles /> */}
 
@@ -51,7 +51,6 @@ export default function KafalaTransfer() {
               color: "#005288",
               paddingBottom: "2rem",
               marginTop: "2rem",
-
             }}
           >
             بحث متقدم
@@ -103,7 +102,7 @@ export default function KafalaTransfer() {
                 lineHeight: "35.71px",
                 color: "#005288",
                 paddingBottom: "2rem",
-                paddingTop:"1rem"
+                paddingTop: "1rem",
               }}
             >
               جميع النتائج
@@ -136,11 +135,16 @@ export default function KafalaTransfer() {
                       alignItems: "center",
                     }}
                   >
-                    <CircularProgress size={"2.5rem"} />
+                    {allEmployee.length == 0 ? (
+                      "لا يوجد نتائج لهذا البحث  "
+                    ) : (
+                      <>
+                        <CircularProgress size={"2.5rem"} />
+                      </>
+                    )}
                   </Grid>
                 </>
               )}
-
             </Grid>
           </Grid>
         </Grid>
