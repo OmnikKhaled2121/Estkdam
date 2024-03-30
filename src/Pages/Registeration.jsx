@@ -24,6 +24,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../Context/UserContext";
 import { Register } from "../lib/api";
+import SliderLayout from "../layout/SliderLayout";
 
 export default function Registeration() {
   const [isLoading, setisLoading] = useState(false);
