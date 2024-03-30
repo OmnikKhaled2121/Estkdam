@@ -7,8 +7,8 @@ export default function About() {
     <Container
       sx={{ padding: "3rem 0", marginBottom: "3rem ", marginTop: "3rem" }}
     >
-      <Grid container>
-        <Grid item xs={6} sx={{ position: "relative" }}>
+      <Grid container sx={{ justifyContent: "center" }}>
+        <Grid item xs={11} md={6} sx={{ position: "relative" }}>
           <Box sx={{ position: "absolute", width: "225px", zIndex: "0" }}>
             <svg
               width="100%"
@@ -87,6 +87,7 @@ export default function About() {
           <Link to="whatOffer" smooth={true} duration={500}>
             <Box
               sx={{
+                display: { xs: "none", md: "block" },
                 fontFamily: "Almarai",
                 fontSize: "20px",
                 fontWeight: "700",
@@ -97,7 +98,6 @@ export default function About() {
                 borderRadius: "10px",
                 width: "fit-content",
                 marginTop: "1rem",
-                // top:"50",
                 "&:hover": {
                   cursor: "pointer",
                 },
@@ -107,9 +107,37 @@ export default function About() {
             </Box>
           </Link>
         </Grid>
-        <Grid item xs={6} sx={{ maxHeight: "450px", overflow: "hidden" }}>
+        <Grid
+          item
+          xs={11}
+          md={6}
+          sx={{ maxHeight: "450px", overflow: "hidden" }}
+        >
           <Cards />
         </Grid>
+        <Link to="whatOffer" smooth={true} duration={500}>
+          <Box
+            sx={{
+              display: { xs: "block", md: "none" },
+              fontFamily: "Almarai",
+              fontSize: "20px",
+              fontWeight: "700",
+              lineHeight: "22px",
+              letterSpacing: "0em",
+              padding: "15px 22px",
+              border: "2px solid black",
+              borderRadius: "10px",
+              width: "fit-content",
+              marginTop: "1rem",
+              // top:"50",
+              "&:hover": {
+                cursor: "pointer",
+              },
+            }}
+          >
+            تعرف على المزيد
+          </Box>
+        </Link>
       </Grid>
     </Container>
   );
@@ -146,12 +174,13 @@ function Cards() {
             <Grid
               key={index}
               sx={{
-                width: "369px",
+                width: { xs: "280px", md: "369px" },
                 borderRadius: "16px",
                 border: "1.5px solid #BAC8D1",
                 background: "white",
                 padding: "1rem",
                 transform: `translate(${index * 15}px,-${index * 195}px)`,
+                // transform: `translate(${index * 15}px,-${index * 195}px)`,
                 zIndex: "555",
               }}
             >
@@ -159,8 +188,8 @@ function Cards() {
                 <Box
                   item
                   sx={{
-                    width: "65px",
-                    height: "65px",
+                    width: { xs: "30px", md: "65px" },
+                    height: { xs: "30px", md: "65px" },
                     borderRadius: "8px",
                     overflow: "hidden",
                     backgroundImage: `url(${ImgAhmed})`,
@@ -264,7 +293,7 @@ function Cards() {
                       alignItems: "center",
                       justifyContent: "start",
                       fontFamily: "Almarai",
-                      fontSize: "13px",
+                      fontSize: { xs: "10px", md: "13px" },
                       fontWeight: "700",
                       lineHeight: "15px",
                       letterSpacing: "0em",
@@ -305,13 +334,13 @@ function Cards() {
                       alignItems: "center",
                       justifyContent: "start",
                       fontFamily: "Almarai",
-                      fontSize: "13px",
+                      fontSize: { xs: "10px", md: "13px" },
                       fontWeight: "700",
                       lineHeight: "15px",
                       letterSpacing: "0em",
                     }}
                   >
-                    <Box ml={1}>
+                    <Box sx={{ marginLeft: { xs: "0", md: ".5rem" } }}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -346,7 +375,7 @@ function Cards() {
                       alignItems: "center",
                       justifyContent: "start",
                       fontFamily: "Almarai",
-                      fontSize: "13px",
+                      fontSize: { xs: "10px", md: "13px" },
                       fontWeight: "700",
                       lineHeight: "15px",
                       letterSpacing: "0em",
@@ -379,13 +408,13 @@ function Cards() {
                       alignItems: "center",
                       justifyContent: "start",
                       fontFamily: "Almarai",
-                      fontSize: "13px",
+                      fontSize: { xs: "10px", md: "13px" },
                       fontWeight: "700",
                       lineHeight: "15px",
                       letterSpacing: "0em",
                     }}
                   >
-                    <Box ml={1}>
+                    <Box sx={{ marginLeft: { xs: "0", md: ".5rem" } }}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -409,7 +438,7 @@ function Cards() {
                     </Box>
                     الراتب :
                     <span style={{ fontWeight: "400", paddingRight: ".5rem" }}>
-                      +20 ريال سعودي
+                      +2000 ر.س
                     </span>
                   </Grid>
                 </Grid>
