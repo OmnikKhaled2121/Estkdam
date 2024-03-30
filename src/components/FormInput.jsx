@@ -15,6 +15,21 @@ import React, { useState } from "react";
 import { prefixer } from "stylis";
 import stylisRTLPlugin from "stylis-plugin-rtl";
 
+function FormHelperTextProps(indicator) {
+  return {
+    sx: {
+      display: "none",
+      fontFamily: "Almarai",
+      color: "#fff !important",
+      bgcolor: `${indicator ? "#e65257" : ""}`,
+      borderRadius: "5px",
+      boxSizing: "border-box",
+      padding: "5px",
+      marginX: "0",
+    },
+  };
+}
+
 export default function FormInput({
   register,
   label,
@@ -70,7 +85,19 @@ export default function FormInput({
     </CacheProvider>
   );
 }
-export function FromInput1({ xs, id, label, multiline, rows }) {
+export function FromInput1({
+  xs,
+  id,
+  label,
+  multiline,
+  register,
+  errors,
+  ele,
+  type,
+  rows,
+  md,
+  defaultVal,
+}) {
   const cacheRtl = createCache({
     key: "muirtl",
     stylisPlugins: [prefixer, stylisRTLPlugin],
@@ -80,6 +107,7 @@ export function FromInput1({ xs, id, label, multiline, rows }) {
       <Grid
         item
         xs={xs}
+        md={md}
         sx={{
           fontFamily: "Almarai",
           fontSize: "16px",
@@ -94,9 +122,16 @@ export function FromInput1({ xs, id, label, multiline, rows }) {
           id={id ? id : "standard-basic"}
           multiline
           rows={rows ? rows : 0}
-          label={label}
+          // label={label}
           variant="standard"
           fullWidth
+          label={<>{label}</>}
+          errors={errors[ele]}
+          // helperText={errors[ele] ? errors[ele].message : " "}
+          FormHelperTextProps={FormHelperTextProps(errors[ele])}
+          type={type}
+          {...register(ele)}
+          defaultValue={defaultVal}
         />
       </Grid>
     </CacheProvider>
@@ -135,6 +170,7 @@ export function InputError({ message }) {
           />
         </svg>
       </Box>
+      {console.log("message", message)}
       <Box pr={1}>{message ? message : "أن يحتوى على حرف كبير على الأقل"}</Box>
     </Grid>
   );

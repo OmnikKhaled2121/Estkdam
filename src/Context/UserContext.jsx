@@ -9,6 +9,11 @@ export default function UserContextProvider(props) {
     isAuthenticated()?.accessToken
   );
 
+  const LogOut = () => {
+    localStorage.removeItem("USER");
+    setCurrentUser(null);
+    setaccessToken(null);
+  };
   const checkLoggedIn = () => {
     let userData = isAuthenticated();
     setCurrentUser(userData?.userData);
@@ -29,6 +34,7 @@ export default function UserContextProvider(props) {
         currentUser,
         accessToken,
         checkLoggedIn: checkLoggedIn,
+        LogOut: LogOut,
       }}
     >
       {props.children}

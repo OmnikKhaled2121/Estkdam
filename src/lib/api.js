@@ -23,6 +23,7 @@ export const LoginApi = async (user) => {
     }
     return Obj
 };
+
 export const Register = async (user) => {
     let Obj = {
         data: "",
@@ -30,10 +31,10 @@ export const Register = async (user) => {
     }
     try {
         let { data } = await axios.post(`${baseUrl}/register`, {
-            username: user.UserName,
-            email: user.Email,
-            password: user.Password,
-            phone: user.Phone,
+            "name": user.FName,
+            "email": user.Email,
+            "password": user.Password,
+            "password_confirmation": user.CPassword
         });
         Obj.data = data
         Obj.status = true
@@ -44,6 +45,107 @@ export const Register = async (user) => {
     return Obj
 };
 
+export const CreateContact = async (user) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        const formData = new FormData();
+        formData.append("full_name", user.FullName);
+        formData.append("email", user.Email);
+        formData.append("phone", user.Phone);
+        formData.append("message", user.Message);
+        formData.append("file", user.File);
+
+        let { data } = await axios.post(`${baseUrl}/contacts`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+
+};
+
+export const ListOfEmployee = async () => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/employees`);
+        Obj.data = data.data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+
+}
+
+
+export const GetEmployeeByID = async ({ id }) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/employees/${id}`);
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
+
+export const UpdateEmployee = async () => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+
+        let { data } = await axios.put(`${baseUrl}/employees/${1}`, {
+            "name": "Jane Doe Updated",
+            "summary": "Senior Developer",
+            "nationality_id": 2,
+            "profession": "Lead Software Engineer",
+            "age": 32,
+            "social_status_id": 2,
+            "kids_number": 3,
+            "salary": 80000,
+            "date_of_born": "1988-01-01",
+            "height": 175,
+            "weight": 70,
+            "experience_years": 2
+        }, {
+            headers: {
+                authorization: `Bearer 60|woNSk38fDxvNec6qw46Z4pnoyDlNrMdcd9Cg4nYC725206d6`,
+                Accept: "application/json",
+
+            },
+
+        });
+        console.log("dat3333a", data)
+        // setEmployee(data)
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
+
 export const isAuthenticated = () => {
     const userToken = localStorage.getItem('USER');
     if (!userToken) {
@@ -51,6 +153,7 @@ export const isAuthenticated = () => {
     }
     return JSON.parse(userToken);
 };
+
 
 export const StatisticsData = async () => {
     let Obj = {

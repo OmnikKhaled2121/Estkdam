@@ -1,4 +1,5 @@
-import React, {  useState } from "react";
+import React, { useContext, useState } from "react";
+import LoginLayout from "../layout/LoginLayout";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
@@ -7,6 +8,7 @@ import stylisRTLPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import {
   Box,
+  CircularProgress,
   FormControl,
   FormHelperText,
   Grid,
@@ -17,32 +19,15 @@ import {
 } from "@mui/material";
 import { CacheProvider } from "@emotion/react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import FormInput from "../components/FormInput";
+import FormInput, { InputError } from "../components/FormInput";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import SliderLayout from "../layout/SliderLayout";
-
+import { UserContext } from "../Context/UserContext";
+import { Register } from "../lib/api";
 
 export default function Registeration() {
-  let navigate = useNavigate()
-  let[errormessage,seterrormessage]=useState('')
-
-  async function handleData(register) {
-   
-    let { data } = await axios.post(`https://estikdam.jacadix.net/api/register`, register)
-    if (data.message == 'user added') {
-      navigate('/Login')
-    } else {
-      seterrormessage(`Error Message ${data.err[0][0].context.key}:${data.err[0][0].message}`)
-    }
-
-    console.log( data)
-    console.log(data.err[0][0].context.key)
-    console.log(data.err[0][0].message)
-    console.log(values)
-  }
-
-
+  const [isLoading, setisLoading] = useState(false);
+  const { checkLoggedIn } = useContext(UserContext);
 
   const cacheRtl = createCache({
     key: "muirtl",
@@ -57,14 +42,29 @@ export default function Registeration() {
   };
 
   const schema = Joi.object({
+    FName: Joi.string().min(2).max(30).required().messages({
+      "string.empty": "يرجى إدخال اسم للمستخدم .",
+      "string.min": "يجب أن يتكون الاسم من ما لا يقل عن 2 أحرف.",
+      "string.max": "يجب ألا يتجاوز الاسم 30 حرفًا.",
+    }),
     Email: Joi.string()
-      .regex(/^01[0125][0-9]{8}$/)
+      .email({
+        minDomainSegments: 2,
+        tlds: { allow: ["com", "net"] },
+      })
       .required()
       .messages({
-        "string.empty": "Email can't be empty",
-        "string.pattern.base": "Email not right",
+        "string.empty": "يرجى إدخال عنوان بريد إلكتروني .",
+        "string.email": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
       }),
-    Password: Joi.string().messages({ "string.empty": "password empty" }),
+    Password: Joi.string().required().min(8).messages({
+      "string.empty": "يرجى إدخال كلمة المرور.",
+      "string.min": "يجب أن يتكون الاسم من ما لا يقل عن 8 أحرف.",
+    }),
+    CPassword: Joi.string().valid(Joi.ref("Password")).required().messages({
+      "string.empty": "يرجى إدخال تأكيد كلمة المرور.",
+      "any.only": "يجب أن تتطابق كلمة المرور مع تأكيد كلمة المرور",
+    }),
   });
 
   const form = useForm({
@@ -76,11 +76,30 @@ export default function Registeration() {
   const { errors } = formState;
 
   const onSubmit = async (inputs) => {
-    console.log("object",inputs)
-   };
+    setisLoading(true);
+    const { data, status } = await Register(inputs);
+    if (status) {
+      setisLoading(false);
+      localStorage.setItem(
+        "USER",
+        JSON.stringify({ accessToken: data.access_token, userData: data.user })
+      );
+      checkLoggedIn();
+    } else {
+      setisLoading(false);
+      setError(
+        "Email",
+        { type: "focus", message: "الايميل مستخدم من قبل!" },
+        { shouldFocus: true }
+      );
+    }
+  };
   return (
     <SliderLayout container>
       <Grid
+        component={"form"}
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
         item
         container
         md={6}
@@ -161,7 +180,7 @@ export default function Registeration() {
             xs={10}
             register={register}
             errors={errors}
-            ele="name"
+            ele="FName"
             type="text"
             label="الإسم كامل"
           />
@@ -204,7 +223,7 @@ export default function Registeration() {
                   label="Password"
                   {...register("Password")}
                 />
-                <FormHelperText
+                {/* <FormHelperText
                   sx={{
                     display: errors.Password ? "block" : "none",
                     color: "#fff !important",
@@ -217,8 +236,9 @@ export default function Registeration() {
                   }}
                 >
                   {errors.Password ? errors.Password.message : " "}
-                </FormHelperText>
+                </FormHelperText> */}
               </FormControl>
+
               <FormControl variant="outlined" fullWidth size="small">
                 <InputLabel htmlFor="outlined-adornment-repassword">
                   تكرار كلمة المرور
@@ -238,13 +258,13 @@ export default function Registeration() {
                     </InputAdornment>
                   }
                   label="rePassword"
-                  {...register("rePassword")}
+                  {...register("CPassword")}
                 />
-                <FormHelperText
+                {/* <FormHelperText
                   sx={{
-                    display: errors.Password ? "block" : "none",
+                    display: errors.CPassword ? "block" : "none",
                     color: "#fff !important",
-                    bgcolor: `${errors.Password ? "#e65257" : "transparent"}`,
+                    bgcolor: `${errors.CPassword ? "#e65257" : "transparent"}`,
                     fontFamily: "inherit",
                     borderRadius: "5px",
                     boxSizing: "border-box",
@@ -252,40 +272,63 @@ export default function Registeration() {
                     marginX: "0",
                   }}
                 >
-                  {errors.Password ? errors.Password.message : " "}
-                </FormHelperText>
+                  {errors.CPassword ? errors.CPassword.message : " "}
+                </FormHelperText> */}
               </FormControl>
             </CacheProvider>
           </Grid>
         </Grid>
 
-        <Link
+        {/* <Link
           to={"/RegisterPhoneNumber"}
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        > */}
+        <Grid
+          item
+          container
+          xs={10}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
         >
-          <Grid onClick={handleData}
-            xs={10}
-            sx={{
-              background: "#005288",
-              width: "100%",
-              color: "#fff",
-              borderRadius: "10px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "1rem",
-              boxSizing: "border-box",
-              border: "1px solid #005288",
-              "&:hover": {
-                background: "#fff",
-                color: "#005288",
-                cursor: "pointer",
-              },
-            }}
-          >
-            التالي
-          </Grid>
-        </Link>
+          {Object.entries(errors).map((error, index) => {
+            console.log(error);
+            return <InputError key={index} message={error[1].message} />;
+          })}
+        </Grid>
+        <Grid
+          // onClick={handleData}
+          component={"button"}
+          type="submit"
+          xs={10}
+          sx={{
+            background: "#005288",
+            width: "100%",
+            color: "#fff",
+            borderRadius: "10px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "1rem",
+            boxSizing: "border-box",
+            border: "1px solid #005288",
+            "&:hover": {
+              background: "#fff",
+              color: "#005288",
+              cursor: "pointer",
+            },
+          }}
+        >
+          {isLoading ? (
+            <>
+              <CircularProgress size={"1.5rem"} />
+            </>
+          ) : (
+            <> التالي</>
+          )}
+        </Grid>
+        {/* </Link> */}
       </Grid>
     </SliderLayout>
   );
