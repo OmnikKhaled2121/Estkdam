@@ -5,9 +5,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function SearchInput({ isFooter, text, whiteTheme }) {
   return (
-    <Box
+    <Box md={8} xs={10}
       sx={{
-        width: "500px",
+        width: {
+          md: "500px",
+          xs: "300px"
+        },
         height: "50px",
         border: isFooter ? "solid 1px #005288" : "",
         borderRadius: "35px",
@@ -40,7 +43,7 @@ export default function SearchInput({ isFooter, text, whiteTheme }) {
         <Box></Box>
       )}
       <style>
-        {`::placeholder { color: ${isFooter ? "#005288": "black"};}`}
+        {`::placeholder { color: ${isFooter ? "#005288" : "black"};}`}
       </style>
       <input
         id="searchInput"

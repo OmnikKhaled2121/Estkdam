@@ -41,7 +41,8 @@ export default function StartingSction({
       >
         <Grid
           item
-          xs={7}
+          md={7}
+          xs={10}
           sx={{
             display: "flex",
             flexDirection: "column",
