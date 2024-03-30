@@ -10,8 +10,14 @@ export default function EmpProfile() {
   const [employee, setEmployee] = useState("");
   let { id } = useParams();
 
+  async function getEmployee() {
+    const { data, status } = await GetEmployeeByID({ id });
+    if (status) {
+      setEmployee(data);
+    }
+  }
   useEffect(() => {
-    GetEmployeeByID({ setEmployee, id });
+    getEmployee();
   }, []);
   return (
     <Container sx={{ "& > div:not(:last-child)": { marginBottom: "3rem" } }}>

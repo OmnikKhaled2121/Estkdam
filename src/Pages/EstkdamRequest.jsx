@@ -18,8 +18,15 @@ export default function EstkdamRequest() {
   const [isLoading, setisLoading] = useState(false);
   const [allEmployee, setAllEmployee] = useState([]);
 
+  async function getAllEmployee() {
+    const { data, status } = await ListOfEmployee();
+    if (status) {
+      setAllEmployee(data);
+    }
+  }
+  
   useEffect(() => {
-    ListOfEmployee({ setAllEmployee });
+    getAllEmployee();
   }, []);
   return (
     <Grid>
@@ -107,7 +114,6 @@ export default function EstkdamRequest() {
                 gap: ".5rem",
               }}
             >
-          
               {allEmployee.length > 0 ? (
                 allEmployee.map((employee, index) => {
                   return (

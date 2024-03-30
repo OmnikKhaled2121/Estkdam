@@ -73,16 +73,13 @@ export const CreateContact = async (user) => {
 
 };
 
-export const ListOfEmployee = async ({ setAllEmployee }) => {
+export const ListOfEmployee = async () => {
     let Obj = {
         data: "",
         status: true
     }
     try {
-
         let { data } = await axios.get(`${baseUrl}/employees`);
-        console.log("dat3333a", data.data)
-        setAllEmployee(data.data)
         Obj.data = data.data
         Obj.status = true
     } catch (error) {
@@ -94,16 +91,13 @@ export const ListOfEmployee = async ({ setAllEmployee }) => {
 }
 
 
-export const GetEmployeeByID = async ({ setEmployee, id }) => {
+export const GetEmployeeByID = async ({ id }) => {
     let Obj = {
         data: "",
         status: true
     }
     try {
-
         let { data } = await axios.get(`${baseUrl}/employees/${id}`);
-        console.log("dat3333a", data)
-        setEmployee(data)
         Obj.data = data
         Obj.status = true
     } catch (error) {
@@ -151,6 +145,7 @@ export const UpdateEmployee = async () => {
     }
     return Obj
 }
+
 export const isAuthenticated = () => {
     const userToken = localStorage.getItem('USER');
     if (!userToken) {

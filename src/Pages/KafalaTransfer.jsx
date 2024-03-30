@@ -15,8 +15,15 @@ import { ListOfEmployee } from "../lib/api";
 export default function KafalaTransfer() {
   const [allEmployee, setAllEmployee] = useState([]);
 
+  async function getAllEmployee() {
+    const { data, status } = await ListOfEmployee();
+    if (status) {
+      setAllEmployee(data);
+    }
+  }
+
   useEffect(() => {
-    ListOfEmployee({ setAllEmployee });
+    getAllEmployee();
   }, []);
   return (
     <Grid>
