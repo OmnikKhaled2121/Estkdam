@@ -18,8 +18,6 @@ import { Link } from "react-scroll";
 import SearchInput from "../components/SearchInput";
 import TextKey from "../components/TextKey";
 
-
-
 export default function Landing() {
   return (
     <Grid
@@ -39,14 +37,15 @@ export default function Landing() {
           sx={{
             width: "100%",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: { xs: "center", md: "space-between" },
             position: "relative",
             padding: "1rem 0",
           }}
         >
           <Grid
             item
-            xs={6}
+            xs={11}
+            md={6}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -111,14 +110,14 @@ export default function Landing() {
                 marginBottom: "1rem",
               }}
             >
-              <SearchInput isFooter={false} text={"ابحث عن الإستقدام الذى تريده"} />
-
+              <SearchInput
+                isFooter={false}
+                text={"ابحث عن الإستقدام الذى تريده"}
+              />
             </Grid>
-
-
-            
-              <TextKey texts={['مديره منزل', 'مساعد شخصي', 'ربه منزل', 'سائق خاص']}> </TextKey>
-
+            <TextKey
+              texts={["مديره منزل", "مساعد شخصي", "ربه منزل", "سائق خاص"]}
+            ></TextKey>
             <Link to="searchEstkam" smooth={true} duration={500}>
               <Box
                 sx={{
@@ -137,8 +136,8 @@ export default function Landing() {
                   fontWeight: "700",
                   lineHeight: "22px",
                   "&:hover": {
-                    cursor: "pointer"
-                  }
+                    cursor: "pointer",
+                  },
                 }}
               >
                 ابدأ الإستقدام الأن
@@ -168,14 +167,14 @@ export default function Landing() {
               </Box>
             </Grid>
           </Grid>
-          <LandingImages xs={6} />
+          <LandingImages xs={11} md={6} />
         </Grid>
       </Container>
     </Grid>
   );
 }
 
-function LandingImages({ xs }) {
+function LandingImages({ xs, md }) {
   const imgBorder = (H, imgSrc) => {
     return {
       overflow: "hidden",
@@ -194,12 +193,14 @@ function LandingImages({ xs }) {
       item
       container
       xs={xs}
+      md={md}
       sx={{
         display: "flex",
         justifyContent: "space-between",
         flexWrap: "nowrap",
         alignItems: "center",
-        overflow: "hidden",
+        // overflow: "hidden",
+        position: "relative",
       }}
     >
       <Grid>
@@ -210,7 +211,6 @@ function LandingImages({ xs }) {
             top: "23%",
           }}
         >
-          {" "}
           <img src={tooltip2}></img>
         </Box>
         <Grid sx={imgBorder("690px", joly1)} />
