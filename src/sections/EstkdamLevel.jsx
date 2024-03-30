@@ -9,19 +9,19 @@ import arrowLogos from "../assets/arrow-lefts.png";
 import { Link } from "react-scroll";
 export default function EstkdamLevel({ title, ascending }) {
   return (
-    <Grid
+    <Container
+      container
       sx={{
+        display: "flex",
+        justifyContent: "center",
+        color: "#005288",
+        fontFamily: "Almarai",
         padding: "3rem 0",
-        margin: "6rem 0",
       }}
     >
-      <Container
-        sx={{
-          color: "#005288",
-          fontFamily: "Almarai",
-        }}
-      >
-        <Box
+      <Grid item xs={10} md={12} container>
+        <Grid
+          item
           sx={{
             fontSize: "48px",
             fontWeight: 700,
@@ -31,166 +31,157 @@ export default function EstkdamLevel({ title, ascending }) {
           }}
         >
           {title}
-        </Box>
-
+        </Grid>
         <Grid
           container
+          item
           sx={{ marginTop: "2rem", justifyContent: "space-between" }}
         >
-          <Grid xs={3.3} order={1}>
+          <Grid xs={12} md={3.3} sx={{ order: { xs: "1" } }}>
             <Grid
               container
               direction="column"
               justifyContent="flex-start"
               alignItems="flex-start"
             >
-              <Grid xs={12} sx={{ paddingBottom: "1rem" }}>
-                <LevelTable
-                  number={"01"}
-                  icon={icon}
-                  title="اختيار العمالة"
-                  text="اختر العامل الذى تريد بناء على سيرته الذاتية واشتراطاتك"
-                />
-              </Grid>
-              <Grid xs={12} sx={{ paddingBottom: "1rem" }}>
-                <Box>
-                  <LevelTable
-                    number={"02"}
-                    icon={calLogo}
-                    title="ادفع الرسوم"
-                    text="قم بدفع رسوم العمالة من خلال احدى بوابات الدفع المتعاقد معها"
-                  />
-                </Box>
-              </Grid>
+              <LevelTable
+                number={"01"}
+                icon={icon}
+                title="اختيار العمالة"
+                text="اختر العامل الذى تريد بناء على سيرته الذاتية واشتراطاتك"
+              />
+              <LevelTable
+                number={"02"}
+                icon={calLogo}
+                title="ادفع الرسوم"
+                text="قم بدفع رسوم العمالة من خلال احدى بوابات الدفع المتعاقد معها"
+              />
             </Grid>
           </Grid>
+          <Grid
+            xs={12}
+            md={5}
+            // order={ascending ? 3 : 2}
+            sx={{ order: { xs: "3", md: "2" } }}
+          >
+            <Grid
+              container
+              direction="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+            >
+              <LevelColum number={"05"} />
+            </Grid>
+          </Grid>
+          <Grid
+            xs={12}
+            md={3.3}
+            // order={ascending ? 2 : 3}
+            sx={{ order: { xs: "2", md: "3" } }}
+          >
+            <Grid
+              container
+              direction="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+            >
+              <LevelTable
+                number={"03"}
+                icon={papperLogo}
+                title="تخليص الإجراءات"
+                text="تساعدك منصة المصدر الدولي للإستقدام فى تخليص جميع أجراءات  العامل"
+              />
 
-          <Grid xs={5} order={ascending ? 3 : 2}>
-            <Grid
-              container
-              direction="column"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-            >
-              <Grid xs={12} sx={{ paddingBottom: "1rem" }}>
-                <Box>
-                  {" "}
-                  <LevelColum number={"05"} />
-                </Box>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid xs={3.3} order={ascending ? 2 : 3}>
-            <Grid
-              container
-              direction="column"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-            >
-              <Grid xs={12} sx={{ paddingBottom: "1rem" }}>
-                <Box>
-                  {" "}
-                  <LevelTable
-                    number={"03"}
-                    icon={papperLogo}
-                    title="تخليص الإجراءات"
-                    text="تساعدك منصة المصدر الدولي للإستقدام فى تخليص جميع أجراءات  العامل"
-                  />
-                </Box>
-              </Grid>
-              <Grid xs={12}>
-                <Box>
-                  {" "}
-                  <LevelTable
-                    number={"04"}
-                    icon={locationLogo}
-                    title="وصول العامل"
-                    text="تصل العمارة المختارة من قبلك إلى أراضى المملكة"
-                  />
-                </Box>
-              </Grid>
+              <LevelTable
+                number={"04"}
+                icon={locationLogo}
+                title="وصول العامل"
+                text="تصل العمارة المختارة من قبلك إلى أراضى المملكة"
+              />
             </Grid>
           </Grid>
         </Grid>
-      </Container>
-    </Grid>
+      </Grid>
+    </Container>
   );
 }
 
 function LevelTable({ icon, title, text, number }) {
   return (
     <>
-      <Grid
-        container
-        sx={{
-          background: "#F0F4F6",
-          borderRadius: "16px",
-          padding: "3rem 1rem",
-          textAlign: "center",
-          justifyContent: "center",
-          position: "relative",
-          minHeight: "294px",
-          maxHeight: "295px",
-        }}
-      >
+      <Grid item xs={12} sx={{ width: "100%", padding: "0.5rem 0" }}>
         <Grid
-          item
-          xs={12}
+          container
           sx={{
-            position: "absolute",
-            top: 10,
-            right: 10,
+            background: "#F0F4F6",
+            borderRadius: "16px",
+            padding: "3rem 1rem",
+            textAlign: "center",
+            justifyContent: "center",
+            position: "relative",
+            minHeight: "294px",
+            maxHeight: "295px",
           }}
         >
-          <Box
+          <Grid
+            item
+            xs={12}
             sx={{
-              color: "#005288",
-              background: "#0052881A",
-              width: "40px",
-              height: "40px",
-              textAlign: "center",
-              borderRadius: "50%",
-              padding: "0.3rem",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "24px",
-              fontWeight: 700,
+              position: "absolute",
+              top: 10,
+              right: 10,
             }}
           >
-            {number}
-          </Box>
-        </Grid>
-        <Grid
-          item
-          sx={{
-            "& > div": {
-              paddingBottom: ".8rem",
-            },
-          }}
-        >
-          <Box sx={{ alignItems: "center" }}>
-            <img src={icon} alt="Icon"></img>
-          </Box>
-          <Box
+            <Box
+              sx={{
+                color: "#005288",
+                background: "#0052881A",
+                width: "40px",
+                height: "40px",
+                textAlign: "center",
+                borderRadius: "50%",
+                padding: "0.3rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "24px",
+                fontWeight: 700,
+              }}
+            >
+              {number}
+            </Box>
+          </Grid>
+          <Grid
+            item
             sx={{
-              fontSize: "24px",
-              fontWeight: "800",
-              lineHeight: "36px",
-              letterSpacing: "0em",
-              color: "#005288",
+              "& > div": {
+                paddingBottom: ".8rem",
+              },
             }}
           >
-            {title}
-          </Box>
-          <Box
-            sx={{
-              color: "#213039",
-              fontSize: "16px",
-            }}
-          >
-            {text}
-          </Box>
+            <Box sx={{ alignItems: "center" }}>
+              <img src={icon} alt="Icon"></img>
+            </Box>
+            <Box
+              sx={{
+                fontSize: "24px",
+                fontWeight: "800",
+                lineHeight: "36px",
+                letterSpacing: "0em",
+                color: "#005288",
+              }}
+            >
+              {title}
+            </Box>
+            <Box
+              sx={{
+                color: "#213039",
+                fontSize: "16px",
+              }}
+            >
+              {text}
+            </Box>
+          </Grid>
         </Grid>
       </Grid>
     </>
@@ -199,7 +190,7 @@ function LevelTable({ icon, title, text, number }) {
 
 function LevelColum({ icon, title, text, number }) {
   return (
-    <>
+    <Grid padding={".5rem 0"}>
       <Grid
         sx={{
           background: "#DAEAF4",
@@ -304,6 +295,6 @@ function LevelColum({ icon, title, text, number }) {
         </Grid>
         <img src={shakeImg} style={{ width: "100%" }} />
       </Grid>
-    </>
+    </Grid>
   );
 }

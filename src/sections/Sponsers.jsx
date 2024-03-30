@@ -9,14 +9,19 @@ const data = [sponser1, sponser2, sponser3, sponser4];
 export default function Sponsers() {
   return (
     <>
-      <Grid sx={{ padding: "3rem 0", bgcolor: "#DAEAF4" }}>
-        
+      <Grid sx={{ bgcolor: "#DAEAF4" }}>
         <Container>
-          <Grid container>
+          <Grid
+            container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "1rem 0",
+            }}
+          >
             {data.map((item) => {
               return (
                 <>
-                  {" "}
                   <SponserData img={item}></SponserData>
                 </>
               );
@@ -31,10 +36,13 @@ export default function Sponsers() {
 function SponserData({ img }) {
   return (
     <>
-      <Grid xs={3}>
-        <Box>
-          <img src={img}></img>
-        </Box>
+      <Grid
+        item
+        xs={12}
+        md={3}
+        sx={{ display: "flex", justifyContent: "center", padding: "1rem" }}
+      >
+        <img src={img} />
       </Grid>
     </>
   );
