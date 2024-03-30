@@ -23,6 +23,7 @@ export const LoginApi = async (user) => {
     }
     return Obj
 };
+
 export const Register = async (user) => {
     let Obj = {
         data: "",
@@ -30,10 +31,10 @@ export const Register = async (user) => {
     }
     try {
         let { data } = await axios.post(`${baseUrl}/register`, {
-            username: user.UserName,
-            email: user.Email,
-            password: user.Password,
-            phone: user.Phone,
+            "name": user.FName,
+            "email": user.Email,
+            "password": user.Password,
+            "password_confirmation": user.CPassword
         });
         Obj.data = data
         Obj.status = true
@@ -43,7 +44,6 @@ export const Register = async (user) => {
     }
     return Obj
 };
-
 export const isAuthenticated = () => {
     const userToken = localStorage.getItem('USER');
     if (!userToken) {

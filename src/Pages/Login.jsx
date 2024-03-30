@@ -9,6 +9,7 @@ import createCache from "@emotion/cache";
 import {
   Box,
   Button,
+  CircularProgress,
   FormControl,
   Grid,
   IconButton,
@@ -68,6 +69,7 @@ export default function Login() {
     }
     setisLoading(false);
   };
+
   return (
     <SliderLayout container>
       <Grid
@@ -234,7 +236,7 @@ export default function Login() {
               },
             }}
           >
-            {isLoading ? "..." : " تسجيل الدخول"}
+            {isLoading ? <CircularProgress size={"1.5rem"} /> : " تسجيل الدخول"}
           </Button>
         </Grid>
         <Grid
