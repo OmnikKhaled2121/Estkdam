@@ -45,18 +45,18 @@ export const Register = async (user) => {
     return Obj
 };
 
-export const CreateContact = async (data) => {
+export const CreateContact = async (user) => {
     let Obj = {
         data: "",
         status: true
     }
     try {
         const formData = new FormData();
-        formData.append("full_name", data.FullName);
-        formData.append("email", data.Email);
-        formData.append("phone", data.Phone);
-        formData.append("message", data.Message);
-        formData.append("file", data.File);
+        formData.append("full_name", user.FullName);
+        formData.append("email", user.Email);
+        formData.append("phone", user.Phone);
+        formData.append("message", user.Message);
+        formData.append("file", user.File);
 
         let { data } = await axios.post(`${baseUrl}/contacts`, formData, {
             headers: {
