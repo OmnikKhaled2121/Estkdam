@@ -12,12 +12,13 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import FilterBtn from "../components/FilterBtn";
 import EmpCard from "../components/EmpCard";
-import { ListOfEmployee } from "../lib/api";
+import { ListOfEmployee, TitleSearch } from "../lib/api";
+import { useParams } from "react-router-dom";
 
 export default function EstkdamRequest() {
   const [isLoading, setisLoading] = useState(false);
   const [allEmployee, setAllEmployee] = useState([]);
-
+  let { profession } = useParams();
   async function getAllEmployee() {
     const { data, status } = await ListOfEmployee();
     if (status) {
@@ -25,8 +26,20 @@ export default function EstkdamRequest() {
     }
   }
 
+  
+  async function getAll() {
+    const { data, status } = await TitleSearch(profession);
+    console.log("Essss", data);
+    setAllEmployee(data); 
+  }
+
+
   useEffect(() => {
-    getAllEmployee();
+    if (profession) {
+      getAll();
+    } else {
+      getAllEmployee();
+    }
   }, []);
   return (
     <Grid>
@@ -40,6 +53,7 @@ export default function EstkdamRequest() {
             desc={
               "تعاقد مع أكثر من 20 ألف عامل من مختلف الوظائف والبلدان من خلال منصة المصدر الدولي للإستقدام، وتمتع بعروض رائعة وسرعة ودقة اختيار العمالة لك"
             }
+            setAllEmployee={setAllEmployee}
           />
           {/* <ColorfulTitles /> */}
 
@@ -74,9 +88,11 @@ export default function EstkdamRequest() {
                 flexDirection: "row",
                 justifyContent: "start",
                 marginBottom: "2rem",
+
                 flexWrap:{
                   xs:"wrap"
                 },
+
               }}
             >
               <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
@@ -143,7 +159,13 @@ export default function EstkdamRequest() {
                       alignItems: "center",
                     }}
                   >
-                    <CircularProgress size={"2.5rem"} />
+                    {allEmployee.length == 0 ? (
+                      "لا يوجد نتائج لهذا البحث  "
+                    ) : (
+                      <>
+                        <CircularProgress size={"2.5rem"} />
+                      </>
+                    )}
                   </Grid>
                 </>
               )}

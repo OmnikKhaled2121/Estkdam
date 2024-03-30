@@ -36,7 +36,8 @@ export default function Routers() {
       element: <Root />,
       children: [
         { index: true, element: <Home /> },
-        { path: "EstkdamRequest", element: <EstkdamRequest /> },
+        { path: "EstkdamRequest", element: <EstkdamRequest /> },      
+        { path: "EstkdamRequest/:profession", element: <EstkdamRequest /> },      
         { path: "EstkdamOffices", element: <EstkdamOffices /> },
         { path: "KafalaTransfer", element: <KafalaTransfer /> },
         { path: "CommonQuestions", element: <CommonQuestions /> },
