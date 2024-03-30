@@ -6,43 +6,57 @@ import { Link } from "react-router-dom";
 export default function JoinUs() {
   return (
     <>
-      <Grid sx={{ padding: "3rem 0", margin: "6rem 0" }}>
-        <Container>
+      <Container
+        sx={{
+          padding: "3rem 0",
+          display: "flex",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+      >
+        <Grid
+          item
+          xs={10}
+          md={12}
+          container
+          sx={{
+            justifyContent: "center",
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            fontFamily: "Almarai",
+          }}
+        >
           <Grid
-            container
+            item
+            xs={12}
             sx={{
-              justifyContent: "center",
-              display: "flex",
-              alignItems: "center",
+              fontSize: "32px",
+              fontWeight: "800",
+              color: "#005288",
+              paddingBottom: "2rem",
               textAlign: "center",
-              fontFamily: "Almarai",
             }}
           >
-            <Box
-              sx={{
-                fontSize: "32px",
-                fontWeight: "800",
-                color: "#005288",
-                paddingBottom: "2rem",
-                textAlign: "center",
-              }}
-            >
-              انضم الأن لمنصتنا الأكبر الأن
-            </Box>
+            انضم الأن لمنصتنا الأكبر الأن
+          </Grid>
 
-            <Box sx={{ padding: "0 18.5rem" }}>
-              توفر لك منصة المضدر الدولى القدرة على التواصل مع أكبر مكاتب
-              الإستقدام والتوصول إلى الراغبين فى العمل واختيار الشخص المناسب
-              لإحتياجاتك ما بين أكثر من 10 جنسيات مختلفة حول العالم
-            </Box>
-            <Box sx={{ padding: "2rem 0" }}>
-              <img src={map2}></img>
-            </Box>
-
-            <Link to={'/Login'} style={{ width: '100%',
-            display:"flex",
-            justifyContent:"center"
-          }}>
+          <Grid item xs={12} md={5.8}>
+            توفر لك منصة المضدر الدولى القدرة على التواصل مع أكبر مكاتب
+            الإستقدام والتوصول إلى الراغبين فى العمل واختيار الشخص المناسب
+            لإحتياجاتك ما بين أكثر من 10 جنسيات مختلفة حول العالم
+          </Grid>
+          <Grid sx={{ padding: "2rem 0" }}>
+            <img width={"100%"} src={map2} />
+          </Grid>
+          <Link
+            to={"/Login"}
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Box
               sx={{
                 background: "#005288",
@@ -56,10 +70,10 @@ export default function JoinUs() {
               }}
             >
               انضم الأن
-            </Box> </Link>
-          </Grid>
-        </Container>
-      </Grid>
+            </Box>
+          </Link>
+        </Grid>
+      </Container>
     </>
   );
 }

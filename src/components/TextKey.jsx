@@ -7,7 +7,7 @@ export default function TextKey({ texts, white }) {
     <>
       <Grid
         sx={{
-          display: "flex",
+          display: { xs: "none", md: "flex" },
           alignItems: "center",
           "& > div": { marginLeft: "1rem" },
         }}

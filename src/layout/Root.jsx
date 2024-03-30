@@ -7,7 +7,7 @@ import { Grid } from "@mui/material";
 export default function Root() {
   return (
     <>
-      {/* <Navber /> */}
+      <Navber />
       <Grid
         sx={{
           minWidth: "100vw",
@@ -16,7 +16,7 @@ export default function Root() {
       >
         <Outlet />
       </Grid>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
