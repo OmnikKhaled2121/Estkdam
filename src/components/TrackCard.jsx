@@ -1,83 +1,8 @@
-// import { Box, Grid } from "@mui/material";
-// import React from "react";
-// import Logoimg from "../assets/ahmed.jfif";
-// import flag from "../assets/FlagEgypt.png";
-// export default function TrackCard() {
-//   return (
-//     <>
-//       <Grid
-//         container
-//         sx={
-//           {
-//             //   alignContent: "center",
-//             //   height: "100%",
-//           }
-//         }
-//       >
-//         <Grid item xs={7}>
-//           <Box
-//             sx={{
-//               display: "flex",
-//               //   justifyContent: "center",
-//               alignItems: "center",
-//             }}
-//           >
-//             <Box sx={{ width: "25%" }}>
-//               <img width="90%" style={{ borderRadius: "10%" }} src={Logoimg} />{" "}
-//             </Box>
-//             <Box>
-//               <Box>أحمد محمد</Box>
-//               <Box sx={{ display: "flex" }}>
-//                 <Box sx={{ marginLeft: ".5rem" }}>
-//                   <img src={flag} />{" "}
-//                 </Box>
-//                 <Box>جمهورية مصر العربية</Box>
-//               </Box>
-//             </Box>
-//           </Box>
-//         </Grid>
-//         <Grid item xs={2}>
-//           <Box
-//             sx={{
-//               display: "flex",
-//               //   justifyContent: "center",
-//               alignItems: "center",
-//             }}
-//           >
-//             <img width="10%" src={Logoimg} />{" "}
-//             <Box>
-//               <Box>أحمد محمد</Box>
-//               <Box>جمهورية مصر العربية</Box>
-//             </Box>
-//           </Box>
-//         </Grid>
-//         <Grid item xs={2}>
-//           <Box
-//             sx={{
-//               display: "flex",
-//               //   justifyContent: "center",
-//               alignItems: "center",
-//             }}
-//           >
-//             <Box>
-
-//               <Box>أحمد محمد</Box>
-//               <Box>جمهورية مصر العربية</Box>
-//             </Box>
-//           </Box>
-//         </Grid>
-//       </Grid>
-//     </>
-//   );
-// }
-
-
-
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import ImgAhmed from "../assets/jj.png";
 import Logoimg from "../assets/ahmed.jfif";
-// import flag from "../assets/FlagEgypt.png";
+
 export default function OrderInfo({ }) {
   return (
     <Grid
@@ -93,8 +18,8 @@ export default function OrderInfo({ }) {
         alignItems: "center",
       }}
     >
-      <Grid item xs={12} container>
-        <Grid item xs={6} sx={{ display: "flex" }}>
+      <Grid item md={12} xs={12} container>
+        <Grid item md={6} xs={12} sx={{ display: "flex" }}>
           <Box
             item
             sx={{
@@ -174,7 +99,7 @@ export default function OrderInfo({ }) {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={3}
+        <Grid item md={3} xs={6}
           container
           sx={{
             display: "flex",
@@ -211,7 +136,7 @@ export default function OrderInfo({ }) {
           </svg>} />
 
         </Grid>
-        <Grid item xs={3}
+        <Grid item md={3} xs={10}
           container
           sx={{
             display: "flex",
@@ -239,7 +164,7 @@ export default function OrderInfo({ }) {
 
         </Grid>
       </Grid>
-      <Grid item xs={12} sx={{ borderBottom: "1px solid #BAC8D1", }} />
+      <Grid item xs={12} sx={{ borderBottom: "1px solid #BAC8D1", margin: "1rem 0" }} />
       <Grid item xs={12} container sx={{
 
         color: "#005288",
@@ -253,20 +178,20 @@ export default function OrderInfo({ }) {
         alignItems: "center"
       }}>
 
-        <Grid item xs={2} >
-          <Box sx={{}}>
+        <Grid item md={3} xs={10} >
+          <Box sx={{ margin: "0.2rem" }}>
 
             رقم  الطلب:
             <span style={{ color: "#878787" }}> 3241514# </span>
           </Box>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={10} sx={{ margin: "0.2rem" }}>
           حالة الطلب:
           <span style={{ color: "#D4922F" }}> بانتظار الموافقة </span>
 
 
         </Grid>
-        <Grid item xs={2}>
+        <Grid item md={2} xs={6} sx={{ margin: "0.2rem" }}>
           تاريخ الطلب:
           <span style={{ color: "#878787" }}>  2 يناير 2024 </span>
         </Grid>

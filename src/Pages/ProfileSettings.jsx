@@ -118,10 +118,10 @@ function Field({ property, value, handlePopupOpen }) {
         color: "#878787",
       }}
     >
-      <Grid item xs={3}>
+      <Grid item  md={3} xs={12}>
         {property}
       </Grid>
-      <Grid item xs={6} color={"#000"}>
+      <Grid item md={3} xs={12} color={"#000"}>
         {property == "صورة المستخدم" ? (
           <Box
             sx={{
@@ -140,7 +140,7 @@ function Field({ property, value, handlePopupOpen }) {
           value
         )}
       </Grid>
-      <Grid item xs={2} sx={{ display: "flex", justifyContent: "end" }}>
+      <Grid item md={3} xs={12} sx={{ display: "flex", justifyContent: "end" }}>
         <Box
           onClick={() => {
             handlePopupOpen(property, value);

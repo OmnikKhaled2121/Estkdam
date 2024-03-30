@@ -6,10 +6,10 @@ import ColorfulTitles from '../components/ColorfulTitles'
 import EmpCard from '../components/EmpCard'
 import FilterBtn from '../components/FilterBtn'
 import DropDownFilter from '../components/DropDownFilter'
-import  TodayIcon  from '@mui/icons-material/Today';
+import TodayIcon from '@mui/icons-material/Today';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import  LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
-import  StarOutlineIcon  from '@mui/icons-material/StarOutline';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 
 export default function KafalaTransfer() {
@@ -34,7 +34,7 @@ export default function KafalaTransfer() {
               textAlign: "right",
               color: "#005288",
               paddingBottom: "2rem",
-              marginTop:"2rem"
+              marginTop: "2rem"
             }}
           >
             بحث متقدم
@@ -51,7 +51,8 @@ export default function KafalaTransfer() {
           >
             <Grid
               item
-              xs={8}
+              md={8}
+              xs={10.5}
               sx={{
                 display: "flex",
                 flexDirection: "row",
@@ -68,7 +69,8 @@ export default function KafalaTransfer() {
 
             <Grid
               item
-              xs={3}
+              xs={10}
+              md={3}
               sx={{ display: "flex", justifyContent: "space-between" }}
             >    <FilterBtn /> </Grid>
 
@@ -81,6 +83,7 @@ export default function KafalaTransfer() {
                 lineHeight: "35.71px",
                 color: "#005288",
                 paddingBottom: "2rem",
+                paddingTop:"1rem"
               }}
             >
               جميع النتائج
@@ -93,31 +96,31 @@ export default function KafalaTransfer() {
                 gap: ".5rem",
               }}
             >
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+              <Grid item md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
                 <EmpCard />
               </Grid>
             </Grid>

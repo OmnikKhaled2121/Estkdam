@@ -80,7 +80,10 @@ export default function EditProfilePopUp({
               <Box
                 sx={{
                   fontFamily: "Almarai",
-                  fontSize: "24px",
+                  fontSize: {
+                    xs:"15px",
+                    md:"20px"
+                  },
                   fontWeight: "800",
                   lineHeight: "29.5px",
                   textAlign: "right",
