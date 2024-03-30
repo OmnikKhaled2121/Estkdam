@@ -24,14 +24,24 @@ export const LoginApi = async (user) => {
     return Obj
 };
 export const Register = async (user) => {
-    let { data } = await axios.post(`${baseUrl}/register`, {
-        username: user.UserName,
-        email: user.Email,
-        password: user.Password,
-        phone: user.Phone,
-    });
-
-    return data;
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.post(`${baseUrl}/register`, {
+            username: user.UserName,
+            email: user.Email,
+            password: user.Password,
+            phone: user.Phone,
+        });
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
 };
 
 export const isAuthenticated = () => {
