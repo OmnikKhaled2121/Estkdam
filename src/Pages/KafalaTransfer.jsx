@@ -74,6 +74,9 @@ export default function KafalaTransfer() {
                 flexDirection: "row",
                 justifyContent: "start",
                 marginBottom: "2rem",
+                flexWrap: {
+                  xs: "wrap"
+                },
               }}
             >
               <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
@@ -103,7 +106,7 @@ export default function KafalaTransfer() {
                 lineHeight: "35.71px",
                 color: "#005288",
                 paddingBottom: "2rem",
-                paddingTop:"1rem"
+                paddingTop: "1rem"
               }}
             >
               جميع النتائج
@@ -120,7 +123,7 @@ export default function KafalaTransfer() {
                 allEmployee.map((employee, index) => {
                   return (
                     <>
-                      <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+                      <Grid item xs={11} md={3.94} sx={{ boxSizing: "border-box" }}>
                         <EmpCard key={index} employee={employee} />
                       </Grid>
                     </>
