@@ -38,8 +38,8 @@ export default function SalaryAndArrive() {
                     justifyContent: "space-around"
 
                 }}>
-                    <Grid item xs={5} sx={{
-                        padding: "2rem 0",
+                    <Grid item  md={5} xs={10} sx={{
+                        padding: "2rem 0.2rem",
                         boxSizing: "border-box"
                     }} >
 

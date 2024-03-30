@@ -25,129 +25,192 @@ export default function Footer() {
           fontFamily: "Almarai",
         }}
       >
-        <Box
-          sx={{
-            fontFamily: "Almarai",
-            fontSize: "48px",
-            fontWeight: "700",
-          }}
-        >
-          <img src={footerLogo} />
-        </Box>
-
-        <Grid
-          container
-          sx={{
-            justifyContent: "flex-start",
-            alignItems: "center",
-            paddingBottom: "1.5rem",
-            borderBottom: "solid 1px #213039",
-          }}
-        >
-          <Grid item xs={12} md={9}>
-            <Box sx={{ fontSize: "20px", color: "#005288", fontWeight: "700" }}>
-              اشترك معنا لتكون مطلع على احدث الإضافات
-            </Box>
-            <Box sx={{ marginTop: "1rem" }}>
-              <SearchInput isFooter={true} />
-            </Box>
-            <Box sx={{ fontSize: "20px", color: "#005288" }}>
-              منصة المصدر الدولي للإستقدام
-            </Box>
-            <Box sx={{ display: "flex", marginTop: "1rem" }}>
-              <Box sx={{ marginLeft: "1.5rem" }}>
-                <Link to={'/'} style={{
-                  color: "#005288"
-                }}>
-                  الرئيسية
-                </Link>
-              </Box>
-              <Box sx={{
-                marginLeft: "1.5rem",
-                cursor: "pointer"
-              }}>
-                <Link to={'/EstkdamRequest'} style={{
-                  color: "#005288"
-                }}>
-                  طلب الإستقدام
-                </Link>
-              </Box>
-
-
-              <Box sx={{
-                marginLeft: "1.5rem",
-                cursor: "pointer"
-              }}>
-                <Link to={'/KafalaTransfer'} style={{
-                  color: "#005288"
-                }}>
-                  نقل كفالة
-                </Link>
-              </Box>
-
-
-              <Box sx={{
-                marginLeft: "1.5rem",
-                cursor: "pointer"
-              }}>
-                <Link to={'/ContactUs'} style={{
-                  color: "#005288"
-                }}>
-                  تواصل معنا
-                </Link>
-              </Box>
-            </Box>
-          </Grid>
-
+        <Grid container sx={{ display: "flex", justifyContent: "center" }}>
           <Grid
             item
             xs={10}
-            md={3}
-            sx={{
-              marginTop: "1rem",
-              color: "#213039",
-              lineHeight: "40px",
-              fontSize: "30.01px",
-              fontWeight: "800",
-              textAlign: "right",
-            }}
-          >
-            <Box sx={{ color: "#005288", fontSize: "20px" }}>التواصل</Box>
-            <Box sx={{ direction: "ltr" }}>email@gmail.com</Box>
-            <Box sx={{ fontSize: "30px", direction: "ltr" }}>
-              {" "}
-              +96 15 754411184{" "}
-            </Box>
-          </Grid>
-        </Grid>
-
-        <Grid
-          container
-          sx={{ marginTop: "1rem" }}
-          justifyContent="space-between"
-        >
-          <Grid item xs={12} md={9}>
-            <Box
-              sx={{ color: "#213039", fontSize: "12px", lineHeight: "19.92px" }}
-            >
-              © حقوق الطبع والنشر محفوظة لدى منصة المصدر الدولي للإستقدام
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={3}
+            md={12}
+            container
             sx={{
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: { xs: "center", md: "start" },
             }}
           >
-            <IconTab iconTab={facebookLogo} />
-            <IconTab iconTab={youtube} />
-            <IconTab iconTab={insta} />
-            <IconTab iconTab={linkedin} />
-            <IconTab iconTab={pins} />
+            <Grid
+              xs={12}
+              sx={{
+                fontFamily: "Almarai",
+                fontSize: "48px",
+                fontWeight: "700",
+              }}
+            >
+              <img src={footerLogo} />
+            </Grid>
+            <Grid
+              container
+              sx={{
+                justifyContent: { xs: "center", md: "start" },
+                alignItems: "center",
+                paddingBottom: "1.5rem",
+                borderBottom: "solid 1px #213039",
+              }}
+            >
+              <Grid
+                item
+                xs={12}
+                md={9}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: { xs: "center", md: "start" },
+                  textAlign: { xs: "center", md: "start" },
+                }}
+              >
+                <Box
+                  sx={{ fontSize: "20px", color: "#005288", fontWeight: "700" }}
+                >
+                  اشترك معنا لتكون مطلع على احدث الإضافات
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: { xs: "center", md: "start" },
+                    marginTop: "1rem",
+                  }}
+                >
+                  <SearchInput isFooter={true} />
+                </Box>
+                <Grid
+                  item
+                  xs={12}
+                  md={3}
+                  sx={{
+                    display: { xs: "flex", md: "none" },
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "1rem 0",
+                  }}
+                >
+                  <IconTab iconTab={facebookLogo} />
+                  <IconTab iconTab={youtube} />
+                  <IconTab iconTab={insta} />
+                  <IconTab iconTab={linkedin} />
+                  <IconTab iconTab={pins} />
+                </Grid>
+                <Box sx={{ fontSize: "20px", color: "#005288" }}>
+                  منصة المصدر الدولي للإستقدام
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" },
+                    justifyContent: { xs: "center", md: "start" },
+                    marginTop: "1rem",
+                    "& > div": {
+                      padding: "1rem ",
+                    },
+                  }}
+                >
+                  <Box sx={{ paddingRight: "0 !important" }}>
+                    <Link
+                      to={"/"}
+                      style={{
+                        color: "#005288",
+                      }}
+                    >
+                      الرئيسية
+                    </Link>
+                  </Box>
+                  <Box>
+                    <Link
+                      to={"/EstkdamRequest"}
+                      style={{
+                        color: "#005288",
+                      }}
+                    >
+                      طلب الإستقدام
+                    </Link>
+                  </Box>
+                  <Box>
+                    <Link
+                      to={"/KafalaTransfer"}
+                      style={{
+                        color: "#005288",
+                      }}
+                    >
+                      نقل كفالة
+                    </Link>
+                  </Box>
+                  <Box>
+                    <Link
+                      to={"/ContactUs"}
+                      style={{
+                        color: "#005288",
+                      }}
+                    >
+                      تواصل معنا
+                    </Link>
+                  </Box>
+                </Box>
+              </Grid>
+              <Grid
+                item
+                xs={10}
+                md={3}
+                sx={{
+                  marginTop: "1rem",
+                  color: "#213039",
+                  lineHeight: "40px",
+                  fontSize: "30.01px",
+                  fontWeight: "800",
+                  textAlign: "right",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: { xs: "center", md: "start" },
+                }}
+              >
+                <Box sx={{ color: "#005288", fontSize: "20px" }}>التواصل</Box>
+                <Box sx={{ direction: "ltr" }}>email@gmail.com</Box>
+                <Box sx={{ fontSize: "30px", direction: "ltr" }}>
+                  {" "}
+                  +96 15 754411184{" "}
+                </Box>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              sx={{ marginTop: "1rem" }}
+              justifyContent="space-between"
+            >
+              <Grid item xs={12} md={9}>
+                <Box
+                  sx={{
+                    color: "#213039",
+                    fontSize: "12px",
+                    lineHeight: "19.92px",
+                  }}
+                >
+                  © حقوق الطبع والنشر محفوظة لدى منصة المصدر الدولي للإستقدام
+                </Box>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md={3}
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <IconTab iconTab={facebookLogo} />
+                <IconTab iconTab={youtube} />
+                <IconTab iconTab={insta} />
+                <IconTab iconTab={linkedin} />
+                <IconTab iconTab={pins} />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

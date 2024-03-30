@@ -53,7 +53,8 @@ export default function BackgroundLayout({ img, title, desc, common }) {
                     }}> {title}</Box>
                     <Box sx={{
                         fontFamily: "Almarai",
-                        fontSize: "20px",
+                        fontSize: {xs:"15px",
+                             md:"20px"},
                         fontWeight: "700",
                         lineHeight: "30px",
                         textAlign: "center",

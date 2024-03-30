@@ -68,12 +68,14 @@ export default function EstkdamRequest() {
           >
             <Grid
               item
-              xs={8}
+              md={8}
+              xs={10.5}
               sx={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "start",
                 marginBottom: "2rem",
+
               }}
             >
               <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
@@ -87,12 +89,11 @@ export default function EstkdamRequest() {
 
             <Grid
               item
-              xs={3}
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              {" "}
-              <FilterBtn />{" "}
-            </Grid>
+              xs={10}
+              md={3}
+              sx={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}
+            >    <FilterBtn /> </Grid>
+
 
             <Box
               sx={{
@@ -102,6 +103,7 @@ export default function EstkdamRequest() {
                 lineHeight: "35.71px",
                 color: "#005288",
                 paddingBottom: "2rem",
+                paddingTop:"1rem"
               }}
             >
               جميع النتائج
@@ -138,35 +140,7 @@ export default function EstkdamRequest() {
                   </Grid>
                 </>
               )}
-              {/* <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard item />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid> */}
-            </Grid>
-          </Grid>
+        
         </Grid>
       </Container>
     </Grid>

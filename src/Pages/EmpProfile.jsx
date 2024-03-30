@@ -55,7 +55,7 @@ export default function EmpProfile() {
 function Landing({ name, proPic, Information, employee }) {
   return (
     <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
-      <Grid item xs={3}>
+      <Grid item md={3} xs={12}>
         <Box
           sx={{
             width: "100%",
@@ -73,7 +73,8 @@ function Landing({ name, proPic, Information, employee }) {
       </Grid>
       <Grid
         item
-        xs={9}
+        md={9}
+        xs={12}
         sx={{
           padding: "1rem 2rem",
           textAlign: "right",
@@ -467,7 +468,8 @@ function AdditionalInfo() {
           "الإمارات العربية المتحدة",
           "قطر",
         ]}
-        xs={4}
+        md={4}
+        xs={12}
         icon={
           <>
             <svg
@@ -489,6 +491,8 @@ function AdditionalInfo() {
       <Information
         title={"المهارات"}
         InfoArr={["الكوي", "التنظيف", "الغسيل", "عناية الرضع", "تعليم الاطفال"]}
+        md={4}
+        xs={12}
         icon={
           <>
             <svg
@@ -707,7 +711,7 @@ function Recommendation({ recommendations }) {
       >
         {recommendations.map((recommendation, index) => {
           return (
-            <Grid item key={index} xs={3.94} sx={{ boxSizing: "border-box" }}>
+            <Grid item key={index} md={3.94} xs={12} sx={{ boxSizing: "border-box" }}>
               <EmpCard />
             </Grid>
           );
@@ -772,12 +776,14 @@ function Information({ xs, experience, title, InfoArr, icon }) {
     </>
   );
 }
+
 function Info({ children, type, infoImg, info }) {
   return (
     <>
       <Grid
         item
-        xs={5}
+        md={5}
+        xs={12}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -802,12 +808,13 @@ function Info({ children, type, infoImg, info }) {
     </>
   );
 }
+
 function OrderInfo({ xs, experience, orderNum, text, gpa, dotNum }) {
   const dotsArr = [1, 2, 3, 4, 5];
   return (
     <Grid
       xs={xs ? xs : 2.4}
-      sx={{ display: "flex", fontFamily: "Almarai", alignItems: "center" }}
+      sx={{ display: "flex", fontFamily: "Almarai", alignItems: "center",marginBottom:"1rem" }}
     >
       <Box
         sx={{

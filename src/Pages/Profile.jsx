@@ -29,16 +29,17 @@ export default function Profile() {
         container
         sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}
       >
-        <ProfileInfo item xs={3.6} img={ProfileBg} />
+        <ProfileInfo item   md={3.6} xs={12} img={ProfileBg} />
         <Grid
           item
           container
-          xs={8.2}
+          xs={12}
+          md={8.2}
           sx={{
             display: "flex",
             alignContent: "space-between",
             "& > div": {
-              height: "48.5%",
+              minHeight: "48.5%",
               borderRadius: "15px",
               padding: "1.5em",
               boxSizing: "border-box",
@@ -46,23 +47,25 @@ export default function Profile() {
             },
           }}
         >
-          <Latest item xs={12} />
-          <Orders item xs={12} />
+          <Latest item  md={12} xs={12} />
+          <Orders item  md={12} xs={12} />
         </Grid>
       </Grid>
     </Container>
   );
 }
-export function ProfileInfo({ item, xs, img }) {
+export function ProfileInfo({ item, xs, img,md }) {
   return (
     <Grid
       item
       xs={xs}
+      md={md}
       sx={{
         borderRadius: "15px",
         padding: "1rem",
         boxSizing: "border-box",
         boxShadow: "0px 0px 20px 6px #26282A26",
+        marginBottom:"1rem"
       }}
     >
       <Grid
@@ -198,12 +201,13 @@ function InfoItem({ property, value }) {
   );
 }
 
-function Orders(item, xs) {
+function Orders(item, xs,md) {
   return (
     <Grid
       item
       container
       xs={xs}
+      md={md}
       sx={{
         boxSizing: "border-box",
         "& > div:not(:last-child)": {
@@ -214,6 +218,7 @@ function Orders(item, xs) {
       <Grid
         item
         xs={12}
+        md={12}
         sx={{ display: "flex", justifyContent: "space-between" }}
       >
         <Box
@@ -250,14 +255,16 @@ function Orders(item, xs) {
     </Grid>
   );
 }
-function Latest({ item, xs }) {
+function Latest({ item, xs ,md}) {
   return (
     <Grid
       item
       container
       xs={xs}
+      md={md}
       sx={{
         boxSizing: "border-box",
+        marginBottom:"1rem",
         "& > div:not(:last-child)": {
           marginBottom: "0rem",
         },
@@ -266,7 +273,9 @@ function Latest({ item, xs }) {
       <Grid
         item
         xs={12}
-        sx={{ display: "flex", justifyContent: "space-between" }}
+        md={12}
+        sx={{ display: "flex", justifyContent: "space-between",
+      marginBottom:'0.5rem' }}
       >
 
         <Box
@@ -300,8 +309,14 @@ function Latest({ item, xs }) {
       <Grid
         item
         sx={{
-          width: "50px",
-          height: "50px",
+          width: {
+            xs:"25px",
+            md:"50px",
+          },
+          height: {
+            xs:"25px",
+            md:"50px",
+          },
           borderRadius: "5px",
           background: "#005288",
           display: "flex",
@@ -334,9 +349,13 @@ function Latest({ item, xs }) {
       </Grid>
       <Grid
         item
-        xs={9.8}
+        md={9.8}
+        xs={10}
         sx={{
-          fontSize: "14px",
+          fontSize:{
+            xs:"12px",
+            md: "14px",
+          },
           fontWeight: "700",
           lineHeight: "18.9px",
           color: "#005288",
@@ -361,7 +380,8 @@ function Latest({ item, xs }) {
       </Grid>
       <Grid
         item
-        xs={1}
+        xs={12}
+        md={1}
         sx={{
           fontSize: "12px",
           fontWeight: "400",

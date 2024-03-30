@@ -50,13 +50,13 @@ export default function Landing() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: "start",
+              alignItems: { xs: "center", md: "start" },
             }}
           >
             <Box
               sx={{
                 fontFamily: "Almarai",
-                fontSize: "70px",
+                fontSize: { xs: "45px", md: "70px" },
                 fontWeight: "800",
                 lineHeight: "89px",
                 letterSpacing: "0em",
@@ -71,7 +71,7 @@ export default function Landing() {
             <Box
               sx={{
                 fontFamily: "Almarai",
-                fontSize: "24px",
+                fontSize: { xs: "18px", md: "24px" },
                 fontWeight: "700",
                 lineHeight: "27px",
                 letterSpacing: "0em",
@@ -84,7 +84,7 @@ export default function Landing() {
             <Box
               sx={{
                 fontFamily: "Almarai",
-                fontSize: "20px",
+                fontSize: { xs: "16px", md: "20px" },
                 fontWeight: "400",
                 lineHeight: "30px",
                 letterSpacing: "0em",
@@ -101,6 +101,7 @@ export default function Landing() {
             </Grid>
             <Grid
               sx={{
+                display: { xs: "none", md: "block" },
                 backgroundImage: `url(${background})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "auto 100%",
@@ -145,7 +146,7 @@ export default function Landing() {
             </Link>
             <Grid
               sx={{
-                display: "flex",
+                display: { xs: "none", md: "flex" },
                 alignItems: "center",
                 justifyContent: "start",
               }}
@@ -178,8 +179,9 @@ function LandingImages({ xs, md }) {
   const imgBorder = (H, imgSrc) => {
     return {
       overflow: "hidden",
-      width: "181px",
-      height: H,
+      width: "100%",
+      // width: { xs: "50px", md: "181px" },
+      height: { xs: "390px", md: H },
       borderRadius: "98.5px",
       border: "5px solid #213039",
       borderTop: "0",
@@ -203,45 +205,52 @@ function LandingImages({ xs, md }) {
         position: "relative",
       }}
     >
-      <Grid>
+      <Grid item xs={3.5}>
         <Box
           sx={{
+            display: { xs: "none", md: "block" },
             position: "absolute",
-            right: "45%",
-            top: "23%",
+            right: "-10%",
+            top: "22%",
           }}
         >
           <img src={tooltip2}></img>
         </Box>
         <Grid sx={imgBorder("690px", joly1)} />
       </Grid>
-      <Grid>
+      <Grid item xs={3.5}>
         <Box
           sx={{
+            display: { xs: "none", md: "block" },
             position: "absolute",
-            top: " 7%",
-            left: "28%",
+            top: " 8%",
+            left: "55%",
           }}
         >
-          {" "}
           <img src={tooltip3}></img>
         </Box>
         <Grid sx={imgBorder("449px", human2)} mb={2} />
         <Grid sx={imgBorder("449px", human3)} mt={2} />
-        <Box sx={{ position: "absolute", bottom: "7%", left: "31%" }}>
-          {" "}
+        <Box
+          sx={{
+            display: { xs: "none", md: "block" },
+            position: "absolute",
+            bottom: "7%",
+            left: "60%",
+          }}
+        >
           <img src={tooltip4}></img>
         </Box>
       </Grid>
-      <Grid>
+      <Grid item xs={3.5}>
         <Box
           sx={{
+            display: { xs: "none", md: "block" },
             position: "absolute",
-            top: "24%",
-            left: "-7%",
+            top: "34%",
+            left: "-12%",
           }}
         >
-          {" "}
           <img src={tooltip1}></img>
         </Box>
         <Grid sx={imgBorder("690px", human4)} />

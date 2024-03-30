@@ -9,8 +9,8 @@ export default function SearchEstkdam() {
     <Grid
       id={"about"}
       sx={{
+        display: { xs: "none", md: "block" },
         padding: "3rem 0",
-        // marginTop: "1rem",
         margin: "6rem 0",
       }}
     >
@@ -53,7 +53,7 @@ export default function SearchEstkdam() {
               لك.
             </Box>
             <Box sx={{ display: "flex", marginTop: "1.5rem" }}>
-              <Link to={'/EstkdamRequest'} style={{display:"flex"}}>
+              <Link to={"/EstkdamRequest"} style={{ display: "flex" }}>
                 <Box
                   sx={{
                     fontFamily: "Almarai",
@@ -77,7 +77,6 @@ export default function SearchEstkdam() {
                   <img src={arrowLogos} />
                 </Box>
               </Link>
-
             </Box>
           </Grid>
 

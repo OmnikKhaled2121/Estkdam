@@ -12,6 +12,7 @@ export default function Trackorders() {
       <Grid container>
         <Grid
           item
+          md={12}
           xs={12}
           sx={{
             display: "flex",
@@ -60,6 +61,7 @@ export default function Trackorders() {
         </Grid>
         <Grid
           item
+          md={12}
           xs={12}
           sx={{
             fontFamily: "Almarai",
@@ -83,7 +85,7 @@ export default function Trackorders() {
         >
           {orders.length ? (
             orders.map((order, index) => {
-              return <CardTrack item xs={12} bgcolor={"#005288"} key={index} />;
+              return <CardTrack item md={12} xs={12} bgcolor={"#005288"} key={index} />;
             })
           ) : (
             <Box
@@ -127,12 +129,13 @@ function ButtonTrack({ title, backColor }) {
 function CardTrack({ bgcolor }) {
   return (
     <>
-      <Grid item xs={7.9} sx={{ boxSizing: "border-box", padding: "0.5rem" }}>
+      <Grid item md={7.9} xs={12} sx={{ boxSizing: "border-box", padding: "0.5rem" }}>
         <OrderInfo />
       </Grid>
       <Grid
         item
-        xs={3.9}
+        md={3.9}
+        xs={12}
         sx={{
           display: "flex",
           flexDirection: "column",
