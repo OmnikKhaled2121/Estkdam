@@ -1,28 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
+import axios from "axios";
 
-const Data = [
-  {
-    title: "أكثر من ",
-    num: "12000",
-    desc: "طلب",
-  },
-  {
-    title: "أكثر من ",
-    num: "6500",
-    desc: "عقد ناجح",
-  },
-  {
-    title: "أكثر من ",
-    num: "120",
-    desc: "مكتب استقدام",
-  },
-  {
-    title: "أكثر من ",
-    num: "10",
-    desc: "جنسيات",
-  },
-];
+
+
+
 
 export default function Statistics() {
   return (

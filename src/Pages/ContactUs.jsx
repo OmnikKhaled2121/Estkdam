@@ -71,9 +71,13 @@ export default function ContactUs() {
                             </FormControl>
                         </Grid>
 
-                        <Grid sx={{
+                        <Grid md={12} xs={12}  sx={{
                             display: "flex",
-                            flexDirection: "row"
+                            flexDirection: {
+                                xs:"column",
+                                md:"row"
+                            }
+
 
                         }}>
                             <TextFieldBox><TextField id="standard-basic" label="الإسم كامل" variant="standard" /></TextFieldBox>
@@ -89,7 +93,7 @@ export default function ContactUs() {
                             variant="standard"
                             sx={{marginBottom:"3rem"}}
                         />
-                        <UploadFile  xs={4}/>
+                        <UploadFile md={4} xs={12} />
                         <Grid sx={{
                             display:"flex",
                             justifyContent:"center"
@@ -127,10 +131,14 @@ export default function ContactUs() {
     )
 }
 
- export function UploadFile({xs}) {
+ export function UploadFile({xs }) {
     return (<>
-        <Grid xs={xs} sx={{
+        <Grid xs={xs}  sx={{
             display: "flex",
+            marginBottom:{
+                xs:"2rem",
+                md:"0"
+            }
          
         }}>
             <Box sx={{
@@ -264,7 +272,7 @@ function TextFieldBox({ children }) {
 
     return (
         <>
-            <Grid item xs={4} sx={{
+            <Grid item  md={4} xs={12} sx={{
                 fontFamily: "Almarai",
                 fontSize: "16px",
                 fontWeight: 400,

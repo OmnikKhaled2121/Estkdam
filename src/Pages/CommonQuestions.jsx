@@ -1,10 +1,22 @@
 import { Box, Container, Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Bg from '../assets/QuestionBg.jpeg'
 import BackgroundLayout from '../components/BackgroundLayout'
+import axios from 'axios'
 
 
 export default function CommonQuestions() {
+    let [response, setResponse] = useState([])
+
+    async function QuestionData() {
+        let { data } = await axios.get(`https://estikdam.jacadix.net/api/faqs`)
+        setResponse(data)
+        return response
+    }
+    useEffect(() => {
+        QuestionData()
+    }, [])
+
     return (
         <>
             <Grid>
@@ -19,8 +31,6 @@ export default function CommonQuestions() {
                             </>}
                             common
                         />
-
-
                         <Grid sx={{
                             fontFamily: "Almarai",
                             fontSize: "48px",
@@ -31,24 +41,20 @@ export default function CommonQuestions() {
                             margin: "2rem 0"
                         }}>الأسئلة الشائعة </Grid>
                     </Grid>
-
-
                     <Grid sx={{
-                        display:"flex",
-                        flexDirection:"column",
-                        gap:"50px"
-                    
-                }}>
-                        
-                   
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "50px"
 
-                    <QuestionAndAnswer />
-                    <QuestionAndAnswer />
-                    <QuestionAndAnswer />
-                    <QuestionAndAnswer /> 
-                    
+                    }}>
+                        {response.map((item) => {
+                            return (
+                                <>
+                                    <QuestionAndAnswer Question={item.question} Answer={item.answer} />
+                                </>
+                            )
+                        })}
                     </Grid>
-
                 </Container >
             </Grid >
         </>
@@ -58,7 +64,7 @@ export default function CommonQuestions() {
 
 
 
-function QuestionAndAnswer() {
+function QuestionAndAnswer({ Question, Answer }) {
 
     return (
         <>
@@ -67,19 +73,18 @@ function QuestionAndAnswer() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "start",
-                width:"100%"
-                // margin: "2rem 0rem"
+                width: "100%"
 
             }}>
 
-                <Grid item xs={1} 
-                sx={{ borderLeft: "3px solid rgba(0, 82, 136, 1)",}}
+                <Grid item xs={1}
+                    sx={{ borderLeft: "3px solid rgba(0, 82, 136, 1)", }}
                 >
                     <Box sx={{
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        padding:"1rem 0"
+                        padding: "1rem 0"
                     }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="69" height="61" viewBox="0 0 69 61" fill="none">
                             <path d="M39.368 60.5001C55.7298 60.5001 68.9937 47.2362 68.9937 30.8743C68.9937 14.5124 55.7298 1.24854 39.368 1.24854C23.0061 1.24854 9.74219 14.5124 9.74219 30.8743C9.74219 47.2362 23.0061 60.5001 39.368 60.5001Z" fill="#71C2FF" />
@@ -102,10 +107,10 @@ function QuestionAndAnswer() {
                         padding: "1rem 2rem",
                         justifyContent: "center",
                         marginBottom: "1rem",
-                       textAlign:"justify"
+                        textAlign: "justify"
                     }}>
-                        
-                        هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+
+                        {Question}
                     </Box>
                 </Grid>
                 <Grid
@@ -113,10 +118,12 @@ function QuestionAndAnswer() {
                         fontSize: "20px",
                         fontWeight: "700",
                         lineHeight: "34.43px",
-                        textAlign:"justify"
+                        textAlign: "justify"
                     }}
+                >
 
-                >هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص.هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص.</Grid>
+                    {Answer}
+                </Grid>
 
             </Grid>
 
