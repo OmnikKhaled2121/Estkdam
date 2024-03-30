@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <Landing />
       <About />
-      {/* <Statistics /> */}
+      <Statistics />
       <WhatOffer />
       <EstkdamCountry />
       <EstkdamLevel title={"مراحل الإستقدام"} />

@@ -51,3 +51,19 @@ export const isAuthenticated = () => {
     }
     return JSON.parse(userToken);
 };
+
+export const StatisticsData = async () => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        const { data } = await axios.get(`${baseUrl}/statistics`);
+        Obj.data = data.data[0]
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}

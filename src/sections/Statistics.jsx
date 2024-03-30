@@ -1,8 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import axios from "axios";
+import { StatisticsData } from "../lib/api";
+
+const DummyData = [
+  {
+    id: "orders",
+    title: "أكثر من ",
+    num: "0",
+    desc: "طلب",
+  },
+  {
+    id: "contracts",
+    title: "أكثر من ",
+    num: "0",
+    desc: "عقد ناجح",
+  },
+  {
+    id: "offices",
+    title: "أكثر من ",
+    num: "0",
+    desc: "مكتب استقدام",
+  },
+  {
+    id: "nationalities",
+    title: "أكثر من ",
+    num: "0",
+    desc: "جنسيات",
+  },
+];
 
 export default function Statistics() {
+  const [Data, setData] = useState([...DummyData]);
+  async function DynamicData() {
+    let { data, status } = await StatisticsData();
+    console.log(data);
+    if (status) {
+      DummyData.map((item) => {
+        item.num = data[`${item.id}`];
+      });
+      setData([...DummyData]);
+    }
+  }
+
+  useEffect(() => {
+    DynamicData();
+  }, []);
+
   return (
     <Grid sx={{ background: "#DAEAF4" }}>
       <Container sx={{ display: "flex", justifyContent: "center" }}>
