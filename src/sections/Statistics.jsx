@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import axios from "axios";
 
-
-
-
-
 export default function Statistics() {
   return (
     <Grid sx={{ background: "#DAEAF4" }}>

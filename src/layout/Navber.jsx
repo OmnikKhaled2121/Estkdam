@@ -1,9 +1,12 @@
 import { AppBar, Box, Container, Grid } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../Context/UserContext";
 
 export default function Navber() {
+  const { currentUser } = useContext(UserContext);
+
   return (
     <Container>
       <Grid
@@ -122,16 +125,83 @@ export default function Navber() {
           xs={3}
           sx={{ display: "flex", justifyContent: "end", marginTop: "1rem" }}
         >
-          <Link to={"/Login"}>
-            <Btn bg={"white"} FontColor={"#005288"}>
-              تسجيل الدخول
-            </Btn>
-          </Link>
-          <Link to={"/Registeration"}>
-            <Btn bg={"#005288"} FontColor={"white"}>
-              انضم الان
-            </Btn>
-          </Link>
+          {currentUser ? (
+            <Grid sx={{ display: "flex", alignItems: "center" }}>
+              <Grid sx={{ marginLeft: "1rem" }}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="46"
+                    height="46"
+                    rx="23"
+                    stroke="#213039"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M24.12 25.5305C24.1 25.5305 24.07 25.5305 24.05 25.5305C24.02 25.5305 23.98 25.5305 23.95 25.5305C21.68 25.4605 19.98 23.6905 19.98 21.5105C19.98 19.2905 21.79 17.4805 24.01 17.4805C26.23 17.4805 28.04 19.2905 28.04 21.5105C28.03 23.7005 26.32 25.4605 24.15 25.5305C24.13 25.5305 24.13 25.5305 24.12 25.5305ZM24 18.9705C22.6 18.9705 21.47 20.1105 21.47 21.5005C21.47 22.8705 22.54 23.9805 23.9 24.0305C23.93 24.0205 24.03 24.0205 24.13 24.0305C25.47 23.9605 26.52 22.8605 26.53 21.5005C26.53 20.1105 25.4 18.9705 24 18.9705Z"
+                    fill="#213039"
+                  />
+                  <path
+                    d="M24 34.7503C21.31 34.7503 18.74 33.7503 16.75 31.9303C16.57 31.7703 16.49 31.5303 16.51 31.3003C16.64 30.1103 17.38 29.0003 18.61 28.1803C21.59 26.2003 26.42 26.2003 29.39 28.1803C30.62 29.0103 31.36 30.1103 31.49 31.3003C31.52 31.5403 31.43 31.7703 31.25 31.9303C29.26 33.7503 26.69 34.7503 24 34.7503ZM18.08 31.1003C19.74 32.4903 21.83 33.2503 24 33.2503C26.17 33.2503 28.26 32.4903 29.92 31.1003C29.74 30.4903 29.26 29.9003 28.55 29.4203C26.09 27.7803 21.92 27.7803 19.44 29.4203C18.73 29.9003 18.26 30.4903 18.08 31.1003Z"
+                    fill="#213039"
+                  />
+                  <path
+                    d="M24 34.75C18.07 34.75 13.25 29.93 13.25 24C13.25 18.07 18.07 13.25 24 13.25C29.93 13.25 34.75 18.07 34.75 24C34.75 29.93 29.93 34.75 24 34.75ZM24 14.75C18.9 14.75 14.75 18.9 14.75 24C14.75 29.1 18.9 33.25 24 33.25C29.1 33.25 33.25 29.1 33.25 24C33.25 18.9 29.1 14.75 24 14.75Z"
+                    fill="#213039"
+                  />
+                </svg>
+              </Grid>
+              <Grid
+                sx={{
+                  height: "90%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-around",
+                }}
+              >
+                <Box
+                  sx={{
+                    color: "#005288",
+                    fontSize: "15px",
+                    fontWeight: "400",
+                    lineHeight: "20.25px",
+                  }}
+                >
+                  مرحبا
+                </Box>
+                <Box
+                  sx={{
+                    color: "#213039",
+                    fontSize: "20px",
+                    fontWeight: "800",
+                    lineHeight: "27px",
+                  }}
+                >
+                 {currentUser.name}
+                </Box>
+              </Grid>
+            </Grid>
+          ) : (
+            <>
+              <Link to={"/Login"}>
+                <Btn bg={"white"} FontColor={"#005288"}>
+                  تسجيل الدخول
+                </Btn>
+              </Link>
+              <Link to={"/Registeration"}>
+                <Btn bg={"#005288"} FontColor={"white"}>
+                  انضم الان
+                </Btn>
+              </Link>
+            </>
+          )}
         </Grid>
       </Grid>
 
