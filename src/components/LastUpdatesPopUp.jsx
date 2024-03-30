@@ -47,6 +47,7 @@ export default function LastUpdatesPopUp() {
                 aria-describedby="alert-dialog-description"
                 fullWidth={true}
                 maxWidth="md"
+                disableScrollLock
             >
 
 
