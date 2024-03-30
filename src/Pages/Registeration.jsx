@@ -95,7 +95,7 @@ export default function Registeration() {
     }
   };
   return (
-    <LoginLayout container>
+    <SliderLayout container>
       <Grid
         component={"form"}
         onSubmit={handleSubmit(onSubmit)}
@@ -330,6 +330,6 @@ export default function Registeration() {
         </Grid>
         {/* </Link> */}
       </Grid>
-    </LoginLayout>
+    </SliderLayout>
   );
 }

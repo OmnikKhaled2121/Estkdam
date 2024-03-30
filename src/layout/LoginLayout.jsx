@@ -21,12 +21,13 @@ export default function LoginLayout({ children, img }) {
     </Grid>
   );
 }
- export function MainContent({ xs, children }) {
+export function MainContent({ xs, children }) {
   return (
     <Grid
       item
       container
-      xs={xs}
+      md={xs}
+      xs={12}
       sx={{
         height: "100%",
         display: "flex",
@@ -34,6 +35,7 @@ export default function LoginLayout({ children, img }) {
         alignContent: "space-between",
         padding: "1rem",
         boxSizing: "border-box",
+
       }}
     >
       {children}
@@ -41,10 +43,17 @@ export default function LoginLayout({ children, img }) {
       <Grid
         item
         xs={12}
+        md={12}
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "end",
+          flexDirection:{
+            xs:"column"
+          },
+          alignItems:{
+            xs:"flex-start"
+          }
         }}
       >
         <Box sx={{ width: "150px" }}>
@@ -69,7 +78,7 @@ export default function LoginLayout({ children, img }) {
 }
 
 
-function SideSlider({ xs , img }) {
+function SideSlider({ xs, img }) {
   return (
     <Grid
       item
@@ -84,6 +93,10 @@ function SideSlider({ xs , img }) {
         borderRadius: "17px",
         overflow: "hidden",
         position: "relative",
+        display: {
+          xs: "none",
+          md: "flex"
+        }
       }}
     >
       <Grid

@@ -71,7 +71,7 @@ export default function Login() {
   };
 
   return (
-    <SliderLayout container>
+    <SliderLayout container  >
       <Grid
         component={"form"}
         onSubmit={handleSubmit(onSubmit)}

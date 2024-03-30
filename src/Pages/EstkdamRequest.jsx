@@ -25,12 +25,14 @@ export default function EstkdamRequest() {
       setAllEmployee(data);
     }
   }
+
   
   async function getAll() {
     const { data, status } = await TitleSearch(profession);
     console.log("Essss", data);
-    setAllEmployee(data);
+    setAllEmployee(data); 
   }
+
 
   useEffect(() => {
     if (profession) {
@@ -69,7 +71,6 @@ export default function EstkdamRequest() {
           >
             بحث متقدم
           </Box>
-
           <Grid
             container
             sx={{
@@ -81,12 +82,17 @@ export default function EstkdamRequest() {
             <Grid
               item
               md={8}
-              xs={10.5}
+              xs={12}
               sx={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "start",
                 marginBottom: "2rem",
+
+                flexWrap:{
+                  xs:"wrap"
+                },
+
               }}
             >
               <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
@@ -137,7 +143,7 @@ export default function EstkdamRequest() {
                 allEmployee.map((employee, index) => {
                   return (
                     <>
-                      <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+                      <Grid item xs={11} md={3.94} sx={{ boxSizing: "border-box" }}>
                         <EmpCard key={index} employee={employee} />
                       </Grid>
                     </>
