@@ -24,7 +24,7 @@ export default function EstkdamRequest() {
       setAllEmployee(data);
     }
   }
-  
+
   useEffect(() => {
     getAllEmployee();
   }, []);
@@ -57,7 +57,6 @@ export default function EstkdamRequest() {
           >
             بحث متقدم
           </Box>
-
           <Grid
             container
             sx={{
@@ -75,7 +74,6 @@ export default function EstkdamRequest() {
                 flexDirection: "row",
                 justifyContent: "start",
                 marginBottom: "2rem",
-
               }}
             >
               <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
@@ -91,9 +89,15 @@ export default function EstkdamRequest() {
               item
               xs={10}
               md={3}
-              sx={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}
-            >    <FilterBtn /> </Grid>
-
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "0.5rem",
+              }}
+            >
+              {" "}
+              <FilterBtn />{" "}
+            </Grid>
 
             <Box
               sx={{
@@ -103,7 +107,7 @@ export default function EstkdamRequest() {
                 lineHeight: "35.71px",
                 color: "#005288",
                 paddingBottom: "2rem",
-                paddingTop:"1rem"
+                paddingTop: "1rem",
               }}
             >
               جميع النتائج
@@ -140,7 +144,8 @@ export default function EstkdamRequest() {
                   </Grid>
                 </>
               )}
-        
+            </Grid>
+          </Grid>
         </Grid>
       </Container>
     </Grid>

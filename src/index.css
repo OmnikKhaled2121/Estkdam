@@ -33,3 +33,11 @@ input[type="button"] {
     transform: translate(0%, 10%);
   }
 }
+@keyframes mymove2 {
+  from {
+    top: translate(0%, -1000%);
+  }
+  to {
+    transform: translate(0%, 80%);
+  }
+}
