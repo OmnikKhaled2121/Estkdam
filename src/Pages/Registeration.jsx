@@ -26,9 +26,6 @@ import { UserContext } from "../Context/UserContext";
 import { Register } from "../lib/api";
 
 export default function Registeration() {
-  let navigate = useNavigate();
-  let [errormessage, seterrormessage] = useState("");
-
   const [isLoading, setisLoading] = useState(false);
   const { checkLoggedIn } = useContext(UserContext);
 

@@ -1,27 +1,35 @@
-import { Box, Container, Grid } from '@mui/material'
-import React from 'react'
-import bg from '../assets/background3.png'
-import StartingSction from '../components/StartingSction'
-import ColorfulTitles from '../components/ColorfulTitles'
-import EmpCard from '../components/EmpCard'
-import FilterBtn from '../components/FilterBtn'
-import DropDownFilter from '../components/DropDownFilter'
-import  TodayIcon  from '@mui/icons-material/Today';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import  LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
-import  StarOutlineIcon  from '@mui/icons-material/StarOutline';
-
+import { Box, CircularProgress, Container, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import bg from "../assets/background3.png";
+import StartingSction from "../components/StartingSction";
+import ColorfulTitles from "../components/ColorfulTitles";
+import EmpCard from "../components/EmpCard";
+import FilterBtn from "../components/FilterBtn";
+import DropDownFilter from "../components/DropDownFilter";
+import TodayIcon from "@mui/icons-material/Today";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import { ListOfEmployee } from "../lib/api";
 
 export default function KafalaTransfer() {
+  const [allEmployee, setAllEmployee] = useState([]);
+
+  useEffect(() => {
+    ListOfEmployee({ setAllEmployee });
+  }, []);
   return (
     <Grid>
-      <Container >
+      <Container>
         <Grid container>
-          <StartingSction bg={bg}
-            title={'نقل الكفالة'}
-            Searchplaceholder={'هل تبحث عن إستقدام معين؟'}
-            SearchKeys={['مديره منزل', 'مساعد شخصي', 'ربه منزل', 'سائق خاص']}
-            desc={'نساعدك من خلال منصة المصدر الدولب للإستقدام فى نقل الكفالة من شخص إلى أخر خلال مدة قصيرة وسرعة ودقة عالية لإتمام المهمة'}
+          <StartingSction
+            bg={bg}
+            title={"نقل الكفالة"}
+            Searchplaceholder={"هل تبحث عن إستقدام معين؟"}
+            SearchKeys={["مديره منزل", "مساعد شخصي", "ربه منزل", "سائق خاص"]}
+            desc={
+              "نساعدك من خلال منصة المصدر الدولب للإستقدام فى نقل الكفالة من شخص إلى أخر خلال مدة قصيرة وسرعة ودقة عالية لإتمام المهمة"
+            }
           />
           {/* <ColorfulTitles /> */}
 
@@ -34,12 +42,11 @@ export default function KafalaTransfer() {
               textAlign: "right",
               color: "#005288",
               paddingBottom: "2rem",
-              marginTop:"2rem"
+              marginTop: "2rem",
             }}
           >
             بحث متقدم
           </Box>
-
 
           <Grid
             container
@@ -56,22 +63,26 @@ export default function KafalaTransfer() {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "start",
-                marginBottom: "2rem"
+                marginBottom: "2rem",
               }}
             >
               <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
               <DropDownFilter type={"المهنه"} icon={<WorkOutlineIcon />} />
-              <DropDownFilter type={"الجنسية"} icon={<LanguageOutlinedIcon />} />
+              <DropDownFilter
+                type={"الجنسية"}
+                icon={<LanguageOutlinedIcon />}
+              />
               <DropDownFilter type={"الخبره"} icon={<StarOutlineIcon />} />
-
             </Grid>
 
             <Grid
               item
               xs={3}
               sx={{ display: "flex", justifyContent: "space-between" }}
-            >    <FilterBtn /> </Grid>
-
+            >
+              {" "}
+              <FilterBtn />{" "}
+            </Grid>
 
             <Box
               sx={{
@@ -93,40 +104,34 @@ export default function KafalaTransfer() {
                 gap: ".5rem",
               }}
             >
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
-              <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
-                <EmpCard />
-              </Grid>
+              {allEmployee.length > 0 ? (
+                allEmployee.map((employee, index) => {
+                  return (
+                    <>
+                      <Grid item xs={3.94} sx={{ boxSizing: "border-box" }}>
+                        <EmpCard key={index} employee={employee} />
+                      </Grid>
+                    </>
+                  );
+                })
+              ) : (
+                <>
+                  <Grid
+                    container
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <CircularProgress size={"2.5rem"} />
+                  </Grid>
+                </>
+              )}
             </Grid>
-
           </Grid>
-
-
         </Grid>
       </Container>
     </Grid>
-  )
+  );
 }

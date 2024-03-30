@@ -44,6 +44,113 @@ export const Register = async (user) => {
     }
     return Obj
 };
+
+export const CreateContact = async (data) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        const formData = new FormData();
+        formData.append("full_name", data.FullName);
+        formData.append("email", data.Email);
+        formData.append("phone", data.Phone);
+        formData.append("message", data.Message);
+        formData.append("file", data.File);
+
+        let { data } = await axios.post(`${baseUrl}/contacts`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+
+};
+
+export const ListOfEmployee = async ({ setAllEmployee }) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+
+        let { data } = await axios.get(`${baseUrl}/employees`);
+        console.log("dat3333a", data.data)
+        setAllEmployee(data.data)
+        Obj.data = data.data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+
+}
+
+
+export const GetEmployeeByID = async ({ setEmployee, id }) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+
+        let { data } = await axios.get(`${baseUrl}/employees/${id}`);
+        console.log("dat3333a", data)
+        setEmployee(data)
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
+
+export const UpdateEmployee = async () => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+
+        let { data } = await axios.put(`${baseUrl}/employees/${1}`, {
+            "name": "Jane Doe Updated",
+            "summary": "Senior Developer",
+            "nationality_id": 2,
+            "profession": "Lead Software Engineer",
+            "age": 32,
+            "social_status_id": 2,
+            "kids_number": 3,
+            "salary": 80000,
+            "date_of_born": "1988-01-01",
+            "height": 175,
+            "weight": 70,
+            "experience_years": 2
+        }, {
+            headers: {
+                authorization: `Bearer 60|woNSk38fDxvNec6qw46Z4pnoyDlNrMdcd9Cg4nYC725206d6`,
+                Accept: "application/json",
+
+            },
+
+        });
+        console.log("dat3333a", data)
+        // setEmployee(data)
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
 export const isAuthenticated = () => {
     const userToken = localStorage.getItem('USER');
     if (!userToken) {
@@ -51,3 +158,4 @@ export const isAuthenticated = () => {
     }
     return JSON.parse(userToken);
 };
+

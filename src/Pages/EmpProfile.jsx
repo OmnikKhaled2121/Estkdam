@@ -1,21 +1,52 @@
-import { Box, Container, Grid } from "@mui/material";
+import { Box, CircularProgress, Container, Grid } from "@mui/material";
 import proPic from "../assets/proPic.jfif";
 import FlagPlihipin from "../assets/FlagPlihipin.png";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EmpCard from "../components/EmpCard";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { GetEmployeeByID } from "../lib/api";
 
 export default function EmpProfile() {
+  const [employee, setEmployee] = useState("");
+  let { id } = useParams();
+
+  useEffect(() => {
+    GetEmployeeByID({ setEmployee, id });
+  }, []);
   return (
     <Container sx={{ "& > div:not(:last-child)": { marginBottom: "3rem" } }}>
-      <Landing name={"أليس ديكسون"} proPic={proPic} Information={[]} />
-      <AdditionalInfo />
-      <Recommendation recommendations={[1, 2, 3]} />
+      {employee ? (
+        <>
+          <Landing
+            employee={employee}
+            name={"أليس ديكسون"}
+            proPic={proPic}
+            Information={[]}
+          />
+          <AdditionalInfo />
+        </>
+      ) : (
+        <>
+          <Grid
+            container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+              height: "100vh",
+            }}
+          >
+            <CircularProgress size={"2.5rem"} />
+          </Grid>
+        </>
+      )}
+
+      {/* <Recommendation recommendations={[1, 2, 3]} /> */}
     </Container>
   );
 }
 
-function Landing({ name, proPic, Information }) {
+function Landing({ name, proPic, Information, employee }) {
   return (
     <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
       <Grid item xs={3}>
@@ -25,6 +56,9 @@ function Landing({ name, proPic, Information }) {
             height: "100%",
             borderRadius: "26px",
             overflow: "hidden",
+            // backgroundImage: `url(${
+            //   employee?.image ? employee?.image : proPic
+            // })`,
             backgroundImage: `url(${proPic})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -49,7 +83,7 @@ function Landing({ name, proPic, Information }) {
             lineHeight: "71.42px",
           }}
         >
-          {name}
+          {employee?.name}
         </Box>
         <Box
           sx={{
@@ -92,7 +126,7 @@ function Landing({ name, proPic, Information }) {
             "& > div:not(:last-child)": { marginBottom: "1rem" },
           }}
         >
-          <Info type={"المهنة"} info={"عاملة منزل"}>
+          <Info type={"المهنة"} info={employee?.profession}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -114,7 +148,12 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info type={"الجنسية"} info={"الفلبين"} infoImg={FlagPlihipin}>
+
+          <Info
+            type={"الجنسية"}
+            info={employee?.nationality?.name}
+            infoImg={employee?.nationality?.image}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -130,7 +169,7 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info type={"العمر"} info={"25 عام"}>
+          <Info type={"الطول"} info={<>{employee?.height} سم</>}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -160,7 +199,7 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info type={"العمر"} info={"25 عام"}>
+          <Info type={"تاريخ الميلاد"} info={employee.date_of_born}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -190,7 +229,7 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info type={"العمر"} info={"25 عام"}>
+          <Info type={"الوزن"} info={<>{employee?.weight} كجم</>}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -220,7 +259,7 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info type={"العمر"} info={"25 عام"}>
+          <Info type={"محل الميلاد"} info={employee?.nationality?.name}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -250,7 +289,10 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info type={"العمر"} info={"25 عام"}>
+          <Info
+            type={"الحالة الإجتماعية"}
+            info={employee?.social_status?.status}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -280,7 +322,7 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info type={"الحالة الاجتماعية"} info={"متزوج"}>
+          <Info type={"عدد الأطفال"} info={<>{employee?.kids_number} طفل</>}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -302,7 +344,18 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info type={"عدد الاطفال"} info={"1 طفل"}>
+          <Info
+            type={"الراتب"}
+            info={
+              <>
+                {employee?.salary}
+                <span style={{ fontWeight: "700", marginRight: ".5rem" }}>
+                  ر.س /
+                </span>{" "}
+                شهر
+              </>
+            }
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -328,18 +381,7 @@ function Landing({ name, proPic, Information }) {
               />
             </svg>
           </Info>
-          <Info
-            type={"الراتب"}
-            info={
-              <>
-                2000{" "}
-                <span style={{ fontWeight: "700", marginRight: ".5rem" }}>
-                  ر.س /
-                </span>{" "}
-                شهر
-              </>
-            }
-          >
+          <Info type={"اللغات"} info={employee?.nationality?.name}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -363,7 +405,7 @@ function Landing({ name, proPic, Information }) {
           </Info>
         </Grid>
         <Box sx={{ display: "flex", paddingBottom: "0 " }}>
-          <Link to={'/CompleteOrder'}>
+          <Link to={"/CompleteOrder"}>
             <Box
               sx={{
                 padding: "15px 22px",
