@@ -3,7 +3,7 @@ import React from "react";
 import ImgAhmed from "../assets/jj.png";
 import { Link } from "react-router-dom";
 
-export default function EmpCard() {
+export default function EmpCard({ employee }) {
   return (
     <Grid
       sx={{
@@ -18,7 +18,6 @@ export default function EmpCard() {
       }}
     >
       <Grid sx={{ display: "flex" }}>
-
         <Box
           item
           sx={{
@@ -26,7 +25,9 @@ export default function EmpCard() {
             height: "65px",
             borderRadius: "8px",
             overflow: "hidden",
-            backgroundImage: `url(${ImgAhmed})`,
+            backgroundImage: `url(${
+              employee?.image_url ? employee?.image_url : ImgAhmed
+            })`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -49,7 +50,7 @@ export default function EmpCard() {
               lineHeight: "24px",
             }}
           >
-            احمد محمد
+            {employee?.name}
           </Box>
           <Box
             sx={{
@@ -58,7 +59,7 @@ export default function EmpCard() {
               lineHeight: "18px",
             }}
           >
-            سائق خاص
+            {employee?.profession}
           </Box>
           <Box
             sx={{
@@ -70,7 +71,7 @@ export default function EmpCard() {
             }}
           >
             <span>
-              <svg
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
                 height="15"
@@ -100,9 +101,15 @@ export default function EmpCard() {
                     <rect width="15" height="15" fill="white" />
                   </clipPath>
                 </defs>
-              </svg>
+              </svg> */}
+              <img
+                style={{ width: "1.5rem", height: "1.5rem" }}
+                src={employee?.nationality.image}
+              />
             </span>
-            <span style={{ margin: " 0 .5rem 0 0" }}>جمهورية مصر العربية</span>
+            <span style={{ margin: " 0 .5rem 0 0", fontSize: "13px" }}>
+              {employee?.nationality.name}
+            </span>
           </Box>
         </Box>
       </Grid>
@@ -155,9 +162,10 @@ export default function EmpCard() {
             </Box>
             المهنة :
             <span style={{ fontWeight: "400", paddingRight: ".5rem" }}>
-              سائق خاص
+              {employee?.profession}
             </span>
           </Grid>
+
           <Grid
             item
             xs={6.5}
@@ -196,7 +204,7 @@ export default function EmpCard() {
             </Box>
             الحالة الاجتماعية :
             <span style={{ fontWeight: "400", paddingRight: ".5rem" }}>
-              اعزب
+              {employee?.social_status.status}
             </span>
           </Grid>
           <Grid
@@ -229,7 +237,7 @@ export default function EmpCard() {
             </Box>
             الخبرة :
             <span style={{ fontWeight: "400", paddingRight: ".5rem" }}>
-              3 سنوات{" "}
+              {employee?.experience_years} سنوات
             </span>
           </Grid>
           <Grid
@@ -270,13 +278,13 @@ export default function EmpCard() {
             </Box>
             الراتب :
             <span style={{ fontWeight: "400", paddingRight: ".5rem" }}>
-              +2000 ريال سعودي
+              {employee?.salary} ريال سعودي
             </span>
           </Grid>
         </Grid>
       </Grid>
 
-      <Link to={'/empProfile'}>
+      <Link to={`/empProfile/${employee?.id}`}>
         <Grid
           xs={12}
           sx={{
@@ -303,7 +311,6 @@ export default function EmpCard() {
           تفاصيل أكثر
         </Grid>
       </Link>
-
     </Grid>
   );
 }
