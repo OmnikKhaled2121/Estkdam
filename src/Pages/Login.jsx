@@ -69,7 +69,7 @@ export default function Login() {
     setisLoading(false);
   };
   return (
-    <SliderLayout container>
+    <SliderLayout container  >
       <Grid
         component={"form"}
         onSubmit={handleSubmit(onSubmit)}

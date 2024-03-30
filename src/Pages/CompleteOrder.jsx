@@ -132,14 +132,20 @@ function EmpCard({ name, proPic, Information }) {
           boxShadow: "0px 0px 20px 6px #26282A26",
           padding: ".5rem",
           borderRadius: "20px",
-          marginBottom: ".5rem",
+          marginBottom: "1rem",
         }}
       >
-        <Grid item xs={2}>
+        <Grid item md={2} xs={12}>
           <Box
             sx={{
-              width: "100%",
-              height: "100%",
+              width: {
+                md: "100%",
+                xs: "100px"
+              },
+              height: {
+                md: "100%",
+                xs: "100px"
+              },
               borderRadius: "15px",
               overflow: "hidden",
               backgroundImage: `url(${proPic})`,
@@ -150,7 +156,8 @@ function EmpCard({ name, proPic, Information }) {
         </Grid>
         <Grid
           item
-          xs={9.8}
+          md={9.8}
+          xs={12}
           sx={{
             padding: ".5rem 0rem",
             boxSizing: "border-box",
@@ -224,9 +231,15 @@ function EmpCard({ name, proPic, Information }) {
             <Grid
               item
               xs={12}
-              sx={{ display: "flex", justifyContent: "space-between" }}
+              md={12}
+              sx={{
+                display: "flex", justifyContent: "space-between",
+                flexDirection: {
+                  xs: "column"
+                }
+              }}
             >
-              <Info xs={3} type={"العمر"} info={"25 عام"}>
+              <Info md={3} xs={12} type={"العمر"} info={"25 عام"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -256,7 +269,7 @@ function EmpCard({ name, proPic, Information }) {
                   />
                 </svg>
               </Info>
-              <Info xs={4} type={"الحالة الاجتماعية"} info={"متزوج"}>
+              <Info md={4} xs={12} type={"الحالة الاجتماعية"} info={"متزوج"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -278,7 +291,7 @@ function EmpCard({ name, proPic, Information }) {
                   />
                 </svg>
               </Info>
-              <Info xs={4} type={"عدد الاطفال"} info={"1 طفل"}>
+              <Info md={4} xs={12} type={"عدد الاطفال"} info={"1 طفل"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -341,11 +354,20 @@ function EmpCard({ name, proPic, Information }) {
           </Grid>
         </Grid>
       </Grid>
-      <Box sx={{ display: "flex", paddingBottom: "0 " }}>
+      <Box sx={{
+        display: "flex", paddingBottom: "0 ",
+        flexDirection: {
+          xs: "column",
+          md: "row"
+        }
+      }}>
         <Link to={'/OrderReview'}>
 
           <Box
             sx={{
+              textAlign: {
+                xs: "center"
+              },
               padding: "15px 22px",
               borderRadius: "10px",
               background: "#005288",
@@ -355,6 +377,11 @@ function EmpCard({ name, proPic, Information }) {
               fontWeight: "500",
               lineHeight: " 22.32px",
               border: "2px solid #005288",
+
+              marginBottom: {
+                xs: "1rem",
+                md: "0rem"
+              },
               "&:hover": {
                 color: "#005288",
                 background: "white",
@@ -364,10 +391,15 @@ function EmpCard({ name, proPic, Information }) {
             المتابعة وتأكيد الطلب
           </Box>
         </Link>
+
+
         <Box
           sx={{
             padding: "15px 22px",
             borderRadius: "10px",
+            textAlign: {
+              xs: "center"
+            },
             color: "#005288",
             border: "2px solid#005288",
             background: "white",
@@ -375,7 +407,10 @@ function EmpCard({ name, proPic, Information }) {
             fontSize: "20px",
             fontWeight: "500",
             lineHeight: " 22.32px",
-            marginRight: "1rem",
+            marginRight: {
+              xs: "0rem",
+              md: "1rem"
+            },
             "&:hover": {
               background: "#005288",
               color: "white",

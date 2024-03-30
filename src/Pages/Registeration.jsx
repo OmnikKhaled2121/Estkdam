@@ -1,5 +1,4 @@
 import React, {  useState } from "react";
-import LoginLayout from "../layout/LoginLayout";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
@@ -21,6 +20,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FormInput from "../components/FormInput";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import SliderLayout from "../layout/SliderLayout";
 
 
 export default function Registeration() {
@@ -79,7 +79,7 @@ export default function Registeration() {
     console.log("object",inputs)
    };
   return (
-    <LoginLayout container>
+    <SliderLayout container>
       <Grid
         item
         container
@@ -287,6 +287,6 @@ export default function Registeration() {
           </Grid>
         </Link>
       </Grid>
-    </LoginLayout>
+    </SliderLayout>
   );
 }
