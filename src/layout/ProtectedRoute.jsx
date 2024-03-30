@@ -3,7 +3,7 @@ import { UserContext } from "../Context/UserContext";
 import { Navigate } from "react-router";
 import { isAuthenticated } from "../lib/api";
 
-export default function ProtectedRoute({ children }) {
+export default function ProtectedRoute({ children, to }) {
   const { accessToken, checkLoggedIn } = useContext(UserContext);
 
   if (accessToken) {
@@ -12,6 +12,6 @@ export default function ProtectedRoute({ children }) {
   } else {
     console.log("token not");
     localStorage.removeItem("userToken");
-    return <Navigate to={"/Login"} replace />;
+    return <Navigate to={to ? to : "/Login"} replace />;
   }
 }
