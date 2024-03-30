@@ -24,7 +24,7 @@ export default function Trackorders() {
             <Box sx={{
               display: "flex",
               alignItems: "center",
-              marginBottom:"1rem"
+              marginBottom: "1rem"
             }}>
               <Box
                 sx={{
@@ -53,8 +53,8 @@ export default function Trackorders() {
               <Box sx={{
                 marginRight: "0.5rem",
                 color: "#000000",
-                fontWeight:700,
-                fontSize:"15px"
+                fontWeight: 700,
+                fontSize: "15px"
               }}>الصفحة الشخصية </Box>
             </Box>
           </Link>
@@ -105,24 +105,27 @@ export default function Trackorders() {
   );
 }
 
-function ButtonTrack({ title, backColor }) {
+function ButtonTrack({ title, backColor, direct }) {
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "43.5px",
-          border: "1.5px  solid",
-          borderRadius: "8px",
-          color: backColor ? "white" : "#005288",
-          bgcolor: backColor ? backColor : "white",
-          cursor: "pointer",
-        }}
-      >
-        {title}
-      </Box>
+      <Link to={direct}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "43.5px",
+            border: "1.5px  solid",
+            borderRadius: "8px",
+            color: backColor ? "white" : "#005288",
+            bgcolor: backColor ? backColor : "white",
+            cursor: "pointer",
+            marginBottom: "1rem"
+          }}
+        >
+          {title}
+        </Box>
+      </Link>
     </>
   );
 }
@@ -145,9 +148,9 @@ function CardTrack({ bgcolor }) {
           "& > div:not(:last-child)": { marginBottom: ".5rem" },
         }}
       >
-        <ButtonTrack title="التواصل مع خدمة العملاء" />
-        <ButtonTrack title="هل تواجه مشكلة مع الطلب؟" />
-        <ButtonTrack title="إلغاء الطلب" backColor={bgcolor} />
+        <ButtonTrack title="التواصل مع خدمة العملاء" direct={'/ContactUs'} />
+        <ButtonTrack title="هل تواجه مشكلة مع الطلب؟" direct={'/ContactUs'} />
+        <ButtonTrack title="إلغاء الطلب" backColor={bgcolor} direct={'/'} />
       </Grid>
     </>
   );

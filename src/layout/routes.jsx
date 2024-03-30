@@ -87,10 +87,7 @@ export default function Routers() {
     },
     {
       path: "CompleteOrder",
-      element: <CompleteOrder />,
       element: currentUser ? <Navigate to="/CompleteOrder" replace /> : <LoginOrderCompletetion />,
-
-
     },
     {
       path: "OrderReview",
