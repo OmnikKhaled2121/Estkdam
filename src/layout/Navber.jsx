@@ -138,7 +138,7 @@ export default function Navber() {
         <Grid
           item
           xs={3}
-          sx={{ display: "flex", justifyContent: "end", marginTop: "1rem" }}
+          sx={{ display: "flex", justifyContent: "end", marginTop: "1rem" ,zIndex:"1000"}}
         >
           {currentUser ? (
             <>
@@ -618,6 +618,7 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
         fontSize: "16px",
         fontWeight: "400",
         color: "#213039",
+        zIndex:"1000"
       }}
     >
       <Grid
@@ -654,7 +655,7 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
       </Grid>
 
       {currentUser ? (
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <Link
             to={`/Profile`}
             onClick={() => {
@@ -665,7 +666,7 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
               الصفحة الشخصية
             </Btn>
           </Link>
-          <Grid
+          <Grid 
             onClick={() => {
               LogOut();
               handleNavToggle();
