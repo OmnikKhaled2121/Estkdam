@@ -47,12 +47,12 @@ export function MainContent({ xs, children }) {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "end",
           flexDirection:{
             xs:"column"
           },
           alignItems:{
-            xs:"flex-start"
+            xs:"flex-start",
+            md:"end"
           }
         }}
       >
@@ -86,7 +86,6 @@ function SideSlider({ xs, img }) {
       xs={xs}
       sx={{
         height: "100%",
-        display: "flex",
         justifyContent: "center",
         alignItems: "center",
         background: "#0C3E5F",
