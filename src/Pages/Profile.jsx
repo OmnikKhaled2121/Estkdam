@@ -39,7 +39,7 @@ export default function Profile() {
             display: "flex",
             alignContent: "space-between",
             "& > div": {
-              minHeight: "48.5%",
+              minHeight: {xs:"auto",md:"48.5%"},
               borderRadius: "15px",
               padding: "1.5em",
               boxSizing: "border-box",
