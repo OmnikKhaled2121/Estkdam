@@ -26,6 +26,7 @@ import EditProfilePopUp from "../components/EditProfilePopUp";
 import CardsSlider from "../components/CardsSlider";
 import { UserContext } from "../Context/UserContext";
 import ProtectedRoute from "./ProtectedRoute";
+import NotFound from "../components/NotFound";
 
 export default function Routers() {
   const { currentUser } = useContext(UserContext);
@@ -58,6 +59,7 @@ export default function Routers() {
         },
         { path: "EditProfilePopUp", element: <EditProfilePopUp /> },
         { path: "CardsSlider", element: <CardsSlider /> },
+        { path: "*", element: <NotFound/> },
       ],
     },
 
@@ -99,6 +101,7 @@ export default function Routers() {
       path: "OrderReview",
       element: <OrderReview />,
     },
+   
   ]);
 
   return routers;
