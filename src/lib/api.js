@@ -33,6 +33,7 @@ export const Register = async (user) => {
         let { data } = await axios.post(`${baseUrl}/register`, {
             "name": user.FName,
             "email": user.Email,
+            "phone": user.Phone,
             "password": user.Password,
             "password_confirmation": user.CPassword
         });
@@ -90,7 +91,21 @@ export const ListOfEmployee = async () => {
     return Obj
 
 }
-
+export const UpdateProfile = async (input) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/employees`);
+        Obj.data = data.data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
 export const TitleSearch = async (profession) => {
     let Obj = {
         data: "",

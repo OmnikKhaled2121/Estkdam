@@ -278,7 +278,7 @@ export default function EmpCard({ employee }) {
             </Box>
             الراتب :
             <span style={{ fontWeight: "400", paddingRight: ".5rem" }}>
-              {employee?.salary} ريال سعودي
+              {Math.round(employee?.salary)} ريال سعودي
             </span>
           </Grid>
         </Grid>
