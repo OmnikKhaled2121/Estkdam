@@ -8,7 +8,7 @@ const DummyData = [
     id: "orders",
     title: "أكثر من ",
     num: "0",
-    desc: "طلب",
+    desc: "طلبات",
   },
   {
     id: "contracts",
@@ -26,7 +26,7 @@ const DummyData = [
     id: "nationalities",
     title: "أكثر من ",
     num: "0",
-    desc: "جنسيات",
+    desc: "جنسية",
   },
 ];
 

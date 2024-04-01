@@ -41,6 +41,12 @@ export default function Landing() {
             justifyContent: { xs: "center", md: "space-between" },
             position: "relative",
             padding: "1rem 0",
+            flexBasis:{
+              xs:"140%"
+            },
+            maxWidth:{
+              xs:"150%"
+            }
           }}
         >
           <Grid
@@ -170,7 +176,7 @@ export default function Landing() {
               </Box>
             </Grid>
           </Grid>
-          <LandingImages xs={11} md={6} />
+          <LandingImages xs={12} md={6} />
         </Grid>
       </Container>
     </Grid>
@@ -183,7 +189,7 @@ function LandingImages({ xs, md }) {
       overflow: "hidden",
       width: "100%",
       // width: { xs: "50px", md: "181px" },
-      height: { xs: "390px", md: H },
+      height: { xs: "440px", md: H },
       borderRadius: "98.5px",
       border: "5px solid #213039",
       borderTop: "0",

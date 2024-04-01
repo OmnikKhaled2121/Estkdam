@@ -54,9 +54,16 @@ export default function About() {
           <Box
             sx={{
               fontFamily: "Almarai",
-              fontSize: "64px",
+              fontSize: {
+                md: "64px",
+                xs: "36px"
+              },
               fontWeight: "800",
-              lineHeight: "71px",
+              lineHeight: {
+                md: "71px",
+                xs:"40.18px"
+              }
+             ,
               letterSpacing: "0em",
               color: "#005288",
               position: "relative",
@@ -71,7 +78,10 @@ export default function About() {
               position: "relative",
               zIndex: "2",
               fontFamily: "Almarai",
-              fontSize: "20px",
+              fontSize: {
+                md: "20px",
+                xs: "16px"
+              },
               fontWeight: "400",
               lineHeight: "30px",
               letterSpacing: "0em",

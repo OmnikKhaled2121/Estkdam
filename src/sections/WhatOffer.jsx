@@ -59,7 +59,14 @@ export default function WhatOffer() {
           xs={12}
           sx={{
             fontFamily: "Almarai",
-            fontSize: "48px",
+            fontSize: {
+              md: "48px",
+              xs: "36px"
+            },
+            lineHeight: {
+              md: "53.57px",
+              xs:"40.18px"
+            },
             fontWeight: "700",
             padding: "2rem 0",
             boxSizing: "border-box",
@@ -104,7 +111,14 @@ function TableData({ title, img, desc }) {
           <Grid xs={9}>
             <Box
               sx={{
-                fontSize: "24px",
+                fontSize: {
+                  md: "24px",
+                  xs: "20px"
+                },
+                lineHeight: {
+                  md: "24px",
+                  xs:"24px"
+                },
                 fontWeight: "700",
                 padding: "0 0.5rem",
               }}
@@ -114,7 +128,14 @@ function TableData({ title, img, desc }) {
             </Box>
             <Box
               sx={{
-                fontSize: "16px",
+                fontSize: {
+                  md: "16px",
+                  xs: "16px"
+                },
+                lineHeight: {
+                  md: "24px",
+                  xs:"24px"
+                },
                 fontWeight: "400",
                 padding: "0 0.5rem",
               }}
