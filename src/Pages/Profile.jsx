@@ -1,10 +1,11 @@
 import { Container, Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import ProfileBg from "../assets/settingProfile.jfif";
 import OrderInfo from "../components/TrackCard";
 import { Link } from "react-router-dom";
 import LastUpdatesPopUp from "../components/LastUpdatesPopUp";
+import { UserContext } from "../Context/UserContext";
 
 const profileData = [
   ["البريد الإلكتروني", "mohamed.ahmed.abdg453@gmail.com"],
@@ -12,6 +13,8 @@ const profileData = [
   [" الموقع", "جدة، المملكة العربية السعودية"],
 ];
 export default function Profile() {
+  const { currentUser } = useContext(UserContext);
+
   return (
     <Container>
       <Box
@@ -29,7 +32,7 @@ export default function Profile() {
         container
         sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}
       >
-        <ProfileInfo item   md={3.6} xs={12} img={ProfileBg} />
+        <ProfileInfo item md={3.6} xs={12} img={ProfileBg} currentUser={currentUser} />
         <Grid
           item
           container
@@ -39,7 +42,7 @@ export default function Profile() {
             display: "flex",
             alignContent: "space-between",
             "& > div": {
-              minHeight: {xs:"auto",md:"48.5%"},
+              minHeight: { xs: "auto", md: "48.5%" },
               borderRadius: "15px",
               padding: "1.5em",
               boxSizing: "border-box",
@@ -47,14 +50,14 @@ export default function Profile() {
             },
           }}
         >
-          <Latest item  md={12} xs={12} />
-          <Orders item  md={12} xs={12} />
+          <Latest item md={12} xs={12} />
+          <Orders item md={12} xs={12} />
         </Grid>
       </Grid>
     </Container>
   );
 }
-export function ProfileInfo({ item, xs, img,md }) {
+export function ProfileInfo({ item, xs, img, md, currentUser }) {
   return (
     <Grid
       item
@@ -65,7 +68,7 @@ export function ProfileInfo({ item, xs, img,md }) {
         padding: "1rem",
         boxSizing: "border-box",
         boxShadow: "0px 0px 20px 6px #26282A26",
-        marginBottom:"1rem"
+        marginBottom: "1rem"
       }}
     >
       <Grid
@@ -82,7 +85,7 @@ export function ProfileInfo({ item, xs, img,md }) {
           sx={{
             width: "222px",
             height: "222px",
-            backgroundImage: `url(${img})`,
+            backgroundImage: `url(${currentUser.image ? currentUser.image : img})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             borderRadius: "50%",
@@ -135,7 +138,7 @@ export function ProfileInfo({ item, xs, img,md }) {
             padding: "1rem 0",
           }}
         >
-          أحمد محمد عبد المجيد
+          {currentUser.business_name}
         </Box>
         <Box
           sx={{
@@ -159,14 +162,23 @@ export function ProfileInfo({ item, xs, img,md }) {
           },
         }}
       >
-        {profileData.map((item, index) => {
-          return <InfoItem property={item[0]} value={item[1]} key={index} />;
-        })}
+        <Grid>
+          <Box sx={{ color: "#878787", padding: "1rem 0 0 0" }}>البريد الإلكتروني</Box>
+          <Box padding={"1rem 0"}>{currentUser.email}</Box>
+        </Grid>
+        <Grid>
+          <Box sx={{ color: "#878787", padding: "1rem 0 0 0" }}>رقم الجوال  </Box>
+          <Box padding={"1rem 0"}>{currentUser.phone}</Box>
+        </Grid>
+        <Grid>
+          <Box sx={{ color: "#878787", padding: "1rem 0 0 0" }}> الموقع </Box>
+          <Box padding={"1rem 0"}>{currentUser.location ? currentUser.location : "غير متوفر "}</Box>
+        </Grid>
       </Grid>
       <Link to={'/ProfileSettings'}>
         <Box
           sx={{
-            cursor:"pointer",
+            cursor: "pointer",
             marginTop: "3rem",
             fontWeight: "700",
             lineHeight: "24px",
@@ -201,7 +213,7 @@ function InfoItem({ property, value }) {
   );
 }
 
-function Orders(item, xs,md) {
+function Orders(item, xs, md) {
   return (
     <Grid
       item
@@ -239,7 +251,7 @@ function Orders(item, xs,md) {
               lineHeight: "16.2px",
               textAlign: "left",
               color: "#005288",
-              cursor:"pointer"
+              cursor: "pointer"
             }}
           >
             شاهد الكل
@@ -255,7 +267,7 @@ function Orders(item, xs,md) {
     </Grid>
   );
 }
-function Latest({ item, xs ,md}) {
+function Latest({ item, xs, md }) {
   return (
     <Grid
       item
@@ -264,7 +276,7 @@ function Latest({ item, xs ,md}) {
       md={md}
       sx={{
         boxSizing: "border-box",
-        marginBottom:"1rem",
+        marginBottom: "1rem",
         "& > div:not(:last-child)": {
           marginBottom: "0rem",
         },
@@ -274,8 +286,10 @@ function Latest({ item, xs ,md}) {
         item
         xs={12}
         md={12}
-        sx={{ display: "flex", justifyContent: "space-between",
-      marginBottom:'0.5rem' }}
+        sx={{
+          display: "flex", justifyContent: "space-between",
+          marginBottom: '0.5rem'
+        }}
       >
 
         <Box
@@ -300,7 +314,7 @@ function Latest({ item, xs ,md}) {
   );
 }
 
- export function LatestItem() {
+export function LatestItem() {
   return (
     <Grid
       container
@@ -310,12 +324,12 @@ function Latest({ item, xs ,md}) {
         item
         sx={{
           width: {
-            xs:"25px",
-            md:"50px",
+            xs: "25px",
+            md: "50px",
           },
           height: {
-            xs:"25px",
-            md:"50px",
+            xs: "25px",
+            md: "50px",
           },
           borderRadius: "5px",
           background: "#005288",
@@ -352,8 +366,8 @@ function Latest({ item, xs ,md}) {
         md={9.8}
         xs={10}
         sx={{
-          fontSize:{
-            xs:"12px",
+          fontSize: {
+            xs: "12px",
             md: "14px",
           },
           fontWeight: "700",

@@ -48,7 +48,8 @@ export function MainContent({ xs, children }) {
           display: "flex",
           justifyContent: "space-between",
           flexDirection:{
-            xs:"column"
+            xs:"column",
+            md:"row"
           },
           alignItems:{
             xs:"flex-start",

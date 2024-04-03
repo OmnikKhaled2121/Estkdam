@@ -213,7 +213,7 @@ export default function Navber() {
                       lineHeight: "27px",
                     }}
                   >
-                    {currentUser.name}
+                    {currentUser.business_name}
                   </Box>
                 </Grid>
                 <LogOutProfilePC currentUser={currentUser} LogOut={LogOut} />
