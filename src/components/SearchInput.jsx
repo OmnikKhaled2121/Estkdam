@@ -14,6 +14,7 @@ export default function SearchInput({
 }) {
   const [profession, setProfession] = useState("");
   let navigate = useNavigate();
+  
   async function getAll(input) {
     const { data, status } = await TitleSearch(input);
     console.log("Essss", data);

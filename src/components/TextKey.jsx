@@ -1,7 +1,9 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function TextKey({ texts, white }) {
+  let navigate = useNavigate();
   console.log(texts);
   return (
     <>
@@ -43,6 +45,12 @@ export default function TextKey({ texts, white }) {
                     alignItems: "center",
                     marginLeft: ".5rem",
                     boxSizing: "border-box",
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                  onClick={() => {
+                    navigate(`/EstkdamRequest/${item}`);
                   }}
                 >
                   {item}

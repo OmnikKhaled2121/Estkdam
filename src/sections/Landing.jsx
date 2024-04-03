@@ -17,8 +17,10 @@ import { Link } from "react-scroll";
 
 import SearchInput from "../components/SearchInput";
 import TextKey from "../components/TextKey";
+import { TitleSearch } from "../lib/api";
 
 export default function Landing() {
+
   const [profession, setProfession] = useState("");
   return (
     <Grid
@@ -41,12 +43,12 @@ export default function Landing() {
             justifyContent: { xs: "center", md: "space-between" },
             position: "relative",
             padding: "1rem 0",
-            flexBasis:{
-              xs:"140%"
+            flexBasis: {
+              xs: "140%",
             },
-            maxWidth:{
-              xs:"150%"
-            }
+            maxWidth: {
+              xs: "150%",
+            },
           }}
         >
           <Grid

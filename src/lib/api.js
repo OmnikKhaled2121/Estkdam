@@ -91,6 +91,7 @@ export const ListOfEmployee = async () => {
     return Obj
 
 }
+
 export const UpdateProfile = async (input) => {
     let Obj = {
         data: "",
@@ -106,6 +107,7 @@ export const UpdateProfile = async (input) => {
     }
     return Obj
 }
+
 export const TitleSearch = async (profession) => {
     let Obj = {
         data: "",
@@ -119,6 +121,40 @@ export const TitleSearch = async (profession) => {
         });
 
         Obj.data = data.data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
+
+export const GetAllProfessions = async () => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/professions`);
+
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
+ 
+export const GetAllNationalities = async () => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/nationalities`);
+
+        Obj.data = data
         Obj.status = true
     } catch (error) {
         Obj.data = ""
