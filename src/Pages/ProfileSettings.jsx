@@ -1,19 +1,21 @@
 import { Container, Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import settingProfile from "../assets/settingProfile.jfif";
 import EditProfilePopUp from "../components/EditProfilePopUp";
 import { Link } from "react-router-dom";
-
-const profileData = [
-  ["صورة المستخدم", settingProfile],
-  ["اسم المستخدم", "أحمد محمد عبد المجيد"],
-  ["البريد الإلكتروني", "mohamed.ahmed.abdg453@gmail.com"],
-  ["رقم الجوال", "mohamed.ahmed.abdg453@gmail.com"],
-  [" الموقع", "جدة، المملكة العربية السعودية"],
-];
+import { UserContext } from "../Context/UserContext";
 
 export default function ProfileSettings() {
+  const { currentUser } = useContext(UserContext);
+  const profileData = [
+
+    ["صورة المستخدم", currentUser.image ? currentUser.image: settingProfile],
+    ["اسم المستخدم", currentUser.business_name ? currentUser.business_name:"غيرمتوفر"],
+    ["البريد الإلكتروني", currentUser.email?currentUser.email:"غير متوفر"],
+    ["رقم الجوال", currentUser.phone?currentUser.phone:"غير متوفر "],
+    [" الموقع", currentUser.loaction?currentUser.loaction:"غير متوفر"],
+  ];
   const [open, setOpen] = useState(false);
   const [property, setproperty] = useState("");
   const [value, setvalue] = useState("");
@@ -118,7 +120,7 @@ function Field({ property, value, handlePopupOpen }) {
         color: "#878787",
       }}
     >
-      <Grid item  md={3} xs={12}>
+      <Grid item md={3} xs={12}>
         {property}
       </Grid>
       <Grid item md={3} xs={12} color={"#000"}>

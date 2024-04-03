@@ -98,7 +98,10 @@ export default function Footer() {
                   <IconTab iconTab={linkedin} />
                   <IconTab iconTab={pins} />
                 </Grid>
-                <Box sx={{ fontSize: "20px", color: "#005288" }}>
+                <Box sx={{
+                  fontSize: "20px", color: "#005288",
+                  fontWeight: "700"
+                }}>
                   منصة المصدر الدولي للإستقدام
                 </Box>
                 <Box
@@ -116,7 +119,7 @@ export default function Footer() {
                     <Link
                       to={"/"}
                       style={{
-                        color: "#005288",
+                        color: "#213039",
                       }}
                     >
                       الرئيسية
@@ -126,7 +129,7 @@ export default function Footer() {
                     <Link
                       to={"/EstkdamRequest"}
                       style={{
-                        color: "#005288",
+                        color: "#213039",
                       }}
                     >
                       طلب الإستقدام
@@ -136,7 +139,7 @@ export default function Footer() {
                     <Link
                       to={"/KafalaTransfer"}
                       style={{
-                        color: "#005288",
+                        color: "#213039",
                       }}
                     >
                       نقل كفالة
@@ -146,7 +149,7 @@ export default function Footer() {
                     <Link
                       to={"/ContactUs"}
                       style={{
-                        color: "#005288",
+                        color: "#213039",
                       }}
                     >
                       تواصل معنا

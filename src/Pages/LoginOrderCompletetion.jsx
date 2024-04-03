@@ -24,6 +24,7 @@ import { CacheProvider } from "@emotion/react";
 import SocialLogos from "../components/SocialLogos";
 import { LoginApi } from "../lib/api";
 import { UserContext } from "../Context/UserContext";
+import { Link } from "react-router-dom";
 
 export default function LoginOrderCompletetion() {
   const cacheRtl = createCache({
@@ -66,7 +67,7 @@ export default function LoginOrderCompletetion() {
       );
       checkLoggedIn();
     } else {
-      
+
       setError(
         "Email",
         { type: "focus", message: data },
@@ -293,6 +294,7 @@ export default function LoginOrderCompletetion() {
             fontWeight: "400",
             fontSize: "14px",
             lineHeight: "15.62px",
+            marginTop:"1rem"
           }}
         >
           <Box
@@ -303,14 +305,16 @@ export default function LoginOrderCompletetion() {
           >
             لا تملك حساب على منصةالمصدر الدولى للإستقدام؟
           </Box>
-          <Box
-            sx={{
-              color: "#005288",
-              fontWeight: "700",
-            }}
-          >
-            إنشاء حساب
-          </Box>
+          <Link to={'/Registeration'} >
+            <Box
+              sx={{
+                color: "#005288",
+                fontWeight: "700",
+                cursor:"pointer"
+              }}
+            >
+              إنشاء حساب
+            </Box></Link>
         </Grid>
       </Grid>
       <Grid

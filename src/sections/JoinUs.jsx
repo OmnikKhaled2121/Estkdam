@@ -16,7 +16,7 @@ export default function JoinUs() {
       >
         <Grid
           item
-          xs={10}
+          xs={9}
           md={12}
           container
           sx={{

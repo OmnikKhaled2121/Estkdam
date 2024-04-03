@@ -14,6 +14,10 @@ export default function Sponsers() {
           <Grid
             container
             sx={{
+              flexDirection:{
+                xs:"column-reverse",
+                md:"row"
+              },
               display: "flex",
               justifyContent: "center",
               padding: "1rem 0",

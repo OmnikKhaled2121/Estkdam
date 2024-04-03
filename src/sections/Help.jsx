@@ -43,6 +43,7 @@ export default function Help({ title, img }) {
               letterSpacing: "0em",
               textAlign: "justified",
               marginBottom: "2rem",
+              color: "#213039",
             }}
           >
             يمكنك التواصل معنا والإتصال بنا عبر الهاتف أو مراستلنا عبر البريد
@@ -60,7 +61,7 @@ export default function Help({ title, img }) {
             <Box sx={{ marginLeft: "1rem" }}>
               <img src={callLogo} style={{ width: "24px", height: "24px" }} />
             </Box>
-            <Box>+9660503394283</Box>
+            <Box>+966 53 454 4333</Box>
           </Box>
 
           <Box
@@ -74,7 +75,7 @@ export default function Help({ title, img }) {
             <Box sx={{ marginLeft: "1rem" }}>
               <img src={smsLogo} style={{ width: "24px", height: "24px" }} />
             </Box>
-            <Box>email@gmail.com</Box>
+            <Box>Info@selsela.tech</Box>
           </Box>
 
           <Box
@@ -91,7 +92,7 @@ export default function Help({ title, img }) {
                 style={{ width: "24px", height: "24px" }}
               />
             </Box>
-            <Box>(أضف العنوان)</Box>
+            <Box>المملكه العربيه السعوديه ,الرياض</Box>
           </Box>
           <Button
             href="tel:+9660503394283"

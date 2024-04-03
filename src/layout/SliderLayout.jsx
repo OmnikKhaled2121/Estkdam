@@ -34,7 +34,6 @@ function SliderBody({ xs, img }) {
                 xs={xs}
                 sx={{
                     height: "100%",
-                    display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     background: "#0C3E5F",

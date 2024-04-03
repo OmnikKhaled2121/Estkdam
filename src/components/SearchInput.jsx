@@ -14,13 +14,14 @@ export default function SearchInput({
 }) {
   const [profession, setProfession] = useState("");
   let navigate = useNavigate();
+
   async function getAll(input) {
     const { data, status } = await TitleSearch(input);
     console.log("Essss", data);
     setAllEmployee(data);
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   return (
     <Box
       md={8}
@@ -36,8 +37,8 @@ export default function SearchInput({
         background: isFooter
           ? "#DAEAF4"
           : whiteTheme
-          ? "rgba(255, 255, 255, 0.35)"
-          : "white",
+            ? "rgba(255, 255, 255, 0.35)"
+            : "white",
         overflow: "hidden",
         color: isFooter ? "#DAEAF4" : whiteTheme ? "white" : "black",
         display: "flex",
@@ -98,6 +99,14 @@ export default function SearchInput({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          cursor:"pointer"
+        }}
+        onClick={() => {
+          if (to) {
+            navigate(`/EstkdamRequest/${profession}`);
+          } else {
+            getAll(profession);
+          }
         }}
       >
         <ArrowBackIcon />

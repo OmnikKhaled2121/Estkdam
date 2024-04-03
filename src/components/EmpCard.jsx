@@ -104,11 +104,11 @@ export default function EmpCard({ employee }) {
               </svg> */}
               <img
                 style={{ width: "1.5rem", height: "1.5rem" }}
-                src={employee?.nationality.image}
+                src={employee?.nationality?.image}
               />
             </span>
             <span style={{ margin: " 0 .5rem 0 0", fontSize: "13px" }}>
-              {employee?.nationality.name}
+              {employee?.nationality?.name}
             </span>
           </Box>
         </Box>
@@ -204,7 +204,7 @@ export default function EmpCard({ employee }) {
             </Box>
             الحالة الاجتماعية :
             <span style={{ fontWeight: "400", paddingRight: ".5rem" }}>
-              {employee?.social_status.status}
+              {employee?.social_status?.status}
             </span>
           </Grid>
           <Grid
@@ -278,7 +278,7 @@ export default function EmpCard({ employee }) {
             </Box>
             الراتب :
             <span style={{ fontWeight: "400", paddingRight: ".5rem" }}>
-              {employee?.salary} ريال سعودي
+              {Math.round(employee?.salary)} ريال سعودي
             </span>
           </Grid>
         </Grid>

@@ -58,6 +58,14 @@ export default function Registeration() {
         "string.empty": "يرجى إدخال عنوان بريد إلكتروني .",
         "string.email": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
       }),
+    Phone: Joi.string()
+      .regex(/^01[0125][0-9]{8}$/)
+      .required()
+      .messages({
+        "string.empty": "يرجى إدخال رقم هاتف.",
+        "string.pattern.base":
+          "الرقم غير صحيح، يجب أن يتكون من 11 رقم ويبدأ بـ 01.",
+      }),
     Password: Joi.string().required().min(8).messages({
       "string.empty": "يرجى إدخال كلمة المرور.",
       "string.min": "يجب أن يتكون الاسم من ما لا يقل عن 8 أحرف.",
@@ -95,6 +103,7 @@ export default function Registeration() {
       );
     }
   };
+
   return (
     <SliderLayout container>
       <Grid
@@ -194,6 +203,15 @@ export default function Registeration() {
             type="Email"
             label="البريد الالكتروني"
           />
+          <FormInput
+            xs={10}
+            register={register}
+            errors={errors}
+            ele="Phone"
+            type="text"
+            label="رقم الجوال"
+          />
+
           <Grid item xs={10}>
             <CacheProvider value={cacheRtl}>
               <FormControl

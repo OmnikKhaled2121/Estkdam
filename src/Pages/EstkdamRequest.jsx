@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Container, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import bg1 from "../assets/Background1.png";
 import StartingSction from "../components/StartingSction";
 import ColorfulTitles from "../components/ColorfulTitles";
@@ -18,6 +18,8 @@ import { useParams } from "react-router-dom";
 export default function EstkdamRequest() {
   const [isLoading, setisLoading] = useState(false);
   const [allEmployee, setAllEmployee] = useState([]);
+  const [isClear, setIsClear] = useState(false);
+  const request = useRef(null);
   let { profession } = useParams();
   async function getAllEmployee() {
     const { data, status } = await ListOfEmployee();
@@ -26,13 +28,11 @@ export default function EstkdamRequest() {
     }
   }
 
-  
   async function getAll() {
     const { data, status } = await TitleSearch(profession);
     console.log("Essss", data);
-    setAllEmployee(data); 
+    setAllEmployee(data);
   }
-
 
   useEffect(() => {
     if (profession) {
@@ -40,7 +40,7 @@ export default function EstkdamRequest() {
     } else {
       getAllEmployee();
     }
-  }, []);
+  }, [profession]);
   return (
     <Grid>
       <Container>
@@ -89,19 +89,43 @@ export default function EstkdamRequest() {
                 justifyContent: "start",
                 marginBottom: "2rem",
 
-                flexWrap:{
-                  xs:"wrap"
+                flexWrap: {
+                  xs: "wrap",
                 },
-
               }}
             >
-              <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
-              <DropDownFilter type={"المهنه"} icon={<WorkOutlineIcon />} />
+              <DropDownFilter
+                type={"العمر"}
+                icon={<TodayIcon />}
+                setAllEmployee={setAllEmployee}
+                request={request}
+                isClear={isClear}
+                setIsClear={setIsClear}
+              />
+              <DropDownFilter
+                type={"المهنه"}
+                icon={<WorkOutlineIcon />}
+                setAllEmployee={setAllEmployee}
+                request={request}
+                isClear={isClear}
+                setIsClear={setIsClear}
+              />
               <DropDownFilter
                 type={"الجنسية"}
                 icon={<LanguageOutlinedIcon />}
+                setAllEmployee={setAllEmployee}
+                request={request}
+                isClear={isClear}
+                setIsClear={setIsClear}
               />
-              <DropDownFilter type={"الخبره"} icon={<StarOutlineIcon />} />
+              <DropDownFilter
+                type={"الخبره"}
+                icon={<StarOutlineIcon />}
+                setAllEmployee={setAllEmployee}
+                request={request}
+                isClear={isClear}
+                setIsClear={setIsClear}
+              />
             </Grid>
 
             <Grid
@@ -114,8 +138,11 @@ export default function EstkdamRequest() {
                 marginBottom: "0.5rem",
               }}
             >
-              {" "}
-              <FilterBtn />{" "}
+              <FilterBtn
+                request={request}
+                setAllEmployee={setAllEmployee}
+                setIsClear={setIsClear}
+              />
             </Grid>
 
             <Box
@@ -143,7 +170,12 @@ export default function EstkdamRequest() {
                 allEmployee.map((employee, index) => {
                   return (
                     <>
-                      <Grid item xs={11} md={3.94} sx={{ boxSizing: "border-box" }}>
+                      <Grid
+                        item
+                        xs={11}
+                        md={3.94}
+                        sx={{ boxSizing: "border-box" }}
+                      >
                         <EmpCard key={index} employee={employee} />
                       </Grid>
                     </>

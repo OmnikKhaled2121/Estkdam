@@ -57,7 +57,7 @@ export default function Login() {
     if (status) {
       localStorage.setItem(
         "USER",
-        JSON.stringify({ accessToken: data.access_token, userData: data.user })
+        JSON.stringify({ accessToken: data.access_token, userData: data.manager })
       );
       checkLoggedIn();
     } else {
