@@ -15,9 +15,10 @@ export default function DropDownFilter({
   request,
   isClear,
   setIsClear,
+  initial,
 }) {
   const [flag, setFlag] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(initial);
   const [professions, setProfessions] = useState({});
   const [nationalities, setNationalities] = useState({});
 
@@ -31,13 +32,12 @@ export default function DropDownFilter({
   const dropDownData = handleDataDropDown(type, nationalities, professions);
   useEffect(() => {
     fetchData();
-
     if (isClear) {
-      console.log("isClear", isClear);
       setValue("");
       setIsClear(false);
     }
   }, [isClear]);
+
   return (
     <>
       <Grid
