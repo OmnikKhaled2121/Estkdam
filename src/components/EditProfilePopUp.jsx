@@ -140,7 +140,6 @@ export default function EditProfilePopUp({
                   setError={setError}
                   setValue={setValue}
                 />
-                {/* <UploadFile xs={12} /> */}
               </Grid>
             </Grid>
           ) : (
