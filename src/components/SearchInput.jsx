@@ -60,7 +60,7 @@ export default function SearchInput({
           }}
         >
           <Link
-            to={`/EstkdamRequest${
+            to={`/${to}${
               profession ? "?profession=" + profession : ""
             }`}
           >
@@ -90,7 +90,7 @@ export default function SearchInput({
         placeholder={`${isFooter ? "اكتب بريدك الإلكترونى" : text}`}
       />
       <Link
-        to={`/EstkdamRequest${profession ? "?profession=" + profession : ""}`}
+        to={`/${to}${profession ? "?profession=" + profession : ""}`}
       >
         <Grid
           sx={{

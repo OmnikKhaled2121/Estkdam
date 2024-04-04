@@ -664,6 +664,7 @@ export const ageDropDown = {
     age_max: 30,
   },
   3: {
+    id: "40-30",
     label: "40-30 عام",
     age_min: 30,
     age_max: 40,
@@ -684,26 +685,31 @@ export const ageDropDown = {
 
 export const experienceDropDown = {
   1: {
+    id: "1-0",
     label: "اقل من سنة",
     min_experience_years: 0,
     max_experience_years: 1,
   },
   2: {
+    id: "5-1",
     label: "5-1 سنوات",
     min_experience_years: 1,
     max_experience_years: 5,
   },
   3: {
+    id: "10-5",
     label: "10-5 سنوات",
     min_experience_years: 5,
     max_experience_years: 10,
   },
   4: {
+    id: "15-10",
     label: "15-10 سنة",
     min_experience_years: 10,
     max_experience_years: 15,
   },
   5: {
+    id: "15-100",
     label: "أكثر من 15 سنة",
     min_experience_years: 15,
     max_experience_years: 100,

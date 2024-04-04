@@ -97,7 +97,7 @@ export default function EstkdamRequest() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
-                initial={""}
+                initial={searchParams.get("age")}
               />
               <DropDownFilter
                 type={"المهنه"}

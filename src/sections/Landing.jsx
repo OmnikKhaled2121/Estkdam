@@ -128,7 +128,7 @@ export default function Landing() {
             >
               <SearchInput
                 isFooter={false}
-                to
+                to="EstkdamRequest"
                 text={"ابحث عن الإستقدام الذى تريده"}
               />
             </Grid>

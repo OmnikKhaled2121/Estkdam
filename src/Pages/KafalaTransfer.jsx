@@ -10,34 +10,34 @@ import TodayIcon from "@mui/icons-material/Today";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import { ListOfEmployee, TitleSearch } from "../lib/api";
-import { useParams } from "react-router-dom";
+import { ListOfEmployee, SearchEmployee, TitleSearch } from "../lib/api";
+import { useParams, useSearchParams } from "react-router-dom";
 
 export default function KafalaTransfer() {
   const [allEmployee, setAllEmployee] = useState([]);
   const [isClear, setIsClear] = useState(false);
-  const request = useRef(null);
-  let { profession } = useParams();
-  async function getAllEmployee() {
-    const { data, status } = await ListOfEmployee();
-    if (status) {
-      setAllEmployee(data);
-    }
-  }
 
-  async function getAll() {
-    const { data, status } = await TitleSearch(profession);
-    console.log("Essss", data);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const request = useRef({
+    profession: searchParams.get("profession"),
+    nationality: searchParams.get("nationality"),
+    age_min: searchParams.get("age")?.split("-")[1],
+    age_max: searchParams.get("age")?.split("-")[0],
+    min_experience_years: searchParams.get("experience")?.split("-")[1],
+    max_experience_years: searchParams.get("experience")?.split("-")[0],
+  });
+
+  async function getAllEmployee(request) {
+    console.log("getAllEmployee2");
+    const { data, status } = await SearchEmployee(request);
     setAllEmployee(data);
   }
 
   useEffect(() => {
-    if (profession) {
-      getAll();
-    } else {
-      getAllEmployee();
-    }
-  }, [profession]);
+    request.current.profession = searchParams.get("profession");
+    getAllEmployee(request.current);
+  }, [searchParams.get("profession")]);
   return (
     <Grid>
       <Container>
@@ -99,6 +99,7 @@ export default function KafalaTransfer() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
+                initial={""}
               />
               <DropDownFilter
                 type={"المهنه"}
@@ -107,7 +108,9 @@ export default function KafalaTransfer() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
+                initial={searchParams.get("profession")}
               />
+
               <DropDownFilter
                 type={"الجنسية"}
                 icon={<LanguageOutlinedIcon />}
@@ -115,7 +118,9 @@ export default function KafalaTransfer() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
+                initial={searchParams.get("nationality")}
               />
+              
               <DropDownFilter
                 type={"الخبره"}
                 icon={<StarOutlineIcon />}
@@ -123,6 +128,7 @@ export default function KafalaTransfer() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
+                initial={searchParams.get("experience")}
               />
             </Grid>
 

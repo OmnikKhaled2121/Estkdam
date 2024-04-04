@@ -3,8 +3,6 @@ import { GetAllNationalities, GetAllProfessions } from "../lib/api";
 export function handleRequestDropDown(type, item, setValue, currentRequest) {
   let request = { ...currentRequest.current }; // Spread currentRequest to avoid mutation
   setValue && setValue(item.label);
-  console.log("Iteeem", item);
-  console.log("nationality", item.nationality);
   switch (type) {
     case "العمر":
     case "age":
@@ -70,4 +68,22 @@ export async function handleNationalitiesDropDown() {
     });
   }
   return nationality;
+}
+
+export function handleInitial({ type, initial }) {
+  // let value ="";
+  console.log();
+  if (type == "العمر" && initial) {
+    return (initial += " عام");
+  }
+
+  if (type == "الخبره" && initial) {
+    if (initial == "1-0") {
+      return (initial = "أقل من سنة");
+    } else {
+      return (initial += " سنوات");
+    }
+  }
+
+  return initial;
 }

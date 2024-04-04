@@ -87,6 +87,7 @@ export default function StartingSction({
             isFooter={false}
             text={Searchplaceholder}
             setAllEmployee={setAllEmployee}
+            to={to}
           />
           <TextKey white texts={SearchKeys} to={to}></TextKey>
 
