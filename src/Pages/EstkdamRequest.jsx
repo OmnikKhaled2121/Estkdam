@@ -34,8 +34,8 @@ export default function EstkdamRequest() {
   }
 
   useEffect(() => {
+    request.current.profession = searchParams.get("profession");
     getAllEmployee(request.current);
-    console.log("A77", searchParams.get("profession"));
   }, [searchParams.get("profession")]);
 
   return (
