@@ -128,6 +128,7 @@ export default function Landing() {
             </Grid>
             <TextKey
               texts={["مديره منزل", "مساعد شخصي", "ربه منزل", "سائق خاص"]}
+              to="EstkdamRequest"
             ></TextKey>
             <Link to="searchEstkam" smooth={true} duration={500}>
               <Box

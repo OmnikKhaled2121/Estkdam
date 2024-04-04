@@ -1,9 +1,17 @@
 import { Box, Container, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import pplLogo from "../assets/profile-2user.png";
 import arrowLogo from "../assets/arrow-left.png";
 import arrowLogos from "../assets/arrow-lefts.png";
 import { Link } from "react-router-dom";
+import { ageDropDown, experienceDropDown } from "../Data";
+
+import {
+  handleNationalitiesDropDown,
+  handleProfessionDropDown,
+  handleRequestDropDown,
+} from "../Utils/DropDownHelper";
+
 export default function SearchEstkdam() {
   return (
     <Grid
@@ -90,13 +98,40 @@ export default function SearchEstkdam() {
 }
 
 function Search() {
+  // const [professions, setProfessions] = useState({});
+  // const [nationalities, setNationalities] = useState({});
+
+  const fetchData = async () => {
+    const professions = await handleProfessionDropDown();
+    const nationalities = await handleNationalitiesDropDown();
+    // setProfessions(professions);
+    // setNationalities(nationalities);
+    setoptionsData([
+      { id: "job", data: professions },
+      { id: "age", data: ageDropDown },
+      { id: "expre", data: experienceDropDown },
+      { id: "nat", data: nationalities },
+    ]);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  /*
+
+{
+    "age_min": 18,
+    "age_max": 21,
+    "profession": "Backend Developer",
+    "nationality": "أنتيجوا وبربودا",
+    "min_experience_years": 15,
+    "max_experience_years": 100
+}
+
+*/
   const [searchStatus, setsearchStatus] = useState("Start");
-  const [optionsData, setoptionsData] = useState([
-    { id: "job", data: ["job1", "job2", "job3", "job4", "job5"] },
-    { id: "age", data: ["1", "2", "3", "4", "5"] },
-    { id: "expre", data: ["expre1", "expre2", "expre3", "expre4", "expre5"] },
-    { id: "nat", data: ["nat1", "nat2", "nat3", "nat4", "nat5"] },
-  ]);
+  const [optionsData, setoptionsData] = useState([]);
+  console.log("optionsData", optionsData);
+  // handleRequestDropDown()
   const [searchInputs, setsearchInputs] = useState({
     job: "",
     age: "",
@@ -241,24 +276,46 @@ function Options({
   searchInputs,
   setsearchInputs,
 }) {
-  const [currData, setcurrData] = useState(OptionsData);
+  console.log("searchInputs", searchInputs);
+  // const [currData, setcurrData] = useState();
+  const currData = useRef(OptionsData);
+  const request = useRef(null);
+
   const [activeOption, setactiveOption] = useState({
     id: selectOption,
     value: searchInputs[`${selectOption}`],
   });
+  /*
+  
+   "age_min": 18,
+    "age_max": 21,
+    "profession": "Backend Developer",
+    "nationality": "أنتيجوا وبربودا",
+    "min_experience_years": 15,
+    "max_experience_years": 100
+}
+  */
+
   const handleOptionClick = (value) => {
-    console.log("change searchInputs");
-    setactiveOption({ id: selectOption, value });
+    setactiveOption({ id: selectOption, value: value.label });
     setsearchInputs((prev) => {
-      prev[`${selectOption}`] = value;
-      console.log("prev", prev);
+      prev[`${selectOption}`] = value.label;
       return { ...prev };
     });
+    request.current = handleRequestDropDown(
+      selectOption,
+      value,
+      false,
+      request
+    );
+    console.log(request);
   };
 
   useEffect(() => {
-    console.log("a7a2", currData);
-  }, [currData]);
+    // setcurrData(OptionsData);
+    currData.current = OptionsData;
+    // console.log("a7a2", currData);
+  }, [OptionsData]);
 
   return (
     <>
@@ -295,20 +352,25 @@ function Options({
                 },
               }}
             >
-              {currData.map((option) => {
+              {currData.current.map((option) => {
+                // console.log("option id", option.id);
+                // console.log("selectOption", selectOption);
                 if (option.id == selectOption) {
-                  console.log("option", option);
-                  return option.data.map((item, index) => {
+                  // console.log("option", option);
+
+                  return Object.keys(option.data).map((item, index) => {
+                    const feildV = option.data[item];
+                    // console.log("feildV", feildV);
                     return (
                       <Option
-                        value={item}
+                        value={feildV.label}
                         key={index}
                         active={
                           activeOption?.id == selectOption &&
-                          activeOption?.value == item
+                          activeOption?.value == feildV.label
                         }
                         onClick={() => {
-                          handleOptionClick(item);
+                          handleOptionClick(feildV);
                         }}
                       />
                     );
@@ -403,6 +465,9 @@ function Options({
               "&:hover": {
                 cursor: "pointer",
               },
+            }}
+            onClick={() => {
+              console.log("request Final", request.current);
             }}
           >
             ابدأ الإستقدام الأن

@@ -2,7 +2,7 @@ import { Box, Grid } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function TextKey({ texts, white }) {
+export default function TextKey({ texts, white, to }) {
   let navigate = useNavigate();
   console.log(texts);
   return (
@@ -50,7 +50,7 @@ export default function TextKey({ texts, white }) {
                     },
                   }}
                   onClick={() => {
-                    navigate(`/EstkdamRequest/${item}`);
+                    navigate(`/${to}/${item}`);
                   }}
                 >
                   {item}

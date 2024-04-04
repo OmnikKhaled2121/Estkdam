@@ -41,6 +41,7 @@ export default function Routers() {
         { path: "EstkdamRequest/:profession", element: <EstkdamRequest /> },
         { path: "EstkdamOffices", element: <EstkdamOffices /> },
         { path: "KafalaTransfer", element: <KafalaTransfer /> },
+        { path: "KafalaTransfer/:profession", element: <KafalaTransfer /> },
         { path: "CommonQuestions", element: <CommonQuestions /> },
         { path: "EstkdamPolices", element: <EstkdamPolices /> },
         { path: "EstkdamJourney", element: <EstkdamJourney /> },

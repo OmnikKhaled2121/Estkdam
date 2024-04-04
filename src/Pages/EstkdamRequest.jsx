@@ -47,6 +47,7 @@ export default function EstkdamRequest() {
         <Grid container sx={{ alignItems: "center" }}>
           <StartingSction
             bg={bg1}
+            to="EstkdamRequest"
             title={"طلب الإستقدام"}
             Searchplaceholder={"هل تبحث عن إستقدام معين؟"}
             SearchKeys={["مديره منزل", "مساعد شخصي", "ربه منزل", "سائق خاص"]}

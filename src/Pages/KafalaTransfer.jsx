@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Container, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import bg from "../assets/background3.png";
 import StartingSction from "../components/StartingSction";
 import ColorfulTitles from "../components/ColorfulTitles";
@@ -10,11 +10,14 @@ import TodayIcon from "@mui/icons-material/Today";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import { ListOfEmployee } from "../lib/api";
+import { ListOfEmployee, TitleSearch } from "../lib/api";
+import { useParams } from "react-router-dom";
 
 export default function KafalaTransfer() {
   const [allEmployee, setAllEmployee] = useState([]);
-
+  const [isClear, setIsClear] = useState(false);
+  const request = useRef(null);
+  let { profession } = useParams();
   async function getAllEmployee() {
     const { data, status } = await ListOfEmployee();
     if (status) {
@@ -22,15 +25,26 @@ export default function KafalaTransfer() {
     }
   }
 
+  async function getAll() {
+    const { data, status } = await TitleSearch(profession);
+    console.log("Essss", data);
+    setAllEmployee(data);
+  }
+
   useEffect(() => {
-    getAllEmployee();
-  }, []);
+    if (profession) {
+      getAll();
+    } else {
+      getAllEmployee();
+    }
+  }, [profession]);
   return (
     <Grid>
       <Container>
         <Grid container>
           <StartingSction
             bg={bg}
+            to="KafalaTransfer"
             title={"نقل الكفالة"}
             Searchplaceholder={"هل تبحث عن إستقدام معين؟"}
             SearchKeys={["مديره منزل", "مساعد شخصي", "ربه منزل", "سائق خاص"]}
@@ -74,17 +88,42 @@ export default function KafalaTransfer() {
                 justifyContent: "start",
                 marginBottom: "2rem",
                 flexWrap: {
-                  xs: "wrap"
+                  xs: "wrap",
                 },
               }}
             >
-              <DropDownFilter type={"العمر"} icon={<TodayIcon />} />
-              <DropDownFilter type={"المهنه"} icon={<WorkOutlineIcon />} />
+              <DropDownFilter
+                type={"العمر"}
+                icon={<TodayIcon />}
+                setAllEmployee={setAllEmployee}
+                request={request}
+                isClear={isClear}
+                setIsClear={setIsClear}
+              />
+              <DropDownFilter
+                type={"المهنه"}
+                icon={<WorkOutlineIcon />}
+                setAllEmployee={setAllEmployee}
+                request={request}
+                isClear={isClear}
+                setIsClear={setIsClear}
+              />
               <DropDownFilter
                 type={"الجنسية"}
                 icon={<LanguageOutlinedIcon />}
+                setAllEmployee={setAllEmployee}
+                request={request}
+                isClear={isClear}
+                setIsClear={setIsClear}
               />
-              <DropDownFilter type={"الخبره"} icon={<StarOutlineIcon />} />
+              <DropDownFilter
+                type={"الخبره"}
+                icon={<StarOutlineIcon />}
+                setAllEmployee={setAllEmployee}
+                request={request}
+                isClear={isClear}
+                setIsClear={setIsClear}
+              />
             </Grid>
 
             <Grid
@@ -93,8 +132,11 @@ export default function KafalaTransfer() {
               md={3}
               sx={{ display: "flex", justifyContent: "space-between" }}
             >
-              {" "}
-              <FilterBtn />{" "}
+              <FilterBtn
+                request={request}
+                setAllEmployee={setAllEmployee}
+                setIsClear={setIsClear}
+              />
             </Grid>
 
             <Box
@@ -107,7 +149,6 @@ export default function KafalaTransfer() {
                 paddingBottom: "2rem",
 
                 paddingTop: "1rem",
-
               }}
             >
               جميع النتائج
@@ -124,7 +165,12 @@ export default function KafalaTransfer() {
                 allEmployee.map((employee, index) => {
                   return (
                     <>
-                      <Grid item xs={11} md={3.94} sx={{ boxSizing: "border-box" }}>
+                      <Grid
+                        item
+                        xs={11}
+                        md={3.94}
+                        sx={{ boxSizing: "border-box" }}
+                      >
                         <EmpCard key={index} employee={employee} />
                       </Grid>
                     </>
