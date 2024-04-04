@@ -12,6 +12,7 @@ export default function StartingSction({
   Searchplaceholder,
   SearchKeys,
   setAllEmployee,
+  to
 }) {
   return (
     <>
@@ -87,7 +88,7 @@ export default function StartingSction({
             text={Searchplaceholder}
             setAllEmployee={setAllEmployee}
           />
-          <TextKey white texts={SearchKeys}></TextKey>
+          <TextKey white texts={SearchKeys} to={to}></TextKey>
 
           <Link to={"/ContactUs"}>
             <Box

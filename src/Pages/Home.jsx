@@ -14,18 +14,18 @@ import boyLogo from "../assets/Rectangle1137.png";
 export default function Home() {
   return (
     <>
-      {/* <Landing />
+      <Landing />
       <About />
       <Statistics />
       <WhatOffer />
       <EstkdamCountry />
       <EstkdamLevel title={"مراحل الإستقدام"} />
       <Sponsers />
-      <div id="searchEstkam"> */}
+      <div id="searchEstkam">
         <SearchEstkdam />
-      {/* </div>
+      </div>
       <JoinUs />
-      <Help title={"تحتاج إلى مساعدة؟"} img={boyLogo} /> */}
+      <Help title={"تحتاج إلى مساعدة؟"} img={boyLogo} />
     </>
   );
 }
