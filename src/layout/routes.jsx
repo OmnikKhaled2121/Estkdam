@@ -38,7 +38,6 @@ export default function Routers() {
       children: [
         { index: true, element: <Home /> },
         { path: "EstkdamRequest", element: <EstkdamRequest /> },
-        { path: "EstkdamRequest/:profession", element: <EstkdamRequest /> },
         { path: "EstkdamOffices", element: <EstkdamOffices /> },
         { path: "KafalaTransfer", element: <KafalaTransfer /> },
         { path: "KafalaTransfer/:profession", element: <KafalaTransfer /> },
@@ -60,13 +59,17 @@ export default function Routers() {
         },
         { path: "EditProfilePopUp", element: <EditProfilePopUp /> },
         { path: "CardsSlider", element: <CardsSlider /> },
-        { path: "*", element: <NotFound/> },
+        { path: "*", element: <NotFound /> },
       ],
     },
 
     {
-      path: "LoginOrderCompletetion",     
-      element: currentUser ? <Navigate to="/CompleteOrder" replace /> : <LoginOrderCompletetion />,
+      path: "LoginOrderCompletetion",
+      element: currentUser ? (
+        <Navigate to="/CompleteOrder" replace />
+      ) : (
+        <LoginOrderCompletetion />
+      ),
     },
     {
       path: "Login",
@@ -93,16 +96,14 @@ export default function Routers() {
 
       element: (
         <ProtectedRoute to={"/LoginOrderCompletetion"}>
-         <CompleteOrder />
+          <CompleteOrder />
         </ProtectedRoute>
       ),
-
     },
     {
       path: "OrderReview",
       element: <OrderReview />,
     },
-   
   ]);
 
   return routers;

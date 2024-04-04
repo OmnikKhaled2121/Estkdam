@@ -145,7 +145,7 @@ export const GetAllProfessions = async () => {
     }
     return Obj
 }
- 
+
 export const GetAllNationalities = async () => {
     let Obj = {
         data: "",
@@ -168,6 +168,7 @@ export const SearchEmployee = async (inputs) => {
         data: "",
         status: true
     }
+    console.log("inputs", inputs)
     try {
         let { data } = await axios.get(`${baseUrl}/employees`, {
             params: inputs

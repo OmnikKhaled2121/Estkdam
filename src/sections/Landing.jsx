@@ -5,10 +5,17 @@ import ImgC3 from "../assets/imgCir3.jfif";
 import human2 from "../assets/human2.png";
 import human3 from "../assets/human3.png";
 import human4 from "../assets/human4.png";
+import le from "../assets/le.jfif";
+import ahmed from "../assets/ahmed.jfif";
+import young from "../assets/young.jfif";
 import tooltip1 from "../assets/Group1.png";
 import tooltip2 from "../assets/Group2.png";
 import tooltip3 from "../assets/Group3.png";
 import tooltip4 from "../assets/Group4.png";
+import lepop from "../assets/lepop.png";
+import youngpop from "../assets/youngpop.png";
+import ahmedpop from "../assets/ahmedpop.png";
+import jolypop from "../assets/jolypop.png";
 import background from "../assets/netBackgroung.png";
 import warp from "../assets/cyanBackground.png";
 import React, { useState } from "react";
@@ -20,7 +27,6 @@ import TextKey from "../components/TextKey";
 import { TitleSearch } from "../lib/api";
 
 export default function Landing() {
-
   const [profession, setProfession] = useState("");
   return (
     <Grid
@@ -180,6 +186,7 @@ export default function Landing() {
             </Grid>
           </Grid>
           <LandingImages xs={12} md={6} />
+          <LandingImagesMob xs={12} />
         </Grid>
       </Container>
     </Grid>
@@ -191,7 +198,6 @@ function LandingImages({ xs, md }) {
     return {
       overflow: "hidden",
       width: "100%",
-      // width: { xs: "50px", md: "181px" },
       height: { xs: "440px", md: H },
       borderRadius: "98.5px",
       border: "5px solid #213039",
@@ -208,7 +214,7 @@ function LandingImages({ xs, md }) {
       xs={xs}
       md={md}
       sx={{
-        display: "flex",
+        display: { xs: "none", md: "flex" },
         justifyContent: "space-between",
         flexWrap: "nowrap",
         alignItems: "center",
@@ -265,6 +271,115 @@ function LandingImages({ xs, md }) {
           <img src={tooltip1}></img>
         </Box>
         <Grid sx={imgBorder("690px", human4)} />
+      </Grid>
+    </Grid>
+  );
+}
+function LandingImagesMob({ xs, md }) {
+  const imgBorder = (H) => {
+    return {
+      overflow: "hidden",
+      width: "100%",
+      height: H,
+      borderRadius: "98.5px",
+      border: "5px solid #213039",
+      borderTop: "0",
+      borderLeft: "0",
+      position: "relative",
+    };
+  };
+  return (
+    <Grid
+      item
+      container
+      xs={xs}
+      md={md}
+      sx={{
+        display: { xs: "flex", md: "none" },
+        justifyContent: "space-between",
+        flexWrap: "nowrap",
+        alignItems: "center",
+        position: "relative",
+        marginTop: "5rem",
+      }}
+    >
+      <Grid item xs={3.9}>
+        <Box
+          sx={{
+            display: "block",
+            position: "absolute",
+            right: "-13px",
+            top: "15px",
+            zIndex: "5",
+          }}
+        >
+          <img src={jolypop}></img>
+        </Box>
+        <Grid sx={imgBorder("365px")}>
+          <img
+            width={"370%"}
+            src={joly1}
+            style={{ position: "absolute", transform: "translate(20%, -10%)" }}
+          />
+        </Grid>
+      </Grid>
+      <Grid item xs={3.9}>
+        <Box
+          sx={{
+            display: "block",
+            position: "absolute",
+            top: "-45px",
+            left: "50%",
+            zIndex: "5",
+          }}
+        >
+          <img src={lepop}></img>
+        </Box>
+        <Grid sx={imgBorder("237px")} mb={2}>
+          <img
+            width={"310%"}
+            src={le}
+            style={{ position: "absolute", transform: "translate(40%, -35%)" }}
+          />
+        </Grid>
+        <Grid sx={imgBorder("237px")} mt={2}>
+          <img
+            width={"350%"}
+            src={ahmed}
+            style={{ position: "absolute", transform: "translate(40%, 0%)" }}
+          />
+        </Grid>
+        <Box
+          sx={{
+            display: "block",
+            position: "absolute",
+            bottom: "0",
+            left: "50%",
+            zIndex: "5",
+          }}
+        >
+          <img src={ahmedpop}></img>
+        </Box>
+      </Grid>
+      <Grid item xs={3.9}>
+        <Box
+          sx={{
+            display: "block",
+            position: "absolute",
+            top: "15px",
+            left: "-13px",
+            zIndex: "5",
+          }}
+        >
+          <img src={youngpop}></img>
+        </Box>
+        <Grid sx={imgBorder("365px")}>
+          <img
+            width={"475%"}
+            src={young}
+            style={{ position: "absolute", transform: "translate(55%, -3%)" }}
+          />
+        </Grid>
       </Grid>
     </Grid>
   );

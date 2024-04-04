@@ -98,14 +98,9 @@ export default function SearchEstkdam() {
 }
 
 function Search() {
-  // const [professions, setProfessions] = useState({});
-  // const [nationalities, setNationalities] = useState({});
-
   const fetchData = async () => {
     const professions = await handleProfessionDropDown();
     const nationalities = await handleNationalitiesDropDown();
-    // setProfessions(professions);
-    // setNationalities(nationalities);
     setoptionsData([
       { id: "job", data: professions },
       { id: "age", data: ageDropDown },
@@ -116,22 +111,10 @@ function Search() {
   useEffect(() => {
     fetchData();
   }, []);
-  /*
 
-{
-    "age_min": 18,
-    "age_max": 21,
-    "profession": "Backend Developer",
-    "nationality": "أنتيجوا وبربودا",
-    "min_experience_years": 15,
-    "max_experience_years": 100
-}
-
-*/
   const [searchStatus, setsearchStatus] = useState("Start");
   const [optionsData, setoptionsData] = useState([]);
   console.log("optionsData", optionsData);
-  // handleRequestDropDown()
   const [searchInputs, setsearchInputs] = useState({
     job: "",
     age: "",
@@ -276,8 +259,6 @@ function Options({
   searchInputs,
   setsearchInputs,
 }) {
-  console.log("searchInputs", searchInputs);
-  // const [currData, setcurrData] = useState();
   const currData = useRef(OptionsData);
   const request = useRef(null);
 
@@ -285,16 +266,6 @@ function Options({
     id: selectOption,
     value: searchInputs[`${selectOption}`],
   });
-  /*
-  
-   "age_min": 18,
-    "age_max": 21,
-    "profession": "Backend Developer",
-    "nationality": "أنتيجوا وبربودا",
-    "min_experience_years": 15,
-    "max_experience_years": 100
-}
-  */
 
   const handleOptionClick = (value) => {
     setactiveOption({ id: selectOption, value: value.label });
@@ -312,9 +283,7 @@ function Options({
   };
 
   useEffect(() => {
-    // setcurrData(OptionsData);
     currData.current = OptionsData;
-    // console.log("a7a2", currData);
   }, [OptionsData]);
 
   return (
@@ -353,14 +322,9 @@ function Options({
               }}
             >
               {currData.current.map((option) => {
-                // console.log("option id", option.id);
-                // console.log("selectOption", selectOption);
                 if (option.id == selectOption) {
-                  // console.log("option", option);
-
                   return Object.keys(option.data).map((item, index) => {
                     const feildV = option.data[item];
-                    // console.log("feildV", feildV);
                     return (
                       <Option
                         value={feildV.label}
@@ -446,32 +410,36 @@ function Options({
           >
             لقد حددت الاشتراطات التى تريدها فى الاستقدام الخاص بك
           </Box>
-          <Box
-            sx={{
-              margin: "3rem 0 1.5rem 0",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "180px",
-              height: "40px",
-              borderRadius: "10px",
-              background: "#005288",
-              color: "white",
-              padding: "15px 22px",
-              fontFamily: "Almarai",
-              fontSize: "20px",
-              fontWeight: "700",
-              lineHeight: "22px",
-              "&:hover": {
-                cursor: "pointer",
-              },
-            }}
-            onClick={() => {
-              console.log("request Final", request.current);
-            }}
+          <Link
+            to={`/EstkdamRequest?profession=${request.current.profession}&nationality=${request.current.nationality}&age=${request.current.age_max}-${request.current.age_min}&experience=${request.current.max_experience_years}-${request.current.min_experience_years}`}
           >
-            ابدأ الإستقدام الأن
-          </Box>
+            <Box
+              sx={{
+                margin: "3rem 0 1.5rem 0",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "180px",
+                height: "40px",
+                borderRadius: "10px",
+                background: "#005288",
+                color: "white",
+                padding: "15px 22px",
+                fontFamily: "Almarai",
+                fontSize: "20px",
+                fontWeight: "700",
+                lineHeight: "22px",
+                "&:hover": {
+                  cursor: "pointer",
+                },
+              }}
+              onClick={() => {
+                console.log("request Final", request.current);
+              }}
+            >
+              ابدأ الإستقدام الأن
+            </Box>
+          </Link>
         </Box>
       ) : (
         ""
@@ -537,7 +505,7 @@ function Option({ value, onClick, active }) {
         display: "flex",
         alignItems: "center",
         paddingRight: ".6rem",
-        background: active ? "#F3F3" : "",
+        // background: active ? "#F3F3" : "",
       }}
       onClick={onClick}
     >

@@ -2,9 +2,6 @@ import { Box, CircularProgress, Container, Grid } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import bg1 from "../assets/Background1.png";
 import StartingSction from "../components/StartingSction";
-import ColorfulTitles from "../components/ColorfulTitles";
-
-import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DropDownFilter from "./../components/DropDownFilter";
 import TodayIcon from "@mui/icons-material/Today";
@@ -12,35 +9,35 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import FilterBtn from "../components/FilterBtn";
 import EmpCard from "../components/EmpCard";
-import { ListOfEmployee, TitleSearch } from "../lib/api";
-import { useParams } from "react-router-dom";
+import { SearchEmployee } from "../lib/api";
+import { useSearchParams } from "react-router-dom";
 
 export default function EstkdamRequest() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setisLoading] = useState(false);
   const [allEmployee, setAllEmployee] = useState([]);
   const [isClear, setIsClear] = useState(false);
-  const request = useRef(null);
-  let { profession } = useParams();
-  async function getAllEmployee() {
-    const { data, status } = await ListOfEmployee();
-    if (status) {
-      setAllEmployee(data);
-    }
-  }
 
-  async function getAll() {
-    const { data, status } = await TitleSearch(profession);
-    console.log("Essss", data);
+  const request = useRef({
+    profession: searchParams.get("profession"),
+    nationality: searchParams.get("nationality"),
+    age_min: searchParams.get("age")?.split("-")[1],
+    age_max: searchParams.get("age")?.split("-")[0],
+    min_experience_years: searchParams.get("experience")?.split("-")[1],
+    max_experience_years: searchParams.get("experience")?.split("-")[0],
+  });
+
+  async function getAllEmployee(request) {
+    console.log("getAllEmployee2");
+    const { data, status } = await SearchEmployee(request);
     setAllEmployee(data);
   }
 
   useEffect(() => {
-    if (profession) {
-      getAll();
-    } else {
-      getAllEmployee();
-    }
-  }, [profession]);
+    getAllEmployee(request.current);
+    console.log("A77", searchParams.get("profession"));
+  }, [searchParams.get("profession")]);
+
   return (
     <Grid>
       <Container>
@@ -56,8 +53,6 @@ export default function EstkdamRequest() {
             }
             setAllEmployee={setAllEmployee}
           />
-          {/* <ColorfulTitles /> */}
-
           <Box
             sx={{
               fontFamily: "Almarai",
@@ -102,6 +97,7 @@ export default function EstkdamRequest() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
+                initial={""}
               />
               <DropDownFilter
                 type={"المهنه"}
@@ -110,6 +106,7 @@ export default function EstkdamRequest() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
+                initial={searchParams.get("profession")}
               />
               <DropDownFilter
                 type={"الجنسية"}
@@ -118,6 +115,7 @@ export default function EstkdamRequest() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
+                initial={searchParams.get("nationality")}
               />
               <DropDownFilter
                 type={"الخبره"}
@@ -126,6 +124,7 @@ export default function EstkdamRequest() {
                 request={request}
                 isClear={isClear}
                 setIsClear={setIsClear}
+                initial={searchParams.get("experience")}
               />
             </Grid>
 

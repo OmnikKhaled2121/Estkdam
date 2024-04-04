@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { TitleSearch } from "../lib/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SearchInput({
   isFooter,
@@ -21,7 +21,7 @@ export default function SearchInput({
     setAllEmployee(data);
   }
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
   return (
     <Box
       md={8}
@@ -37,8 +37,8 @@ export default function SearchInput({
         background: isFooter
           ? "#DAEAF4"
           : whiteTheme
-            ? "rgba(255, 255, 255, 0.35)"
-            : "white",
+          ? "rgba(255, 255, 255, 0.35)"
+          : "white",
         overflow: "hidden",
         color: isFooter ? "#DAEAF4" : whiteTheme ? "white" : "black",
         display: "flex",
@@ -59,21 +59,21 @@ export default function SearchInput({
             alignItems: "center",
           }}
         >
-          <SearchIcon
-            sx={{
-              fontSize: "2rem",
-              "&:hover": {
-                cursor: "pointer",
-              },
-            }}
-            onClick={() => {
-              if (to) {
-                navigate(`/EstkdamRequest/${profession}`);
-              } else {
-                getAll(profession);
-              }
-            }}
-          />
+          <Link
+            to={`/EstkdamRequest${
+              profession ? "?profession=" + profession : ""
+            }`}
+          >
+            <SearchIcon
+              sx={{
+                color: "inherit",
+                fontSize: "2rem",
+                "&:hover": {
+                  cursor: "pointer",
+                },
+              }}
+            />
+          </Link>
         </Grid>
       ) : (
         <Box></Box>
@@ -89,28 +89,29 @@ export default function SearchInput({
         }}
         placeholder={`${isFooter ? "اكتب بريدك الإلكترونى" : text}`}
       />
-      <Grid
-        sx={{
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          background: isFooter ? "#005288" : whiteTheme ? "#DAEAF4" : "#213039",
-          color: whiteTheme ? "#005288" : "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          cursor:"pointer"
-        }}
-        onClick={() => {
-          if (to) {
-            navigate(`/EstkdamRequest/${profession}`);
-          } else {
-            getAll(profession);
-          }
-        }}
+      <Link
+        to={`/EstkdamRequest${profession ? "?profession=" + profession : ""}`}
       >
-        <ArrowBackIcon />
-      </Grid>
+        <Grid
+          sx={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "50%",
+            background: isFooter
+              ? "#005288"
+              : whiteTheme
+              ? "#DAEAF4"
+              : "#213039",
+            color: whiteTheme ? "#005288" : "white",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          <ArrowBackIcon />
+        </Grid>
+      </Link>
     </Box>
   );
 }

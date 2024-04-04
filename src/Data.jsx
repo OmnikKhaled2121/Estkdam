@@ -652,11 +652,13 @@ export const owner = [
 
 export const ageDropDown = {
   1: {
+    id: "18-12",
     label: "21-18 عام",
     age_min: 18,
     age_max: 21,
   },
   2: {
+    id: "30-21",
     label: "30-21 عام",
     age_min: 21,
     age_max: 30,
@@ -667,11 +669,13 @@ export const ageDropDown = {
     age_max: 40,
   },
   4: {
+    id: "45-40",
     label: "45-40 عام",
     age_min: 40,
     age_max: 45,
   },
   5: {
+    id: "50-45",
     label: "50-45 عام",
     age_min: 45,
     age_max: 50,
@@ -705,8 +709,3 @@ export const experienceDropDown = {
     max_experience_years: 100,
   },
 };
-
-
-
-
-
