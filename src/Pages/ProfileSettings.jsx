@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
 
 export default function ProfileSettings() {
+  window.scrollTo(0, 0);
   const { currentUser } = useContext(UserContext);
   const profileData = [
 

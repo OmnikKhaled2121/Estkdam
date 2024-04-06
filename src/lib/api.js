@@ -130,12 +130,18 @@ export const TitleSearch = async (profession) => {
 }
 
 export const GetAllProfessions = async () => {
+    console.log("Samkaaaaaaaaaaaaaaaaaaaaaaaa")
     let Obj = {
         data: "",
         status: true
     }
     try {
-        let { data } = await axios.get(`${baseUrl}/professions`);
+        let { data } = await axios.get(`${baseUrl}/professions`, {
+            headers: {
+                Authorization:
+                    "Bearer " + "69|LHqyUQSkkZ0rMnlspNQeMdB0kxb2lGQZIqjcwm1vb95df4ff"
+            },
+        });
 
         Obj.data = data
         Obj.status = true

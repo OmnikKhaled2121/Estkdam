@@ -13,6 +13,7 @@ const profileData = [
   [" الموقع", "جدة، المملكة العربية السعودية"],
 ];
 export default function Profile() {
+  window.scrollTo(0, 0);
   const { currentUser } = useContext(UserContext);
 
   return (

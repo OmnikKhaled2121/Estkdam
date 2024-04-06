@@ -10,6 +10,7 @@ import sliderBg from "../assets/orderComplete.jfif";
 
 
 export default function CompleteOrder() {
+  window.scrollTo(0, 0);
   return (
     <LoginLayout img={sliderBg} >
       <Grid

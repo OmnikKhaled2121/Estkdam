@@ -11,6 +11,8 @@ export default function SearchInput({
   whiteTheme,
   setAllEmployee,
   to,
+  colorIcon,
+  placeHolderColor,
 }) {
   const [profession, setProfession] = useState("");
   let navigate = useNavigate();
@@ -60,9 +62,10 @@ export default function SearchInput({
           }}
         >
           <Link
-            to={`/${to}${
-              profession ? "?profession=" + profession : ""
-            }`}
+            to={`/${to}${profession ? "?profession=" + profession : ""}`}
+            style={{
+              color: colorIcon,
+            }}
           >
             <SearchIcon
               sx={{
@@ -77,10 +80,7 @@ export default function SearchInput({
         </Grid>
       ) : (
         <Box></Box>
-      )}
-      <style>
-        {`::placeholder { color: ${isFooter ? "#005288" : "black"};}`}
-      </style>
+      )}  
       <input
         id="searchInput"
         onChange={(e) => {
@@ -88,10 +88,9 @@ export default function SearchInput({
           console.log("e.target.value", e.target.value);
         }}
         placeholder={`${isFooter ? "اكتب بريدك الإلكترونى" : text}`}
+        className={placeHolderColor}
       />
-      <Link
-        to={`/${to}${profession ? "?profession=" + profession : ""}`}
-      >
+      <Link to={`/${to}${profession ? "?profession=" + profession : ""}`}>
         <Grid
           sx={{
             width: "50px",

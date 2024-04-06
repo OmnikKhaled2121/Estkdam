@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 
 export default function Trackorders() {
+  window.scrollTo(0, 0);
   const orders = [1];
   return (
     <Container>

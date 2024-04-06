@@ -7,6 +7,7 @@ import Statistics from "./../sections/Statistics";
 import SalaryAndArrive from "../sections/SalaryAndArrive";
 
 export default function EstkdamJourney() {
+  window.scrollTo(0, 0);
   return (
     <>
       <Grid>

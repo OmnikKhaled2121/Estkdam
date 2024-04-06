@@ -11,6 +11,7 @@ import pic from '../assets/sliderBackground.jfif'
 
 
 export default function OrderReview() {
+  window.scrollTo(0, 0);
   return (
     <LoginLayout img={pic}>
       <Grid

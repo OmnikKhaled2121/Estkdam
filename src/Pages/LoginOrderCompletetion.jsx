@@ -27,6 +27,7 @@ import { UserContext } from "../Context/UserContext";
 import { Link } from "react-router-dom";
 
 export default function LoginOrderCompletetion() {
+  window.scrollTo(0, 0);
   const cacheRtl = createCache({
     key: "muirtl",
     stylisPlugins: [prefixer, stylisRTLPlugin],

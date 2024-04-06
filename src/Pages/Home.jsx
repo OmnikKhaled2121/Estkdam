@@ -12,6 +12,7 @@ import EstkdamLevel from "../sections/EstkdamLevel";
 import boyLogo from "../assets/Rectangle1137.png";
 
 export default function Home() {
+  window.scrollTo(0, 0);
   return (
     <>
       <Landing />

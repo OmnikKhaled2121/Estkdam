@@ -13,6 +13,7 @@ import { SearchEmployee } from "../lib/api";
 import { useSearchParams } from "react-router-dom";
 
 export default function EstkdamRequest() {
+  window.scrollTo(0, 0);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setisLoading] = useState(false);
   const [allEmployee, setAllEmployee] = useState([]);

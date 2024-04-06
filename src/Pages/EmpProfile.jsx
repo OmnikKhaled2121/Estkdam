@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { GetEmployeeByID } from "../lib/api";
 
 export default function EmpProfile() {
+  window.scrollTo(0, 0);
   const [employee, setEmployee] = useState("");
   let { id } = useParams();
 

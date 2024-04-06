@@ -79,7 +79,8 @@ export default function Footer() {
                     marginTop: "1rem",
                   }}
                 >
-                  <SearchInput isFooter={true} />
+                 
+                  <SearchInput isFooter={true} placeHolderColor={"placeholderFooter"} />
                 </Box>
                 <Grid
                   item

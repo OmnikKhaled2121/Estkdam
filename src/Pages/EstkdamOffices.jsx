@@ -15,6 +15,7 @@ import FilterBtn from "../components/FilterBtn";
 
 
 export default function EstkdamOffices() {
+  window.scrollTo(0, 0);
   return (
     <>
       <Container>

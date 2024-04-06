@@ -14,6 +14,7 @@ import { ListOfEmployee, SearchEmployee, TitleSearch } from "../lib/api";
 import { useParams, useSearchParams } from "react-router-dom";
 
 export default function KafalaTransfer() {
+  window.scrollTo(0, 0);
   const [allEmployee, setAllEmployee] = useState([]);
   const [isClear, setIsClear] = useState(false);
 

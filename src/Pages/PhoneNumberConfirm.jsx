@@ -5,6 +5,7 @@ import SMSCode from "../components/SMSCode";
 import { Link } from "react-router-dom";
 
 export default function PhoneNumberConfirm() {
+  window.scrollTo(0, 0);
   return (
     <>
       <LoginLayout>
