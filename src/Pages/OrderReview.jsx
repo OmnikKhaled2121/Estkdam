@@ -93,11 +93,13 @@ export default function OrderReview() {
           </Box>
         </Grid>
         <Order name={"سلمان محمد حبيب"} proPic={proPic} />
+
         <ConfirmOrder />
         <Grid item xs={12} sx={{
           display: "flex", justifyContent: "center",
           margin: "2rem 0"
         }}>
+          
           <Grid
             sx={{
               padding: "10px 15px",

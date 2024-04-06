@@ -141,12 +141,7 @@ export const GetAllProfessions = async () => {
         status: true
     }
     try {
-        let { data } = await axios.get(`${baseUrl}/professions`, {
-            headers: {
-                Authorization:
-                    "Bearer " + "69|LHqyUQSkkZ0rMnlspNQeMdB0kxb2lGQZIqjcwm1vb95df4ff"
-            },
-        });
+        let { data } = await axios.get(`${baseUrl}/professions`);
 
         Obj.data = data
         Obj.status = true
@@ -277,6 +272,32 @@ export const StatisticsData = async () => {
     try {
         const { data } = await axios.get(`${baseUrl}/statistics`);
         Obj.data = data.data[0]
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
+
+
+export const CreateOrder = async (id, userToken) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.post(`${baseUrl}/orders`,
+            {
+                "status": "تحت الطلب",
+                "employees_ids": `[${id}]`
+            },
+            {
+                headers: {
+                    Authorization: "Bearer " + userToken,
+                },
+            });
+        Obj.data = data.data
         Obj.status = true
     } catch (error) {
         Obj.data = ""

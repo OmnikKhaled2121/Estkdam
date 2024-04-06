@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LoginLayout from "../layout/LoginLayout";
-import { Grid } from "@mui/material";
+import { Grid, CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import proPic from "../assets/empProfile.jfif";
 import FlagPlihipin from "../assets/FlagPlihipin.png";
 import Info from "../components/Info";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import sliderBg from "../assets/orderComplete.jfif";
-
+import { CreateOrder, GetEmployeeByID } from "../lib/api";
+import { UserContext } from "../Context/UserContext";
+import { employee } from "./../Data";
 
 export default function CompleteOrder() {
   window.scrollTo(0, 0);
+  let { id } = useParams();
+  const { accessToken } = useContext(UserContext);
+  const [isCreate, setIsCreate] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [employee, setEmployee] = useState("");
+
+  async function getEmployee(accessToken) {
+    setIsLoading(true);
+    const { data, status } = await GetEmployeeByID(id, accessToken);
+
+    if (status) {
+      setEmployee(data);
+      setIsLoading(false);
+    }
+  }
+  useEffect(() => {
+    getEmployee(accessToken);
+  }, []);
   return (
-    <LoginLayout img={sliderBg} >
+    <LoginLayout img={sliderBg}>
       <Grid
         item
         container
@@ -40,14 +60,19 @@ export default function CompleteOrder() {
             color: "#005288",
           }}
         >
-
-          <Link to={'/'} style={{
-            color: "#005288"
-          }}>
-            <Box mr={1} sx={{
-              display: "flex",
-              justifyContent: 'center'
-            }}>
+          <Link
+            to={"/"}
+            style={{
+              color: "#005288",
+            }}
+          >
+            <Box
+              mr={1}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -68,61 +93,152 @@ export default function CompleteOrder() {
             </Box>
           </Link>
         </Grid>
-        <Grid item xs={12}>
+        {isLoading ? (
+          <Grid
+            container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "50vh",
+            }}
+          >
+            <>
+              <CircularProgress size={"2.5rem"} />
+            </>
+          </Grid>
+        ) : (
+          <>
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  fontSize: "40px",
+                  fontWeight: "700",
+                  lineHeight: "44.64px",
+                  marginBottom: ".5rem",
+                  color: "#005288",
+                }}
+              >
+                تأكيد طلب سيرة ذاتية
+              </Box>
 
-          <Box
-            sx={{
-              fontSize: "40px",
-              fontWeight: "700",
-              lineHeight: "44.64px",
-              marginBottom: ".5rem",
-              color: "#005288",
-            }}
-          >
-            تأكيد طلب سيرة ذاتية
-          </Box>
+              <Box
+                sx={{
+                  fontSize: "12px",
+                  fontWeight: "700",
+                  lineHeight: "18px",
+                  color: "#213039",
+                }}
+              >
+                برجاء مراجعة البيانات أدناه قبل تأكيد الطلب
+              </Box>
+            </Grid>
+            <EmpCard proPic={proPic} employee={employee} />
 
-          <Box
-            sx={{
-              fontSize: "12px",
-              fontWeight: "700",
-              lineHeight: "18px",
-              color: "#213039",
-            }}
-          >
-            برجاء مراجعة البيانات أدناه قبل تأكيد الطلب
-          </Box>
-        </Grid>
-        <EmpCard name={"سلمان محمد حبيب"} proPic={proPic} />
-
-        <Grid item xs={12}>
-          <Box
-            sx={{
-              fontSize: "24px",
-              fontWeight: "700",
-              lineHeight: " 26.78px",
-              marginBottom: ".5rem",
-            }}
-          >
-            ملاحظات
-          </Box>
-          <Box
-            sx={{
-              fontSize: "14px",
-              fontWeight: "400",
-              lineHeight: "15.62px",
-            }}
-          >
-            يتم مراجعة الطلب مع مندوبي خدمة العملاء، ولضمان حقك فالدفع
-            <br /> يكون من خلال منصة مساند
-          </Box>
-        </Grid>
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  lineHeight: " 26.78px",
+                  marginBottom: ".5rem",
+                }}
+              >
+                ملاحظات
+              </Box>
+              <Box
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: "400",
+                  lineHeight: "15.62px",
+                }}
+              >
+                يتم مراجعة الطلب مع مندوبي خدمة العملاء، ولضمان حقك فالدفع
+                <br /> يكون من خلال منصة مساند
+              </Box>
+            </Grid>
+          </>
+        )}
       </Grid>
     </LoginLayout>
   );
 }
 
-function EmpCard({ name, proPic, Information }) {
+function CompleteOrderP({employee,proPic}) {
+  return (
+    <>
+      <Grid item xs={12}>
+        <Box
+          sx={{
+            fontSize: "40px",
+            fontWeight: "700",
+            lineHeight: "44.64px",
+            marginBottom: ".5rem",
+            color: "#005288",
+          }}
+        >
+          تأكيد طلب سيرة ذاتية
+        </Box>
+
+        <Box
+          sx={{
+            fontSize: "12px",
+            fontWeight: "700",
+            lineHeight: "18px",
+            color: "#213039",
+          }}
+        >
+          برجاء مراجعة البيانات أدناه قبل تأكيد الطلب
+        </Box>
+      </Grid>
+      <EmpCard proPic={proPic} employee={employee} />
+
+      <Grid item xs={12}>
+        <Box
+          sx={{
+            fontSize: "24px",
+            fontWeight: "700",
+            lineHeight: " 26.78px",
+            marginBottom: ".5rem",
+          }}
+        >
+          ملاحظات
+        </Box>
+        <Box
+          sx={{
+            fontSize: "14px",
+            fontWeight: "400",
+            lineHeight: "15.62px",
+          }}
+        >
+          يتم مراجعة الطلب مع مندوبي خدمة العملاء، ولضمان حقك فالدفع
+          <br /> يكون من خلال منصة مساند
+        </Box>
+      </Grid>
+    </>
+  );
+}
+
+
+
+function EmpCard({ proPic, Information, employee }) {
+  const handleDownloadCV = () => {
+    const { resume } = employee;
+    // Constructing the URL for the resume
+    const downloadUrl = `${window.location.origin}/${resume}`;
+    // Creating an anchor element to trigger the download
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = "resume.pdf"; // Set desired filename here
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  async function createOrderByID(id, employee) {
+    const { data, status } = await CreateOrder(id, employee);
+  }
+
   return (
     <Grid item xs={12}>
       <Grid
@@ -141,20 +257,23 @@ function EmpCard({ name, proPic, Information }) {
             sx={{
               width: {
                 md: "100%",
-                xs: "100px"
+                xs: "100px",
               },
               height: {
                 md: "100%",
-                xs: "100px"
+                xs: "100px",
               },
               borderRadius: "15px",
               overflow: "hidden",
-              backgroundImage: `url(${proPic})`,
+              backgroundImage: employee.image
+                ? `url(${employee.image})`
+                : `url(${proPic})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           ></Box>
         </Grid>
+
         <Grid
           item
           md={9.8}
@@ -175,7 +294,7 @@ function EmpCard({ name, proPic, Information }) {
               lineHeight: "40.18px",
             }}
           >
-            {name}
+            {employee.name}
           </Box>
           <Grid
             container
@@ -186,7 +305,32 @@ function EmpCard({ name, proPic, Information }) {
               "& > div:not(:last-child)": { marginBottom: ".2rem" },
             }}
           >
-            <Info xs={12} type={"المهنة"} info={"عاملة منزل"}>
+            <OrderInfo xs={12} type={"رقم الطلب"} info={"#26454G4"} />
+            <OrderInfo xs={12} type={"تاريخ الطلب"} info={"2024-02-15"} />
+            <OrderInfo xs={12} type={"الإسم"} info={"سلمان محمد حبيب"} />
+            {/* <Info xs={12} type={"المهنة"} info={"عاملة منزل"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M17 22.75H7C3.56 22.75 1.25 20.44 1.25 17V12C1.25 8.92 3.15 6.69001 6.1 6.32001C6.38 6.28001 6.69 6.25 7 6.25H17C17.24 6.25 17.55 6.26 17.87 6.31C20.82 6.65 22.75 8.89 22.75 12V17C22.75 20.44 20.44 22.75 17 22.75ZM7 7.75C6.76 7.75 6.53 7.76999 6.3 7.79999C4.1 8.07999 2.75 9.68 2.75 12V17C2.75 19.58 4.42 21.25 7 21.25H17C19.58 21.25 21.25 19.58 21.25 17V12C21.25 9.66 19.88 8.05001 17.66 7.79001C17.42 7.75001 17.21 7.75 17 7.75H7Z"
+                  fill="#292D32"
+                />
+                <path
+                  d="M6.19005 7.80995C5.95005 7.80995 5.73005 7.69995 5.58005 7.49995C5.41005 7.26995 5.39005 6.96995 5.52005 6.71995C5.69005 6.37995 5.93005 6.04995 6.24005 5.74995L9.49005 2.48994C11.15 0.839941 13.85 0.839941 15.51 2.48994L17.26 4.25996C18 4.98996 18.45 5.96996 18.5 7.00996C18.51 7.23996 18.42 7.45994 18.25 7.60994C18.08 7.75994 17.85 7.82996 17.63 7.78996C17.43 7.75996 17.22 7.74995 17 7.74995H7.00005C6.76005 7.74995 6.53005 7.76994 6.30005 7.79994C6.27005 7.80994 6.23005 7.80995 6.19005 7.80995ZM7.86005 6.24995H16.82C16.69 5.90995 16.48 5.59996 16.2 5.31996L14.44 3.53996C13.37 2.47996 11.62 2.47996 10.54 3.53996L7.86005 6.24995Z"
+                  fill="#292D32"
+                />
+                <path
+                  d="M22 17.25H19C17.48 17.25 16.25 16.02 16.25 14.5C16.25 12.98 17.48 11.75 19 11.75H22C22.41 11.75 22.75 12.09 22.75 12.5C22.75 12.91 22.41 13.25 22 13.25H19C18.31 13.25 17.75 13.81 17.75 14.5C17.75 15.19 18.31 15.75 19 15.75H22C22.41 15.75 22.75 16.09 22.75 16.5C22.75 16.91 22.41 17.25 22 17.25Z"
+                  fill="#292D32"
+                />
+              </svg>
+            </Info> */}
+            <Info xs={12} type={"المهنة"} info={employee?.profession}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -208,7 +352,30 @@ function EmpCard({ name, proPic, Information }) {
                 />
               </svg>
             </Info>
+
             <Info
+              type={"الجنسية"}
+              xs={12}
+              info={employee?.nationality?.name}
+              infoImg={employee?.nationality?.image}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+              >
+                <path
+                  d="M12 3.16807C6.85082 3.16807 2.66797 7.35091 2.66797 12.5001C2.66797 17.6493 6.85082 21.8321 12 21.8321C17.1492 21.8321 21.332 17.6493 21.332 12.5001C21.332 7.35091 17.1492 3.16807 12 3.16807ZM11.5 4.24383V7.98568C10.5581 7.95782 9.66032 7.85328 8.82681 7.68575C8.97524 7.24983 9.14163 6.84436 9.3246 6.47841C9.94804 5.23154 10.7195 4.47208 11.5 4.24383ZM12.5 4.24383C13.2805 4.47208 14.052 5.23154 14.6754 6.47841C14.859 6.8456 15.0259 7.25262 15.1747 7.69023C14.3422 7.85597 13.4433 7.95846 12.5 7.98575V4.24383ZM7.85034 7.45358C7.15749 7.26159 6.52632 7.02675 5.9721 6.75772C6.898 5.78541 8.05211 5.03438 9.35376 4.59868C9.00959 5.00933 8.69967 5.49201 8.43009 6.03116C8.21186 6.46763 8.0194 6.94569 7.85034 7.45358ZM14.6463 4.59868C15.947 5.03411 17.1004 5.78454 18.0259 6.75591C17.4791 7.02953 16.8487 7.26702 16.1521 7.45986C15.9825 6.94957 15.789 6.4694 15.5699 6.03116C15.3003 5.49202 14.9904 5.00933 14.6463 4.59868ZM16.4321 8.42367C17.2661 8.19152 18.0239 7.89378 18.6852 7.53856C19.6228 8.8001 20.2177 10.331 20.3165 12.0001H16.9031C16.8687 10.7237 16.706 9.5153 16.4321 8.42367ZM3.68356 12.0001C3.78219 10.3334 4.37557 8.80441 5.31095 7.54386C5.97854 7.89064 6.7375 8.18484 7.56945 8.4166C7.29447 9.51006 7.13138 10.721 7.09694 12.0001H3.68356ZM8.09718 12.0001C8.13205 10.797 8.28886 9.66296 8.54349 8.65197C9.46747 8.8425 10.4599 8.95823 11.5 8.98672V12.0001H8.09718ZM12.5 8.98678C13.5406 8.95906 14.5341 8.84593 15.458 8.65727C15.7119 9.66693 15.868 10.7991 15.9028 12.0001H12.5V8.98678ZM5.31483 17.4616C4.37717 16.2001 3.78233 14.6692 3.68356 13.0001H7.09694C7.13132 14.2765 7.29398 15.4849 7.56793 16.5765C6.73394 16.8087 5.97615 17.1064 5.31483 17.4616ZM8.54201 16.3429C8.28816 15.3333 8.13198 14.2011 8.09718 13.0001H11.5V16.0134C10.4594 16.0411 9.46589 16.1543 8.54201 16.3429ZM12.5 13.0001H15.9028C15.868 14.2032 15.7112 15.3372 15.4565 16.3482C14.5325 16.1577 13.5401 16.042 12.5 16.0135V13.0001ZM16.4306 16.5836C16.7055 15.4901 16.8686 14.2792 16.9031 13.0001H20.3165C20.2178 14.6668 19.6244 16.1958 18.6891 17.4563C18.0215 17.1096 17.2625 16.8154 16.4306 16.5836ZM8.82527 17.31C9.65784 17.1442 10.5567 17.0417 11.5 17.0144V20.7564C10.7195 20.5281 9.94804 19.7687 9.3246 18.5218C9.14101 18.1546 8.97407 17.7476 8.82527 17.31ZM12.5 20.7564V17.0145C13.4419 17.0424 14.3397 17.1469 15.1732 17.3144C15.0248 17.7504 14.8584 18.1558 14.6754 18.5218C14.052 19.7687 13.2805 20.5281 12.5 20.7564ZM5.97407 18.2443C6.52088 17.9707 7.15131 17.7332 7.84794 17.5403C8.01752 18.0506 8.21097 18.5308 8.43009 18.969C8.69967 19.5082 9.00958 19.9909 9.35375 20.4015C8.05299 19.9661 6.89966 19.2157 5.97407 18.2443ZM15.5699 18.969C15.7882 18.5326 15.9806 18.0545 16.1497 17.5466C16.8425 17.7386 17.4737 17.9734 18.0279 18.2425C17.102 19.2148 15.9479 19.9658 14.6462 20.4015C14.9904 19.9909 15.3003 19.5082 15.5699 18.969Z"
+                  fill="#213039"
+                  stroke="#213039"
+                  stroke-width="0.2"
+                />
+              </svg>
+            </Info>
+
+            {/* <Info
               xs={12}
               type={"الجنسية"}
               info={"الفلبين"}
@@ -228,19 +395,21 @@ function EmpCard({ name, proPic, Information }) {
                   stroke-width="0.2"
                 />
               </svg>
-            </Info>
+            </Info> */}
+
             <Grid
               item
               xs={12}
               md={12}
               sx={{
-                display: "flex", justifyContent: "space-between",
+                display: "flex",
+                justifyContent: "space-between",
                 flexDirection: {
-                  xs: "column"
-                }
+                  xs: "column",
+                },
               }}
             >
-              <Info md={3} xs={12} type={"العمر"} info={"25 عام"}>
+              <Info md={3} xs={12} type={"العمر"} info={employee?.age}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -270,7 +439,12 @@ function EmpCard({ name, proPic, Information }) {
                   />
                 </svg>
               </Info>
-              <Info md={4} xs={12} type={"الحالة الاجتماعية"} info={"متزوج"}>
+              <Info
+                md={4}
+                xs={12}
+                type={"الحالة الاجتماعية"}
+                info={employee?.social_status?.status}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -292,7 +466,12 @@ function EmpCard({ name, proPic, Information }) {
                   />
                 </svg>
               </Info>
-              <Info md={4} xs={12} type={"عدد الاطفال"} info={"1 طفل"}>
+              <Info
+                md={4}
+                xs={12}
+                type={"عدد الاطفال"}
+                info={employee?.kids_number}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -323,7 +502,7 @@ function EmpCard({ name, proPic, Information }) {
               type={"الراتب"}
               info={
                 <>
-                  2000{" "}
+                  {Math.round(employee?.salary)}
                   <span style={{ fontWeight: "700", marginRight: ".5rem" }}>
                     ر.س /
                   </span>{" "}
@@ -355,19 +534,21 @@ function EmpCard({ name, proPic, Information }) {
           </Grid>
         </Grid>
       </Grid>
-      <Box sx={{
-        display: "flex", paddingBottom: "0 ",
-        flexDirection: {
-          xs: "column",
-          md: "row"
-        }
-      }}>
-        <Link to={'/OrderReview'}>
-
+      <Box
+        sx={{
+          display: "flex",
+          paddingBottom: "0 ",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+        }}
+      >
+        <Link to={"/OrderReview"}>
           <Box
             sx={{
               textAlign: {
-                xs: "center"
+                xs: "center",
               },
               padding: "15px 22px",
               borderRadius: "10px",
@@ -381,25 +562,25 @@ function EmpCard({ name, proPic, Information }) {
 
               marginBottom: {
                 xs: "1rem",
-                md: "0rem"
+                md: "0rem",
               },
               "&:hover": {
                 color: "#005288",
                 background: "white",
               },
             }}
+            // onClick={createOrderByID}
           >
             المتابعة وتأكيد الطلب
           </Box>
         </Link>
-
 
         <Box
           sx={{
             padding: "15px 22px",
             borderRadius: "10px",
             textAlign: {
-              xs: "center"
+              xs: "center",
             },
             color: "#005288",
             border: "2px solid#005288",
@@ -410,17 +591,177 @@ function EmpCard({ name, proPic, Information }) {
             lineHeight: " 22.32px",
             marginRight: {
               xs: "0rem",
-              md: "1rem"
+              md: "1rem",
             },
             "&:hover": {
               background: "#005288",
               color: "white",
+              cursor: "pointer",
             },
           }}
+          onClick={handleDownloadCV}
         >
           تحميل السيرة الذاتية
         </Box>
       </Box>
+    </Grid>
+  );
+}
+
+function ConfirmOrder({ name, proPic, Information }) {
+  return (
+    <Grid
+      item
+      xs={12}
+      container
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        boxShadow: "0px 0px 20px 6px #26282A26",
+        padding: ".5rem 1rem",
+        borderRadius: "20px",
+      }}
+    >
+      <Grid
+        item
+        md={7}
+        xs={12}
+        sx={{
+          fontSize: "20px",
+          fontWeight: "700",
+          lineHeight: "30px",
+          color: "#213039",
+        }}
+      >
+        <Box>
+          يرجى تأكيد الطلب مع خدمة العملاء قبل الوقت المحدد حتى
+          <br /> لا يتم الغاء الطلب
+        </Box>
+        <Box
+          sx={{
+            fontSize: "12px",
+            lineHeight: "18px",
+            color: "#005288",
+            marginTop: ".5rem",
+          }}
+        >
+          ملحوظة : كل ما عليك هو امداد خدمة العملاء برقم الطلب الخاص بك وسيتم
+          تأكيد طلبك من خلالهم
+        </Box>
+      </Grid>
+      <Grid item container md={4} xs={12}>
+        <Box
+          item
+          xs={12}
+          sx={{
+            fontSize: "13px",
+            fontWeight: "700",
+            lineHeight: "19.5px",
+            color: "#213039",
+            justifyContent: "start",
+          }}
+        >
+          يجب تأكيد الطلب قبل:
+        </Box>
+        <Clock />
+      </Grid>
+    </Grid>
+  );
+}
+
+function Clock() {
+  return (
+    <Grid
+      item
+      container
+      xs={12}
+      sx={{
+        display: "flex",
+        flexDirection: "row-reverse",
+        justifyContent: "center",
+        fontSize: "40px",
+        fontWeight: "700",
+        lineHeight: "60px",
+        color: "#005288",
+      }}
+    >
+      <Grid item xs={2}>
+        <Box>01</Box>
+        <Box
+          sx={{
+            fontSize: "14px",
+            lineHeight: "21px",
+          }}
+        >
+          يوم
+        </Box>
+      </Grid>
+      <Grid item xs={1}>
+        :
+      </Grid>
+      <Grid item xs={2}>
+        <Box>01</Box>
+        <Box
+          sx={{
+            fontSize: "14px",
+            lineHeight: "21px",
+          }}
+        >
+          ساعة
+        </Box>
+      </Grid>
+      <Grid item xs={1}>
+        :
+      </Grid>
+      <Grid item xs={2}>
+        <Box>01</Box>
+        <Box
+          sx={{
+            fontSize: "14px",
+            lineHeight: "21px",
+          }}
+        >
+          دقيقة
+        </Box>
+      </Grid>
+      <Grid item xs={1}>
+        :
+      </Grid>
+      <Grid item xs={2}>
+        <Box>01</Box>
+        <Box
+          sx={{
+            fontSize: "14px",
+            lineHeight: "21px",
+          }}
+        >
+          ثانية
+        </Box>
+      </Grid>
+    </Grid>
+  );
+}
+function OrderInfo({ xs, type, info }) {
+  return (
+    <Grid
+      item
+      xs={xs}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        fontFamily: "Almarai",
+        fontSize: "20px",
+        fontWeight: "700",
+        lineHeight: "22.32px",
+        color: "#213039",
+        "& > span": {
+          paddingLeft: ".5rem",
+        },
+      }}
+    >
+      <span>{type} : </span>
+      <span style={{ color: "#005288" }}>{info}</span>
     </Grid>
   );
 }
