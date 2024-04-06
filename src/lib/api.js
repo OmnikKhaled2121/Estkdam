@@ -75,13 +75,18 @@ export const CreateContact = async (user) => {
 
 };
 
-export const ListOfEmployee = async () => {
+export const ListOfEmployee = async (userToken) => {
     let Obj = {
         data: "",
         status: true
     }
     try {
-        let { data } = await axios.get(`${baseUrl}/employees`);
+        let { data } = await axios.get(`${baseUrl}/employees`, {
+            headers: {
+                Authorization:
+                    "Bearer " + { userToken }
+            },
+        });
         Obj.data = data.data
         Obj.status = true
     } catch (error) {
@@ -169,7 +174,7 @@ export const GetAllNationalities = async () => {
     return Obj
 }
 
-export const SearchEmployee = async (inputs) => {
+export const SearchEmployee = async (inputs, userToken) => {
     let Obj = {
         data: "",
         status: true
@@ -177,6 +182,10 @@ export const SearchEmployee = async (inputs) => {
     console.log("inputs", inputs)
     try {
         let { data } = await axios.get(`${baseUrl}/employees`, {
+            headers: {
+                Authorization:
+                    "Bearer " + userToken
+            },
             params: inputs
         });
 
@@ -190,13 +199,19 @@ export const SearchEmployee = async (inputs) => {
 
 }
 
-export const GetEmployeeByID = async ({ id }) => {
+export const GetEmployeeByID = async (id, userToken) => {
     let Obj = {
         data: "",
         status: true
     }
+    console.log("userToken44", userToken)
     try {
-        let { data } = await axios.get(`${baseUrl}/employees/${id}`);
+        let { data } = await axios.get(`${baseUrl}/employees/${id}`, {
+            headers: {
+                Authorization:
+                    "Bearer " + userToken
+            },
+        });
         Obj.data = data
         Obj.status = true
     } catch (error) {
