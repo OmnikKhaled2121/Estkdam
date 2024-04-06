@@ -1,24 +1,28 @@
 import { Box, CircularProgress, Container, Grid } from "@mui/material";
 import proPic from "../assets/proPic.jfif";
 import FlagPlihipin from "../assets/FlagPlihipin.png";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EmpCard from "../components/EmpCard";
 import { Link, useParams } from "react-router-dom";
 import { GetEmployeeByID } from "../lib/api";
+import { UserContext } from "../Context/UserContext";
 
 export default function EmpProfile() {
   window.scrollTo(0, 0);
+  const { accessToken } = useContext(UserContext);
   const [employee, setEmployee] = useState("");
   let { id } = useParams();
 
-  async function getEmployee() {
-    const { data, status } = await GetEmployeeByID({ id });
+  async function getEmployee(accessToken) {
+    console.log("a77a", accessToken);
+    const { data, status } = await GetEmployeeByID(id, accessToken);
+
     if (status) {
       setEmployee(data);
     }
   }
   useEffect(() => {
-    getEmployee();
+    getEmployee(accessToken);
   }, []);
   return (
     <Container sx={{ "& > div:not(:last-child)": { marginBottom: "3rem" } }}>

@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Container, Grid } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import bg1 from "../assets/Background1.png";
 import StartingSction from "../components/StartingSction";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -11,6 +11,7 @@ import FilterBtn from "../components/FilterBtn";
 import EmpCard from "../components/EmpCard";
 import { SearchEmployee } from "../lib/api";
 import { useSearchParams } from "react-router-dom";
+import { UserContext } from "../Context/UserContext";
 
 export default function EstkdamRequest() {
   window.scrollTo(0, 0);
@@ -18,6 +19,7 @@ export default function EstkdamRequest() {
   const [isLoading, setisLoading] = useState(false);
   const [allEmployee, setAllEmployee] = useState([]);
   const [isClear, setIsClear] = useState(false);
+  const { accessToken } = useContext(UserContext);
 
   const request = useRef({
     profession: searchParams.get("profession"),
@@ -28,15 +30,15 @@ export default function EstkdamRequest() {
     max_experience_years: searchParams.get("experience")?.split("-")[0],
   });
 
-  async function getAllEmployee(request) {
+  async function getAllEmployee(request, accessToken) {
     console.log("getAllEmployee2");
-    const { data, status } = await SearchEmployee(request);
+    const { data, status } = await SearchEmployee(request, accessToken);
     setAllEmployee(data);
   }
 
   useEffect(() => {
     request.current.profession = searchParams.get("profession");
-    getAllEmployee(request.current);
+    getAllEmployee(request.current, accessToken);
   }, [searchParams.get("profession")]);
 
   return (
