@@ -27,6 +27,7 @@ import { Register } from "../lib/api";
 import SliderLayout from "../layout/SliderLayout";
 
 export default function Registeration() {
+  window.scrollTo(0, 0);
   const [isLoading, setisLoading] = useState(false);
   const { checkLoggedIn } = useContext(UserContext);
 

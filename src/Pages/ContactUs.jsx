@@ -26,6 +26,7 @@ import { CreateContact } from "../lib/api";
 import { useNavigate } from "react-router-dom";
 
 export default function ContactUs() {
+  window.scrollTo(0, 0);
   const [isLoading, setisLoading] = useState(false);
   const [fileUploadError, setFileUploadError] = useState(false);
   let navigate = useNavigate();

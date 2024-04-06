@@ -26,6 +26,7 @@ import { LoginApi } from "../lib/api";
 import { UserContext } from "../Context/UserContext";
 
 export default function Login() {
+  window.scrollTo(0, 0);
   const [isLoading, setisLoading] = useState(false);
   const { checkLoggedIn } = useContext(UserContext);
   const cacheRtl = createCache({

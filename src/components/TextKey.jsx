@@ -30,7 +30,7 @@ export default function TextKey({ texts, white, to }) {
           {texts.map((item) => {
             return (
               <>
-                <Link to={`/${to}?profession=${item}`} replace>
+                <Link to={`/${to}?profession=${item}`} replace style={{color:"#000000"}}>
                   <Box
                     sx={{
                       padding: "10px 13px 10px 13px",

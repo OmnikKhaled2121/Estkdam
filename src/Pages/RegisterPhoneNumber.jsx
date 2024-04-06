@@ -15,6 +15,7 @@ import FormInput from "../components/FormInput";
 import { DevTool } from "@hookform/devtools";
 
 export default function RegisterPhoneNumber() {
+  window.scrollTo(0, 0);
   const cacheRtl = createCache({
     key: "muirtl",
     stylisPlugins: [prefixer, stylisRTLPlugin],

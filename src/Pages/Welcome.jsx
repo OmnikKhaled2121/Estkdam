@@ -5,6 +5,7 @@ import logo from "../assets/logo1Footer.png";
 import { Link } from "react-router-dom";
 
 export default function Welcome() {
+  window.scrollTo(0, 0);
   return (
     <>
       <Grid

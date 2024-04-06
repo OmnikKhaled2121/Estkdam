@@ -87,6 +87,9 @@ export default function StartingSction({
             isFooter={false}
             text={Searchplaceholder}
             setAllEmployee={setAllEmployee}
+            to={to}
+            colorIcon={"#FFFFFF"}
+            placeHolderColor={"placeholderStartSection"}
           />
           <TextKey white texts={SearchKeys} to={to}></TextKey>
 

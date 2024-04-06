@@ -6,6 +6,7 @@ import axios from 'axios'
 
 
 export default function CommonQuestions() {
+    window.scrollTo(0, 0);
     let [response, setResponse] = useState([])
 
     async function QuestionData() {

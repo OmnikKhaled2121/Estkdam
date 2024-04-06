@@ -9,6 +9,7 @@ import HRServices from '../sections/HRServices'
 
 
 export default function EstkdamPolices() {
+    window.scrollTo(0, 0);
     return (
         <>
             <Grid>

@@ -5,6 +5,7 @@ import { ageDropDown, experienceDropDown } from "../Data";
 
 import DropDownFeild from "./DropDownFeild";
 import {
+  handleInitial,
   handleNationalitiesDropDown,
   handleProfessionDropDown,
 } from "../Utils/DropDownHelper";
@@ -17,8 +18,10 @@ export default function DropDownFilter({
   setIsClear,
   initial,
 }) {
+  console.log("initial", initial);
+  
   const [flag, setFlag] = useState(false);
-  const [value, setValue] = useState(initial);
+  const [value, setValue] = useState(handleInitial({type,initial}));
   const [professions, setProfessions] = useState({});
   const [nationalities, setNationalities] = useState({});
 
@@ -81,6 +84,7 @@ export default function DropDownFilter({
             request={request}
             setValue={setValue}
             dropDownData={dropDownData}
+            
           />
         </Grid>
       </Grid>

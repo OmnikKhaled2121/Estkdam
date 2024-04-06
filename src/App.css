@@ -27,3 +27,15 @@ Body{
 
  overflow-x : hidden
 }
+
+.placeholderFooter::placeholder {
+  color: #005288
+}
+
+.placeholderLanding::placeholder {
+  color: #000000
+}
+
+.placeholderStartSection::placeholder {
+  color: #FFFFFF
+}

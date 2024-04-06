@@ -128,8 +128,11 @@ export default function Landing() {
             >
               <SearchInput
                 isFooter={false}
-                to
+                to="EstkdamRequest"
                 text={"ابحث عن الإستقدام الذى تريده"}
+                colorIcon={"#292D32"}
+                placeHolderColor={"#placeholderLanding"}
+               
               />
             </Grid>
             <TextKey
