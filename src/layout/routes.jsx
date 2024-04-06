@@ -92,7 +92,7 @@ export default function Routers() {
       element: <Welcome />,
     },
     {
-      path: "CompleteOrder",
+      path: "CompleteOrder/:id",
 
       element: (
         <ProtectedRoute to={"/LoginOrderCompletetion"}>

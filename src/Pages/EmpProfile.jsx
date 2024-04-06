@@ -14,7 +14,7 @@ export default function EmpProfile() {
   let { id } = useParams();
 
   async function getEmployee(accessToken) {
-    console.log("a77a", accessToken);
+
     const { data, status } = await GetEmployeeByID(id, accessToken);
 
     if (status) {
@@ -429,7 +429,7 @@ function Landing({ name, proPic, Information, employee }) {
             },
           }}
         >
-          <Link to={"/CompleteOrder"}>
+          <Link to={`/CompleteOrder/${employee.id}`}>
             <Box
               sx={{
                 padding: "15px 22px",
