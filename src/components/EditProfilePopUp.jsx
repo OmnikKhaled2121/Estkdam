@@ -18,11 +18,14 @@ export default function EditProfilePopUp({
   handleClose,
   property,
   value,
+  seteditedProfileData,
 }) {
   const cacheRtl = createCache({
     key: "muirtl",
     stylisPlugins: [prefixer, stylisRTLPlugin],
   });
+
+  const [inputVal, setinputVal] = useState("");
   const [isLoading, setisLoading] = useState(false);
 
   const schema = Joi.object({
@@ -76,22 +79,15 @@ export default function EditProfilePopUp({
 
   const onSubmit = async (inputs) => {
     setisLoading(true);
-    // const { data, status } = await Register(inputs);
-    // if (status) {
-    //   setisLoading(false);
-    //   localStorage.setItem(
-    //     "USER",
-    //     JSON.stringify({ accessToken: data.access_token, userData: data.user })
-    //   );
-    //   checkLoggedIn();
-    // } else {
-    //   setisLoading(false);
-    //   setError(
-    //     "Email",
-    //     { type: "focus", message: "الايميل مستخدم من قبل!" },
-    //     { shouldFocus: true }
-    //   );
-    // }
+  };
+
+  const handleEditInfo = (inputVal) => {
+    seteditedProfileData((prev) => {
+      prev.status = "touched";
+      prev.data[`${property}`].value = inputVal;
+      return { status: prev.status, data: { ...prev.data } };
+    });
+    handleClose();
   };
   return (
     <>
@@ -110,7 +106,7 @@ export default function EditProfilePopUp({
             boxSizing: "border-box",
           }}
         >
-          {property === "صورة المستخدم" ? (
+          {property == "userimage" ? (
             <Grid
               sx={{
                 display: "flex",
@@ -155,7 +151,7 @@ export default function EditProfilePopUp({
                   marginBottom: "1.5rem",
                 }}
               >
-                {property + " الحالي"}
+                {value.label + " الحالي"}
               </Box>
               <Box
                 sx={{
@@ -173,19 +169,22 @@ export default function EditProfilePopUp({
                   paddingBottom: "1rem",
                 }}
               >
-                {value}
+                {value.value}
               </Box>
               <CacheProvider value={cacheRtl}>
                 <TextField
                   id="outlined-multiline-static"
                   size="small"
                   fullWidth
-                  placeholder={property + " الجديد"}
+                  placeholder={value.label + " الجديد"}
                   type="text"
                   sx={{
                     marginBottom: "1.5rem",
                   }}
-                />{" "}
+                  onChange={(e) => {
+                    setinputVal(e.target.value);
+                  }}
+                />
               </CacheProvider>
             </>
           )}
@@ -196,7 +195,9 @@ export default function EditProfilePopUp({
             }}
           >
             <Box
-              onClick={handleClose}
+              onClick={() => {
+                handleEditInfo(inputVal, seteditedProfileData, handleClose);
+              }}
               sx={{
                 background: "#005288",
                 color: "white",

@@ -4,11 +4,17 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
 import { useEffect } from "react";
-import { func } from "joi";
+import { useLocation } from "react-router-dom";
 
 export default function Navber() {
+  const location = useLocation();
   const [openMobileNav, setopenMobileNav] = useState(false);
   const { currentUser, LogOut } = useContext(UserContext);
+  const [currentPage, setcurrentPage] = useState(
+    location.pathname.split("/")[1]
+  );
+
+  console.log("url55", location.pathname.split("/")[1]);
 
   const handleNavToggle = () => {
     setopenMobileNav((prev) => {
@@ -20,6 +26,9 @@ export default function Navber() {
       handleNavToggle();
     };
   }, []);
+  useEffect(() => {
+    setcurrentPage(location.pathname.split("/")[1]);
+  }, [location.pathname]);
 
   return (
     <Container sx={{ padding: { xs: "0 !important" } }}>
@@ -87,11 +96,14 @@ export default function Navber() {
             alignItems: "center",
           }}
         >
-          <NavTitle to value={"1"}>
+          <NavTitle to value={currentPage == ""}>
             الرئيسيه
           </NavTitle>
 
           <NavTitle
+            value={
+              currentPage == "EstkdamRequest" || currentPage == "KafalaTransfer"
+            }
             subTitles={[
               {
                 title: "طلب الإستقدام ",
@@ -106,6 +118,9 @@ export default function Navber() {
             خدماتنا
           </NavTitle>
           <NavTitle
+            value={
+              currentPage == "EstkdamJourney" || currentPage == "EstkdamPolices"
+            }
             subTitles={[
               {
                 title: "رحله الإستقدام ",
@@ -121,6 +136,9 @@ export default function Navber() {
           </NavTitle>
 
           <NavTitle
+            value={
+              currentPage == "ContactUs" || currentPage == "CommonQuestions"
+            }
             subTitles={[
               {
                 title: "تواصل معنا ",
@@ -138,7 +156,12 @@ export default function Navber() {
         <Grid
           item
           xs={3}
-          sx={{ display: "flex", justifyContent: "end", marginTop: "1rem" ,zIndex:"1000"}}
+          sx={{
+            display: "flex",
+            justifyContent: "end",
+            marginTop: "1rem",
+            zIndex: "1000",
+          }}
         >
           {currentUser ? (
             <>
@@ -618,44 +641,61 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
         fontSize: "16px",
         fontWeight: "400",
         color: "#213039",
-        zIndex:"1000"
+        zIndex: "1000",
       }}
     >
       <Grid
         item
         xs={12}
         sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}
-      > <Link to={'/'} style={{ color: "#005288" }}> الرئيسية</Link>
-
+      >
+        {" "}
+        <Link to={"/"} style={{ color: "#005288" }}>
+          {" "}
+          الرئيسية
+        </Link>
       </Grid>
       <Grid item xs={12} sx={{ "& > div": { paddingBottom: ".5rem" } }}>
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           خدماتنا
         </Box>
-        <Link to={'/EstkdamRequest'}><Box sx={{ color: "#005288" }}>طلب استقدام</Box></Link>
+        <Link to={"/EstkdamRequest"}>
+          <Box sx={{ color: "#005288" }}>طلب استقدام</Box>
+        </Link>
 
-        <Link to={'/KafalaTransfer'}><Box sx={{ color: "#005288" }}>نقل كفالة</Box></Link>
-
+        <Link to={"/KafalaTransfer"}>
+          <Box sx={{ color: "#005288" }}>نقل كفالة</Box>
+        </Link>
       </Grid>
       <Grid item xs={12} sx={{ "& > div": { paddingBottom: ".5rem" } }}>
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           عن الاستقدام
         </Box>
-        <Link to={'/EstkdamJourney'}> <Box sx={{ color: "#005288" }}>رحلة الاستقدام</Box></Link>
-        <Link to={'/EstkdamPolices'}>  <Box sx={{ color: "#005288" }}>سياسات الاستقدام</Box></Link>
-
+        <Link to={"/EstkdamJourney"}>
+          {" "}
+          <Box sx={{ color: "#005288" }}>رحلة الاستقدام</Box>
+        </Link>
+        <Link to={"/EstkdamPolices"}>
+          {" "}
+          <Box sx={{ color: "#005288" }}>سياسات الاستقدام</Box>
+        </Link>
       </Grid>
       <Grid item xs={12} sx={{ "& > div": { paddingBottom: ".5rem" } }}>
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           الدعم
         </Box>
-        <Link to={'/ContactUs'}> <Box sx={{ color: "#005288" }}>تواصل معنا</Box></Link>
-        <Link to={'/CommonQuestions'}> <Box sx={{ color: "#005288" }}>أسئلة شائعة</Box></Link>
-
+        <Link to={"/ContactUs"}>
+          {" "}
+          <Box sx={{ color: "#005288" }}>تواصل معنا</Box>
+        </Link>
+        <Link to={"/CommonQuestions"}>
+          {" "}
+          <Box sx={{ color: "#005288" }}>أسئلة شائعة</Box>
+        </Link>
       </Grid>
 
       {currentUser ? (
-        <Grid item xs={12} >
+        <Grid item xs={12}>
           <Link
             to={`/Profile`}
             onClick={() => {
@@ -666,7 +706,7 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
               الصفحة الشخصية
             </Btn>
           </Link>
-          <Grid 
+          <Grid
             onClick={() => {
               LogOut();
               handleNavToggle();

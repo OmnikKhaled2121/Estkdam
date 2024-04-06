@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import settingProfile from "../assets/settingProfile.jfif";
 import EditProfilePopUp from "../components/EditProfilePopUp";
 import { Link } from "react-router-dom";
@@ -9,19 +9,39 @@ import { UserContext } from "../Context/UserContext";
 export default function ProfileSettings() {
   window.scrollTo(0, 0);
   const { currentUser } = useContext(UserContext);
-  const profileData = [
 
-    ["صورة المستخدم", currentUser.image ? currentUser.image: settingProfile],
-    ["اسم المستخدم", currentUser.business_name ? currentUser.business_name:"غيرمتوفر"],
-    ["البريد الإلكتروني", currentUser.email?currentUser.email:"غير متوفر"],
-    ["رقم الجوال", currentUser.phone?currentUser.phone:"غير متوفر "],
-    [" الموقع", currentUser.loaction?currentUser.loaction:"غير متوفر"],
-  ];
+  const [editedProfileData, seteditedProfileData] = useState({
+    status: "clean",
+    data: {
+      userimage: {
+        label: "صورة المستخدم",
+        value: currentUser.image ? currentUser.image : settingProfile,
+      },
+      userName: {
+        label: "اسم المستخدم",
+        value: currentUser.business_name
+          ? currentUser.business_name
+          : "غيرمتوفر",
+      },
+      email: {
+        label: "البريد الإلكتروني",
+        value: currentUser.email ? currentUser.email : "غير متوفر",
+      },
+      phone: {
+        label: "رقم الجوال",
+        value: currentUser.phone ? currentUser.phone : "غير متوفر ",
+      },
+      location: {
+        label: "الموقع",
+        value: currentUser.loaction ? currentUser.loaction : "غير متوفر",
+      },
+    },
+  });
+
   const [open, setOpen] = useState(false);
   const [property, setproperty] = useState("");
   const [value, setvalue] = useState("");
   const handleClickOpen = (property, value) => {
-    console.log("first")
     setproperty(property);
     setvalue(value);
     setOpen(true);
@@ -30,6 +50,17 @@ export default function ProfileSettings() {
   const handleClose = () => {
     setOpen(false);
   };
+  const saveChanges = () => {
+    if (editedProfileData.status == "touched") {
+      console.log("editedProfileData", editedProfileData);
+      let obj = {};
+      Object.keys(editedProfileData.data).forEach((item) => {
+        obj[`${item}`] = editedProfileData.data[item].value;
+      });
+      console.log("res", obj);
+    }
+  };
+
   return (
     <>
       <Container>
@@ -56,13 +87,14 @@ export default function ProfileSettings() {
             },
           }}
         >
-          {profileData.map((item, index) => {
+          {Object.keys(editedProfileData.data).map((item, index) => {
             return (
               <Field
-                property={item[0]}
-                value={item[1]}
+                property={item}
+                value={editedProfileData.data[`${item}`]}
                 key={index}
                 handlePopupOpen={handleClickOpen}
+                seteditedProfileData={seteditedProfileData}
               />
             );
           })}
@@ -70,43 +102,47 @@ export default function ProfileSettings() {
         <Grid
           sx={{ margin: "3rem 0", display: "flex", justifyContent: "center" }}
         >
-          <Link to={"/Profile"}>
-            <Box
-              sx={{
-                fontWeight: "700",
-                lineHeight: "24px",
-                padding: "10px 27px",
-                boxSizing: "border-box",
-                borderRadius: "54px",
-                border: "2px solid #005288",
-                background: "#005288",
-                color: "#FFF",
-                width: "auto",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                "&:hover": {
-                  color: "#005288",
-                  background: "white",
-                },
-              }}
-            >
-              حفظ الإعدادات
-            </Box>
-          </Link>
+          {/* <Link to={"/Profile"}> */}
+          <Box
+            onClick={saveChanges}
+            sx={{
+              fontWeight: "700",
+              lineHeight: "24px",
+              padding: "10px 27px",
+              boxSizing: "border-box",
+              borderRadius: "54px",
+              border: "2px solid #005288",
+              background: "#005288",
+              color: "#FFF",
+              width: "auto",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              "&:hover": {
+                color: "#005288",
+                background: "white",
+              },
+            }}
+          >
+            حفظ الإعدادات
+          </Box>
+          {/* </Link> */}
         </Grid>
       </Container>
       <EditProfilePopUp
         open={open}
-        handleClose={handleClose}
+        handleClose={() => {
+          handleClose();
+        }}
         property={property}
         value={value}
+        seteditedProfileData={seteditedProfileData}
       />
     </>
   );
 }
 
-function Field({ property, value, handlePopupOpen }) {
+function Field({ property, value, handlePopupOpen, seteditedProfileData }) {
   return (
     <Grid
       container
@@ -122,10 +158,10 @@ function Field({ property, value, handlePopupOpen }) {
       }}
     >
       <Grid item md={3} xs={12}>
-        {property}
+        {value.label}
       </Grid>
       <Grid item md={3} xs={12} color={"#000"}>
-        {property == "صورة المستخدم" ? (
+        {property == "userimage" ? (
           <Box
             sx={{
               height: "65px",
@@ -137,16 +173,16 @@ function Field({ property, value, handlePopupOpen }) {
               },
             }}
           >
-            <img width={"100%"} src={value} />
+            <img width={"100%"} src={value.value} />
           </Box>
         ) : (
-          value
+          value.value
         )}
       </Grid>
       <Grid item md={3} xs={12} sx={{ display: "flex", justifyContent: "end" }}>
         <Box
           onClick={() => {
-            handlePopupOpen(property, value);
+            handlePopupOpen(property, value, seteditedProfileData);
           }}
           sx={{
             padding: "10px 27px",
