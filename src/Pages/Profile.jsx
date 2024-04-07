@@ -1,11 +1,12 @@
 import { Container, Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProfileBg from "../assets/settingProfile.jfif";
 import OrderInfo from "../components/TrackCard";
 import { Link } from "react-router-dom";
 import LastUpdatesPopUp from "../components/LastUpdatesPopUp";
-import { UserContext } from "../Context/UserContext";
+import { UserContext } from './../Context/UserContext';
+import { ListOrders } from "../lib/api";
 
 const profileData = [
   ["البريد الإلكتروني", "mohamed.ahmed.abdg453@gmail.com"],
@@ -13,8 +14,10 @@ const profileData = [
   [" الموقع", "جدة، المملكة العربية السعودية"],
 ];
 export default function Profile() {
+  const { accessToken, currentUser } = useContext(UserContext);
+
   window.scrollTo(0, 0);
-  const { currentUser } = useContext(UserContext);
+
 
   return (
     <Container>
@@ -214,7 +217,20 @@ function InfoItem({ property, value }) {
   );
 }
 
-function Orders(item, xs, md) {
+function Orders({ item, xs, md }) {
+  const [order, setOrders] = useState()
+  const { accessToken, currentUser } = useContext(UserContext);
+  var userId = currentUser.id
+  async function getAllOrders(userId, accessToken) {
+    const { data, status } = await ListOrders(userId, accessToken);
+    if (status) {
+      setOrders(data);
+    }
+    console.log(order)
+  }
+  useEffect(() => {
+    getAllOrders(userId, accessToken)
+  }, [])
   return (
     <Grid
       item
@@ -259,12 +275,30 @@ function Orders(item, xs, md) {
           </Box>
         </Link>
       </Grid>
-      <Grid sx={{ width: "100%" }}>
-        <OrderInfo />
-      </Grid>
-      <Grid sx={{ width: "100%" }}>
-        <OrderInfo />
-      </Grid>
+      {order?.length > 0 ? order?.map((order, index) => {
+        if (index > 1) {
+          return
+        }
+        return <Grid sx={{ width: "100%" }}>
+          <OrderInfo orderDetails={order} />
+
+        </Grid>;
+      }) : <Grid
+        container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          fontSize: "36px",
+          fontWeight: "700",
+          lineHeight: "54px",
+          textAlign: "center",
+        }}
+      >
+        "لا يوجد لديك طلبات"
+      </Grid>}
+
+
     </Grid>
   );
 }

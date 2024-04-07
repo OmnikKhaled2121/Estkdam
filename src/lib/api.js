@@ -305,3 +305,65 @@ export const CreateOrder = async (id, userToken) => {
     }
     return Obj
 }
+
+export const CountriesList = async () => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        const { data } = await axios.get(`${baseUrl}/countries`);
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+}
+
+export const ListOrders = async (id, userToken) => {
+
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/manager/${id}/orders`,
+            {
+                headers: {
+                    Authorization: "Bearer " + userToken,
+                },
+            });
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+
+}
+
+export const DeleteOrder = async (id, userToken) => {
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.delete(`${baseUrl}/orders/${id}`,
+            {
+                headers: {
+                    Authorization: "Bearer " + userToken,
+                },
+            });
+        Obj.data = data
+        console.log(Obj.data)
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+
+}

@@ -1,5 +1,5 @@
 import { Box, Container, Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import mapPic from "../assets/map1.png";
 import flag1 from "../assets/FlagIndia.png";
 import flag2 from "../assets/FlagKenea.png";
@@ -8,6 +8,7 @@ import flag4 from "../assets/FlagIndia.png";
 import flag5 from "../assets/FlagSerelanka.png";
 import flag6 from "../assets/FlagOganda.png";
 import flag7 from "../assets/FlagAthyouba.png";
+import { CountriesList } from "../lib/api";
 
 const cardData = [
   {
@@ -48,6 +49,19 @@ const cardData = [
 ];
 
 export default function EstkdamCountry() {
+  const [countries, setCountries] = useState()
+
+
+  async function getCountries() {
+    const { data, status } = await CountriesList();
+    if (status) {
+      setCountries(data);
+    }
+  }
+  useEffect(() => {
+    getCountries()
+  }, [])
+
   return (
     <>
       <Grid
@@ -91,13 +105,14 @@ export default function EstkdamCountry() {
                 alignItems: "center",
               }}
             >
-              {cardData.map((item) => {
+              {countries?.map((item) => {
                 return (
                   <>
                     <CityCard
-                      img={item.img}
-                      city={item.city}
+                      img={item.image}
+                      city={item.name}
                       price={item.price}
+                      desc={item.description}
                     ></CityCard>
                   </>
                 );
@@ -133,7 +148,7 @@ export default function EstkdamCountry() {
   );
 }
 
-function CityCard({ img, city, price }) {
+function CityCard({ img, city, price, desc }) {
   return (
     <>
       <Grid
@@ -170,7 +185,7 @@ function CityCard({ img, city, price }) {
             {city}
           </Box>
           <Box sx={{ padding: "0.5rem 0" }}>
-            سرعة وصول لعمالة مدربة وكفاءات عالية
+            {desc}
           </Box>
           <Box
             sx={{
