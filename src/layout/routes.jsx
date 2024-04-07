@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter, useParams } from "react-router-dom";
 import Home from "../Pages/Home";
 import Root from "./Root";
 import EmpProfile from "../Pages/EmpProfile";
@@ -31,6 +31,8 @@ import NotFound from "../components/NotFound";
 export default function Routers() {
   const { currentUser } = useContext(UserContext);
   console.log("Routers", currentUser);
+  // let id = useParams();
+  // console.log("sssssssss",id)
   let routers = createBrowserRouter([
     {
       path: "",
@@ -52,7 +54,7 @@ export default function Routers() {
           path: "Profile",
           element: (
             <ProtectedRoute>
-              <Profile to="/"   />
+              <Profile to="/" />
             </ProtectedRoute>
           ),
         },
@@ -74,6 +76,7 @@ export default function Routers() {
       path: "LoginOrderCompletetion",
       element: currentUser ? (
         <Navigate to="/CompleteOrder" replace />
+      
       ) : (
         <LoginOrderCompletetion />
       ),
