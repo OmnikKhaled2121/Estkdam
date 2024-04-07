@@ -31,7 +31,7 @@ export default function EstkdamRequest() {
   });
 
   async function getAllEmployee(request, accessToken) {
-    console.log("getAllEmployee2");
+    // console.log("getAllEmployee2");
     const { data, status } = await SearchEmployee(request, accessToken);
     setAllEmployee(data);
   }

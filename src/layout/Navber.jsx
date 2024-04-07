@@ -14,7 +14,7 @@ export default function Navber() {
     location.pathname.split("/")[1]
   );
 
-  console.log("url55", location.pathname.split("/")[1]);
+  // console.log("url55", location.pathname.split("/")[1]);
 
   const handleNavToggle = () => {
     setopenMobileNav((prev) => {
@@ -172,7 +172,7 @@ export default function Navber() {
                   position: "relative",
                   "&:hover": {
                     "& > div:last-child": {
-                      animation: "mymove2 ",
+                      animation: "mymove2",
                       animationDuration: "1s",
                       animationFillMode: "both",
                     },
@@ -394,7 +394,7 @@ function NavTitle({ children, value, subTitles, to }) {
           zIndex: "1000",
           // paddingBottom: "1rem",
           borderBottom: value ? "3px solid #005288" : "none",
-          "& > div:last-child": {
+          "& > div:last-child": children == "الرئيسيه" ? "": {
             animation: "mymove",
             animationDuration: "1s",
             animationFillMode: "both",

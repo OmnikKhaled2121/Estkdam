@@ -112,7 +112,7 @@ export default function CompleteOrder() {
           <>
             {isCreate ? (
               <>
-                <OrderReview employee={employee} createOrder={createOrder} />
+                <OrderReview employee={employee} createOrder={createOrder} proPic={proPic}/>
               </>
             ) : (
               <>
@@ -217,7 +217,7 @@ function EmpCard({
       accessToken
     );
     if (status) {
-      console.log("data", data);
+      // console.log("data", data);
       setCreateOrder(data.order);
       setIsCreate(true);
     }
@@ -1145,7 +1145,7 @@ function Order({ proPic, employee, createOrder }) {
   );
 }
 
-function OrderReview({ employee, createOrder }) {
+function OrderReview({ employee, createOrder  ,proPic}) {
   return (
     <>
       <Grid item xs={12}>
@@ -1171,7 +1171,7 @@ function OrderReview({ employee, createOrder }) {
           برجاء مراجعة البيانات أدناه والتواصل مع خدمة العملاء
         </Box>
       </Grid>
-      <Order employee={employee} createOrder={createOrder} />
+      <Order employee={employee} createOrder={createOrder} proPic={proPic}  />
       <ConfirmOrder />
     </>
   );

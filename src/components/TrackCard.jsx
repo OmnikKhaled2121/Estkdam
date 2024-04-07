@@ -5,8 +5,8 @@ import Logoimg from "../assets/ahmed.jfif";
 import { TimeConverter } from './../Utils/TimeConvertar';
 
 export default function OrderInfo({ orderDetails }) {
-  console.log("orderDetails")
-  console.log(orderDetails)
+  // console.log("orderDetails")
+  // console.log(orderDetails)
   return (
     <Grid
       container

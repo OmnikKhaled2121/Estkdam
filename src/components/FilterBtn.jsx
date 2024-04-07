@@ -29,7 +29,7 @@ export default function FilterBtn({ request, setAllEmployee, setIsClear }) {
           },
         }}
         onClick={() => {
-          console.log("تطبييييييييييييق", request.current);
+          // console.log("تطبييييييييييييق", request.current);
           getAll(request.current);
         }}
       >
@@ -53,7 +53,7 @@ export default function FilterBtn({ request, setAllEmployee, setIsClear }) {
         }}
         onClick={() => {
           request.current = {};
-          console.log("dsdsdasdas");
+          // console.log("dsdsdasdas");
           setIsClear(true);
         }}
       >

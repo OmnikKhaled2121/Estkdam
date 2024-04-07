@@ -226,7 +226,7 @@ function Orders({ item, xs, md }) {
     if (status) {
       setOrders(data);
     }
-    console.log(order)
+    // console.log(order)
   }
   useEffect(() => {
     getAllOrders(userId, accessToken)

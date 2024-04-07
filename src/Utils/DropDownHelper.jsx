@@ -72,7 +72,7 @@ export async function handleNationalitiesDropDown() {
 
 export function handleInitial({ type, initial }) {
   // let value ="";
-  console.log();
+  // console.log();
   if (type == "العمر" && initial) {
     return (initial += " عام");
   }

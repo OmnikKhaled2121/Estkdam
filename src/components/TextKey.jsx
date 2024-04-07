@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function TextKey({ texts, white, to }) {
   let navigate = useNavigate();
-  console.log(texts);
+  // console.log(texts);
   return (
     <>
       <Grid

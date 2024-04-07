@@ -60,7 +60,7 @@ export default function LoginOrderCompletetion() {
   const onSubmit = async (inputs) => {
     setisLoading(true);
     const { data, status } = await LoginApi(inputs);
-    console.log("data", data);
+    // console.log("data", data);
     if (status) {
       localStorage.setItem(
         "USER",
@@ -258,7 +258,7 @@ export default function LoginOrderCompletetion() {
           }}
         >
           {Object.entries(errors).map((error, index) => {
-            console.log(error);
+            // console.log(error);
             return <InputError key={index} message={error[1].message} />;
           })}
         </Grid>

@@ -170,7 +170,7 @@ export function InputError({ message }) {
           />
         </svg>
       </Box>
-      {console.log("message", message)}
+      {/* {console.log("message", message)} */}
       <Box pr={1}>{message ? message : "أن يحتوى على حرف كبير على الأقل"}</Box>
     </Grid>
   );

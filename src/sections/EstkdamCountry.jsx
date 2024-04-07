@@ -49,8 +49,7 @@ const cardData = [
 ];
 
 export default function EstkdamCountry() {
-  const [countries, setCountries] = useState()
-
+  const [countries, setCountries] = useState();
 
   async function getCountries() {
     const { data, status } = await CountriesList();
@@ -59,8 +58,8 @@ export default function EstkdamCountry() {
     }
   }
   useEffect(() => {
-    getCountries()
-  }, [])
+    getCountries();
+  }, []);
 
   return (
     <>
@@ -173,8 +172,9 @@ function CityCard({ img, city, price, desc }) {
           }}
         >
           <Box>
-            <img width={"78px"} height={"51px"} src={img}></img>
+            <img width={"78px"} height={"51px"} src={img ? img : flag1}></img>
           </Box>
+          
           <Box
             sx={{
               fontSize: "36px",
@@ -184,9 +184,7 @@ function CityCard({ img, city, price, desc }) {
           >
             {city}
           </Box>
-          <Box sx={{ padding: "0.5rem 0" }}>
-            {desc}
-          </Box>
+          <Box sx={{ padding: "0.5rem 0" }}>{desc}</Box>
           <Box
             sx={{
               fontSize: "22px",

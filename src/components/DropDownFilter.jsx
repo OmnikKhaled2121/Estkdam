@@ -18,7 +18,7 @@ export default function DropDownFilter({
   setIsClear,
   initial,
 }) {
-  console.log("initial", initial);
+  // console.log("initial", initial);
   
   const [flag, setFlag] = useState(false);
   const [value, setValue] = useState(handleInitial({type,initial}));

@@ -30,10 +30,10 @@ import NotFound from "../components/NotFound";
 
 export default function Routers() {
   const { currentUser } = useContext(UserContext);
-  console.log("Routers", currentUser);
-  const employeeID = JSON.parse(localStorage.getItem("employeeID")).employeeID;
+  // console.log("Routers", currentUser);
+  const employeeID = JSON.parse(localStorage.getItem("employeeID"))?.employeeID;
 
-  console.log("employeeID", employeeID);
+  // console.log("employeeID", employeeID);
   // let id = useParams();
   // console.log("sssssssss",id)
   let routers = createBrowserRouter([
@@ -50,7 +50,14 @@ export default function Routers() {
         { path: "EstkdamPolices", element: <EstkdamPolices /> },
         { path: "EstkdamJourney", element: <EstkdamJourney /> },
         { path: "ContactUs", element: <ContactUs /> },
-        { path: "empProfile/:id", element: <EmpProfile /> },
+        {
+          path: "empProfile/:id",
+          element: (
+            // <ProtectedRoute>
+              <EmpProfile />
+            // </ProtectedRoute>
+          ),
+        },
         { path: "MultiCards", element: <MultiCards /> },
         { path: "TrackOrders", element: <Trackorders /> },
         {
@@ -78,7 +85,7 @@ export default function Routers() {
     {
       path: "LoginOrderCompletetion",
       element: currentUser ? (
-        <Navigate to={`/CompleteOrder/${employeeID}`}  />
+        <Navigate to={`/CompleteOrder/${employeeID}`} />
       ) : (
         <LoginOrderCompletetion />
       ),

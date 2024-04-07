@@ -12,7 +12,7 @@ async function getAllOrders(setOrders, userId, accessToken) {
   if (status) {
     setOrders(data);
   }
-  console.log(order)
+  // console.log(order)
 }
 
 
@@ -21,7 +21,7 @@ async function getAllOrders(setOrders, userId, accessToken) {
 export default function Trackorders() {
   const [order, setOrders] = useState()
   const { accessToken, currentUser } = useContext(UserContext);
-  var userId = currentUser.id
+  var userId = currentUser?.id
   useEffect(() => {
     getAllOrders(setOrders, userId, accessToken)
 
@@ -130,13 +130,13 @@ export default function Trackorders() {
 function ButtonTrack({ title, backColor, direct, ordertId, setOrders }) {
 
   const { accessToken, currentUser } = useContext(UserContext);
-  let userID = currentUser.id
+  let userID = currentUser?.id
   async function deleteOrder(setOrders, ordertId, accessToken) {
     const { data } = await DeleteOrder(ordertId, accessToken);
 
 
     getAllOrders(setOrders, userID, accessToken)
-    console.log("deleeeeeeeeeeeeete")
+    // console.log("deleeeeeeeeeeeeete")
 
 
 

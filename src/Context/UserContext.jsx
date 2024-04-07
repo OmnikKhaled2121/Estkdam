@@ -13,6 +13,7 @@ export default function UserContextProvider(props) {
 
   const LogOut = () => {
     localStorage.removeItem("USER");
+    localStorage.removeItem("employeeID")
     setCurrentUser(null);
     setaccessToken(null);
     <Navigate to={"/"} replace />;
@@ -21,14 +22,14 @@ export default function UserContextProvider(props) {
     let userData = isAuthenticated();
     setCurrentUser(userData?.userData);
     setaccessToken(userData?.accessToken);
-    console.log("se3a check login", userData?.userData);
+    // console.log("se3a check login", userData?.userData);
   };
 
   useEffect(() => {
     checkLoggedIn();
   }, []);
   useEffect(() => {
-    console.log("ajaj", currentUser);
+    // console.log("ajaj", currentUser);
   }, [currentUser]);
 
   return (
