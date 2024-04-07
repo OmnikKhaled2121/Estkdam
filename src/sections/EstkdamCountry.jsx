@@ -109,7 +109,7 @@ export default function EstkdamCountry() {
                 return (
                   <>
                     <CityCard
-                      img={item.image}
+                      img={item.image_url}
                       city={item.name}
                       price={item.price}
                       desc={item.description}
@@ -173,7 +173,7 @@ function CityCard({ img, city, price, desc }) {
           }}
         >
           <Box>
-            <img src={img}></img>
+            <img width={"78px"} height={"51px"} src={img}></img>
           </Box>
           <Box
             sx={{

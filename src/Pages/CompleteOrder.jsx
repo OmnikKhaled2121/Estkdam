@@ -201,25 +201,14 @@ function EmpCard({
   const { accessToken, currentUser } = useContext(UserContext);
 
   const handleDownloadCV = () => {
-    // Ensure employee and resume URL are defined
-    if (!employee || !employee.resume) {
-      console.error("Employee or resume URL not found.");
-      return;
-    }
-
-    // Get the resume URL from the employee object
-    const resumeUrl = employee.resume;
-
-    // Constructing the complete URL for the resume
-    const downloadUrl = `${window.location.origin}/${resumeUrl}`;
-
-    // Creating an anchor element to trigger the download
-    const link = document.createElement("a");
-    link.href = downloadUrl;
-    link.download = "resume.pdf"; // Set desired filename here
-
-    // Triggering the download
-    link.click();
+    const { resume } = employee;
+    const fileName = resume.split("/").pop();
+    const aTag = document.createElement("a");
+    aTag.href = resume;
+    aTag.setAttribute("donwload", fileName);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
   };
   async function createOrderByID() {
     const { data, status } = await CreateOrder(
@@ -834,7 +823,7 @@ function Clock() {
           ساعة
         </Box>
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={1} sx={{padding:"0 1rem"}}>
         :
       </Grid>
       <Grid item xs={2}>
@@ -848,7 +837,7 @@ function Clock() {
           دقيقة
         </Box>
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={1} sx={{padding:"0 1rem"}}>
         :
       </Grid>
       <Grid item xs={2}>

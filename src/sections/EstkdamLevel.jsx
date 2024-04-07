@@ -7,7 +7,12 @@ import papperLogo from "../assets/Group6895.png";
 import calLogo from "../assets/Group6890.png";
 import arrowLogos from "../assets/arrow-lefts.png";
 import { Link } from "react-scroll";
+import { useNavigate } from "react-router-dom";
 export default function EstkdamLevel({ title, ascending }) {
+  let flag = false;
+  if (title == "رحلة الإستقدام") {
+    flag = true;
+  }
   return (
     <Container
       container
@@ -70,7 +75,7 @@ export default function EstkdamLevel({ title, ascending }) {
               justifyContent="flex-start"
               alignItems="flex-start"
             >
-              <LevelColum number={"05"} />
+              <LevelColum number={"05"} flag={flag} />
             </Grid>
           </Grid>
           <Grid
@@ -188,7 +193,8 @@ function LevelTable({ icon, title, text, number }) {
   );
 }
 
-function LevelColum({ icon, title, text, number }) {
+function LevelColum({ icon, title, text, number,flag }) {
+  let navigate = useNavigate();
   return (
     <Grid padding={".5rem 0"}>
       <Grid
@@ -286,6 +292,9 @@ function LevelColum({ icon, title, text, number }) {
                   "&:hover": {
                     cursor: "pointer",
                   },
+                }}
+                onClick={() => {
+                  flag ? navigate("/EstkdamRequest") : "";
                 }}
               >
                 ابدأ الإستقدام الأن

@@ -463,6 +463,9 @@ function RowIcon({ title, active, onClick }) {
           borderColor: active ? "#213039" : "#EBEBEB",
           backgroundColor: active ? "#DAEAF4" : "#FAFAFA",
           cursor: active ? "pointer" : "",
+          "&:hover": {
+            cursor: "pointer",
+          },
         }}
         onClick={onClick}
       >
@@ -506,6 +509,9 @@ function Option({ value, onClick, active }) {
         alignItems: "center",
         paddingRight: ".6rem",
         // background: active ? "#F3F3" : "",
+        "&:hover": {
+          cursor: "pointer",
+        },
       }}
       onClick={onClick}
     >

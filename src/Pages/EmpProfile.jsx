@@ -58,25 +58,14 @@ export default function EmpProfile() {
 
 function Landing({ name, proPic, Information, employee }) {
   const handleDownloadCV = () => {
-    // Ensure employee and resume URL are defined
-    if (!employee || !employee.resume) {
-      console.error("Employee or resume URL not found.");
-      return;
-    }
-  
-    // Get the resume URL from the employee object
-    const resumeUrl = employee.resume;
-  
-    // Constructing the complete URL for the resume
-    const downloadUrl = `${window.location.origin}/${resumeUrl}`;
-  
-    // Creating an anchor element to trigger the download
-    const link = document.createElement("a");
-    link.href = downloadUrl;
-    link.download = "resume.pdf"; // Set desired filename here
-  
-    // Triggering the download
-    link.click();
+    const { resume } = employee;
+    const fileName = resume.split("/").pop();
+    const aTag = document.createElement("a");
+    aTag.href = resume;
+    aTag.setAttribute("donwload", fileName);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
   };
   return (
     <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -470,6 +459,12 @@ function Landing({ name, proPic, Information, employee }) {
                   background: "white",
                   cursor: "pointer",
                 },
+              }}
+              onClick={() => {
+                localStorage.setItem(
+                  "employeeID",
+                  JSON.stringify({ employeeID: employee.id })
+                );
               }}
             >
               حجز السيرة الذاتية
