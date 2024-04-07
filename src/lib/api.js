@@ -281,7 +281,7 @@ export const StatisticsData = async () => {
 }
 
 
-export const CreateOrder = async (id, userToken) => {
+export const CreateOrder = async (id, userID, userToken) => {
     let Obj = {
         data: "",
         status: true
@@ -290,14 +290,15 @@ export const CreateOrder = async (id, userToken) => {
         let { data } = await axios.post(`${baseUrl}/orders`,
             {
                 "status": "تحت الطلب",
-                "employees_ids": `[${id}]`
+                "manager_id": userID,
+                "employees_ids": [id]
             },
             {
                 headers: {
                     Authorization: "Bearer " + userToken,
                 },
             });
-        Obj.data = data.data
+        Obj.data = data
         Obj.status = true
     } catch (error) {
         Obj.data = ""

@@ -27,6 +27,7 @@ export default function OrderReview() {
             marginBottom: "1rem",
           },
         }}
+      
       >
         <Grid
           item
@@ -99,7 +100,7 @@ export default function OrderReview() {
           display: "flex", justifyContent: "center",
           margin: "2rem 0"
         }}>
-          
+
           <Grid
             sx={{
               padding: "10px 15px",
