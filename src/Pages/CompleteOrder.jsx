@@ -496,6 +496,7 @@ function EmpCard({
             fontWeight: "500",
             lineHeight: " 22.32px",
             border: "2px solid #005288",
+            cursor:"pointer",
 
             marginBottom: {
               xs: "1rem",
