@@ -48,7 +48,14 @@ export default function Routers() {
         { path: "empProfile/:id", element: <EmpProfile /> },
         { path: "MultiCards", element: <MultiCards /> },
         { path: "TrackOrders", element: <Trackorders /> },
-        { path: "Profile", element: <Profile /> },
+        {
+          path: "Profile",
+          element: (
+            <ProtectedRoute>
+              <Profile to="/"   />
+            </ProtectedRoute>
+          ),
+        },
         {
           path: "ProfileSettings",
           element: (

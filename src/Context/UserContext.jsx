@@ -1,9 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import { isAuthenticated } from "../lib/api";
+import { Navigate } from "react-router";
 
 export const UserContext = createContext(" ");
 
 export default function UserContextProvider(props) {
+  
   const [currentUser, setCurrentUser] = useState(isAuthenticated()?.userData);
   const [accessToken, setaccessToken] = useState(
     isAuthenticated()?.accessToken
@@ -13,6 +15,7 @@ export default function UserContextProvider(props) {
     localStorage.removeItem("USER");
     setCurrentUser(null);
     setaccessToken(null);
+    <Navigate to={"/"} replace />;
   };
   const checkLoggedIn = () => {
     let userData = isAuthenticated();
