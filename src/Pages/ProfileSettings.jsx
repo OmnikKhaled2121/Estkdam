@@ -52,12 +52,12 @@ export default function ProfileSettings() {
   };
   const saveChanges = () => {
     if (editedProfileData.status == "touched") {
-      console.log("editedProfileData", editedProfileData);
+      // console.log("editedProfileData", editedProfileData);
       let obj = {};
       Object.keys(editedProfileData.data).forEach((item) => {
         obj[`${item}`] = editedProfileData.data[item].value;
       });
-      console.log("res", obj);
+      // console.log("res", obj);
     }
   };
 

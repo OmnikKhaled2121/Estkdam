@@ -114,7 +114,7 @@ function Search() {
 
   const [searchStatus, setsearchStatus] = useState("Start");
   const [optionsData, setoptionsData] = useState([]);
-  console.log("optionsData", optionsData);
+  // console.log("optionsData", optionsData);
   const [searchInputs, setsearchInputs] = useState({
     job: "",
     age: "",
@@ -279,7 +279,7 @@ function Options({
       false,
       request
     );
-    console.log(request);
+    // console.log(request);
   };
 
   useEffect(() => {
@@ -434,7 +434,7 @@ function Options({
                 },
               }}
               onClick={() => {
-                console.log("request Final", request.current);
+                // console.log("request Final", request.current);
               }}
             >
               ابدأ الإستقدام الأن
@@ -463,6 +463,9 @@ function RowIcon({ title, active, onClick }) {
           borderColor: active ? "#213039" : "#EBEBEB",
           backgroundColor: active ? "#DAEAF4" : "#FAFAFA",
           cursor: active ? "pointer" : "",
+          "&:hover": {
+            cursor: "pointer",
+          },
         }}
         onClick={onClick}
       >
@@ -506,6 +509,9 @@ function Option({ value, onClick, active }) {
         alignItems: "center",
         paddingRight: ".6rem",
         // background: active ? "#F3F3" : "",
+        "&:hover": {
+          cursor: "pointer",
+        },
       }}
       onClick={onClick}
     >

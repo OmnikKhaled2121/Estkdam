@@ -14,7 +14,6 @@ export default function EmpProfile() {
   let { id } = useParams();
 
   async function getEmployee(accessToken) {
-
     const { data, status } = await GetEmployeeByID(id, accessToken);
 
     if (status) {
@@ -34,7 +33,7 @@ export default function EmpProfile() {
             proPic={proPic}
             Information={[]}
           />
-          <AdditionalInfo />
+          <AdditionalInfo employee={employee} />
         </>
       ) : (
         <>
@@ -58,6 +57,16 @@ export default function EmpProfile() {
 }
 
 function Landing({ name, proPic, Information, employee }) {
+  const handleDownloadCV = () => {
+    const { resume } = employee;
+    const fileName = resume.split("/").pop();
+    const aTag = document.createElement("a");
+    aTag.href = resume;
+    aTag.setAttribute("donwload", fileName);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+  };
   return (
     <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
       <Grid item md={3} xs={12}>
@@ -448,7 +457,14 @@ function Landing({ name, proPic, Information, employee }) {
                 "&:hover": {
                   color: "#005288",
                   background: "white",
+                  cursor: "pointer",
                 },
+              }}
+              onClick={() => {
+                localStorage.setItem(
+                  "employeeID",
+                  JSON.stringify({ employeeID: employee.id })
+                );
               }}
             >
               حجز السيرة الذاتية
@@ -472,8 +488,10 @@ function Landing({ name, proPic, Information, employee }) {
               "&:hover": {
                 background: "#005288",
                 color: "white",
+                cursor: "pointer",
               },
             }}
+            onClick={handleDownloadCV}
           >
             تحميل السيرة الذاتية
           </Box>
@@ -482,16 +500,14 @@ function Landing({ name, proPic, Information, employee }) {
     </Grid>
   );
 }
-function AdditionalInfo() {
+function AdditionalInfo({ employee }) {
   return (
     <Grid sx={{ "& > div": { marginBottom: "3rem" } }}>
       <Information
         title={"الخبرة"}
-        InfoArr={[
-          "المملكة العربية السعودية",
-          "الإمارات العربية المتحدة",
-          "قطر",
-        ]}
+        InfoArr={employee?.experiences?.map((item) => {
+          return item.name;
+        })}
         md={4}
         xs={12}
         icon={
@@ -514,7 +530,9 @@ function AdditionalInfo() {
       />
       <Information
         title={"المهارات"}
-        InfoArr={["الكوي", "التنظيف", "الغسيل", "عناية الرضع", "تعليم الاطفال"]}
+        InfoArr={employee?.skills?.map((item) => {
+          return item?.name ? item?.name : "";
+        })}
         md={4}
         xs={12}
         icon={
@@ -572,7 +590,7 @@ function AdditionalInfo() {
             "& > div:not(:last-child)": { marginBottom: "1rem" },
           }}
         >
-          <Info type={"رقم جواز السفر"} info={"Y7704891"}>
+          <Info type={"رقم جواز السفر"} info={employee?.passport_number}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"
@@ -586,7 +604,7 @@ function AdditionalInfo() {
               />
             </svg>
           </Info>
-          <Info type={"مكان الإصدار"} info={"VISAKHAPATAM"}>
+          <Info type={"مكان الإصدار"} info={employee?.passport_issue_location}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -604,7 +622,7 @@ function AdditionalInfo() {
               />
             </svg>
           </Info>
-          <Info type={"تاريخ الإصدار"} info={"2023-02-01"}>
+          <Info type={"تاريخ الإصدار"} info={employee?.passport_issue_date}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -654,7 +672,7 @@ function AdditionalInfo() {
               />
             </svg>
           </Info>
-          <Info type={"تاريخ الإنتهاء"} info={"2025-02-01"}>
+          <Info type={"تاريخ الإنتهاء"} info={employee?.passport_exp_date}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

@@ -1,11 +1,32 @@
 import { Box, Container, Grid } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SocialLogos from "../components/SocialLogos";
 import OrderInfo from "../components/TrackCard";
 import { Link } from "react-router-dom";
+import { DeleteOrder, ListOrders } from "../lib/api";
+import { UserContext } from "../Context/UserContext";
+
+
+async function getAllOrders(setOrders, userId, accessToken) {
+  const { data, status } = await ListOrders(userId, accessToken);
+  if (status) {
+    setOrders(data);
+  }
+  // console.log(order)
+}
+
+
 
 
 export default function Trackorders() {
+  const [order, setOrders] = useState()
+  const { accessToken, currentUser } = useContext(UserContext);
+  var userId = currentUser?.id
+  useEffect(() => {
+    getAllOrders(setOrders, userId, accessToken)
+
+  }, [])
+
   window.scrollTo(0, 0);
   const orders = [1];
   return (
@@ -84,9 +105,9 @@ export default function Trackorders() {
             justifyContent: "center",
           }}
         >
-          {orders.length ? (
-            orders.map((order, index) => {
-              return <CardTrack item md={12} xs={12} bgcolor={"#005288"} key={index} />;
+          {order?.length ? (
+            order.map((order, index) => {
+              return <CardTrack item md={12} xs={12} bgcolor={"#005288"} key={index} orderDetails={order} setOrders={setOrders} />;
             })
           ) : (
             <Box
@@ -106,7 +127,22 @@ export default function Trackorders() {
   );
 }
 
-function ButtonTrack({ title, backColor, direct }) {
+function ButtonTrack({ title, backColor, direct, ordertId, setOrders }) {
+
+  const { accessToken, currentUser } = useContext(UserContext);
+  let userID = currentUser?.id
+  async function deleteOrder(setOrders, ordertId, accessToken) {
+    const { data } = await DeleteOrder(ordertId, accessToken);
+
+
+    getAllOrders(setOrders, userID, accessToken)
+    // console.log("deleeeeeeeeeeeeete")
+
+
+
+  }
+
+
   return (
     <>
       <Link to={direct}>
@@ -122,6 +158,13 @@ function ButtonTrack({ title, backColor, direct }) {
             bgcolor: backColor ? backColor : "white",
             cursor: "pointer",
             marginBottom: "1rem"
+          }} onClick={() => {
+
+            if (ordertId) {
+              deleteOrder(setOrders, ordertId, accessToken)
+            }
+
+
           }}
         >
           {title}
@@ -130,11 +173,11 @@ function ButtonTrack({ title, backColor, direct }) {
     </>
   );
 }
-function CardTrack({ bgcolor }) {
+function CardTrack({ bgcolor, orderDetails, setOrders }) {
   return (
     <>
       <Grid item md={7.9} xs={12} sx={{ boxSizing: "border-box", padding: "0.5rem" }}>
-        <OrderInfo />
+        <OrderInfo orderDetails={orderDetails} />
       </Grid>
       <Grid
         item
@@ -151,7 +194,7 @@ function CardTrack({ bgcolor }) {
       >
         <ButtonTrack title="التواصل مع خدمة العملاء" direct={'/ContactUs'} />
         <ButtonTrack title="هل تواجه مشكلة مع الطلب؟" direct={'/ContactUs'} />
-        <ButtonTrack title="إلغاء الطلب" backColor={bgcolor} direct={'/'} />
+        <ButtonTrack title="إلغاء الطلب" backColor={bgcolor} ordertId={orderDetails.id} setOrders={setOrders} />
       </Grid>
     </>
   );

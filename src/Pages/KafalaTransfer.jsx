@@ -30,7 +30,7 @@ export default function KafalaTransfer() {
   });
 
   async function getAllEmployee(request) {
-    console.log("getAllEmployee2");
+    // console.log("getAllEmployee2");
     const { data, status } = await SearchEmployee(request);
     setAllEmployee(data);
   }

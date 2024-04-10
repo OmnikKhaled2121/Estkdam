@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter, useParams } from "react-router-dom";
 import Home from "../Pages/Home";
 import Root from "./Root";
 import EmpProfile from "../Pages/EmpProfile";
@@ -30,7 +30,12 @@ import NotFound from "../components/NotFound";
 
 export default function Routers() {
   const { currentUser } = useContext(UserContext);
-  console.log("Routers", currentUser);
+  // console.log("Routers", currentUser);
+  const employeeID = JSON.parse(localStorage.getItem("employeeID"))?.employeeID;
+
+  // console.log("employeeID", employeeID);
+  // let id = useParams();
+  // console.log("sssssssss",id)
   let routers = createBrowserRouter([
     {
       path: "",
@@ -45,14 +50,21 @@ export default function Routers() {
         { path: "EstkdamPolices", element: <EstkdamPolices /> },
         { path: "EstkdamJourney", element: <EstkdamJourney /> },
         { path: "ContactUs", element: <ContactUs /> },
-        { path: "empProfile/:id", element: <EmpProfile /> },
+        {
+          path: "empProfile/:id",
+          element: (
+            // <ProtectedRoute>
+              <EmpProfile />
+            // </ProtectedRoute>
+          ),
+        },
         { path: "MultiCards", element: <MultiCards /> },
         { path: "TrackOrders", element: <Trackorders /> },
         {
           path: "Profile",
           element: (
             <ProtectedRoute>
-              <Profile to="/"   />
+              <Profile to="/" />
             </ProtectedRoute>
           ),
         },
@@ -73,7 +85,7 @@ export default function Routers() {
     {
       path: "LoginOrderCompletetion",
       element: currentUser ? (
-        <Navigate to="/CompleteOrder" replace />
+        <Navigate to={`/CompleteOrder/${employeeID}`} />
       ) : (
         <LoginOrderCompletetion />
       ),
