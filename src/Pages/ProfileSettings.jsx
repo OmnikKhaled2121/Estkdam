@@ -52,13 +52,14 @@ export default function ProfileSettings() {
   };
   const saveChanges = () => {
     if (editedProfileData.status == "touched") {
-      // console.log("editedProfileData", editedProfileData);
       let obj = {};
       Object.keys(editedProfileData.data).forEach((item) => {
         obj[`${item}`] = editedProfileData.data[item].value;
       });
-      // console.log("res", obj);
     }
+  };
+  const handleUpdateProfile = () => {
+
   };
 
   return (
@@ -102,9 +103,8 @@ export default function ProfileSettings() {
         <Grid
           sx={{ margin: "3rem 0", display: "flex", justifyContent: "center" }}
         >
-          {/* <Link to={"/Profile"}> */}
           <Box
-            onClick={saveChanges}
+            onClick={editedProfileData.status == "" ? saveChanges : ""}
             sx={{
               fontWeight: "700",
               lineHeight: "24px",
@@ -112,21 +112,26 @@ export default function ProfileSettings() {
               boxSizing: "border-box",
               borderRadius: "54px",
               border: "2px solid #005288",
-              background: "#005288",
+              background:
+                editedProfileData.status == "touched" ? "#005288" : "#586974",
+              cursor:
+                editedProfileData.status == "" ? "pointer" : "not-allowed",
               color: "#FFF",
               width: "auto",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               "&:hover": {
-                color: "#005288",
-                background: "white",
+                color:
+                  editedProfileData.status == "touched" ? "#005288" : "white",
+                background:
+                  editedProfileData.status == "touched" ? "white" : "#586974",
               },
             }}
+            // onClick={handleUpdateProfile}
           >
             حفظ الإعدادات
           </Box>
-          {/* </Link> */}
         </Grid>
       </Container>
       <EditProfilePopUp

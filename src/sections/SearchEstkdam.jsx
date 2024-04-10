@@ -114,7 +114,6 @@ function Search() {
 
   const [searchStatus, setsearchStatus] = useState("Start");
   const [optionsData, setoptionsData] = useState([]);
-  // console.log("optionsData", optionsData);
   const [searchInputs, setsearchInputs] = useState({
     job: "",
     age: "",
@@ -128,10 +127,10 @@ function Search() {
   };
 
   useEffect(() => {
-    let flag = true;
+    let flag = false;
     for (var key in searchInputs) {
-      if (searchInputs[`${key}`] == "") {
-        flag = false;
+      if (searchInputs[`${key}`] != "") {
+        flag = true;
       }
     }
     if (flag) {

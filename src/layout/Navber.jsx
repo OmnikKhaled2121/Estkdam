@@ -96,12 +96,12 @@ export default function Navber() {
             alignItems: "center",
           }}
         >
-          <NavTitle to value={currentPage == ""}>
+          <NavTitle to active={currentPage == ""}>
             الرئيسيه
           </NavTitle>
 
           <NavTitle
-            value={
+            active={
               currentPage == "EstkdamRequest" || currentPage == "KafalaTransfer"
             }
             subTitles={[
@@ -118,7 +118,7 @@ export default function Navber() {
             خدماتنا
           </NavTitle>
           <NavTitle
-            value={
+            active={
               currentPage == "EstkdamJourney" || currentPage == "EstkdamPolices"
             }
             subTitles={[
@@ -136,7 +136,7 @@ export default function Navber() {
           </NavTitle>
 
           <NavTitle
-            value={
+            active={
               currentPage == "ContactUs" || currentPage == "CommonQuestions"
             }
             subTitles={[
@@ -265,6 +265,7 @@ export default function Navber() {
         sx={{
           display: { xs: "flex", md: "none" },
           position: "relative",
+          height: "110px",
         }}
       >
         <Grid
@@ -273,10 +274,13 @@ export default function Navber() {
           container
           sx={{
             display: { xs: "flex", md: "none" },
+            background: "white",
             padding: "1.4rem 2rem",
             boxSizing: "border-box",
             justifyContent: "space-between",
             alignItems: "center",
+            position: "fixed",
+            zIndex: "55555",
           }}
         >
           <Grid item xs={6}>
@@ -361,10 +365,13 @@ export default function Navber() {
           xs={12}
           sx={{
             display: { xs: openMobileNav ? "flex" : "none", md: "none" },
+            flexDirection: "column",
             justifyContent: "center",
+            alignItems: "center",
             width: "100%",
             background: "white",
-            position: "absolute",
+            position: "fixed",
+            // position: "absolute",
             top: "110px",
             height: "calc( 100vh - 110px)",
             zIndex: "5555",
@@ -380,60 +387,32 @@ export default function Navber() {
     </Container>
   );
 }
-function NavTitle({ children, value, subTitles, to }) {
+function NavTitle({ children, active, subTitles, to }) {
   return (
     <Grid
       item
-      xs={value ? 2 : 3}
+      xs={2.7}
       sx={{
         position: "relative",
-        borderBottom: value ? "3px solid #213039" : "none",
+        borderBottom: "3px solid transparent",
+        borderBottomColor: active ? " #213039" : "transparent",
         padding: "1rem 0",
         "&:hover": {
           color: "#005288",
           zIndex: "1000",
-          // paddingBottom: "1rem",
-          borderBottom: value ? "3px solid #005288" : "none",
-          "& > div:last-child": children == "الرئيسيه" ? "": {
-            animation: "mymove",
-            animationDuration: "1s",
-            animationFillMode: "both",
-          },
+          borderBottom: "3px solid transparent",
+          borderBottomColor: active ? "#005288" : "none",
+          "& > div:last-child": subTitles?.length
+            ? {
+                animation: "mymove",
+                animationDuration: "1s",
+                animationFillMode: "both",
+              }
+            : "",
         },
       }}
     >
-      {to ? (
-        <Link to={"/"}>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "nowrap",
-              justifyContent: "center",
-              alignItems: "center",
-              fontFamily: "Almarai",
-              fontSize: "16px",
-              fontWeight: 400,
-              lineHeight: "18px",
-              letterSpacing: "0em",
-              padding: "5px 0",
-              color: "#213039",
-              cursor: "pointer",
-              "&:hover": {
-                color: "#005288",
-              },
-            }}
-          >
-            {children}
-            <KeyboardArrowDownIcon
-              sx={{
-                display: value ? "none" : "block",
-                color: "#213039",
-                margin: "0 .5rem",
-              }}
-            />
-          </Box>
-        </Link>
-      ) : (
+      <Link to={"/"}>
         <Box
           sx={{
             display: "flex",
@@ -446,28 +425,31 @@ function NavTitle({ children, value, subTitles, to }) {
             lineHeight: "18px",
             letterSpacing: "0em",
             padding: "5px 0",
+            color: "#213039",
             cursor: "pointer",
             "&:hover": {
-              "& > svg": {
-                color: "#005288",
-              },
+              color: "#005288",
             },
           }}
         >
           {children}
-          <KeyboardArrowDownIcon
-            sx={{
-              display: value ? "none" : "block",
-              color: "#213039",
-              margin: "0 .5rem",
-            }}
-          />
+          {subTitles?.length ? (
+            <KeyboardArrowDownIcon
+              sx={{
+                display: "block",
+                color: "#213039",
+                marginRight: ".5rem",
+              }}
+            />
+          ) : (
+            ""
+          )}
         </Box>
-      )}
+      </Link>
 
       <Box
         sx={{
-          display: value ? "none" : "flex",
+          display: active ? "none" : "flex",
           flexFlow: "column",
           justifyContent: "center",
           alignItems: "center",
@@ -649,8 +631,7 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
         xs={12}
         sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}
       >
-        {" "}
-        <Link to={"/"} style={{ color: "#005288" }}>
+        <Link to={"/"} onClick={handleNavToggle} style={{ color: "#005288" }}>
           {" "}
           الرئيسية
         </Link>
@@ -659,11 +640,11 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           خدماتنا
         </Box>
-        <Link to={"/EstkdamRequest"}>
+        <Link to={"/EstkdamRequest"} onClick={handleNavToggle}>
           <Box sx={{ color: "#005288" }}>طلب استقدام</Box>
         </Link>
 
-        <Link to={"/KafalaTransfer"}>
+        <Link to={"/KafalaTransfer"} onClick={handleNavToggle}>
           <Box sx={{ color: "#005288" }}>نقل كفالة</Box>
         </Link>
       </Grid>
@@ -671,11 +652,11 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           عن الاستقدام
         </Box>
-        <Link to={"/EstkdamJourney"}>
+        <Link to={"/EstkdamJourney"} onClick={handleNavToggle}>
           {" "}
           <Box sx={{ color: "#005288" }}>رحلة الاستقدام</Box>
         </Link>
-        <Link to={"/EstkdamPolices"}>
+        <Link to={"/EstkdamPolices"} onClick={handleNavToggle}>
           {" "}
           <Box sx={{ color: "#005288" }}>سياسات الاستقدام</Box>
         </Link>
@@ -684,11 +665,11 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
         <Box sx={{ fontSize: "24px", fontWeight: "700", color: "#005288" }}>
           الدعم
         </Box>
-        <Link to={"/ContactUs"}>
+        <Link to={"/ContactUs"} onClick={handleNavToggle}>
           {" "}
           <Box sx={{ color: "#005288" }}>تواصل معنا</Box>
         </Link>
-        <Link to={"/CommonQuestions"}>
+        <Link to={"/CommonQuestions"} onClick={handleNavToggle}>
           {" "}
           <Box sx={{ color: "#005288" }}>أسئلة شائعة</Box>
         </Link>
@@ -696,12 +677,7 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
 
       {currentUser ? (
         <Grid item xs={12}>
-          <Link
-            to={`/Profile`}
-            onClick={() => {
-              handleNavToggle();
-            }}
-          >
+          <Link to={`/Profile`} onClick={handleNavToggle}>
             <Btn bg={"white"} FontColor={"#005288"} m={"0 0 1rem 0"}>
               الصفحة الشخصية
             </Btn>
@@ -719,12 +695,12 @@ function MobileNav({ currentUser, LogOut, handleNavToggle }) {
         </Grid>
       ) : (
         <Grid item xs={12}>
-          <Link to={"/Login"}>
+          <Link to={"/Login"} onClick={handleNavToggle}>
             <Btn bg={"white"} FontColor={"#005288"} m={"0 0 1rem 0"}>
               تسجيل الدخول
             </Btn>
           </Link>
-          <Link to={"/Registeration"}>
+          <Link to={"/Registeration"} onClick={handleNavToggle}>
             <Btn bg={"#005288"} FontColor={"white"} m={0}>
               انضم الان
             </Btn>

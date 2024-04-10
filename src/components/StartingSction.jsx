@@ -12,7 +12,7 @@ export default function StartingSction({
   Searchplaceholder,
   SearchKeys,
   setAllEmployee,
-  to
+  to,
 }) {
   return (
     <>
@@ -82,6 +82,7 @@ export default function StartingSction({
           >
             {desc}
           </Box>
+          <TextKey white texts={SearchKeys} to={to}></TextKey>
           <SearchInput
             whiteTheme
             isFooter={false}
@@ -91,7 +92,6 @@ export default function StartingSction({
             colorIcon={"#FFFFFF"}
             placeHolderColor={"placeholderStartSection"}
           />
-          <TextKey white texts={SearchKeys} to={to}></TextKey>
 
           <Link to={"/ContactUs"}>
             <Box
