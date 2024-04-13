@@ -122,24 +122,23 @@ export default function Landing() {
                 backgroundSize: "auto 100%",
                 backgroundPositionX: "100%",
                 backgroundPositionY: "100%",
-                paddingTop: "1rem",
                 marginBottom: "1rem",
               }}
             >
+              <TextKey
+                texts={["مديره منزل", "مساعد شخصي", "ربه منزل", "سائق خاص"]}
+                to="EstkdamRequest"
+              ></TextKey>
               <SearchInput
                 isFooter={false}
                 to="EstkdamRequest"
                 text={"ابحث عن الإستقدام الذى تريده"}
                 colorIcon={"#292D32"}
                 placeHolderColor={"#placeholderLanding"}
-               
               />
             </Grid>
-            <TextKey
-              texts={["مديره منزل", "مساعد شخصي", "ربه منزل", "سائق خاص"]}
-              to="EstkdamRequest"
-            ></TextKey>
-            <Link to="searchEstkam" smooth={true} duration={500}>
+
+            {/* <Link to="searchEstkam" smooth={true} duration={500}>
               <Box
                 sx={{
                   margin: "3rem 0 1.5rem 0",
@@ -163,8 +162,8 @@ export default function Landing() {
               >
                 ابدأ الإستقدام الأن
               </Box>
-            </Link>
-            <Grid
+            </Link> */}
+            {/* <Grid
               sx={{
                 display: { xs: "none", md: "flex" },
                 alignItems: "center",
@@ -186,7 +185,7 @@ export default function Landing() {
               >
                 أكثر من 10 ألاف فرصة عمل
               </Box>
-            </Grid>
+            </Grid> */}
           </Grid>
           <LandingImages xs={12} md={6} />
           <LandingImagesMob xs={12} />

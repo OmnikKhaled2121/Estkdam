@@ -112,6 +112,26 @@ export const UpdateProfile = async (input) => {
     }
     return Obj
 }
+// export const UpdateProfileData = async (ProfileData) => {
+//     let Obj = {
+//         data: "",
+//         status: true
+//     }
+//     try {
+//         const formData = new FormData();
+//         formData.append("full_name", user.FullName);
+
+//         let { data } = await axios.post(`${baseUrl}/contacts`, formData, {
+//             headers: {
+//                 'Content-Type': 'multipart/form-data'
+//             }
+//         });
+//     } catch (error) {
+//         Obj.data = ""
+//         Obj.status = false
+//     }
+//     return Obj
+// }
 
 export const TitleSearch = async (profession) => {
     let Obj = {
@@ -254,6 +274,8 @@ export const UpdateEmployee = async () => {
     }
     return Obj
 }
+
+
 
 export const isAuthenticated = () => {
     const userToken = localStorage.getItem('USER');

@@ -4,33 +4,25 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function TextKey({ texts, white, to }) {
   let navigate = useNavigate();
-  // console.log(texts);
   return (
     <>
       <Grid
         sx={{
           display: { xs: "none", md: "flex" },
           alignItems: "center",
+          padding: "1rem 0",
           "& > div": { marginLeft: "1rem" },
         }}
       >
-        <Box
-          sx={{
-            fontFamily: "Almarai",
-            fontSize: "12px",
-            fontWeight: "700",
-            lineHeight: "18px",
-            color: white ? "white" : null,
-          }}
-        >
-          كلمات مفتاحية:
-        </Box>
-
         <Grid sx={{ display: "flex" }}>
           {texts.map((item) => {
             return (
               <>
-                <Link to={`/${to}?profession=${item}`} replace style={{color:"#000000"}}>
+                <Link
+                  to={`/${to}?profession=${item}`}
+                  replace
+                  style={{ color: "#000000" }}
+                >
                   <Box
                     sx={{
                       padding: "10px 13px 10px 13px",
