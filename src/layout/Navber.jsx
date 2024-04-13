@@ -449,7 +449,7 @@ function NavTitle({ children, active, subTitles, to }) {
 
       <Box
         sx={{
-          display: active ? "none" : "flex",
+          display: "flex",
           flexFlow: "column",
           justifyContent: "center",
           alignItems: "center",
