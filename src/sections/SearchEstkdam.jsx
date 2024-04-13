@@ -278,7 +278,6 @@ function Options({
       false,
       request
     );
-    // console.log(request);
   };
 
   useEffect(() => {
@@ -410,7 +409,21 @@ function Options({
             لقد حددت الاشتراطات التى تريدها فى الاستقدام الخاص بك
           </Box>
           <Link
-            to={`/EstkdamRequest?profession=${request.current.profession}&nationality=${request.current.nationality}&age=${request.current.age_max}-${request.current.age_min}&experience=${request.current.max_experience_years}-${request.current.min_experience_years}`}
+            to={`/EstkdamRequest?profession=${
+              request.current.profession ? request.current.profession : ""
+            }&nationality=${
+              request.current.nationality ? request.current.nationality : ""
+            }&age=${
+              request.current.age_min
+                ? request.current.age_max + "-" + request.current.age_min
+                : ""
+            }&experience=${
+              request.current.max_experience_years
+                ? request.current.max_experience_years +
+                  "-" +
+                  request.current.min_experience_years
+                : ""
+            }`}
           >
             <Box
               sx={{
