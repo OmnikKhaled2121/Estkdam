@@ -8,37 +8,30 @@ import LastUpdatesPopUp from "../components/LastUpdatesPopUp";
 import { ListOrders, GetNotifications } from "../lib/api";
 import { UserContext } from "../Context/UserContext";
 
-
-
 const profileData = [
   ["البريد الإلكتروني", "mohamed.ahmed.abdg453@gmail.com"],
   ["رقم الجوال", "+966551548415152"],
   [" الموقع", "جدة، المملكة العربية السعودية"],
 ];
 
-
 async function ListNotification(setNotification, userId, accessToken) {
   const { data, status } = await GetNotifications(userId, accessToken);
   if (status) {
-    console.log(data)
-    setNotification(data)
-
+    console.log(data);
+    setNotification(data);
   }
-
 }
 export default function Profile() {
-  const [notification, setNotification] = useState([])
+  const [notification, setNotification] = useState([]);
 
   const { accessToken, currentUser } = useContext(UserContext);
-  var userId = currentUser?.id
+  var userId = currentUser?.id;
   useEffect(() => {
-    ListNotification(setNotification, userId, accessToken)
-
-  }, [])
-  console.log(notification.length)
+    ListNotification(setNotification, userId, accessToken);
+  }, []);
+  console.log(notification.length);
 
   window.scrollTo(0, 0);
-
 
   return (
     <Container>
@@ -57,7 +50,13 @@ export default function Profile() {
         container
         sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}
       >
-        <ProfileInfo item md={3.6} xs={12} img={ProfileBg} currentUser={currentUser} />
+        <ProfileInfo
+          item
+          md={3.6}
+          xs={12}
+          img={ProfileBg}
+          currentUser={currentUser}
+        />
         <Grid
           item
           container
@@ -93,7 +92,7 @@ export function ProfileInfo({ item, xs, img, md, currentUser }) {
         padding: "1rem",
         boxSizing: "border-box",
         boxShadow: "0px 0px 20px 6px #26282A26",
-        marginBottom: "1rem"
+        marginBottom: "1rem",
       }}
     >
       <Grid
@@ -110,7 +109,9 @@ export function ProfileInfo({ item, xs, img, md, currentUser }) {
           sx={{
             width: "222px",
             height: "222px",
-            backgroundImage: `url(${currentUser.image ? currentUser.image : img})`,
+            backgroundImage: `url(${
+              currentUser.image ? currentUser.image : img
+            })`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             borderRadius: "50%",
@@ -177,9 +178,6 @@ export function ProfileInfo({ item, xs, img, md, currentUser }) {
         </Box>
       </Grid>
 
-
-
-
       <Grid
         sx={{
           "& > div:not(:last-child)": {
@@ -188,19 +186,25 @@ export function ProfileInfo({ item, xs, img, md, currentUser }) {
         }}
       >
         <Grid>
-          <Box sx={{ color: "#878787", padding: "1rem 0 0 0" }}>البريد الإلكتروني</Box>
+          <Box sx={{ color: "#878787", padding: "1rem 0 0 0" }}>
+            البريد الإلكتروني
+          </Box>
           <Box padding={"1rem 0"}>{currentUser.email}</Box>
         </Grid>
         <Grid>
-          <Box sx={{ color: "#878787", padding: "1rem 0 0 0" }}>رقم الجوال  </Box>
+          <Box sx={{ color: "#878787", padding: "1rem 0 0 0" }}>
+            رقم الجوال{" "}
+          </Box>
           <Box padding={"1rem 0"}>{currentUser.phone}</Box>
         </Grid>
         <Grid>
           <Box sx={{ color: "#878787", padding: "1rem 0 0 0" }}> الموقع </Box>
-          <Box padding={"1rem 0"}>{currentUser.location ? currentUser.location : "غير متوفر "}</Box>
+          <Box padding={"1rem 0"}>
+            {currentUser.location ? currentUser.location : "غير متوفر "}
+          </Box>
         </Grid>
       </Grid>
-      <Link to={'/ProfileSettings'}>
+      <Link to={"/ProfileSettings"}>
         <Box
           sx={{
             cursor: "pointer",
@@ -224,7 +228,8 @@ export function ProfileInfo({ item, xs, img, md, currentUser }) {
           }}
         >
           تعديل المعلومات الشخصية{" "}
-        </Box></Link>
+        </Box>
+      </Link>
     </Grid>
   );
 }
@@ -239,9 +244,9 @@ function InfoItem({ property, value }) {
 }
 
 function Orders({ item, xs, md }) {
-  const [order, setOrders] = useState()
+  const [order, setOrders] = useState();
   const { accessToken, currentUser } = useContext(UserContext);
-  var userId = currentUser.id
+  var userId = currentUser.id;
   async function getAllOrders(userId, accessToken) {
     const { data, status } = await ListOrders(userId, accessToken);
     if (status) {
@@ -250,8 +255,8 @@ function Orders({ item, xs, md }) {
     // console.log(order)
   }
   useEffect(() => {
-    getAllOrders(userId, accessToken)
-  }, [])
+    getAllOrders(userId, accessToken);
+  }, []);
   return (
     <Grid
       item
@@ -281,7 +286,7 @@ function Orders({ item, xs, md }) {
         >
           الطلبات{" "}
         </Box>
-        <Link to={'/TrackOrders'}>
+        <Link to={"/TrackOrders"}>
           <Box
             sx={{
               fontWeight: "700",
@@ -289,41 +294,46 @@ function Orders({ item, xs, md }) {
               lineHeight: "16.2px",
               textAlign: "left",
               color: "#005288",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
           >
             شاهد الكل
           </Box>
         </Link>
       </Grid>
-      {order?.length > 0 ? order?.map((order, index) => {
-        if (index > 1) {
-          return
-        }
-        return <Grid sx={{ width: "100%" }}>
-          <OrderInfo orderDetails={order} />
-
-        </Grid>;
-      }) : <Grid
-        container
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-          fontSize: "36px",
-          fontWeight: "700",
-          lineHeight: "54px",
-          textAlign: "center",
-        }}
-      >
-        "لا يوجد لديك طلبات"
-      </Grid>}
-
-
+      {order?.length > 0 ? (
+        order?.map((order, index) => {
+          if (index > 1) {
+            return;
+          }
+          return (
+            <>
+              <Grid sx={{ width: "100%" }}>
+                <OrderInfo orderDetails={order} />
+              </Grid>
+              ;
+            </>
+          );
+        })
+      ) : (
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            fontSize: "36px",
+            fontWeight: "700",
+            lineHeight: "54px",
+            textAlign: "center",
+          }}
+        >
+          لا يوجد لديك طلبات
+        </Grid>
+      )}
     </Grid>
   );
 }
-
 
 function Latest({ not, item, xs, md }) {
   return (
@@ -338,9 +348,8 @@ function Latest({ not, item, xs, md }) {
         "& > div:not(:last-child)": {
           marginBottom: {
             md: "0rem",
-            xs: "0.5rem"
-          }
-
+            xs: "0.5rem",
+          },
         },
       }}
     >
@@ -349,11 +358,11 @@ function Latest({ not, item, xs, md }) {
         xs={12}
         md={12}
         sx={{
-          display: "flex", justifyContent: "space-between",
-          marginBottom: '0.5rem'
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "0.5rem",
         }}
       >
-
         <Box
           sx={{
             fontSize: "18px",
@@ -366,30 +375,36 @@ function Latest({ not, item, xs, md }) {
         </Box>
 
         <LastUpdatesPopUp not={not} />
-
-
       </Grid>
-      {not.length == undefined ? <Grid md={12} xs={12} sx={{
-        fontSize: {
-          xs: "12px",
-          md: "14px",
-        },
-        fontWeight: "700",
-        lineHeight: "18.9px",
-        color: "#005288",
-        display: "flex",
-        justifyContent: "center"
-      }}>{not.message}</Grid> : <>
-        {not?.map((item) => {
-          return (
-            <>
-              <LatestItem key={item.id} message={item.message} />
-            </>
-          )
-        })}
-      </>}
-
-
+      {not.length == undefined ? (
+        <Grid
+          md={12}
+          xs={12}
+          sx={{
+            fontSize: {
+              xs: "12px",
+              md: "14px",
+            },
+            fontWeight: "700",
+            lineHeight: "18.9px",
+            color: "#005288",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {not.message}
+        </Grid>
+      ) : (
+        <>
+          {not?.map((item) => {
+            return (
+              <>
+                <LatestItem key={item.id} message={item.message} />
+              </>
+            );
+          })}
+        </>
+      )}
     </Grid>
   );
 }

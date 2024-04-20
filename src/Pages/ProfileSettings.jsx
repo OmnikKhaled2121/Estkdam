@@ -44,7 +44,6 @@ export default function ProfileSettings() {
       },
     },
   });
-  
 
   const [open, setOpen] = useState(false);
   const [property, setproperty] = useState("");
@@ -67,7 +66,6 @@ export default function ProfileSettings() {
         }
       });
       handleUpdateProfile(obj);
-      navigate("/profile");
     }
   };
   const handleUpdateProfile = async (obj) => {
@@ -77,6 +75,7 @@ export default function ProfileSettings() {
       obj
     );
     if (status) {
+      navigate("/profile");
       console.log("Done");
     } else {
       console.log("Not Done");
@@ -125,12 +124,9 @@ export default function ProfileSettings() {
           sx={{ margin: "3rem 0", display: "flex", justifyContent: "center" }}
         >
           <Box
-            
-            onClick={()=>
-            {
-              if(editedProfileData.status == "touched")
-              {
-                saveChanges()
+            onClick={() => {
+              if (editedProfileData.status == "touched") {
+                saveChanges();
               }
               //  ?  : ""
             }}
@@ -144,7 +140,9 @@ export default function ProfileSettings() {
               background:
                 editedProfileData.status == "touched" ? "#005288" : "#586974",
               cursor:
-                editedProfileData.status == "touched" ? "pointer" : "not-allowed",
+                editedProfileData.status == "touched"
+                  ? "pointer"
+                  : "not-allowed",
               color: "#FFF",
               width: "auto",
               display: "flex",
