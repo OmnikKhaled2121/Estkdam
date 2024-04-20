@@ -5,16 +5,37 @@ import ProfileBg from "../assets/settingProfile.jfif";
 import OrderInfo from "../components/TrackCard";
 import { Link } from "react-router-dom";
 import LastUpdatesPopUp from "../components/LastUpdatesPopUp";
-import { UserContext } from './../Context/UserContext';
-import { ListOrders } from "../lib/api";
+import { ListOrders, GetNotifications } from "../lib/api";
+import { UserContext } from "../Context/UserContext";
+
+
 
 const profileData = [
   ["البريد الإلكتروني", "mohamed.ahmed.abdg453@gmail.com"],
   ["رقم الجوال", "+966551548415152"],
   [" الموقع", "جدة، المملكة العربية السعودية"],
 ];
+
+
+async function ListNotification(setNotification, userId, accessToken) {
+  const { data, status } = await GetNotifications(userId, accessToken);
+  if (status) {
+    console.log(data)
+    setNotification(data)
+
+  }
+
+}
 export default function Profile() {
+  const [notification, setNotification] = useState([])
+
   const { accessToken, currentUser } = useContext(UserContext);
+  var userId = currentUser?.id
+  useEffect(() => {
+    ListNotification(setNotification, userId, accessToken)
+
+  }, [])
+  console.log(notification.length)
 
   window.scrollTo(0, 0);
 
@@ -54,7 +75,7 @@ export default function Profile() {
             },
           }}
         >
-          <Latest item md={12} xs={12} />
+          <Latest not={notification} item md={12} xs={12} />
           <Orders item md={12} xs={12} />
         </Grid>
       </Grid>
@@ -302,7 +323,9 @@ function Orders({ item, xs, md }) {
     </Grid>
   );
 }
-function Latest({ item, xs, md }) {
+
+
+function Latest({ not, item, xs, md }) {
   return (
     <Grid
       item
@@ -313,7 +336,11 @@ function Latest({ item, xs, md }) {
         boxSizing: "border-box",
         marginBottom: "1rem",
         "& > div:not(:last-child)": {
-          marginBottom: "0rem",
+          marginBottom: {
+            md: "0rem",
+            xs: "0.5rem"
+          }
+
         },
       }}
     >
@@ -338,22 +365,40 @@ function Latest({ item, xs, md }) {
           أخر الأحداث
         </Box>
 
-        <LastUpdatesPopUp />
+        <LastUpdatesPopUp not={not} />
 
 
       </Grid>
-      <LatestItem />
-      <LatestItem />
-      <LatestItem />
+      {not.length == undefined ? <Grid md={12} xs={12} sx={{
+        fontSize: {
+          xs: "12px",
+          md: "14px",
+        },
+        fontWeight: "700",
+        lineHeight: "18.9px",
+        color: "#005288",
+        display: "flex",
+        justifyContent: "center"
+      }}>{not.message}</Grid> : <>
+        {not?.map((item) => {
+          return (
+            <>
+              <LatestItem key={item.id} message={item.message} />
+            </>
+          )
+        })}
+      </>}
+
+
     </Grid>
   );
 }
 
-export function LatestItem() {
+export function LatestItem({ message }) {
   return (
     <Grid
       container
-      sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}
+      sx={{ width: "100%", display: "flex", justifyContent: "space-evenly" }}
     >
       <Grid
         item
@@ -415,9 +460,9 @@ export function LatestItem() {
             fontWeight: "700",
           }}
         >
-          العمالة الخاصة بحضراتكم ستكون جاهزة غداً
+          {message}
         </Box>
-        <Box
+        {/* <Box
           sx={{
             fontWeight: "400",
             color: "#000",
@@ -425,9 +470,9 @@ export function LatestItem() {
         >
           تهانينا! ، العمالة الخاصة بحضراتكم ستكون جاهزة غداً يمكنك التواصل معنا
           اذا اردت على المزيد من التفاصيل
-        </Box>
+        </Box> */}
       </Grid>
-      <Grid
+      {/* <Grid
         item
         xs={12}
         md={1}
@@ -440,7 +485,7 @@ export function LatestItem() {
         }}
       >
         12 يناير 2024
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

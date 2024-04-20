@@ -9,7 +9,7 @@ import stylisRTLPlugin from 'stylis-plugin-rtl';
 import { LatestItem } from '../Pages/Profile';
 
 
-export default function LastUpdatesPopUp() {
+export default function LastUpdatesPopUp({ not }) {
     const cacheRtl = createCache({
         key: "muirtl",
         stylisPlugins: [prefixer, stylisRTLPlugin],
@@ -32,7 +32,7 @@ export default function LastUpdatesPopUp() {
                     lineHeight: "16.2px",
                     textAlign: "left",
                     color: "#005288",
-                    cursor:"pointer"
+                    cursor: "pointer"
                 }}
             >
                 شاهد الكل
@@ -65,16 +65,16 @@ export default function LastUpdatesPopUp() {
 
                         }}>
                         <Box sx={{
-                            fontWeight:"700",
-                            fontSize:"25px",
-                            fontFamily:"Almarai"
+                            fontWeight: "700",
+                            fontSize: "25px",
+                            fontFamily: "Almarai"
                         }}>
                             أخر الأحداث
                         </Box>
-                        <Box onClick={handleClose} 
-                        sx={{
-                            cursor:"pointer"
-                        }}
+                        <Box onClick={handleClose}
+                            sx={{
+                                cursor: "pointer"
+                            }}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z" fill="#005288" />
@@ -83,52 +83,15 @@ export default function LastUpdatesPopUp() {
                             </svg>
                         </Box>
                     </Grid>
-
-                    <LatestItem />
-                    <LatestItem />
-                    <LatestItem />
-                    <LatestItem />
-                    <LatestItem />
-
-                    {/* <DialogActions sx={{
-                        flexDirection: "column",
-                        alignItems: "flex-start"
-                    }}>
-
-                        <Box onClick={handleClose} sx={{
-                            background: "#005288",
-                            color: "white",
-                            fontWeight: 700,
-                            fontSize: "20px",
-                            borderRadius: "10px",
-                            padding: "1rem 0",
-                            width: "100%",
-                            textAlign: 'center',
-                            border: "2px solid #005288",
-                            marginBottom: "1.5rem"
-                        }}>
-
-                            حفظ التغييرات
-                        </Box>
-
-                        <Box onClick={handleClose} sx={{
-                            background: "white",
-                            color: "#BD295E",
-                            border: "2px solid #BD295E",
-                            fontWeight: 700,
-                            fontSize: "20px",
-                            borderRadius: "10px",
-                            padding: "1rem 0",
-                            width: "100%",
-                            textAlign: 'center',
-                            marginBottom: "1.5rem"
-
-                        }}>
-                            إالغاء
-                        </Box>
-
-
-                    </DialogActions> */}
+                    {not.length == undefined ? <Box>{not.message}</Box> : <>
+                        {not?.map((item) => {
+                            return (
+                                <>
+                                    <LatestItem key={item.id} message={item.message} />
+                                </>
+                            )
+                        })}
+                    </>}
 
                 </Grid>
             </Dialog >
