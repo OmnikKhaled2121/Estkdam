@@ -307,7 +307,7 @@ export default function ContactUs() {
   );
 }
 
-export function UploadFile({ xs, register, setError, setValue }) {
+export function UploadFile({ xs, register, setError, setValue, setImage }) {
   const fileInputRef = useRef(null);
   const [fileName, setFileName] = useState("");
 
@@ -342,6 +342,13 @@ export function UploadFile({ xs, register, setError, setValue }) {
       setValue("File", file);
       //   setError("File");
       setFileName(file.name);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+
+      // Pass the File object directly to readAsDataURL
+      reader.readAsDataURL(file);
     }
   };
 

@@ -236,29 +236,22 @@ export const GetEmployeeByID = async (id, userToken) => {
     return Obj
 }
 
-export const UpdateEmployee = async () => {
+export const UpdateEmployee = async (id, userToken, userData) => {
     let Obj = {
         data: "",
         status: true
     }
     try {
+        const formData = new FormData();
+        formData.append("_method", "PUT");
+        Object.keys(userData).forEach((item) => {
+            formData.append(item, userData[item]);
+        });
 
-        let { data } = await axios.put(`${baseUrl}/employees/${1}`, {
-            "name": "Jane Doe Updated",
-            "summary": "Senior Developer",
-            "nationality_id": 2,
-            "profession": "Lead Software Engineer",
-            "age": 32,
-            "social_status_id": 2,
-            "kids_number": 3,
-            "salary": 80000,
-            "date_of_born": "1988-01-01",
-            "height": 175,
-            "weight": 70,
-            "experience_years": 2
-        }, {
+
+        let { data } = await axios.post(`${baseUrl}/managers/${id}`, formData, {
             headers: {
-                authorization: `Bearer 60|woNSk38fDxvNec6qw46Z4pnoyDlNrMdcd9Cg4nYC725206d6`,
+                authorization: `Bearer ${userToken}`,
                 Accept: "application/json",
 
             },

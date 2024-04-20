@@ -20,6 +20,8 @@ export default function EditProfilePopUp({
   value,
   seteditedProfileData,
 }) {
+  const [image, setImage] = useState(value.value);
+
   const cacheRtl = createCache({
     key: "muirtl",
     stylisPlugins: [prefixer, stylisRTLPlugin],
@@ -82,9 +84,13 @@ export default function EditProfilePopUp({
   };
 
   const handleEditInfo = (inputVal) => {
+    console.log("geeeeee", getValues().File);
     seteditedProfileData((prev) => {
+      console.log("prev", prev);
       prev.status = "touched";
-      prev.data[`${property}`].value = inputVal;
+      prev.data[`${property}`].status = "touched";
+      prev.data[`${property}`].value =
+        property == "image" ? getValues()?.File : inputVal;
       return { status: prev.status, data: { ...prev.data } };
     });
     handleClose();
@@ -106,7 +112,7 @@ export default function EditProfilePopUp({
             boxSizing: "border-box",
           }}
         >
-          {property == "userimage" ? (
+          {property == "image" ? (
             <Grid
               sx={{
                 display: "flex",
@@ -119,7 +125,10 @@ export default function EditProfilePopUp({
                 sx={{
                   width: "200px",
                   height: "200px",
-                  backgroundImage: `url(${img})`,
+                  // backgroundImage: image ? `url(${image})` : `url(${img})`,
+                  backgroundImage: image
+                    ? `url(${image})`
+                    : `url(${value.value})`,
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   borderRadius: "50%",
@@ -135,6 +144,7 @@ export default function EditProfilePopUp({
                   errors={errors}
                   setError={setError}
                   setValue={setValue}
+                  setImage={setImage}
                 />
               </Grid>
             </Grid>

@@ -3,37 +3,44 @@ import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import settingProfile from "../assets/settingProfile.jfif";
 import EditProfilePopUp from "../components/EditProfilePopUp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
+import { UpdateEmployee } from "../lib/api";
 
 export default function ProfileSettings() {
   window.scrollTo(0, 0);
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, accessToken } = useContext(UserContext);
+  let navigate = useNavigate();
 
   const [editedProfileData, seteditedProfileData] = useState({
     status: "clean",
     data: {
-      userimage: {
+      image: {
         label: "صورة المستخدم",
         value: currentUser.image ? currentUser.image : settingProfile,
+        status: "clean",
       },
-      userName: {
+      business_name: {
         label: "اسم المستخدم",
         value: currentUser.business_name
           ? currentUser.business_name
           : "غيرمتوفر",
+        status: "clean",
       },
       email: {
         label: "البريد الإلكتروني",
         value: currentUser.email ? currentUser.email : "غير متوفر",
+        status: "clean",
       },
       phone: {
         label: "رقم الجوال",
         value: currentUser.phone ? currentUser.phone : "غير متوفر ",
+        status: "clean",
       },
       location: {
         label: "الموقع",
-        value: currentUser.loaction ? currentUser.loaction : "غير متوفر",
+        value: currentUser.location ? currentUser.location : "غير متوفر",
+        status: "clean",
       },
     },
   });
@@ -54,12 +61,25 @@ export default function ProfileSettings() {
     if (editedProfileData.status == "touched") {
       let obj = {};
       Object.keys(editedProfileData.data).forEach((item) => {
-        obj[`${item}`] = editedProfileData.data[item].value;
+        if (editedProfileData.data[item].status == "touched") {
+          obj[`${item}`] = editedProfileData.data[item].value;
+        }
       });
+      handleUpdateProfile(obj);
+      navigate("/profile");
     }
   };
-  const handleUpdateProfile = () => {
-
+  const handleUpdateProfile = async (obj) => {
+    const { data, status } = await UpdateEmployee(
+      currentUser.id,
+      accessToken,
+      obj
+    );
+    if (status) {
+      console.log("Done");
+    } else {
+      console.log("Not Done");
+    }
   };
 
   return (
@@ -104,7 +124,15 @@ export default function ProfileSettings() {
           sx={{ margin: "3rem 0", display: "flex", justifyContent: "center" }}
         >
           <Box
-            onClick={editedProfileData.status == "" ? saveChanges : ""}
+            
+            onClick={()=>
+            {
+              if(editedProfileData.status == "touched")
+              {
+                saveChanges()
+              }
+              //  ?  : ""
+            }}
             sx={{
               fontWeight: "700",
               lineHeight: "24px",
@@ -115,7 +143,7 @@ export default function ProfileSettings() {
               background:
                 editedProfileData.status == "touched" ? "#005288" : "#586974",
               cursor:
-                editedProfileData.status == "" ? "pointer" : "not-allowed",
+                editedProfileData.status == "touched" ? "pointer" : "not-allowed",
               color: "#FFF",
               width: "auto",
               display: "flex",
@@ -148,6 +176,18 @@ export default function ProfileSettings() {
 }
 
 function Field({ property, value, handlePopupOpen, seteditedProfileData }) {
+  const [image, setImage] = useState();
+
+  if (property == "image" && typeof value.value == "object") {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+
+    // Pass the File object directly to readAsDataURL
+    reader.readAsDataURL(value.value);
+  }
+
   return (
     <Grid
       container
@@ -166,7 +206,7 @@ function Field({ property, value, handlePopupOpen, seteditedProfileData }) {
         {value.label}
       </Grid>
       <Grid item md={3} xs={12} color={"#000"}>
-        {property == "userimage" ? (
+        {property == "image" ? (
           <Box
             sx={{
               height: "65px",
@@ -178,7 +218,7 @@ function Field({ property, value, handlePopupOpen, seteditedProfileData }) {
               },
             }}
           >
-            <img width={"100%"} src={value.value} />
+            <img width={"100%"} src={image} />
           </Box>
         ) : (
           value.value

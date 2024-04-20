@@ -64,7 +64,7 @@ export default function Login() {
     } else {
       setError(
         "Email",
-        { type: "focus", message: "email used before" },
+        { type: "focus", message: "Email or password is in-valid" },
         { shouldFocus: true }
       );
     }
