@@ -37,6 +37,7 @@ export default function ProfileSettings() {
       },
     },
   });
+  
 
   const [open, setOpen] = useState(false);
   const [property, setproperty] = useState("");
@@ -59,6 +60,7 @@ export default function ProfileSettings() {
     }
   };
   const handleUpdateProfile = () => {
+    console.log(editedProfileData)
 
   };
 

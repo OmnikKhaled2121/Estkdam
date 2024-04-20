@@ -390,3 +390,27 @@ export const DeleteOrder = async (id, userToken) => {
     return Obj
 
 }
+
+
+export const GetNotifications = async (id, userToken) => {
+
+    let Obj = {
+        data: "",
+        status: true
+    }
+    try {
+        let { data } = await axios.get(`${baseUrl}/notifications/${id}`,
+            {
+                headers: {
+                    Authorization: "Bearer " + userToken,
+                },
+            });
+        Obj.data = data
+        Obj.status = true
+    } catch (error) {
+        Obj.data = ""
+        Obj.status = false
+    }
+    return Obj
+
+}
