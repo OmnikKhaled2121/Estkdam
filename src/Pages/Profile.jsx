@@ -311,7 +311,7 @@ function Orders({ item, xs, md }) {
               <Grid sx={{ width: "100%" }}>
                 <OrderInfo orderDetails={order} />
               </Grid>
-              ;
+              
             </>
           );
         })
