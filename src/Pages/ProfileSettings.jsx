@@ -222,7 +222,7 @@ function Field({ property, value, handlePopupOpen, seteditedProfileData }) {
               },
             }}
           >
-            <img width={"100%"} src={image} />
+            <img width={"100%"} height={"100%"} src={image} />
           </Box>
         ) : (
           value.value
