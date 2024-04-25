@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { CircularProgress, Container, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import settingProfile from "../assets/settingProfile.jfif";
@@ -9,9 +9,9 @@ import { UpdateEmployee } from "../lib/api";
 
 export default function ProfileSettings() {
   window.scrollTo(0, 0);
-  const { currentUser, accessToken } = useContext(UserContext);
+  const { currentUser, accessToken, setCurrentUser } = useContext(UserContext);
   let navigate = useNavigate();
-
+  console.log(" currentUser.image", currentUser.image);
   const [editedProfileData, seteditedProfileData] = useState({
     status: "clean",
     data: {
@@ -48,6 +48,7 @@ export default function ProfileSettings() {
   const [open, setOpen] = useState(false);
   const [property, setproperty] = useState("");
   const [value, setvalue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const handleClickOpen = (property, value) => {
     setproperty(property);
     setvalue(value);
@@ -68,15 +69,19 @@ export default function ProfileSettings() {
       handleUpdateProfile(obj);
     }
   };
+
   const handleUpdateProfile = async (obj) => {
+    console.log("currentUser", currentUser);
+    setIsLoading(true)
     const { data, status } = await UpdateEmployee(
       currentUser.id,
       accessToken,
       obj
     );
     if (status) {
+      setCurrentUser(data);
+      setIsLoading(false)
       navigate("/profile");
-      console.log("Done");
     } else {
       console.log("Not Done");
     }
@@ -157,7 +162,7 @@ export default function ProfileSettings() {
             }}
             // onClick={handleUpdateProfile}
           >
-            حفظ الإعدادات
+          {isLoading ?   <CircularProgress size={"2.5rem"} /> : " حفظ الإعدادات"}   
           </Box>
         </Grid>
       </Container>
@@ -175,7 +180,7 @@ export default function ProfileSettings() {
 }
 
 function Field({ property, value, handlePopupOpen, seteditedProfileData }) {
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(value.value);
 
   if (property == "image" && typeof value.value == "object") {
     const reader = new FileReader();
@@ -186,7 +191,7 @@ function Field({ property, value, handlePopupOpen, seteditedProfileData }) {
     // Pass the File object directly to readAsDataURL
     reader.readAsDataURL(value.value);
   }
-
+  console.log("imageee", image);
   return (
     <Grid
       container

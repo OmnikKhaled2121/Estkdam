@@ -37,6 +37,7 @@ export default function UserContextProvider(props) {
       value={{
         currentUser,
         accessToken,
+        setCurrentUser,
         checkLoggedIn: checkLoggedIn,
         LogOut: LogOut,
       }}
