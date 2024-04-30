@@ -149,7 +149,7 @@ export function InputError({ message }) {
         fontWeight: "400",
         lineHeight: " 13.39px",
         textAlign: "right",
-        color: "#878787",
+        color: "red",
       }}
     >
       <Box>

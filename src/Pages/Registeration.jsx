@@ -60,12 +60,12 @@ export default function Registeration() {
         "string.email": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
       }),
     Phone: Joi.string()
-      .regex(/^01[0125][0-9]{8}$/)
+      .regex(/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/)
       .required()
       .messages({
         "string.empty": "يرجى إدخال رقم هاتف.",
         "string.pattern.base":
-          "الرقم غير صحيح، يجب أن يتكون من 11 رقم ويبدأ بـ 01.",
+          "الرقم غير صحيح، يجب أنتمتلك جوال سعودي.",
       }),
     Password: Joi.string().required().min(8).messages({
       "string.empty": "يرجى إدخال كلمة المرور.",

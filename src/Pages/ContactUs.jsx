@@ -47,12 +47,12 @@ export default function ContactUs() {
         "string.email": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
       }),
     Phone: Joi.string()
-      .regex(/^01[0125][0-9]{8}$/)
+      .regex(/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/)
       .required()
       .messages({
         "string.empty": "يرجى إدخال رقم هاتف.",
         "string.pattern.base":
-          "الرقم غير صحيح، يجب أن يتكون من 11 رقم ويبدأ بـ 01.",
+          "الرقم غير صحيح، يجب أن تمتلك جوال سعودي.",
       }),
     Message: Joi.string().required().min(8).messages({
       "string.empty": "يرجى إدخال الرسالة.",
@@ -62,7 +62,7 @@ export default function ContactUs() {
       "any.empty": " يرجى اختيار نوع السؤال  .",
       "any.required": "يرجى اختيار نوع السؤال .",
     }),
-    File: Joi.any().required().messages({
+    File: Joi.any().optional().messages({
       "any.empty": "يرجى إدخال صورة.",
       "any.required": "يرجى إدخال صورة.",
     }),
@@ -175,7 +175,7 @@ export default function ContactUs() {
                 <RadioGroup
                   row
                   aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="female"
+                  defaultValue="استفسار"
                   name="radio-buttons-group"
                 >
                   <DisplayOptions option={"استفسار"} register={register} />
