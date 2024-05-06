@@ -34,7 +34,6 @@ export default function Statistics() {
   const [Data, setData] = useState([...DummyData]);
   async function DynamicData() {
     let { data, status } = await StatisticsData();
-    // console.log(data);
     if (status) {
       DummyData.map((item) => {
         item.num = data[`${item.id}`];

@@ -22,14 +22,12 @@ export default function UserContextProvider(props) {
     let userData = isAuthenticated();
     setCurrentUser(userData?.userData);
     setaccessToken(userData?.accessToken);
-    // console.log("se3a check login", userData?.userData);
   };
 
   useEffect(() => {
     checkLoggedIn();
   }, []);
   useEffect(() => {
-    // console.log("ajaj", currentUser);
   }, [currentUser]);
 
   return (

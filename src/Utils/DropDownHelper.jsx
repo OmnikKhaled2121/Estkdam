@@ -42,7 +42,6 @@ export function handleRequestDropDown(type, item, setValue, currentRequest) {
 
 export async function handleProfessionDropDown() {
   const { data, status } = await GetAllProfessions();
-  //   console.log("proo", data);
   const professions = {};
   if (status) {
     data.forEach((item, index) => {
@@ -57,7 +56,6 @@ export async function handleProfessionDropDown() {
 
 export async function handleNationalitiesDropDown() {
   const { data, status } = await GetAllNationalities();
-  //   console.log("naaat", data);
   const nationality = {};
   if (status) {
     data.forEach((item, index) => {
@@ -71,8 +69,6 @@ export async function handleNationalitiesDropDown() {
 }
 
 export function handleInitial({ type, initial }) {
-  // let value ="";
-  // console.log();
   if (type == "العمر" && initial) {
     return (initial += " عام");
   }

@@ -84,10 +84,8 @@ export default function ContactUs() {
   const { errors } = formState;
 
   const onSubmit = async (inputs) => {
-    // console.log("inputs", inputs);
     setisLoading(true);
     if (!inputs.File) {
-      // If image upload is empty
       setError(
         "File",
         { type: "focus", message: "يرجى تحديد ملف." },
@@ -95,11 +93,9 @@ export default function ContactUs() {
       );
       return;
     }
-
     const { data, status } = await CreateContact(inputs);
     if (status) {
       setisLoading(false);
-      // console.log("Message", data);
       navigate("/");
     } else {
       setisLoading(false);
@@ -109,7 +105,6 @@ export default function ContactUs() {
         { shouldFocus: true }
       );
     }
-    // console.log("inputs", inputs);
   };
 
   return (
@@ -253,13 +248,6 @@ export default function ContactUs() {
               }}
             >
               {Object.entries(errors).map((error, index) => {
-                // console.log(error);
-                // if (error[0] == "File") {
-                //   console.log("error[0]", error[1]);
-                //   return Object.entries(error[1]).map((item, i) => {
-                //     return <InputError key={i} message={item[1].message} />;
-                //   });
-                // }
                 return <InputError key={index} message={error[1].message} />;
               })}
             </Grid>
@@ -291,7 +279,6 @@ export default function ContactUs() {
                   },
                 }}
                 onClick={() => {
-                  // console.log("ffffff", getValues());
                 }}
               >
                 {isLoading ? <CircularProgress size={"1.5rem"} /> : "إرسال"}
@@ -387,7 +374,6 @@ export function UploadFile({ xs, register, setError, setValue, setImage }) {
             cursor: "pointer",
           }}
           onClick={() => {
-            console.log("helllooooooo", fileInputRef.current);
             fileInputRef.current.click();
           }}
         >

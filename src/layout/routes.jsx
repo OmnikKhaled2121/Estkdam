@@ -30,12 +30,7 @@ import NotFound from "../components/NotFound";
 
 export default function Routers() {
   const { currentUser } = useContext(UserContext);
-  // console.log("Routers", currentUser);
   const employeeID = JSON.parse(localStorage.getItem("employeeID"))?.employeeID;
-
-  // console.log("employeeID", employeeID);
-  // let id = useParams();
-  // console.log("sssssssss",id)
   let routers = createBrowserRouter([
     {
       path: "",

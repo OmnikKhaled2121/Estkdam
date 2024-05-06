@@ -82,11 +82,8 @@ export default function EditProfilePopUp({
   const onSubmit = async (inputs) => {
     setisLoading(true);
   };
-
   const handleEditInfo = (inputVal) => {
-    console.log("geeeeee", getValues().File);
     seteditedProfileData((prev) => {
-      console.log("prev", prev);
       prev.status = "touched";
       prev.data[`${property}`].status = "touched";
       prev.data[`${property}`].value =

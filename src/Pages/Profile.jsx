@@ -17,7 +17,6 @@ const profileData = [
 async function ListNotification(setNotification, userId, accessToken) {
   const { data, status } = await GetNotifications(userId, accessToken);
   if (status) {
-    console.log(data);
     setNotification(data);
   }
 }
@@ -29,8 +28,6 @@ export default function Profile() {
   useEffect(() => {
     ListNotification(setNotification, userId, accessToken);
   }, []);
-  console.log(notification.length);
-
   window.scrollTo(0, 0);
 
   return (
@@ -252,7 +249,6 @@ function Orders({ item, xs, md }) {
     if (status) {
       setOrders(data);
     }
-    // console.log(order)
   }
   useEffect(() => {
     getAllOrders(userId, accessToken);

@@ -12,7 +12,6 @@ async function getAllOrders(setOrders, userId, accessToken) {
   if (status) {
     setOrders(data);
   }
-  // console.log(order)
 }
 
 
@@ -133,13 +132,7 @@ function ButtonTrack({ title, backColor, direct, ordertId, setOrders }) {
   let userID = currentUser?.id
   async function deleteOrder(setOrders, ordertId, accessToken) {
     const { data } = await DeleteOrder(ordertId, accessToken);
-
-
     getAllOrders(setOrders, userID, accessToken)
-    // console.log("deleeeeeeeeeeeeete")
-
-
-
   }
 
 

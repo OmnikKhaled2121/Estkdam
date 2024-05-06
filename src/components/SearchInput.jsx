@@ -18,7 +18,6 @@ export default function SearchInput({
   let navigate = useNavigate();
   async function getAll(input) {
     const { data, status } = await TitleSearch(input);
-    // console.log("Essss", data);
     setAllEmployee(data);
   }
 
@@ -84,7 +83,6 @@ export default function SearchInput({
         id="searchInput"
         onChange={(e) => {
           setProfession(e.target.value);
-          // console.log("e.target.value", e.target.value);
         }}
         placeholder={`${isFooter ? "اكتب بريدك الإلكترونى" : text}`}
         className={placeHolderColor}

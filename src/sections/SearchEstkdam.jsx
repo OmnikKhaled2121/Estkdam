@@ -446,7 +446,6 @@ function Options({
                 },
               }}
               onClick={() => {
-                // console.log("request Final", request.current);
               }}
             >
               ابدأ الإستقدام الأن

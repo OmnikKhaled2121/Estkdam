@@ -313,7 +313,6 @@ export default function Registeration() {
           }}
         >
           {Object.entries(errors).map((error, index) => {
-            console.log(error);
             return <InputError key={index} message={error[1].message} />;
           })}
         </Grid>

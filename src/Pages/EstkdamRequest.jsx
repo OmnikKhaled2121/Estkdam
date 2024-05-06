@@ -31,7 +31,6 @@ export default function EstkdamRequest() {
   });
 
   async function getAllEmployee(request, accessToken) {
-    // console.log("getAllEmployee2");
     const { data, status } = await SearchEmployee(request, accessToken);
     setAllEmployee(data);
   }
@@ -194,7 +193,7 @@ export default function EstkdamRequest() {
                       alignItems: "center",
                     }}
                   >
-                    {allEmployee.length == 0 ? (
+                    { allEmployee == 0 ? (
                       "لا يوجد نتائج لهذا البحث  "
                     ) : (
                       <>

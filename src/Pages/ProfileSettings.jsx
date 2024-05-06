@@ -11,7 +11,6 @@ export default function ProfileSettings() {
   window.scrollTo(0, 0);
   const { currentUser, accessToken, setCurrentUser } = useContext(UserContext);
   let navigate = useNavigate();
-  console.log(" currentUser.image", currentUser.image);
   const [editedProfileData, seteditedProfileData] = useState({
     status: "clean",
     data: {
@@ -71,7 +70,6 @@ export default function ProfileSettings() {
   };
 
   const handleUpdateProfile = async (obj) => {
-    console.log("currentUser", currentUser);
     setIsLoading(true)
     const { data, status } = await UpdateEmployee(
       currentUser.id,
@@ -191,7 +189,6 @@ function Field({ property, value, handlePopupOpen, seteditedProfileData }) {
     // Pass the File object directly to readAsDataURL
     reader.readAsDataURL(value.value);
   }
-  console.log("imageee", image);
   return (
     <Grid
       container

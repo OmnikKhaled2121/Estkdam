@@ -23,13 +23,13 @@ export default function FilterBtn({ request, setAllEmployee, setIsClear }) {
           height: "58px",
           width: "124px",
           transition: ".3s",
+          cursor:"pointer",
           "&:hover": {
             background: "#fff",
             color: "#005288",
           },
         }}
         onClick={() => {
-          // console.log("تطبييييييييييييق", request.current);
           getAll(request.current);
         }}
       >
@@ -46,6 +46,7 @@ export default function FilterBtn({ request, setAllEmployee, setIsClear }) {
           height: "58px",
           width: "148px",
           transition: ".3s",
+          cursor:"pointer",
           "&:hover": {
             color: "#fff",
             background: "#BD295E",
@@ -53,7 +54,6 @@ export default function FilterBtn({ request, setAllEmployee, setIsClear }) {
         }}
         onClick={() => {
           request.current = {};
-          // console.log("dsdsdasdas");
           setIsClear(true);
         }}
       >

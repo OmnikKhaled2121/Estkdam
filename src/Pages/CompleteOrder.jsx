@@ -217,7 +217,6 @@ function EmpCard({
       accessToken
     );
     if (status) {
-      // console.log("data", data);
       setCreateOrder(data.order);
       setIsCreate(true);
     }

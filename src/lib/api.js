@@ -155,7 +155,6 @@ export const TitleSearch = async (profession) => {
 }
 
 export const GetAllProfessions = async () => {
-    // console.log("Samkaaaaaaaaaaaaaaaaaaaaaaaa")
     let Obj = {
         data: "",
         status: true
@@ -194,7 +193,6 @@ export const SearchEmployee = async (inputs, userToken) => {
         data: "",
         status: true
     }
-    // console.log("inputs", inputs)
     try {
         let { data } = await axios.get(`${baseUrl}/employees`, {
             headers: {
@@ -219,7 +217,6 @@ export const GetEmployeeByID = async (id, userToken) => {
         data: "",
         status: true
     }
-    // console.log("userToken44", userToken)
     try {
         let { data } = await axios.get(`${baseUrl}/employees/${id}`, {
             headers: {
@@ -257,8 +254,6 @@ export const UpdateEmployee = async (id, userToken, userData) => {
             },
 
         });
-        // console.log("dat3333a", data)
-        // setEmployee(data)
         Obj.data = data
         Obj.status = true
     } catch (error) {
@@ -374,7 +369,6 @@ export const DeleteOrder = async (id, userToken) => {
                 },
             });
         Obj.data = data
-        // console.log(Obj.data)
         Obj.status = true
     } catch (error) {
         Obj.data = ""

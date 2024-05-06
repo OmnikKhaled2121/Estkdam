@@ -18,7 +18,6 @@ export default function DropDownFilter({
   setIsClear,
   initial,
 }) {
-  // console.log("initial", initial);
   
   const [flag, setFlag] = useState(false);
   const [value, setValue] = useState(handleInitial({type,initial}));
@@ -54,6 +53,7 @@ export default function DropDownFilter({
           alignItems: "center",
           marginLeft: ".5rem",
           position: "relative",
+          cursor:"pointer"
         }}
         onClick={() => {
           setFlag((prev) => !prev);
@@ -64,6 +64,7 @@ export default function DropDownFilter({
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
+            cursor:"pointer"
           }}
         >
           {icon}
@@ -77,6 +78,7 @@ export default function DropDownFilter({
             top: "100%",
             zIndex: "6666",
             display: flag ? "block" : "none",
+            cursor:"pointer"
           }}
         >
           <DropDownFeild

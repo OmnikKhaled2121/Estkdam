@@ -13,9 +13,6 @@ export default function Navber() {
   const [currentPage, setcurrentPage] = useState(
     location.pathname.split("/")[1]
   );
-
-  // console.log("url55", location.pathname.split("/")[1]);
-
   const handleNavToggle = () => {
     setopenMobileNav((prev) => {
       return !prev;
