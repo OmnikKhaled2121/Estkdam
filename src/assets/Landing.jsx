@@ -99,7 +99,7 @@ function ImgBorder({ Img }) {
         borderLeft: "0",
       }}
     >
-      <Box sx={{ position: "absolute", transform: "translate (20 % , -10%)",backgroundImage:`url(${"../../public/joley.jfif"})` }}>
+      <Box sx={{ position: "absolute", transform: "translate(20%, -10%)", backgroundImage: `url(${Img})` }}>
         {/* <img src={Img} /> */}
       </Box>
     </Grid>

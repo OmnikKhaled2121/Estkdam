@@ -33,7 +33,7 @@ export default function Routers() {
   const employeeID = JSON.parse(localStorage.getItem("employeeID"))?.employeeID;
   let routers = createBrowserRouter([
     {
-      path: "",
+      path: "/",
       element: <Root />,
       children: [
         { index: true, element: <Home /> },
@@ -118,7 +118,9 @@ export default function Routers() {
       path: "OrderReview",
       element: <OrderReview />,
     },
-  ]);
+  ], {
+    basename: "/Estkdam",
+  });
 
   return routers;
 }
