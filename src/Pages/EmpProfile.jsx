@@ -30,7 +30,7 @@ export default function EmpProfile() {
           <Landing
             employee={employee}
             name={"أليس ديكسون"}
-            proPic={proPic}
+            proPic={employee?.image_url || employee?.image || proPic}
             Information={[]}
           />
           {/* <AdditionalInfo employee={employee} /> */}
@@ -74,17 +74,15 @@ function Landing({ name, proPic, Information, employee }) {
           sx={{
             width: {
               md: "100%",
-              xs: "380px",
+              xs: "100%",
             },
-            height: {
-              md: "45%",
-              xs: "380px",
-            },
+            aspectRatio: "3 / 4",
+            maxHeight: "400px",
             borderRadius: "26px",
             overflow: "hidden",
             backgroundImage: `url(${proPic})`,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center top",
           }}
         ></Box>
       </Grid>
@@ -636,7 +634,7 @@ function Recommendation({ recommendations }) {
   );
 }
 
-function Information({ xs, experience, title, InfoArr, icon }) {
+function Information({ xs, experience, title, InfoArr = [], icon }) {
   return (
     <>
       <Box>
